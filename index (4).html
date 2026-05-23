@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StudyForge — Fiches de révision IA</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Kalam:wght@300;400;700&family=Patrick+Hand&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f8f6f0;
+  --white: #ffffff;
+  --line: #e8e0d5;
+  --ink: #2d2d2d;
+  --muted: #888;
+  --pink: #ff8fab;
+  --pink-bg: #fff0f4;
+  --pink-border: #ffccd8;
+  --yellow: #ffd166;
+  --yellow-bg: #fffbee;
+  --yellow-border: #ffe59a;
+  --blue: #4cc9f0;
+  --blue-bg: #f0fbff;
+  --blue-border: #b3e8f8;
+  --green: #06d6a0;
+  --green-bg: #f0fff9;
+  --green-border: #a3f0dc;
+  --purple: #b388ff;
+  --purple-bg: #f7f0ff;
+  --purple-border: #d8bfff;
+  --orange: #ff9f1c;
+  --orange-bg: #fff8f0;
+  --orange-border: #ffd59a;
+  --red: #ef476f;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden}
+body{background:var(--bg);color:var(--ink);font-family:'Nunito',sans-serif;display:flex;flex-direction:column}
+
+/* ── TOPBAR ── */
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 1.5rem;height:58px;
+  background:white;border-bottom:2px solid var(--line);
+  flex-shrink:0;z-index:100;
+}
+.logo{font-family:'Caveat',cursive;font-size:1.8rem;font-weight:700;color:var(--ink)}
+.logo span{color:var(--pink)}
+.founder{font-size:0.78rem;color:var(--muted);font-family:'Nunito',sans-serif}
+.founder strong{color:var(--ink)}
+.avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--purple));display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:800;color:white;font-family:'Caveat',cursive}
+
+/* ── LAYOUT ── */
+.layout{display:flex;flex:1;overflow:hidden}
+
+/* ── SIDEBAR ── */
+.sidebar{
+  width:210px;flex-shrink:0;background:white;
+  border-right:2px solid var(--line);
+  display:flex;flex-direction:column;padding:1rem 0;
+}
+.nav-item{
+  display:flex;align-items:center;gap:10px;
+  padding:11px 1.25rem;font-size:0.9rem;font-weight:700;
+  cursor:pointer;color:var(--muted);transition:all 0.15s;
+  border-left:4px solid transparent;font-family:'Nunito',sans-serif;
+}
+.nav-item:hover{color:var(--ink);background:#fafafa}
+.nav-item.active{color:var(--pink);border-left-color:var(--pink);background:var(--pink-bg)}
+.nav-icon{font-size:1.1rem;width:22px;text-align:center}
+.sidebar-footer{margin-top:auto;padding:1rem 1.25rem;border-top:2px solid var(--line);font-size:0.75rem;color:var(--muted);line-height:1.7;font-family:'Caveat',cursive;font-size:0.95rem}
+.sidebar-footer strong{color:var(--ink);display:block;font-size:1rem}
+
+/* ── MAIN ── */
+.main{flex:1;overflow-y:auto;padding:1.5rem 2rem}
+
+/* ── PAGES ── */
+.page{display:none}
+.page.active{display:block}
+
+/* ── SECTION TITLE ── */
+.section-title{font-family:'Caveat',cursive;font-size:2rem;font-weight:700;margin-bottom:0.2rem;color:var(--ink)}
+.section-sub{color:var(--muted);font-size:0.88rem;margin-bottom:1.5rem;font-family:'Nunito',sans-serif}
+
+/* ── FORM CARD ── */
+.form-card{background:white;border:2px solid var(--line);border-radius:16px;padding:1.5rem;margin-bottom:1rem}
+.form-card h3{font-family:'Caveat',cursive;font-size:1.3rem;font-weight:700;margin-bottom:1rem;color:var(--ink)}
+label{font-size:0.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;display:block;margin-bottom:5px}
+input[type=text],textarea,select{
+  width:100%;padding:9px 13px;
+  background:#fafafa;border:2px solid var(--line);
+  border-radius:10px;color:var(--ink);
+  font-family:'Nunito',sans-serif;font-size:0.9rem;
+  transition:border-color 0.2s;resize:vertical;
+}
+input[type=text]:focus,textarea:focus,select:focus{outline:none;border-color:var(--pink);background:white}
+select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23aaa'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:30px;cursor:pointer}
+.input-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+@media(max-width:600px){.input-row{grid-template-columns:1fr}}
+
+/* chips */
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{padding:5px 14px;border:2px solid var(--line);border-radius:100px;font-size:0.82rem;cursor:pointer;transition:all 0.15s;color:var(--muted);background:white;font-weight:600;font-family:'Nunito',sans-serif}
+.chip:hover{border-color:var(--pink);color:var(--pink)}
+.chip.active{background:var(--pink);color:white;border-color:var(--pink)}
+
+/* upload */
+.upload-zone{border:2px dashed var(--line);border-radius:12px;padding:1.5rem;text-align:center;cursor:pointer;transition:all 0.2s;color:var(--muted)}
+.upload-zone:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-bg)}
+#file-input{display:none}
+#preview-img{max-width:100%;border-radius:8px;margin-top:12px;display:none}
+
+/* bouton */
+.btn-primary{width:100%;padding:13px;background:var(--pink);border:none;border-radius:12px;color:white;font-family:'Caveat',cursive;font-size:1.2rem;font-weight:700;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:10px;letter-spacing:0.02em}
+.btn-primary:hover{background:#ff7096;transform:translateY(-1px)}
+.btn-primary:disabled{opacity:0.5;cursor:not-allowed;transform:none}
+.btn-secondary{padding:7px 14px;background:white;border:2px solid var(--line);border-radius:8px;color:var(--ink);font-size:0.82rem;cursor:pointer;transition:all 0.15s;font-family:'Nunito',sans-serif;font-weight:600}
+.btn-secondary:hover{border-color:var(--pink);color:var(--pink)}
+.spinner{width:18px;height:18px;border:2px solid rgba(255,255,255,0.4);border-top-color:white;border-radius:50%;animation:spin 0.7s linear infinite;display:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ══════════════════════════════════
+   FICHE PAPIER STYLE MANUSCRIT
+══════════════════════════════════ */
+.fiche-paper{
+  display:none;
+  margin-top:1.5rem;
+  animation:fadeUp 0.4s ease;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+/* La feuille */
+.paper-sheet{
+  background:white;
+  border:2px solid #ddd;
+  border-radius:4px;
+  padding:0;
+  position:relative;
+  box-shadow:3px 4px 18px rgba(0,0,0,0.10), 1px 1px 0 #e0e0e0;
+  overflow:hidden;
+  max-width:680px;
+  margin:0 auto;
+}
+
+/* Lignes de réglure */
+.paper-sheet::before{
+  content:'';
+  position:absolute;inset:0;
+  background-image:repeating-linear-gradient(
+    transparent, transparent 31px, #e8f0fe 31px, #e8f0fe 32px
+  );
+  pointer-events:none;
+  z-index:0;
+}
+
+/* Marge rouge verticale */
+.paper-sheet::after{
+  content:'';
+  position:absolute;top:0;bottom:0;left:56px;
+  width:2px;background:#ffb3ba;
+  pointer-events:none;z-index:1;
+}
+
+/* Trous de reliure */
+.holes{
+  position:absolute;top:0;left:0;bottom:0;width:56px;
+  display:flex;flex-direction:column;justify-content:space-evenly;
+  align-items:center;z-index:2;pointer-events:none;
+}
+.hole{width:14px;height:14px;border-radius:50%;background:#f8f6f0;border:1.5px solid #ccc}
+
+/* Contenu de la fiche */
+.paper-content{
+  position:relative;z-index:2;
+  padding:1.5rem 1.75rem 2rem 80px;
+  min-height:400px;
+}
+
+/* Titre principal de la fiche */
+.fiche-main-title{
+  font-family:'Caveat',cursive;
+  font-size:2rem;font-weight:700;
+  text-align:center;
+  color:var(--ink);
+  margin-bottom:1.5rem;
+  padding-bottom:0.5rem;
+  border-bottom:3px solid var(--pink);
+  letter-spacing:0.02em;
+  line-height:32px;
+}
+
+/* Sections colorées */
+.fiche-section{
+  margin-bottom:1.2rem;
+  break-inside:avoid;
+}
+
+.section-header{
+  font-family:'Caveat',cursive;
+  font-size:1.1rem;font-weight:700;
+  padding:3px 12px;
+  border-radius:6px 6px 0 0;
+  display:inline-block;
+  margin-bottom:0;
+  line-height:32px;
+}
+
+.section-body{
+  border:2px solid;
+  border-radius:0 8px 8px 8px;
+  padding:0.6rem 0.9rem;
+  font-family:'Kalam',cursive;
+  font-size:0.92rem;
+  line-height:2rem;
+  position:relative;
+}
+
+/* Couleurs des sections */
+.sec-pink .section-header{background:var(--pink);color:white}
+.sec-pink .section-body{border-color:var(--pink-border);background:var(--pink-bg)}
+
+.sec-yellow .section-header{background:var(--yellow);color:#7a5800}
+.sec-yellow .section-body{border-color:var(--yellow-border);background:var(--yellow-bg)}
+
+.sec-blue .section-header{background:var(--blue);color:#005f7a}
+.sec-blue .section-body{border-color:var(--blue-border);background:var(--blue-bg)}
+
+.sec-green .section-header{background:var(--green);color:#005438}
+.sec-green .section-body{border-color:var(--green-border);background:var(--green-bg)}
+
+.sec-purple .section-header{background:var(--purple);color:#3d1a7a}
+.sec-purple .section-body{border-color:var(--purple-border);background:var(--purple-bg)}
+
+.sec-orange .section-header{background:var(--orange);color:#7a3a00}
+.sec-orange .section-body{border-color:var(--orange-border);background:var(--orange-bg)}
+
+/* Texte dans section */
+.section-body strong{font-weight:700}
+.section-body ul{margin:0;padding-left:1.2rem}
+.section-body li{line-height:2rem}
+.section-body .schema{
+  font-family:'Courier New',monospace;
+  font-size:0.8rem;
+  background:rgba(0,0,0,0.04);
+  border-radius:6px;
+  padding:0.5rem 0.75rem;
+  margin:4px 0;
+  line-height:1.6;
+  white-space:pre;
+  overflow-x:auto;
+}
+.section-body .def{
+  border-left:3px solid currentColor;
+  padding-left:8px;
+  margin:4px 0;
+  font-style:italic;
+}
+
+/* Grille 2 colonnes */
+.fiche-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0 1.2rem;
+}
+@media(max-width:560px){.fiche-grid{grid-template-columns:1fr}}
+
+/* À retenir */
+.a-retenir{
+  margin-top:1.2rem;
+  background:var(--yellow-bg);
+  border:2px solid var(--yellow-border);
+  border-radius:10px;
+  padding:0.75rem 1rem;
+  font-family:'Caveat',cursive;
+  font-size:1.05rem;
+  line-height:1.8;
+}
+.a-retenir-title{
+  font-family:'Caveat',cursive;
+  font-size:1.2rem;font-weight:700;
+  color:var(--orange);
+  margin-bottom:4px;
+}
+
+/* Actions fiche */
+.fiche-actions-bar{
+  max-width:680px;margin:0.75rem auto 0;
+  display:flex;gap:8px;flex-wrap:wrap;justify-content:center;
+}
+
+/* ── BIBLIOTHÈQUE ── */
+.search-bar{display:flex;align-items:center;gap:10px;background:white;border:2px solid var(--line);border-radius:10px;padding:9px 14px;margin-bottom:1.25rem}
+.search-bar input{background:transparent;border:none;color:var(--ink);font-size:0.9rem;flex:1;font-family:'Nunito',sans-serif}
+.search-bar input:focus{outline:none}
+.fiches-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem}
+
+/* mini fiche card */
+.fiche-card{
+  background:white;border:2px solid var(--line);border-radius:12px;
+  padding:1rem;cursor:pointer;transition:all 0.2s;
+  position:relative;overflow:hidden;
+}
+.fiche-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.08)}
+.fiche-card .fc-color-bar{height:5px;border-radius:3px;margin-bottom:10px}
+.fiche-card h4{font-family:'Caveat',cursive;font-size:1.1rem;font-weight:700;margin-bottom:4px}
+.fiche-card .fc-meta{font-size:0.75rem;color:var(--muted);margin-bottom:8px}
+.fiche-card .fc-preview{font-size:0.8rem;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.empty-state{text-align:center;padding:3rem;color:var(--muted)}
+.empty-state .es-icon{font-size:3rem;margin-bottom:1rem}
+
+/* badge */
+.badge{padding:2px 10px;border-radius:100px;font-size:0.73rem;font-weight:700;display:inline-block}
+.badge-pink{background:var(--pink-bg);color:var(--pink);border:1.5px solid var(--pink-border)}
+.badge-blue{background:var(--blue-bg);color:#0099cc;border:1.5px solid var(--blue-border)}
+.badge-green{background:var(--green-bg);color:#009966;border:1.5px solid var(--green-border)}
+.badge-yellow{background:var(--yellow-bg);color:#cc8800;border:1.5px solid var(--yellow-border)}
+.badge-purple{background:var(--purple-bg);color:#7c3aed;border:1.5px solid var(--purple-border)}
+
+/* ── COMMUNAUTÉ ── */
+.community-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
+.pub-card{background:white;border:2px solid var(--line);border-radius:12px;padding:1.1rem;transition:border-color 0.2s}
+.pub-card:hover{border-color:var(--pink)}
+.pub-card .pub-author{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.pub-card .pub-avatar{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;color:white;font-family:'Caveat',cursive;font-size:0.9rem}
+.pub-card .pub-name{font-size:0.85rem;font-weight:700}
+.pub-card .pub-date{font-size:0.73rem;color:var(--muted)}
+.pub-card h4{font-family:'Caveat',cursive;font-size:1.1rem;font-weight:700;margin-bottom:5px}
+.pub-card p{font-size:0.8rem;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pub-card .pub-footer{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+.like-btn{background:transparent;border:2px solid var(--line);border-radius:6px;color:var(--muted);padding:3px 10px;font-size:0.8rem;cursor:pointer;transition:all 0.15s;font-family:'Nunito',sans-serif;font-weight:600}
+.like-btn:hover,.like-btn.liked{border-color:var(--red);color:var(--red);background:#fff5f7}
+
+/* ── CHAT ── */
+.chat-layout{display:flex;height:calc(100vh - 58px - 3rem - 52px);gap:1rem}
+.chat-sidebar{width:250px;flex-shrink:0;background:white;border:2px solid var(--line);border-radius:12px;display:flex;flex-direction:column;overflow:hidden}
+.chat-sidebar-top{padding:0.9rem;border-bottom:2px solid var(--line)}
+.chat-search{display:flex;align-items:center;gap:8px;background:#fafafa;border:2px solid var(--line);border-radius:8px;padding:7px 11px}
+.chat-search input{background:transparent;border:none;color:var(--ink);font-size:0.85rem;flex:1;font-family:'Nunito',sans-serif}
+.chat-search input:focus{outline:none}
+.conversations{flex:1;overflow-y:auto}
+.conv-item{display:flex;align-items:center;gap:9px;padding:10px 0.9rem;cursor:pointer;transition:background 0.15s;border-bottom:1px solid var(--line)}
+.conv-item:hover{background:#fafafa}
+.conv-item.active{background:var(--pink-bg)}
+.conv-avatar-chat{width:34px;height:34px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:0.85rem;font-weight:700;color:white;font-family:'Caveat',cursive}
+.conv-info{flex:1;min-width:0}
+.conv-info .conv-name{font-size:0.87rem;font-weight:700}
+.conv-info .conv-last{font-size:0.75rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.new-chat-btn{margin:0.75rem;padding:8px;background:var(--pink);border:none;border-radius:8px;color:white;font-size:0.85rem;cursor:pointer;font-family:'Caveat',cursive;font-size:1rem;font-weight:700;transition:background 0.15s}
+.new-chat-btn:hover{background:#ff7096}
+.chat-main{flex:1;background:white;border:2px solid var(--line);border-radius:12px;display:flex;flex-direction:column;overflow:hidden}
+.chat-header{padding:0.9rem 1.1rem;border-bottom:2px solid var(--line);display:flex;align-items:center;gap:10px;background:var(--pink-bg)}
+.ch-name{font-family:'Caveat',cursive;font-weight:700;font-size:1.1rem}
+.ch-status{font-size:0.75rem;color:var(--green)}
+.messages{flex:1;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:10px}
+.msg{display:flex;gap:8px;max-width:75%}
+.msg.me{flex-direction:row-reverse;align-self:flex-end}
+.msg-av{width:26px;height:26px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;color:white;font-family:'Caveat',cursive}
+.msg-bubble{background:#f4f4f4;border-radius:12px;padding:8px 13px;font-size:0.87rem;line-height:1.6;font-family:'Nunito',sans-serif}
+.msg.me .msg-bubble{background:var(--pink-bg);border:1.5px solid var(--pink-border)}
+.msg-time{font-size:0.7rem;color:var(--muted);margin-top:3px;text-align:right}
+.chat-input-area{padding:0.9rem;border-top:2px solid var(--line);display:flex;gap:8px;align-items:flex-end}
+.chat-input-area textarea{flex:1;background:#fafafa;border:2px solid var(--line);border-radius:10px;padding:9px 13px;color:var(--ink);font-family:'Nunito',sans-serif;font-size:0.87rem;resize:none;max-height:100px}
+.chat-input-area textarea:focus{outline:none;border-color:var(--pink)}
+.send-btn{width:38px;height:38px;background:var(--pink);border:none;border-radius:10px;color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:background 0.15s;flex-shrink:0}
+.send-btn:hover{background:#ff7096}
+
+/* modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:999;display:none;align-items:center;justify-content:center;padding:1rem}
+.modal-overlay.open{display:flex}
+.modal{background:white;border:2px solid var(--line);border-radius:16px;max-width:700px;width:100%;max-height:88vh;overflow-y:auto;animation:fadeUp 0.3s ease}
+.modal-header{padding:1.1rem 1.5rem;border-bottom:2px solid var(--line);display:flex;justify-content:space-between;align-items:center;background:var(--pink-bg)}
+.modal-header h2{font-family:'Caveat',cursive;font-size:1.4rem;font-weight:700}
+.modal-close{background:transparent;border:none;color:var(--muted);font-size:1.3rem;cursor:pointer}
+.modal-body{padding:1.5rem}
+
+/* toast */
+.toast{position:fixed;bottom:2rem;right:2rem;background:var(--pink);color:white;padding:11px 20px;border-radius:10px;font-size:0.88rem;font-weight:700;z-index:9999;transform:translateY(80px);opacity:0;transition:all 0.3s;pointer-events:none;font-family:'Caveat',cursive;font-size:1rem}
+.toast.show{transform:translateY(0);opacity:1}
+
+/* scrollbar */
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-thumb{background:#ddd;border-radius:4px}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="logo">Study<span>Forge</span></div>
+  <div style="display:flex;align-items:center;gap:12px">
+    <div class="founder">par <strong>DAOUDI WAEL</strong></div>
+    <div class="avatar">DW</div>
+  </div>
+</div>
+
+<div class="layout">
+  <div class="sidebar">
+    <div class="nav-item active" onclick="showPage('generate')"><span class="nav-icon">✨</span> Créer une fiche</div>
+    <div class="nav-item" onclick="showPage('library')"><span class="nav-icon">📚</span> Ma bibliothèque</div>
+    <div class="nav-item" onclick="showPage('community')"><span class="nav-icon">🌍</span> Communauté</div>
+    <div class="nav-item" onclick="showPage('chat')"><span class="nav-icon">💬</span> Messages</div>
+    <div class="sidebar-footer">
+      <strong>StudyForge ✏️</strong>
+      Fondé par DAOUDI WAEL<br>
+      100% gratuit 🎉
+    </div>
+  </div>
+
+  <div class="main">
+
+    <!-- PAGE GÉNÉRER -->
+    <div class="page active" id="page-generate">
+      <div class="section-title">✨ Créer une fiche</div>
+      <div class="section-sub">L'IA génère une fiche style cahier manuscrit coloré, comme si tu l'avais faite à la main ✍️</div>
+
+      <div class="form-card">
+        <h3>📌 Matière</h3>
+        <div class="chips" id="matiere-chips">
+          <span class="chip active" data-val="Français">📖 Français</span>
+          <span class="chip" data-val="Mathématiques">📐 Maths</span>
+          <span class="chip" data-val="Histoire-Géo">🌍 Histoire-Géo</span>
+          <span class="chip" data-val="Sciences">🔬 Sciences</span>
+          <span class="chip" data-val="Anglais">🇬🇧 Anglais</span>
+          <span class="chip" data-val="Philosophie">🧠 Philo</span>
+          <span class="chip" data-val="Biologie">🧬 Bio</span>
+          <span class="chip" data-val="Physique-Chimie">⚗️ Physique</span>
+          <span class="chip" data-val="Informatique">💻 Info</span>
+          <span class="chip" data-val="Autre">📝 Autre</span>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <h3>📷 Photo du cours (optionnel)</h3>
+        <div class="upload-zone" onclick="document.getElementById('file-input').click()">
+          <div style="font-size:2rem;margin-bottom:6px">📸</div>
+          <p style="font-size:0.85rem">Clique pour importer une photo de ton cours</p>
+          <p style="font-size:0.75rem;margin-top:4px;opacity:0.6">JPG, PNG acceptés</p>
+        </div>
+        <input type="file" id="file-input" accept="image/*" onchange="handleFile(this)">
+        <img id="preview-img" alt="Aperçu">
+      </div>
+
+      <div class="form-card">
+        <h3>✍️ Contenu</h3>
+        <div style="margin-bottom:1rem">
+          <label>Colle ou tape ton cours ici</label>
+          <textarea id="cours-text" rows="4" placeholder="Colle ici le texte de ton cours, tes notes..."></textarea>
+        </div>
+        <div class="input-row">
+          <div>
+            <label>Titre / Chapitre</label>
+            <input type="text" id="titre-input" placeholder="Ex : Les figures de style">
+          </div>
+          <div>
+            <label>Mots-clés</label>
+            <input type="text" id="keywords-input" placeholder="Ex : métaphore, comparaison...">
+          </div>
+        </div>
+        <div class="input-row">
+          <div>
+            <label>Niveau</label>
+            <select id="niveau-select">
+              <option>Collège</option>
+              <option>Lycée</option>
+              <option selected>Terminale / BAC</option>
+              <option>BTS / IUT</option>
+              <option>Université</option>
+            </select>
+          </div>
+          <div>
+            <label>Type de fiche</label>
+            <select id="type-select">
+              <option>Fiche de révision complète</option>
+              <option>Résumé court</option>
+              <option>Fiche avec exemples</option>
+              <option>Fiche définitions</option>
+              <option>Fiche formules / dates</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-primary" id="gen-btn" onclick="generateFiche()">
+        <div class="spinner" id="spinner"></div>
+        <span id="btn-text">✏️ Générer ma fiche façon cahier</span>
+      </button>
+
+      <!-- FICHE PAPIER -->
+      <div class="fiche-paper" id="fiche-paper">
+        <div class="paper-sheet" id="paper-sheet">
+          <div class="holes">
+            <div class="hole"></div><div class="hole"></div>
+            <div class="hole"></div><div class="hole"></div>
+            <div class="hole"></div>
+          </div>
+          <div class="paper-content" id="paper-content">
+            <!-- généré dynamiquement -->
+          </div>
+        </div>
+        <div class="fiche-actions-bar">
+          <button class="btn-secondary" onclick="saveFiche()">💾 Sauvegarder</button>
+          <button class="btn-secondary" onclick="printFiche()">🖨️ Imprimer</button>
+          <button class="btn-secondary" onclick="generateQuiz()">🎯 Générer un quiz</button>
+          <button class="btn-secondary" onclick="shareToComm()">🌍 Partager</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE BIBLIOTHÈQUE -->
+    <div class="page" id="page-library">
+      <div class="section-title">📚 Ma bibliothèque</div>
+      <div class="section-sub">Toutes tes fiches sauvegardées.</div>
+      <div class="search-bar">
+        <span>🔍</span>
+        <input type="text" id="lib-search" placeholder="Rechercher une fiche, un chapitre..." oninput="filterLibrary()">
+      </div>
+      <div class="fiches-grid" id="library-grid"></div>
+    </div>
+
+    <!-- PAGE COMMUNAUTÉ -->
+    <div class="page" id="page-community">
+      <div class="section-title">🌍 Communauté</div>
+      <div class="section-sub">Explore les fiches partagées par les autres élèves.</div>
+      <div class="search-bar">
+        <span>🔍</span>
+        <input type="text" id="comm-search" placeholder="Rechercher un chapitre, une matière..." oninput="filterCommunity()">
+      </div>
+      <div class="community-grid" id="community-grid"></div>
+    </div>
+
+    <!-- PAGE CHAT -->
+    <div class="page" id="page-chat">
+      <div class="section-title">💬 Messages</div>
+      <div class="section-sub">Rejoins la communauté StudyForge sur Discord pour chatter en temps réel avec les autres élèves.</div>
+      <div style="max-width:600px;margin:0 auto;text-align:center">
+        <div style="background:white;border:2px solid var(--line);border-radius:20px;padding:3rem 2rem;margin-bottom:1.5rem">
+          <div style="font-size:4rem;margin-bottom:1rem">🎮</div>
+          <div style="font-family:'Caveat',cursive;font-size:1.8rem;font-weight:700;margin-bottom:0.5rem">Communauté StudyForge</div>
+          <div style="color:var(--muted);font-size:0.9rem;margin-bottom:2rem;line-height:1.7">
+            Rejoins notre serveur Discord pour :<br>
+            💬 Chatter avec les autres élèves<br>
+            📎 Partager tes fiches<br>
+            📚 Réviser ensemble par matière<br>
+            🎯 Poser tes questions
+          </div>
+          <a href="https://discord.gg/5a2vZ22QTu" target="_blank" style="
+            display:inline-flex;align-items:center;gap:12px;
+            background:#5865F2;color:white;
+            padding:14px 32px;border-radius:12px;
+            font-family:'Caveat',cursive;font-size:1.3rem;font-weight:700;
+            text-decoration:none;transition:all 0.2s;
+            box-shadow:0 4px 15px rgba(88,101,242,0.4)
+          " onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+            <svg width="24" height="24" viewBox="0 0 71 55" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M60.1 4.9A58.5 58.5 0 0 0 45.5.4a.2.2 0 0 0-.2.1 40.8 40.8 0 0 0-1.8 3.7 54 54 0 0 0-16.2 0A37.3 37.3 0 0 0 25.5.5a.2.2 0 0 0-.2-.1 58.4 58.4 0 0 0-14.6 4.5.2.2 0 0 0-.1.1C1.6 18.1-.9 31 .3 43.6v.1a58.8 58.8 0 0 0 17.9 9 .2.2 0 0 0 .2-.1 42 42 0 0 0 3.6-5.9.2.2 0 0 0-.1-.3 38.7 38.7 0 0 1-5.5-2.6.2.2 0 0 1 0-.4l1.1-.8a.2.2 0 0 1 .2 0c11.5 5.3 24 5.3 35.4 0a.2.2 0 0 1 .2 0l1.1.8a.2.2 0 0 1 0 .4 36.1 36.1 0 0 1-5.5 2.6.2.2 0 0 0-.1.3 47 47 0 0 0 3.6 5.9.2.2 0 0 0 .2.1 58.6 58.6 0 0 0 17.9-9v-.1c1.5-15.1-2.5-28.2-10.6-39.8a.2.2 0 0 0-.1 0ZM23.7 36c-3.5 0-6.4-3.2-6.4-7.1s2.8-7.1 6.4-7.1c3.6 0 6.5 3.2 6.4 7.1 0 3.9-2.8 7.1-6.4 7.1Zm23.6 0c-3.5 0-6.4-3.2-6.4-7.1s2.8-7.1 6.4-7.1c3.6 0 6.5 3.2 6.4 7.1 0 3.9-2.8 7.1-6.4 7.1Z"/></svg>
+            Rejoindre le Discord
+          </a>
+          <div style="margin-top:1.5rem;font-size:0.8rem;color:var(--muted)">
+            Lien : <span style="font-family:monospace;background:#f4f4f4;padding:2px 8px;border-radius:5px">discord.gg/5a2vZ22QTu</span>
+          </div>
+        </div>
+        <div style="background:var(--pink-bg);border:2px solid var(--pink-border);border-radius:12px;padding:1.25rem;font-size:0.88rem;color:var(--ink);line-height:1.7">
+          💡 <strong>Astuce :</strong> Partage ce lien à tes amis pour qu'ils rejoignent StudyForge et révisez ensemble !
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 id="modal-title">Fiche</h2>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ── STATE
+let selectedMatiere = 'Français';
+let currentFiche = null;
+let library = JSON.parse(localStorage.getItem('sf_library2') || '[]');
+let communityFiches = JSON.parse(localStorage.getItem('sf_community2') || '[]');
+let activeConv = 0;
+
+const COLORS = ['sec-pink','sec-yellow','sec-blue','sec-green','sec-purple','sec-orange'];
+const SECTION_COLORS_CYCLE = ['sec-pink','sec-blue','sec-yellow','sec-green','sec-purple','sec-orange'];
+
+
+
+let conversations = [];
+
+// ── NAVIGATION
+function showPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  const idx={generate:0,library:1,community:2,chat:3}[name];
+  document.querySelectorAll('.nav-item')[idx].classList.add('active');
+  if(name==='library') renderLibrary();
+  if(name==='community') renderCommunity();
+  if(name==='chat') renderChat();
+}
+
+// ── CHIPS
+document.querySelectorAll('#matiere-chips .chip').forEach(c=>{
+  c.addEventListener('click',()=>{
+    document.querySelectorAll('#matiere-chips .chip').forEach(x=>x.classList.remove('active'));
+    c.classList.add('active');
+    selectedMatiere=c.dataset.val;
+  });
+});
+
+// ── FILE
+function handleFile(input){
+  const file=input.files[0]; if(!file) return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    const img=document.getElementById('preview-img');
+    img.src=e.target.result; img.style.display='block';
+  };
+  reader.readAsDataURL(file);
+}
+
+// ── GENERATE
+async function generateFiche(){
+  const titre=document.getElementById('titre-input').value;
+  const cours=document.getElementById('cours-text').value;
+  const keywords=document.getElementById('keywords-input').value;
+  const niveau=document.getElementById('niveau-select').value;
+  const typeFiche=document.getElementById('type-select').value;
+
+  if(!titre&&!cours&&!keywords){showToast('⚠️ Remplis au moins un champ !');return;}
+
+  const btn=document.getElementById('gen-btn');
+  const spinner=document.getElementById('spinner');
+  const btnText=document.getElementById('btn-text');
+  btn.disabled=true;spinner.style.display='block';btnText.textContent='L\'IA crée ta fiche...';
+
+  const prompt=`Tu es un expert en pédagogie et création de fiches de révision visuelles.
+
+Génère une fiche de révision de niveau ${niveau} en ${selectedMatiere}, de type "${typeFiche}".
+${titre?`Titre/Chapitre : ${titre}`:''}
+${cours?`Contenu du cours :\n${cours}`:''}
+${keywords?`Mots-clés : ${keywords}`:''}
+
+Réponds UNIQUEMENT en JSON valide (sans markdown, sans backticks), avec cette structure exacte :
+{
+  "titre": "Titre principal de la fiche",
+  "sections": [
+    {
+      "titre": "NOM DE LA SECTION",
+      "contenu": "Texte de la section avec des retours à la ligne \\n pour séparer les points importants. Utilise des tirets - pour les listes. Pour les schémas, utilise SCHEMA: suivi du schéma ASCII sur une seule ligne."
+    }
+  ],
+  "a_retenir": "Les points essentiels à mémoriser, séparés par \\n"
+}
+
+Génère entre 4 et 7 sections pertinentes selon le sujet (ex: Définition, Exemples, Méthode, Dates clés, Formules, Personnages, À savoir...).
+Sois pédagogique, complet et clair. En français.`;
+
+  try {
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1500,messages:[{role:'user',content:prompt}]})
+    });
+    const data=await res.json();
+    let text=data.content.map(i=>i.text||'').join('');
+    // clean JSON
+    text=text.replace(/```json|```/g,'').trim();
+    const parsed=JSON.parse(text);
+
+    currentFiche={
+      id:Date.now(),
+      titre:parsed.titre||titre||selectedMatiere,
+      matiere:selectedMatiere,
+      niveau,
+      type:typeFiche,
+      sections:parsed.sections||[],
+      a_retenir:parsed.a_retenir||'',
+      date:new Date().toLocaleDateString('fr-FR'),
+    };
+
+    renderPaperFiche(currentFiche);
+    document.getElementById('fiche-paper').style.display='block';
+    document.getElementById('fiche-paper').scrollIntoView({behavior:'smooth',block:'start'});
+  } catch(e){
+    console.error(e);
+    showToast('❌ Erreur. Réessaie !');
+  }
+  btn.disabled=false;spinner.style.display='none';btnText.textContent='✏️ Générer ma fiche façon cahier';
+}
+
+function renderPaperFiche(fiche){
+  const container=document.getElementById('paper-content');
+  const colors=SECTION_COLORS_CYCLE;
+
+  // Détermine si on fait 1 ou 2 colonnes
+  const useGrid = fiche.sections.length >= 4;
+
+  let html=`<div class="fiche-main-title">${fiche.titre}</div>`;
+
+  if(useGrid){
+    // 2 colonnes
+    const half=Math.ceil(fiche.sections.length/2);
+    const col1=fiche.sections.slice(0,half);
+    const col2=fiche.sections.slice(half);
+    html+=`<div class="fiche-grid">`;
+    html+=`<div>`+col1.map((s,i)=>renderSection(s,colors[i%colors.length])).join('')+`</div>`;
+    html+=`<div>`+col2.map((s,i)=>renderSection(s,colors[(i+half)%colors.length])).join('')+`</div>`;
+    html+=`</div>`;
+  } else {
+    html+=fiche.sections.map((s,i)=>renderSection(s,colors[i%colors.length])).join('');
+  }
+
+  if(fiche.a_retenir){
+    html+=`<div class="a-retenir">
+      <div class="a-retenir-title">⭐ À retenir</div>
+      ${fiche.a_retenir.split('\\n').map(l=>`<div>${l}</div>`).join('')}
+    </div>`;
+  }
+
+  container.innerHTML=html;
+}
+
+function renderSection(section, colorClass){
+  let body=section.contenu||'';
+  // lignes
+  const lines=body.split('\\n');
+  let rendered=lines.map(line=>{
+    if(line.startsWith('SCHEMA:')){
+      return `<div class="schema">${line.replace('SCHEMA:','').trim()}</div>`;
+    } else if(line.startsWith('-')){
+      return `<li>${line.slice(1).trim()}</li>`;
+    } else if(line.includes(':')&&line.indexOf(':')<30&&!line.startsWith(' ')){
+      const [k,...v]=line.split(':');
+      return `<div><strong>${k} :</strong>${v.join(':')}</div>`;
+    } else {
+      return `<div>${line}</div>`;
+    }
+  });
+  // wrap li dans ul
+  let html=rendered.join('').replace(/(<li>.*?<\/li>)+/g, m=>`<ul>${m}</ul>`);
+
+  return `<div class="fiche-section ${colorClass}">
+    <div class="section-header">${section.titre}</div>
+    <div class="section-body">${html}</div>
+  </div>`;
+}
+
+// ── SAVE
+function saveFiche(){
+  if(!currentFiche){showToast('Génère d\'abord une fiche !');return;}
+  if(library.find(f=>f.id===currentFiche.id)){showToast('⚠️ Déjà sauvegardée !');return;}
+  library.unshift(currentFiche);
+  localStorage.setItem('sf_library2',JSON.stringify(library));
+  showToast('💾 Fiche sauvegardée !');
+}
+
+function printFiche(){
+  window.print();
+}
+
+function shareToComm(){
+  if(!currentFiche){showToast('Génère d\'abord une fiche !');return;}
+  const f={...currentFiche,auteur:'DAOUDI WAEL',initiales:'DW',avColor:'linear-gradient(135deg,#ff8fab,#b388ff)',date:'à l\'instant',likes:0,preview:(currentFiche.sections[0]?.contenu||'').substring(0,100)+'...'};
+  communityFiches.unshift(f);
+  localStorage.setItem('sf_community2',JSON.stringify(communityFiches));
+  showToast('🌍 Partagé en communauté !');
+}
+
+async function generateQuiz(){
+  if(!currentFiche){showToast('Génère d\'abord une fiche !');return;}
+  showToast('🎯 Génération du quiz...');
+  const content=currentFiche.sections.map(s=>`${s.titre}: ${s.contenu}`).join('\n');
+  const prompt=`À partir de cette fiche sur "${currentFiche.titre}" (${currentFiche.matiere}), génère 5 questions QCM avec 4 choix (A,B,C,D) et indique la bonne réponse. Contenu:\n${content.substring(0,600)}`;
+  try {
+    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:700,messages:[{role:'user',content:prompt}]})});
+    const data=await res.json();
+    const quiz=data.content.map(i=>i.text||'').join('');
+    openModal('🎯 Quiz — '+currentFiche.titre,`<div style="white-space:pre-wrap;font-family:'Kalam',cursive;font-size:0.95rem;line-height:1.9">${quiz}</div>`);
+  } catch(e){showToast('❌ Erreur');}
+}
+
+// ── LIBRARY
+const BADGE_COLORS={'Français':'badge-purple','Mathématiques':'badge-yellow','Histoire-Géo':'badge-pink','Sciences':'badge-green','Biologie':'badge-green','Anglais':'badge-blue','default':'badge-pink'};
+function getBadge(m){return BADGE_COLORS[m]||BADGE_COLORS.default;}
+const CARD_BARS={'Français':'linear-gradient(90deg,#b388ff,#ff8fab)','Mathématiques':'linear-gradient(90deg,#ffd166,#ff9f1c)','Histoire-Géo':'linear-gradient(90deg,#ef476f,#ffd166)','Sciences':'linear-gradient(90deg,#06d6a0,#4cc9f0)','Biologie':'linear-gradient(90deg,#06d6a0,#34d399)','Anglais':'linear-gradient(90deg,#4cc9f0,#b388ff)','default':'linear-gradient(90deg,#ff8fab,#ffd166)'};
+function getBar(m){return CARD_BARS[m]||CARD_BARS.default;}
+
+function renderLibrary(filter=''){
+  const grid=document.getElementById('library-grid');
+  const f=library.filter(x=>x.titre.toLowerCase().includes(filter.toLowerCase())||x.matiere.toLowerCase().includes(filter.toLowerCase()));
+  if(!f.length){grid.innerHTML='<div class="empty-state" style="grid-column:1/-1"><div class="es-icon">📭</div><p>'+(filter?'Aucune fiche trouvée.':'Génère ta première fiche et sauvegarde-la !')+'</p></div>';return;}
+  grid.innerHTML=f.map(fiche=>`
+    <div class="fiche-card" onclick="openFicheModal('${fiche.id}')">
+      <div class="fc-color-bar" style="background:${getBar(fiche.matiere)}"></div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-start">
+        <h4>${fiche.titre}</h4>
+        <button onclick="event.stopPropagation();deleteLib('${fiche.id}')" style="background:none;border:none;cursor:pointer;color:#ccc;font-size:0.85rem">🗑</button>
+      </div>
+      <div class="fc-meta">${fiche.date} · ${fiche.niveau}</div>
+      <div class="fc-preview">${fiche.sections[0]?.contenu?.substring(0,100)||''}...</div>
+      <div style="margin-top:10px"><span class="badge ${getBadge(fiche.matiere)}">${fiche.matiere}</span></div>
+    </div>
+  `).join('');
+}
+
+function filterLibrary(){renderLibrary(document.getElementById('lib-search').value);}
+function deleteLib(id){library=library.filter(f=>String(f.id)!==String(id));localStorage.setItem('sf_library2',JSON.stringify(library));renderLibrary(document.getElementById('lib-search').value);showToast('🗑 Supprimée');}
+
+function openFicheModal(id){
+  const fiche=library.find(f=>String(f.id)===String(id));
+  if(!fiche) return;
+  // re-render la fiche papier dans la modal
+  const tmpDiv=document.createElement('div');
+  const savedCurrent=currentFiche;
+  currentFiche=fiche;
+  const paperHTML=buildPaperHTML(fiche);
+  currentFiche=savedCurrent;
+  openModal(fiche.titre, paperHTML);
+}
+
+function buildPaperHTML(fiche){
+  const colors=SECTION_COLORS_CYCLE;
+  const useGrid=fiche.sections.length>=4;
+  let html=`<div style="font-family:'Kalam',cursive;padding:0.5rem">`;
+  html+=`<div style="font-family:'Caveat',cursive;font-size:1.5rem;font-weight:700;text-align:center;margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:3px solid var(--pink)">${fiche.titre}</div>`;
+  if(useGrid){
+    const half=Math.ceil(fiche.sections.length/2);
+    html+=`<div class="fiche-grid">`;
+    html+=`<div>`+fiche.sections.slice(0,half).map((s,i)=>renderSection(s,colors[i%colors.length])).join('')+`</div>`;
+    html+=`<div>`+fiche.sections.slice(half).map((s,i)=>renderSection(s,colors[(i+half)%colors.length])).join('')+`</div>`;
+    html+=`</div>`;
+  } else {
+    html+=fiche.sections.map((s,i)=>renderSection(s,colors[i%colors.length])).join('');
+  }
+  if(fiche.a_retenir) html+=`<div class="a-retenir"><div class="a-retenir-title">⭐ À retenir</div>${fiche.a_retenir.split('\\n').map(l=>`<div>${l}</div>`).join('')}</div>`;
+  html+=`</div>`;
+  return html;
+}
+
+// ── COMMUNITY
+function renderCommunity(filter=''){
+  const grid=document.getElementById('community-grid');
+  const f=communityFiches.filter(x=>x.titre.toLowerCase().includes(filter.toLowerCase())||x.matiere.toLowerCase().includes(filter.toLowerCase()));
+  if(!f.length){grid.innerHTML='<div class="empty-state" style="grid-column:1/-1"><div class="es-icon">🌍</div><p>Aucune fiche publiée.</p></div>';return;}
+  grid.innerHTML=f.map(fiche=>`
+    <div class="pub-card">
+      <div class="pub-author">
+        <div class="pub-avatar" style="background:${fiche.avColor||'linear-gradient(135deg,#ff8fab,#b388ff)'}">${fiche.initiales}</div>
+        <div><div class="pub-name">${fiche.auteur}</div><div class="pub-date">${fiche.date}</div></div>
+      </div>
+      <h4>${fiche.titre}</h4>
+      <p>${fiche.preview}</p>
+      <div class="pub-footer">
+        <span class="badge ${getBadge(fiche.matiere)}">${fiche.matiere}</span>
+        <div style="display:flex;gap:6px;align-items:center">
+          <button class="btn-secondary" style="font-size:0.75rem;padding:3px 9px" onclick="saveFromComm('${fiche.id}')">💾</button>
+          <button class="like-btn" id="like-${fiche.id}" onclick="toggleLike('${fiche.id}',this)">❤️ ${fiche.likes}</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterCommunity(){renderCommunity(document.getElementById('comm-search').value);}
+function toggleLike(id,btn){
+  const f=communityFiches.find(x=>String(x.id)===String(id));if(!f) return;
+  btn.classList.toggle('liked');
+  f.likes=btn.classList.contains('liked')?f.likes+1:f.likes-1;
+  btn.textContent=`❤️ ${f.likes}`;
+  localStorage.setItem('sf_community2',JSON.stringify(communityFiches));
+}
+function saveFromComm(id){
+  const f=communityFiches.find(x=>String(x.id)===String(id));if(!f) return;
+  library.unshift({...f,id:Date.now(),date:new Date().toLocaleDateString('fr-FR')});
+  localStorage.setItem('sf_library2',JSON.stringify(library));
+  showToast('💾 Sauvegardée !');
+}
+
+// ── CHAT
+function renderChat(){
+  document.getElementById('conversations').innerHTML=conversations.map((c,i)=>`
+    <div class="conv-item ${i===activeConv?'active':''}" onclick="selectConv(${i})">
+      <div class="conv-avatar-chat" style="background:${c.color}">${c.initials}</div>
+      <div class="conv-info">
+        <div class="conv-name">${c.name}</div>
+        <div class="conv-last">${c.messages[c.messages.length-1]?.text||''}</div>
+      </div>
+    </div>
+  `).join('');
+  selectConv(activeConv);
+}
+function selectConv(i){
+  activeConv=i;const c=conversations[i];
+  document.querySelectorAll('.conv-item').forEach((el,j)=>el.classList.toggle('active',j===i));
+  document.getElementById('chat-name').textContent=c.name;
+  document.getElementById('chat-av').textContent=c.initials;
+  document.getElementById('chat-av').style.background=c.color;
+  const el=document.getElementById('messages');
+  el.innerHTML=c.messages.map(m=>`
+    <div class="msg ${m.me?'me':''}">
+      ${!m.me?`<div class="msg-av" style="background:${c.color}">${m.from[0]}</div>`:''}
+      <div>
+        ${!m.me?`<div style="font-size:0.72rem;color:var(--muted);margin-bottom:2px">${m.from}</div>`:''}
+        <div class="msg-bubble">${m.text}</div>
+        <div class="msg-time">${m.time}</div>
+      </div>
+    </div>
+  `).join('');
+  el.scrollTop=el.scrollHeight;
+}
+function sendMessage(){
+  const input=document.getElementById('chat-input');
+  const text=input.value.trim();if(!text) return;
+  const now=new Date();
+  const time=now.getHours()+':'+String(now.getMinutes()).padStart(2,'0');
+  conversations[activeConv].messages.push({from:'Me',text,time,me:true});
+  selectConv(activeConv);input.value='';
+}
+function chatKeyDown(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();}}
+function sendFicheToChat(){
+  if(!currentFiche){showToast('Génère d\'abord une fiche !');return;}
+  const now=new Date();
+  const time=now.getHours()+':'+String(now.getMinutes()).padStart(2,'0');
+  conversations[activeConv].messages.push({from:'Me',text:`📎 Fiche partagée : "${currentFiche.titre}" (${currentFiche.matiere}) ✏️`,time,me:true});
+  selectConv(activeConv);showToast('📎 Fiche envoyée !');
+}
+function newChat(){
+  const name=prompt('Nom de la personne ou du groupe :');if(!name) return;
+  conversations.push({id:conversations.length,name,initials:name.substring(0,2).toUpperCase(),color:'linear-gradient(135deg,var(--pink),var(--yellow))',messages:[]});
+  renderChat();selectConv(conversations.length-1);
+}
+
+// ── MODAL
+function openModal(title,body){
+  document.getElementById('modal-title').textContent=title;
+  document.getElementById('modal-body').innerHTML=body;
+  document.getElementById('modal-overlay').classList.add('open');
+}
+function closeModal(e){
+  if(!e||e.target===document.getElementById('modal-overlay'))
+    document.getElementById('modal-overlay').classList.remove('open');
+}
+
+// ── TOAST
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
+}
+
+// init
+renderCommunity();
+</script>
+</body>
+</html>
