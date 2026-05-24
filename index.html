@@ -663,13 +663,18 @@ Génère entre 4 et 7 sections pertinentes selon le sujet (ex: Définition, Exem
 Sois pédagogique, complet et clair. En français.`;
 
   try {
-    const res=await fetch('https://api.anthropic.com/v1/messages',{
+    const res=await fetch('https://api.groq.com/openai/v1/chat/completions',{
       method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1500,messages:[{role:'user',content:prompt}]})
+      headers:{
+        'Content-Type':'application/json',
+        'Authorization':'Bearer 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',
+        'X-Requested-With':'XMLHttpRequest'
+      },
+      body:JSON.stringify({model:'llama-3.3-70b-versatile',max_tokens:1500,messages:[{role:'system',content:'Tu es un expert pédagogue. Réponds UNIQUEMENT en JSON valide, sans markdown, sans backticks.'},{role:'user',content:prompt}]})
     });
     const data=await res.json();
-    let text=data.content.map(i=>i.text||'').join('');
+    if(data.error){throw new Error(data.error.message);}
+    let text=data.choices[0].message.content;
     // clean JSON
     text=text.replace(/```json|```/g,'').trim();
     const parsed=JSON.parse(text);
@@ -779,9 +784,9 @@ async function generateQuiz(){
   const content=currentFiche.sections.map(s=>`${s.titre}: ${s.contenu}`).join('\n');
   const prompt=`À partir de cette fiche sur "${currentFiche.titre}" (${currentFiche.matiere}), génère 5 questions QCM avec 4 choix (A,B,C,D) et indique la bonne réponse. Contenu:\n${content.substring(0,600)}`;
   try {
-    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:700,messages:[{role:'user',content:prompt}]})});
+    const res=await fetch('https://api.groq.com/openai/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer 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'},body:JSON.stringify({model:'llama-3.3-70b-versatile',max_tokens:700,messages:[{role:'system',content:'Tu es un expert pédagogue.'},{role:'user',content:prompt}]})});
     const data=await res.json();
-    const quiz=data.content.map(i=>i.text||'').join('');
+    const quiz=data.choices[0].message.content;
     openModal('🎯 Quiz — '+currentFiche.titre,`<div style="white-space:pre-wrap;font-family:'Kalam',cursive;font-size:0.95rem;line-height:1.9">${quiz}</div>`);
   } catch(e){showToast('❌ Erreur');}
 }
