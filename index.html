@@ -761,9 +761,21 @@ async function generateFiche() {
   const spinner = document.getElementById('spinner');
   const btnText = document.getElementById('btn-text');
 
-  // ── MODÉRATION AVANT GÉNÉRATION ──
-  btn.disabled = true; spinner.style.display = 'block'; btnText.textContent = '🔍 Vérification...';
+  // ── FILTRE CLIENT INSTANTANÉ ──
   const texteAVerifier = [titre, cours, keywords].filter(Boolean).join(' ');
+  const clientCheck = clientFilter(texteAVerifier);
+  if (clientCheck.blocked) {
+    showToast('🚫 Contenu inapproprié bloqué ! Modifie ton texte.');
+    let errEl = document.getElementById('gen-mod-error');
+    if (!errEl) { errEl = document.createElement('p'); errEl.id = 'gen-mod-error'; errEl.style.cssText='color:#c0392b;font-size:0.83rem;margin-top:8px;font-weight:700;background:#fff5f5;border:1.5px solid #ffccd8;border-radius:8px;padding:8px 12px;'; document.getElementById('gen-btn').insertAdjacentElement('afterend', errEl); }
+    errEl.textContent = '🚫 Ce contenu est bloqué. Modifie le texte avant de générer.';
+    errEl.style.display = 'block';
+    setTimeout(() => { if(errEl) errEl.style.display = 'none'; }, 5000);
+    return;
+  }
+
+  // ── MODÉRATION IA AVANT GÉNÉRATION ──
+  btn.disabled = true; spinner.style.display = 'block'; btnText.textContent = '🔍 Vérification...';
   const contenuOk = await moderationCheck(texteAVerifier);
   if (!contenuOk) {
     btn.disabled = false; spinner.style.display = 'none'; btnText.textContent = '✏️ Générer ma fiche façon cahier';
