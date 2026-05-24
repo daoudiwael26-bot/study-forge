@@ -37,81 +37,39 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;overflow:hidden}
 body{background:var(--bg);color:var(--ink);font-family:'Nunito',sans-serif;display:flex;flex-direction:column}
-
-/* ── TOPBAR ── */
-.topbar{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 1.5rem;height:58px;
-  background:white;border-bottom:2px solid var(--line);
-  flex-shrink:0;z-index:100;
-}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:58px;background:white;border-bottom:2px solid var(--line);flex-shrink:0;z-index:100;}
 .logo{font-family:'Caveat',cursive;font-size:1.8rem;font-weight:700;color:var(--ink)}
 .logo span{color:var(--pink)}
-.founder{font-size:0.78rem;color:var(--muted);font-family:'Nunito',sans-serif}
-.founder strong{color:var(--ink)}
 .avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--purple));display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:800;color:white;font-family:'Caveat',cursive}
-
-/* ── LAYOUT ── */
 .layout{display:flex;flex:1;overflow:hidden}
-
-/* ── SIDEBAR ── */
-.sidebar{
-  width:210px;flex-shrink:0;background:white;
-  border-right:2px solid var(--line);
-  display:flex;flex-direction:column;padding:1rem 0;
-}
-.nav-item{
-  display:flex;align-items:center;gap:10px;
-  padding:11px 1.25rem;font-size:0.9rem;font-weight:700;
-  cursor:pointer;color:var(--muted);transition:all 0.15s;
-  border-left:4px solid transparent;font-family:'Nunito',sans-serif;
-}
+.sidebar{width:210px;flex-shrink:0;background:white;border-right:2px solid var(--line);display:flex;flex-direction:column;padding:1rem 0;}
+.nav-item{display:flex;align-items:center;gap:10px;padding:11px 1.25rem;font-size:0.9rem;font-weight:700;cursor:pointer;color:var(--muted);transition:all 0.15s;border-left:4px solid transparent;font-family:'Nunito',sans-serif;}
 .nav-item:hover{color:var(--ink);background:#fafafa}
 .nav-item.active{color:var(--pink);border-left-color:var(--pink);background:var(--pink-bg)}
 .nav-icon{font-size:1.1rem;width:22px;text-align:center}
 .sidebar-footer{margin-top:auto;padding:1rem 1.25rem;border-top:2px solid var(--line);font-size:0.75rem;color:var(--muted);line-height:1.7;font-family:'Caveat',cursive;font-size:0.95rem}
 .sidebar-footer strong{color:var(--ink);display:block;font-size:1rem}
-
-/* ── MAIN ── */
 .main{flex:1;overflow-y:auto;padding:1.5rem 2rem}
-
-/* ── PAGES ── */
 .page{display:none}
 .page.active{display:block}
-
-/* ── SECTION TITLE ── */
 .section-title{font-family:'Caveat',cursive;font-size:2rem;font-weight:700;margin-bottom:0.2rem;color:var(--ink)}
 .section-sub{color:var(--muted);font-size:0.88rem;margin-bottom:1.5rem;font-family:'Nunito',sans-serif}
-
-/* ── FORM CARD ── */
 .form-card{background:white;border:2px solid var(--line);border-radius:16px;padding:1.5rem;margin-bottom:1rem}
 .form-card h3{font-family:'Caveat',cursive;font-size:1.3rem;font-weight:700;margin-bottom:1rem;color:var(--ink)}
 label{font-size:0.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;display:block;margin-bottom:5px}
-input[type=text],textarea,select{
-  width:100%;padding:9px 13px;
-  background:#fafafa;border:2px solid var(--line);
-  border-radius:10px;color:var(--ink);
-  font-family:'Nunito',sans-serif;font-size:0.9rem;
-  transition:border-color 0.2s;resize:vertical;
-}
+input[type=text],textarea,select{width:100%;padding:9px 13px;background:#fafafa;border:2px solid var(--line);border-radius:10px;color:var(--ink);font-family:'Nunito',sans-serif;font-size:0.9rem;transition:border-color 0.2s;resize:vertical;}
 input[type=text]:focus,textarea:focus,select:focus{outline:none;border-color:var(--pink);background:white}
 select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23aaa'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:30px;cursor:pointer}
 .input-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
 @media(max-width:600px){.input-row{grid-template-columns:1fr}}
-
-/* chips */
 .chips{display:flex;flex-wrap:wrap;gap:7px}
 .chip{padding:5px 14px;border:2px solid var(--line);border-radius:100px;font-size:0.82rem;cursor:pointer;transition:all 0.15s;color:var(--muted);background:white;font-weight:600;font-family:'Nunito',sans-serif}
 .chip:hover{border-color:var(--pink);color:var(--pink)}
 .chip.active{background:var(--pink);color:white;border-color:var(--pink)}
-
-/* upload */
 .upload-zone{border:2px dashed var(--line);border-radius:12px;padding:1.5rem;text-align:center;cursor:pointer;transition:all 0.2s;color:var(--muted)}
 .upload-zone:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-bg)}
 #file-input{display:none}
 #preview-img{max-width:100%;border-radius:8px;margin-top:12px;display:none}
-
-/* bouton */
 .btn-primary{width:100%;padding:13px;background:var(--pink);border:none;border-radius:12px;color:white;font-family:'Caveat',cursive;font-size:1.2rem;font-weight:700;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:10px;letter-spacing:0.02em}
 .btn-primary:hover{background:#ff7096;transform:translateY(-1px)}
 .btn-primary:disabled{opacity:0.5;cursor:not-allowed;transform:none}
@@ -119,188 +77,44 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 .btn-secondary:hover{border-color:var(--pink);color:var(--pink)}
 .spinner{width:18px;height:18px;border:2px solid rgba(255,255,255,0.4);border-top-color:white;border-radius:50%;animation:spin 0.7s linear infinite;display:none}
 @keyframes spin{to{transform:rotate(360deg)}}
-
-/* ══════════════════════════════════
-   FICHE PAPIER STYLE MANUSCRIT
-══════════════════════════════════ */
-.fiche-paper{
-  display:none;
-  margin-top:1.5rem;
-  animation:fadeUp 0.4s ease;
-}
+.fiche-paper{display:none;margin-top:1.5rem;animation:fadeUp 0.4s ease;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-
-/* La feuille */
-.paper-sheet{
-  background:white;
-  border:2px solid #ddd;
-  border-radius:4px;
-  padding:0;
-  position:relative;
-  box-shadow:3px 4px 18px rgba(0,0,0,0.10), 1px 1px 0 #e0e0e0;
-  overflow:hidden;
-  max-width:680px;
-  margin:0 auto;
-}
-
-/* Lignes de réglure */
-.paper-sheet::before{
-  content:'';
-  position:absolute;inset:0;
-  background-image:repeating-linear-gradient(
-    transparent, transparent 31px, #e8f0fe 31px, #e8f0fe 32px
-  );
-  pointer-events:none;
-  z-index:0;
-}
-
-/* Marge rouge verticale */
-.paper-sheet::after{
-  content:'';
-  position:absolute;top:0;bottom:0;left:56px;
-  width:2px;background:#ffb3ba;
-  pointer-events:none;z-index:1;
-}
-
-/* Trous de reliure */
-.holes{
-  position:absolute;top:0;left:0;bottom:0;width:56px;
-  display:flex;flex-direction:column;justify-content:space-evenly;
-  align-items:center;z-index:2;pointer-events:none;
-}
+.paper-sheet{background:white;border:2px solid #ddd;border-radius:4px;padding:0;position:relative;box-shadow:3px 4px 18px rgba(0,0,0,0.10), 1px 1px 0 #e0e0e0;overflow:hidden;max-width:680px;margin:0 auto;}
+.paper-sheet::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(transparent, transparent 31px, #e8f0fe 31px, #e8f0fe 32px);pointer-events:none;z-index:0;}
+.paper-sheet::after{content:'';position:absolute;top:0;bottom:0;left:56px;width:2px;background:#ffb3ba;pointer-events:none;z-index:1;}
+.holes{position:absolute;top:0;left:0;bottom:0;width:56px;display:flex;flex-direction:column;justify-content:space-evenly;align-items:center;z-index:2;pointer-events:none;}
 .hole{width:14px;height:14px;border-radius:50%;background:#f8f6f0;border:1.5px solid #ccc}
-
-/* Contenu de la fiche */
-.paper-content{
-  position:relative;z-index:2;
-  padding:1.5rem 1.75rem 2rem 80px;
-  min-height:400px;
-}
-
-/* Titre principal de la fiche */
-.fiche-main-title{
-  font-family:'Caveat',cursive;
-  font-size:2rem;font-weight:700;
-  text-align:center;
-  color:var(--ink);
-  margin-bottom:1.5rem;
-  padding-bottom:0.5rem;
-  border-bottom:3px solid var(--pink);
-  letter-spacing:0.02em;
-  line-height:32px;
-}
-
-/* Sections colorées */
-.fiche-section{
-  margin-bottom:1.2rem;
-  break-inside:avoid;
-}
-
-.section-header{
-  font-family:'Caveat',cursive;
-  font-size:1.1rem;font-weight:700;
-  padding:3px 12px;
-  border-radius:6px 6px 0 0;
-  display:inline-block;
-  margin-bottom:0;
-  line-height:32px;
-}
-
-.section-body{
-  border:2px solid;
-  border-radius:0 8px 8px 8px;
-  padding:0.6rem 0.9rem;
-  font-family:'Kalam',cursive;
-  font-size:0.92rem;
-  line-height:2rem;
-  position:relative;
-}
-
-/* Couleurs des sections */
+.paper-content{position:relative;z-index:2;padding:1.5rem 1.75rem 2rem 80px;min-height:400px;}
+.fiche-main-title{font-family:'Caveat',cursive;font-size:2rem;font-weight:700;text-align:center;color:var(--ink);margin-bottom:1.5rem;padding-bottom:0.5rem;border-bottom:3px solid var(--pink);letter-spacing:0.02em;line-height:32px;}
+.fiche-section{margin-bottom:1.2rem;break-inside:avoid;}
+.section-header{font-family:'Caveat',cursive;font-size:1.1rem;font-weight:700;padding:3px 12px;border-radius:6px 6px 0 0;display:inline-block;margin-bottom:0;line-height:32px;}
+.section-body{border:2px solid;border-radius:0 8px 8px 8px;padding:0.6rem 0.9rem;font-family:'Kalam',cursive;font-size:0.92rem;line-height:2rem;position:relative;}
 .sec-pink .section-header{background:var(--pink);color:white}
 .sec-pink .section-body{border-color:var(--pink-border);background:var(--pink-bg)}
-
 .sec-yellow .section-header{background:var(--yellow);color:#7a5800}
 .sec-yellow .section-body{border-color:var(--yellow-border);background:var(--yellow-bg)}
-
 .sec-blue .section-header{background:var(--blue);color:#005f7a}
 .sec-blue .section-body{border-color:var(--blue-border);background:var(--blue-bg)}
-
 .sec-green .section-header{background:var(--green);color:#005438}
 .sec-green .section-body{border-color:var(--green-border);background:var(--green-bg)}
-
 .sec-purple .section-header{background:var(--purple);color:#3d1a7a}
 .sec-purple .section-body{border-color:var(--purple-border);background:var(--purple-bg)}
-
 .sec-orange .section-header{background:var(--orange);color:#7a3a00}
 .sec-orange .section-body{border-color:var(--orange-border);background:var(--orange-bg)}
-
-/* Texte dans section */
 .section-body strong{font-weight:700}
 .section-body ul{margin:0;padding-left:1.2rem}
 .section-body li{line-height:2rem}
-.section-body .schema{
-  font-family:'Courier New',monospace;
-  font-size:0.8rem;
-  background:rgba(0,0,0,0.04);
-  border-radius:6px;
-  padding:0.5rem 0.75rem;
-  margin:4px 0;
-  line-height:1.6;
-  white-space:pre;
-  overflow-x:auto;
-}
-.section-body .def{
-  border-left:3px solid currentColor;
-  padding-left:8px;
-  margin:4px 0;
-  font-style:italic;
-}
-
-/* Grille 2 colonnes */
-.fiche-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:0 1.2rem;
-}
+.section-body .schema{font-family:'Courier New',monospace;font-size:0.8rem;background:rgba(0,0,0,0.04);border-radius:6px;padding:0.5rem 0.75rem;margin:4px 0;line-height:1.6;white-space:pre;overflow-x:auto;}
+.fiche-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 1.2rem;}
 @media(max-width:560px){.fiche-grid{grid-template-columns:1fr}}
-
-/* À retenir */
-.a-retenir{
-  margin-top:1.2rem;
-  background:var(--yellow-bg);
-  border:2px solid var(--yellow-border);
-  border-radius:10px;
-  padding:0.75rem 1rem;
-  font-family:'Caveat',cursive;
-  font-size:1.05rem;
-  line-height:1.8;
-}
-.a-retenir-title{
-  font-family:'Caveat',cursive;
-  font-size:1.2rem;font-weight:700;
-  color:var(--orange);
-  margin-bottom:4px;
-}
-
-/* Actions fiche */
-.fiche-actions-bar{
-  max-width:680px;margin:0.75rem auto 0;
-  display:flex;gap:8px;flex-wrap:wrap;justify-content:center;
-}
-
-/* ── BIBLIOTHÈQUE ── */
+.a-retenir{margin-top:1.2rem;background:var(--yellow-bg);border:2px solid var(--yellow-border);border-radius:10px;padding:0.75rem 1rem;font-family:'Caveat',cursive;font-size:1.05rem;line-height:1.8;}
+.a-retenir-title{font-family:'Caveat',cursive;font-size:1.2rem;font-weight:700;color:var(--orange);margin-bottom:4px;}
+.fiche-actions-bar{max-width:680px;margin:0.75rem auto 0;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;}
 .search-bar{display:flex;align-items:center;gap:10px;background:white;border:2px solid var(--line);border-radius:10px;padding:9px 14px;margin-bottom:1.25rem}
 .search-bar input{background:transparent;border:none;color:var(--ink);font-size:0.9rem;flex:1;font-family:'Nunito',sans-serif}
 .search-bar input:focus{outline:none}
 .fiches-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem}
-
-/* mini fiche card */
-.fiche-card{
-  background:white;border:2px solid var(--line);border-radius:12px;
-  padding:1rem;cursor:pointer;transition:all 0.2s;
-  position:relative;overflow:hidden;
-}
+.fiche-card{background:white;border:2px solid var(--line);border-radius:12px;padding:1rem;cursor:pointer;transition:all 0.2s;position:relative;overflow:hidden;}
 .fiche-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.08)}
 .fiche-card .fc-color-bar{height:5px;border-radius:3px;margin-bottom:10px}
 .fiche-card h4{font-family:'Caveat',cursive;font-size:1.1rem;font-weight:700;margin-bottom:4px}
@@ -308,16 +122,12 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 .fiche-card .fc-preview{font-size:0.8rem;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .empty-state{text-align:center;padding:3rem;color:var(--muted)}
 .empty-state .es-icon{font-size:3rem;margin-bottom:1rem}
-
-/* badge */
 .badge{padding:2px 10px;border-radius:100px;font-size:0.73rem;font-weight:700;display:inline-block}
 .badge-pink{background:var(--pink-bg);color:var(--pink);border:1.5px solid var(--pink-border)}
 .badge-blue{background:var(--blue-bg);color:#0099cc;border:1.5px solid var(--blue-border)}
 .badge-green{background:var(--green-bg);color:#009966;border:1.5px solid var(--green-border)}
 .badge-yellow{background:var(--yellow-bg);color:#cc8800;border:1.5px solid var(--yellow-border)}
 .badge-purple{background:var(--purple-bg);color:#7c3aed;border:1.5px solid var(--purple-border)}
-
-/* ── COMMUNAUTÉ ── */
 .community-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
 .pub-card{background:white;border:2px solid var(--line);border-radius:12px;padding:1.1rem;transition:border-color 0.2s}
 .pub-card:hover{border-color:var(--pink)}
@@ -330,42 +140,6 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 .pub-card .pub-footer{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
 .like-btn{background:transparent;border:2px solid var(--line);border-radius:6px;color:var(--muted);padding:3px 10px;font-size:0.8rem;cursor:pointer;transition:all 0.15s;font-family:'Nunito',sans-serif;font-weight:600}
 .like-btn:hover,.like-btn.liked{border-color:var(--red);color:var(--red);background:#fff5f7}
-
-/* ── CHAT ── */
-.chat-layout{display:flex;height:calc(100vh - 58px - 3rem - 52px);gap:1rem}
-.chat-sidebar{width:250px;flex-shrink:0;background:white;border:2px solid var(--line);border-radius:12px;display:flex;flex-direction:column;overflow:hidden}
-.chat-sidebar-top{padding:0.9rem;border-bottom:2px solid var(--line)}
-.chat-search{display:flex;align-items:center;gap:8px;background:#fafafa;border:2px solid var(--line);border-radius:8px;padding:7px 11px}
-.chat-search input{background:transparent;border:none;color:var(--ink);font-size:0.85rem;flex:1;font-family:'Nunito',sans-serif}
-.chat-search input:focus{outline:none}
-.conversations{flex:1;overflow-y:auto}
-.conv-item{display:flex;align-items:center;gap:9px;padding:10px 0.9rem;cursor:pointer;transition:background 0.15s;border-bottom:1px solid var(--line)}
-.conv-item:hover{background:#fafafa}
-.conv-item.active{background:var(--pink-bg)}
-.conv-avatar-chat{width:34px;height:34px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:0.85rem;font-weight:700;color:white;font-family:'Caveat',cursive}
-.conv-info{flex:1;min-width:0}
-.conv-info .conv-name{font-size:0.87rem;font-weight:700}
-.conv-info .conv-last{font-size:0.75rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.new-chat-btn{margin:0.75rem;padding:8px;background:var(--pink);border:none;border-radius:8px;color:white;font-size:0.85rem;cursor:pointer;font-family:'Caveat',cursive;font-size:1rem;font-weight:700;transition:background 0.15s}
-.new-chat-btn:hover{background:#ff7096}
-.chat-main{flex:1;background:white;border:2px solid var(--line);border-radius:12px;display:flex;flex-direction:column;overflow:hidden}
-.chat-header{padding:0.9rem 1.1rem;border-bottom:2px solid var(--line);display:flex;align-items:center;gap:10px;background:var(--pink-bg)}
-.ch-name{font-family:'Caveat',cursive;font-weight:700;font-size:1.1rem}
-.ch-status{font-size:0.75rem;color:var(--green)}
-.messages{flex:1;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:10px}
-.msg{display:flex;gap:8px;max-width:75%}
-.msg.me{flex-direction:row-reverse;align-self:flex-end}
-.msg-av{width:26px;height:26px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;color:white;font-family:'Caveat',cursive}
-.msg-bubble{background:#f4f4f4;border-radius:12px;padding:8px 13px;font-size:0.87rem;line-height:1.6;font-family:'Nunito',sans-serif}
-.msg.me .msg-bubble{background:var(--pink-bg);border:1.5px solid var(--pink-border)}
-.msg-time{font-size:0.7rem;color:var(--muted);margin-top:3px;text-align:right}
-.chat-input-area{padding:0.9rem;border-top:2px solid var(--line);display:flex;gap:8px;align-items:flex-end}
-.chat-input-area textarea{flex:1;background:#fafafa;border:2px solid var(--line);border-radius:10px;padding:9px 13px;color:var(--ink);font-family:'Nunito',sans-serif;font-size:0.87rem;resize:none;max-height:100px}
-.chat-input-area textarea:focus{outline:none;border-color:var(--pink)}
-.send-btn{width:38px;height:38px;background:var(--pink);border:none;border-radius:10px;color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:background 0.15s;flex-shrink:0}
-.send-btn:hover{background:#ff7096}
-
-/* modal */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:999;display:none;align-items:center;justify-content:center;padding:1rem}
 .modal-overlay.open{display:flex}
 .modal{background:white;border:2px solid var(--line);border-radius:16px;max-width:700px;width:100%;max-height:88vh;overflow-y:auto;animation:fadeUp 0.3s ease}
@@ -373,15 +147,10 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 .modal-header h2{font-family:'Caveat',cursive;font-size:1.4rem;font-weight:700}
 .modal-close{background:transparent;border:none;color:var(--muted);font-size:1.3rem;cursor:pointer}
 .modal-body{padding:1.5rem}
-
-/* toast */
 .toast{position:fixed;bottom:2rem;right:2rem;background:var(--pink);color:white;padding:11px 20px;border-radius:10px;font-size:0.88rem;font-weight:700;z-index:9999;transform:translateY(80px);opacity:0;transition:all 0.3s;pointer-events:none;font-family:'Caveat',cursive;font-size:1rem}
 .toast.show{transform:translateY(0);opacity:1}
-
-/* scrollbar */
 ::-webkit-scrollbar{width:5px}
 ::-webkit-scrollbar-thumb{background:#ddd;border-radius:4px}
-/* ── AUTH ── */
 .auth-overlay{position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;align-items:center;justify-content:center;padding:1rem}
 .auth-box{background:white;border:2px solid var(--line);border-radius:24px;padding:2.5rem 2rem;width:100%;max-width:420px;box-shadow:0 8px 40px rgba(0,0,0,0.08)}
 .auth-logo{font-family:'Caveat',cursive;font-size:2.2rem;font-weight:700;text-align:center;margin-bottom:0.3rem}
@@ -408,6 +177,24 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 .logout-btn{font-size:0.75rem;color:var(--muted);background:none;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:600}
 .logout-btn:hover{color:var(--red)}
 
+/* ── COMMUNOTE STYLES ── */
+.cn-tabs-row{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
+.cn-tab-btn{padding:9px 22px;border-radius:24px;font-size:15px;font-weight:700;cursor:pointer;border:2px solid transparent;transition:all .2s;background:#f0f0f0;color:#555;font-family:'Nunito',sans-serif}
+.cn-tab-btn.active{background:var(--pink);color:white;border-color:var(--pink)}
+.cn-matieres-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-bottom:24px}
+.cn-mat-card{background:white;border:2px solid var(--line);border-radius:14px;padding:16px 10px;text-align:center;cursor:pointer;transition:all .18s;font-size:13px;font-weight:700;color:var(--ink);font-family:'Nunito',sans-serif}
+.cn-mat-card:hover{border-color:var(--pink);background:var(--pink-bg);transform:translateY(-2px)}
+.cn-mat-emoji{font-size:26px;display:block;margin-bottom:6px}
+.cn-chapitres-wrap{background:var(--pink-bg);border-radius:16px;border:2px solid var(--pink-border);padding:20px 24px;display:none}
+.cn-chapitres-wrap h3{font-family:'Caveat',cursive;font-size:1.4rem;font-weight:700;margin-bottom:14px;color:var(--pink)}
+.cn-chap-list{list-style:none;padding:0;margin:0}
+.cn-chap-list li{padding:10px 14px;border-radius:10px;margin-bottom:6px;background:white;border:1.5px solid var(--pink-border);font-size:14px;display:flex;align-items:center;gap:10px;cursor:pointer;transition:background .15s;font-family:'Nunito',sans-serif;font-weight:600}
+.cn-chap-list li:hover{background:var(--yellow-bg);border-color:var(--yellow-border)}
+.cn-chap-list li::before{content:"📌";font-size:13px;flex-shrink:0}
+.cn-livrescolaire-btn{display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:10px 20px;border-radius:12px;background:var(--pink);color:white;font-weight:700;font-size:14px;text-decoration:none;border:none;cursor:pointer;transition:background .2s;font-family:'Nunito',sans-serif}
+.cn-livrescolaire-btn:hover{background:#ff7096}
+.cn-back-btn{background:none;border:none;color:var(--pink);font-size:14px;cursor:pointer;margin-bottom:14px;font-weight:700;padding:0;font-family:'Nunito',sans-serif}
+.mod-error{color:#c0392b;font-size:12px;margin-top:4px;display:none;font-family:'Nunito',sans-serif}
 </style>
 </head>
 <body>
@@ -429,6 +216,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
     <div class="nav-item active" onclick="showPage('generate')"><span class="nav-icon">✨</span> Créer une fiche</div>
     <div class="nav-item" onclick="showPage('library')"><span class="nav-icon">📚</span> Ma bibliothèque</div>
     <div class="nav-item" onclick="showPage('community')"><span class="nav-icon">🌍</span> Communauté</div>
+    <div class="nav-item" onclick="showPage('communote')"><span class="nav-icon">📒</span> CommunoTe</div>
     <div class="nav-item" onclick="showPage('chat')"><span class="nav-icon">💬</span> Messages</div>
     <div class="sidebar-footer">
       <strong>StudyForge ✏️</strong>
@@ -443,7 +231,6 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
     <div class="page active" id="page-generate">
       <div class="section-title">✨ Créer une fiche</div>
       <div class="section-sub">L'IA génère une fiche style cahier manuscrit coloré, comme si tu l'avais faite à la main ✍️</div>
-
       <div class="form-card">
         <h3>📌 Matière</h3>
         <div class="chips" id="matiere-chips">
@@ -459,7 +246,6 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
           <span class="chip" data-val="Autre">📝 Autre</span>
         </div>
       </div>
-
       <div class="form-card">
         <h3>📷 Photo du cours (optionnel)</h3>
         <div class="upload-zone" onclick="document.getElementById('file-input').click()">
@@ -470,7 +256,6 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
         <input type="file" id="file-input" accept="image/*" onchange="handleFile(this)">
         <img id="preview-img" alt="Aperçu">
       </div>
-
       <div class="form-card">
         <h3>✍️ Contenu</h3>
         <div style="margin-bottom:1rem">
@@ -510,13 +295,10 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
           </div>
         </div>
       </div>
-
       <button class="btn-primary" id="gen-btn" onclick="generateFiche()">
         <div class="spinner" id="spinner"></div>
         <span id="btn-text">✏️ Générer ma fiche façon cahier</span>
       </button>
-
-      <!-- FICHE PAPIER -->
       <div class="fiche-paper" id="fiche-paper">
         <div class="paper-sheet" id="paper-sheet">
           <div class="holes">
@@ -524,15 +306,14 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
             <div class="hole"></div><div class="hole"></div>
             <div class="hole"></div>
           </div>
-          <div class="paper-content" id="paper-content">
-            <!-- généré dynamiquement -->
-          </div>
+          <div class="paper-content" id="paper-content"></div>
         </div>
         <div class="fiche-actions-bar">
           <button class="btn-secondary" onclick="saveFiche()">💾 Sauvegarder</button>
           <button class="btn-secondary" onclick="printFiche()">🖨️ Imprimer</button>
           <button class="btn-secondary" onclick="generateQuiz()">🎯 Générer un quiz</button>
-          <button class="btn-secondary" onclick="shareToComm()">🌍 Partager</button>
+          <button class="btn-secondary" id="share-btn" onclick="shareToComm()">🌍 Partager</button>
+          <div class="mod-error" id="mod-error">⚠️ Ce message ne respecte pas les règles de la communauté.</div>
         </div>
       </div>
     </div>
@@ -559,6 +340,23 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
       <div class="community-grid" id="community-grid"></div>
     </div>
 
+    <!-- PAGE COMMUNOTE -->
+    <div class="page" id="page-communote">
+      <div class="section-title">📒 CommunoTe</div>
+      <div class="section-sub">Tous les chapitres du programme officiel — Brevet & BAC — avec livrescolaire.com</div>
+      <div class="cn-tabs-row">
+        <button class="cn-tab-btn active" onclick="cnShowExam('brevet',this)">📜 Brevet (3ème)</button>
+        <button class="cn-tab-btn" onclick="cnShowExam('bac',this)">🎓 BAC (Terminale)</button>
+      </div>
+      <div class="cn-matieres-grid" id="cn-grid"></div>
+      <div class="cn-chapitres-wrap" id="cn-chap-wrap">
+        <button class="cn-back-btn" onclick="cnBack()">← Retour aux matières</button>
+        <h3 id="cn-chap-title"></h3>
+        <ul class="cn-chap-list" id="cn-chap-list"></ul>
+        <a class="cn-livrescolaire-btn" id="cn-ls-link" href="#" target="_blank" rel="noopener">📚 Voir sur livrescolaire.com</a>
+      </div>
+    </div>
+
     <!-- PAGE CHAT -->
     <div class="page" id="page-chat">
       <div class="section-title">💬 Messages</div>
@@ -574,20 +372,11 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
             📚 Réviser ensemble par matière<br>
             🎯 Poser tes questions
           </div>
-          <a href="https://discord.gg/5a2vZ22QTu" target="_blank" style="
-            display:inline-flex;align-items:center;gap:12px;
-            background:#5865F2;color:white;
-            padding:14px 32px;border-radius:12px;
-            font-family:'Caveat',cursive;font-size:1.3rem;font-weight:700;
-            text-decoration:none;transition:all 0.2s;
-            box-shadow:0 4px 15px rgba(88,101,242,0.4)
-          " onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+          <a href="https://discord.gg/5a2vZ22QTu" target="_blank" style="display:inline-flex;align-items:center;gap:12px;background:#5865F2;color:white;padding:14px 32px;border-radius:12px;font-family:'Caveat',cursive;font-size:1.3rem;font-weight:700;text-decoration:none;transition:all 0.2s;box-shadow:0 4px 15px rgba(88,101,242,0.4)">
             <svg width="24" height="24" viewBox="0 0 71 55" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M60.1 4.9A58.5 58.5 0 0 0 45.5.4a.2.2 0 0 0-.2.1 40.8 40.8 0 0 0-1.8 3.7 54 54 0 0 0-16.2 0A37.3 37.3 0 0 0 25.5.5a.2.2 0 0 0-.2-.1 58.4 58.4 0 0 0-14.6 4.5.2.2 0 0 0-.1.1C1.6 18.1-.9 31 .3 43.6v.1a58.8 58.8 0 0 0 17.9 9 .2.2 0 0 0 .2-.1 42 42 0 0 0 3.6-5.9.2.2 0 0 0-.1-.3 38.7 38.7 0 0 1-5.5-2.6.2.2 0 0 1 0-.4l1.1-.8a.2.2 0 0 1 .2 0c11.5 5.3 24 5.3 35.4 0a.2.2 0 0 1 .2 0l1.1.8a.2.2 0 0 1 0 .4 36.1 36.1 0 0 1-5.5 2.6.2.2 0 0 0-.1.3 47 47 0 0 0 3.6 5.9.2.2 0 0 0 .2.1 58.6 58.6 0 0 0 17.9-9v-.1c1.5-15.1-2.5-28.2-10.6-39.8a.2.2 0 0 0-.1 0ZM23.7 36c-3.5 0-6.4-3.2-6.4-7.1s2.8-7.1 6.4-7.1c3.6 0 6.5 3.2 6.4 7.1 0 3.9-2.8 7.1-6.4 7.1Zm23.6 0c-3.5 0-6.4-3.2-6.4-7.1s2.8-7.1 6.4-7.1c3.6 0 6.5 3.2 6.4 7.1 0 3.9-2.8 7.1-6.4 7.1Z"/></svg>
             Rejoindre le Discord
           </a>
-          <div style="margin-top:1.5rem;font-size:0.8rem;color:var(--muted)">
-            Lien : <span style="font-family:monospace;background:#f4f4f4;padding:2px 8px;border-radius:5px">discord.gg/5a2vZ22QTu</span>
-          </div>
+          <div style="margin-top:1.5rem;font-size:0.8rem;color:var(--muted)">Lien : <span style="font-family:monospace;background:#f4f4f4;padding:2px 8px;border-radius:5px">discord.gg/5a2vZ22QTu</span></div>
         </div>
         <div style="background:var(--pink-bg);border:2px solid var(--pink-border);border-radius:12px;padding:1.25rem;font-size:0.88rem;color:var(--ink);line-height:1.7">
           💡 <strong>Astuce :</strong> Partage ce lien à tes amis pour qu'ils rejoignent StudyForge et révisez ensemble !
@@ -598,48 +387,26 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
   </div>
 </div>
 
-
 <!-- AUTH OVERLAY -->
 <div class="auth-overlay" id="auth-overlay">
   <div class="auth-box">
     <div class="auth-logo">Study<span>Forge</span> ✏️</div>
     <div class="auth-tagline">Génère des fiches de révision avec l'IA 🎓</div>
-    
     <div class="auth-tabs">
       <button class="auth-tab active" id="tab-login" onclick="switchTab('login')">Se connecter</button>
       <button class="auth-tab" id="tab-signup" onclick="switchTab('signup')">S'inscrire</button>
     </div>
-
     <div id="auth-error" class="auth-error"></div>
     <div id="auth-success" class="auth-success"></div>
-
-    <!-- LOGIN -->
     <div id="form-login">
-      <div class="auth-field">
-        <label>Email</label>
-        <input type="email" id="login-email" placeholder="ton@email.com">
-      </div>
-      <div class="auth-field">
-        <label>Mot de passe</label>
-        <input type="password" id="login-password" placeholder="••••••••">
-      </div>
+      <div class="auth-field"><label>Email</label><input type="email" id="login-email" placeholder="ton@email.com"></div>
+      <div class="auth-field"><label>Mot de passe</label><input type="password" id="login-password" placeholder="••••••••"></div>
       <button class="auth-btn" onclick="login()" id="login-btn">🔑 Se connecter</button>
     </div>
-
-    <!-- SIGNUP -->
     <div id="form-signup" style="display:none">
-      <div class="auth-field">
-        <label>Ton prénom / pseudo</label>
-        <input type="text" id="signup-name" placeholder="Ex : Wael, Sarah...">
-      </div>
-      <div class="auth-field">
-        <label>Email</label>
-        <input type="email" id="signup-email" placeholder="ton@email.com">
-      </div>
-      <div class="auth-field">
-        <label>Mot de passe</label>
-        <input type="password" id="signup-password" placeholder="Minimum 6 caractères">
-      </div>
+      <div class="auth-field"><label>Ton prénom / pseudo</label><input type="text" id="signup-name" placeholder="Ex : Wael, Sarah..."></div>
+      <div class="auth-field"><label>Email</label><input type="email" id="signup-email" placeholder="ton@email.com"></div>
+      <div class="auth-field"><label>Mot de passe</label><input type="password" id="signup-password" placeholder="Minimum 6 caractères"></div>
       <div class="auth-field">
         <label>Choisis ton avatar</label>
         <div class="avatar-grid" id="avatar-grid">
@@ -659,20 +426,13 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
       </div>
       <button class="auth-btn" onclick="signup()" id="signup-btn">🎉 Créer mon compte</button>
     </div>
-
-    <div style="text-align:center;margin-top:1rem;font-size:0.78rem;color:var(--muted)">
-      Fondé par <strong>DAOUDI WAEL</strong> · 100% gratuit 🎓
-    </div>
+    <div style="text-align:center;margin-top:1rem;font-size:0.78rem;color:var(--muted)">Fondé par <strong>DAOUDI WAEL</strong> · 100% gratuit 🎓</div>
   </div>
 </div>
 
-<!-- MODAL -->
 <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
   <div class="modal">
-    <div class="modal-header">
-      <h2 id="modal-title">Fiche</h2>
-      <button class="modal-close" onclick="closeModal()">✕</button>
-    </div>
+    <div class="modal-header"><h2 id="modal-title">Fiche</h2><button class="modal-close" onclick="closeModal()">✕</button></div>
     <div class="modal-body" id="modal-body"></div>
   </div>
 </div>
@@ -680,7 +440,142 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 <div class="toast" id="toast"></div>
 
 <script>
-// ── SUPABASE CONFIG
+// ════════════════════════════════════════════
+// AGENT IA MODÉRATION — INVISIBLE
+// ════════════════════════════════════════════
+async function moderationCheck(text) {
+  if (!text || text.trim().length < 3) return true;
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 80,
+        messages: [{
+          role: 'user',
+          content: `Tu es un modérateur scolaire. Analyse ce message et réponds UNIQUEMENT par {"ok":true} ou {"ok":false}.
+Bloque si : insultes, harcèlement, violence, contenu sexuel, racisme, haine.
+Message : "${text.replace(/"/g,"'")}"`
+        }]
+      })
+    });
+    const d = await res.json();
+    const raw = (d.content?.[0]?.text || '{"ok":true}').replace(/```json|```/g,'').trim();
+    return JSON.parse(raw).ok !== false;
+  } catch(e) { return true; }
+}
+
+function showModError() {
+  const el = document.getElementById('mod-error');
+  el.style.display = 'block';
+  setTimeout(() => { el.style.display = 'none'; }, 4000);
+}
+
+// ════════════════════════════════════════════
+// COMMUNOTE DATA
+// ════════════════════════════════════════════
+const CN_DATA = {
+  brevet: {
+    matieres: [
+      { nom:'Français', emoji:'📖', url:'https://www.livrescolaire.fr/matiere/troisieme-francais',
+        chapitres:['Lecture et compréhension de texte','Grammaire de la phrase','Conjugaison et temps verbaux','Orthographe lexicale et grammaticale','Rédaction — récit et description','Rédaction — argumentation','Figures de style','Analyse d\'une œuvre intégrale','Dictée préparée','Expression orale'] },
+      { nom:'Mathématiques', emoji:'📐', url:'https://www.livrescolaire.fr/matiere/troisieme-maths',
+        chapitres:['Nombres entiers et décimaux','Fractions et calculs','Puissances et notation scientifique','Calcul littéral et équations','Systèmes d\'équations','Géométrie — triangles et cercles','Transformations (symétries, rotations, homothéties)','Théorème de Pythagore et réciproque','Théorème de Thalès et réciproque','Trigonométrie dans le triangle rectangle','Statistiques et probabilités','Proportionnalité et pourcentages','Aires, volumes et conversions'] },
+      { nom:'Histoire-Géo', emoji:'🌍', url:'https://www.livrescolaire.fr/matiere/troisieme-histoire-geographie',
+        chapitres:['La Première Guerre mondiale','Les régimes totalitaires','La Seconde Guerre mondiale','La guerre froide','La décolonisation','La Ve République','La mondialisation','Les inégalités de développement','Le développement durable','La France et l\'Union européenne','EMC — citoyenneté'] },
+      { nom:'Sciences (SVT + Physique)', emoji:'🔬', url:'https://www.livrescolaire.fr/matiere/troisieme-svt',
+        chapitres:['Le corps humain et la santé','La reproduction humaine','Génétique et hérédité','L\'évolution des espèces','Les mouvements et interactions','Les forces et l\'équilibre','L\'électricité — circuits et lois','Optique — lumière et vision','Les transformations chimiques','L\'énergie et ses formes','La Terre et ses enveloppes','Ressources naturelles et géologie'] },
+      { nom:'Anglais', emoji:'🇬🇧', url:'https://www.livrescolaire.fr/matiere/troisieme-anglais',
+        chapitres:['Temps — present simple / continuous','Prétérit simple et continu','Present perfect','Futur (will / going to)','Les modaux (can, must, should…)','La voix passive','Le discours indirect','Les subordonnées (if, when, although…)','Vocabulaire thématique','Compréhension orale et écrite','Expression écrite guidée','Expression orale — monologue / dialogue'] },
+      { nom:'Technologie', emoji:'⚙️', url:'https://www.livrescolaire.fr/matiere/troisieme-technologie',
+        chapitres:['Analyse et conception d\'un objet technique','Matériaux et structures','Énergie et systèmes','Programmation et robotique','Modélisation 3D','Réseaux et internet','Systèmes d\'information'] }
+    ]
+  },
+  bac: {
+    matieres: [
+      { nom:'Français (1ère)', emoji:'📖', url:'https://www.livrescolaire.fr/matiere/premiere-francais',
+        chapitres:['Le roman et le récit — du Moyen Âge au XXIe s.','La littérature d\'idées — XVI au XVIII siècle','Le théâtre — du XVIIe au XXIe siècle','La poésie — du XIXe au XXIe siècle','La dissertation littéraire','Le commentaire composé','L\'oral de français — Grand Oral préparation','Figures de style et procédés littéraires','Lecture linéaire et explications de textes'] },
+      { nom:'Philosophie', emoji:'🧠', url:'https://www.livrescolaire.fr/matiere/terminale-philosophie',
+        chapitres:['L\'existence humaine et la culture','La morale et la politique','La connaissance','Le sujet conscient','Le langage','La raison et le réel','La liberté et le destin','Le bonheur et la vertu','La vérité','La religion et la foi','L\'art et la beauté','La technique','La nature et l\'état','La justice et le droit','Dissertation philosophique — méthode','Explication de texte — méthode'] },
+      { nom:'Mathématiques', emoji:'📐', url:'https://www.livrescolaire.fr/matiere/terminale-maths',
+        chapitres:['Suites numériques (arithmétiques et géométriques)','Limites et continuité','Dérivation et convexité','Intégration','Logarithme népérien','Fonctions exponentielles','Probabilités conditionnelles','Loi des grands nombres','Variables aléatoires discrètes','Variables aléatoires continues','Géométrie dans l\'espace','Matrices et graphes (spé)','Arithmétique (spé)','Nombres complexes (spé)'] },
+      { nom:'Physique-Chimie', emoji:'⚗️', url:'https://www.livrescolaire.fr/matiere/terminale-physique-chimie',
+        chapitres:['Ondes mécaniques et lumineuses','Optique géométrique','Mécanique — lois de Newton','Travail et énergie','Oscillateurs mécaniques et électriques','Électromagnétisme','Cinétique chimique','Équilibres chimiques','Acide-base et pH','Oxydoréduction','Chimie organique — nomenclature et réactions','Synthèse organique','Transformations nucléaires'] },
+      { nom:'SVT', emoji:'🧬', url:'https://www.livrescolaire.fr/matiere/terminale-svt',
+        chapitres:['Génétique et expression du génome','Immunologie et défenses de l\'organisme','Neurones et transmission synaptique','Comportement alimentaire et régulation','Reproduction et sexualité humaine','Évolution et sélection naturelle','Tectonique des plaques','Atmosphère et changements climatiques','Agrosystèmes et durabilité','Biodiversité et classification'] },
+      { nom:'Sciences Éco (SES)', emoji:'📊', url:'https://www.livrescolaire.fr/matiere/terminale-ses',
+        chapitres:['Croissance économique et développement','Fluctuations économiques et crises','Mondialisation, finance et commerce','Marché du travail et chômage','État, revenus et redistribution','Stratification sociale et inégalités','Mobilité sociale et école','Formes du lien social et déviance','Démocratie et citoyenneté','Institutions politiques et Europe'] },
+      { nom:'Histoire-Géo', emoji:'🌍', url:'https://www.livrescolaire.fr/matiere/terminale-histoire-geographie',
+        chapitres:['Le monde depuis 1945 — ordre bipolaire','La guerre froide et ses crises','La décolonisation et le tiers-monde','La construction européenne','La France de la Ve République','Le monde depuis 1991 — nouvel ordre mondial','Mondialisation et inégalités','Les États-Unis et le monde','Les frontières et la géopolitique','Développement durable et enjeux territoriaux'] },
+      { nom:'NSI (Informatique)', emoji:'💻', url:'https://www.livrescolaire.fr/matiere/terminale-nsi',
+        chapitres:['Structures de données (listes, piles, files, arbres, graphes)','Algorithmique — complexité et tri','Programmation orientée objet','Récursivité','Bases de données et SQL','Architecture des réseaux','Protocoles TCP/IP et HTTP','Systèmes d\'exploitation','Sécurité et cryptographie','Machines et calcul (automates)'] }
+    ]
+  }
+};
+
+let cnCurrentExam = 'brevet';
+
+function cnShowExam(exam, btn) {
+  cnCurrentExam = exam;
+  document.querySelectorAll('.cn-tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('cn-chap-wrap').style.display = 'none';
+  cnRenderMatieres();
+}
+
+function cnRenderMatieres() {
+  const grid = document.getElementById('cn-grid');
+  grid.style.display = 'grid';
+  grid.innerHTML = CN_DATA[cnCurrentExam].matieres.map((m, i) =>
+    `<div class="cn-mat-card" onclick="cnShowChapitres(${i})">
+      <span class="cn-mat-emoji">${m.emoji}</span>${m.nom}
+    </div>`
+  ).join('');
+}
+
+function cnShowChapitres(idx) {
+  const mat = CN_DATA[cnCurrentExam].matieres[idx];
+  document.getElementById('cn-grid').style.display = 'none';
+  const wrap = document.getElementById('cn-chap-wrap');
+  wrap.style.display = 'block';
+  document.getElementById('cn-chap-title').textContent = mat.emoji + ' ' + mat.nom + ' — Programme';
+  document.getElementById('cn-ls-link').href = mat.url;
+  document.getElementById('cn-chap-list').innerHTML = mat.chapitres.map(c =>
+    `<li onclick="cnSelectChap('${c.replace(/'/g,"\\'")}','${mat.nom.replace(/'/g,"\\'")}','${cnCurrentExam}')">${c}</li>`
+  ).join('');
+}
+
+function cnBack() {
+  document.getElementById('cn-chap-wrap').style.display = 'none';
+  document.getElementById('cn-grid').style.display = 'grid';
+}
+
+function cnSelectChap(chap, matiere, exam) {
+  // Pré-remplir le formulaire de création
+  document.getElementById('titre-input').value = chap;
+  document.getElementById('cours-text').value = '';
+  // Sélectionner la bonne matière dans les chips
+  document.querySelectorAll('#matiere-chips .chip').forEach(c => {
+    c.classList.remove('active');
+    if (c.dataset.val === matiere || matiere.includes(c.dataset.val) || c.dataset.val === matiere.split(' ')[0]) {
+      c.classList.add('active');
+      selectedMatiere = c.dataset.val;
+    }
+  });
+  // Sélectionner le bon niveau
+  const niveauSelect = document.getElementById('niveau-select');
+  if (exam === 'brevet') niveauSelect.value = 'Collège';
+  else niveauSelect.value = 'Terminale / BAC';
+  // Aller sur la page création
+  showPage('generate');
+  showToast('📌 Chapitre sélectionné : ' + chap.substring(0, 30) + '…');
+  setTimeout(() => document.getElementById('titre-input').scrollIntoView({behavior:'smooth'}), 300);
+}
+
+// ════════════════════════════════════════════
+// SUPABASE CONFIG
+// ════════════════════════════════════════════
 const SUPABASE_URL = 'https://xesefsrpxinehodfgbri.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_sduj2vS9RtmHUPZLbg0YnA_0abm0Ftf';
 
@@ -692,7 +587,7 @@ async function sbFetch(path, options={}) {
       'Authorization': 'Bearer ' + SUPABASE_KEY,
       'Content-Type': 'application/json',
       'Prefer': 'return=representation',
-      ...( options.headers || {})
+      ...(options.headers || {})
     }
   });
   return res.json();
@@ -703,18 +598,12 @@ async function loadCommunity() {
     const data = await sbFetch('community?order=created_at.desc&limit=50');
     if(Array.isArray(data)) {
       communityFiches = data.map(f => ({
-        id: f.id,
-        titre: f.titre,
-        matiere: f.matiere,
-        niveau: f.niveau,
-        auteur: f.auteur,
-        initiales: f.initiales,
+        id: f.id, titre: f.titre, matiere: f.matiere, niveau: f.niveau,
+        auteur: f.auteur, initiales: f.initiales,
         avColor: f.av_color || 'linear-gradient(135deg,#ff8fab,#b388ff)',
         date: new Date(f.created_at).toLocaleDateString('fr-FR'),
-        preview: f.preview,
-        likes: f.likes || 0,
-        sections: f.sections || [],
-        a_retenir: f.a_retenir || ''
+        preview: f.preview, likes: f.likes || 0,
+        sections: f.sections || [], a_retenir: f.a_retenir || ''
       }));
       renderCommunity();
     }
@@ -726,16 +615,12 @@ async function saveToCommunity(fiche) {
     await sbFetch('community', {
       method: 'POST',
       body: JSON.stringify({
-        titre: fiche.titre,
-        matiere: fiche.matiere,
-        niveau: fiche.niveau,
+        titre: fiche.titre, matiere: fiche.matiere, niveau: fiche.niveau,
         auteur: fiche.auteur || 'DAOUDI WAEL',
         initiales: fiche.initiales || 'DW',
         av_color: fiche.avColor || 'linear-gradient(135deg,#ff8fab,#b388ff)',
-        preview: fiche.preview || '',
-        likes: 0,
-        sections: fiche.sections,
-        a_retenir: fiche.a_retenir
+        preview: fiche.preview || '', likes: 0,
+        sections: fiche.sections, a_retenir: fiche.a_retenir
       })
     });
   } catch(e) { console.log('Supabase save error', e); }
@@ -746,227 +631,208 @@ let selectedMatiere = 'Français';
 let currentFiche = null;
 let library = JSON.parse(localStorage.getItem('sf_library2') || '[]');
 let communityFiches = JSON.parse(localStorage.getItem('sf_community2') || '[]');
-let activeConv = 0;
-
-const COLORS = ['sec-pink','sec-yellow','sec-blue','sec-green','sec-purple','sec-orange'];
 const SECTION_COLORS_CYCLE = ['sec-pink','sec-blue','sec-yellow','sec-green','sec-purple','sec-orange'];
 
-
-
-let conversations = [];
-
 // ── NAVIGATION
-function showPage(name){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
-  document.getElementById('page-'+name).classList.add('active');
-  const idx={generate:0,library:1,community:2,chat:3}[name];
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  const idx = {generate:0, library:1, community:2, communote:3, chat:4}[name];
   document.querySelectorAll('.nav-item')[idx].classList.add('active');
-  if(name==='library') renderLibrary();
-  if(name==='community') renderCommunity();
-  if(name==='chat') renderChat();
+  if (name === 'library') renderLibrary();
+  if (name === 'community') renderCommunity();
+  if (name === 'communote') { cnRenderMatieres(); document.getElementById('cn-chap-wrap').style.display='none'; }
 }
 
 // ── CHIPS
-document.querySelectorAll('#matiere-chips .chip').forEach(c=>{
-  c.addEventListener('click',()=>{
-    document.querySelectorAll('#matiere-chips .chip').forEach(x=>x.classList.remove('active'));
+document.querySelectorAll('#matiere-chips .chip').forEach(c => {
+  c.addEventListener('click', () => {
+    document.querySelectorAll('#matiere-chips .chip').forEach(x => x.classList.remove('active'));
     c.classList.add('active');
-    selectedMatiere=c.dataset.val;
+    selectedMatiere = c.dataset.val;
   });
 });
 
 // ── FILE
-function handleFile(input){
-  const file=input.files[0]; if(!file) return;
-  const reader=new FileReader();
-  reader.onload=e=>{
-    const img=document.getElementById('preview-img');
-    img.src=e.target.result; img.style.display='block';
+function handleFile(input) {
+  const file = input.files[0]; if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const img = document.getElementById('preview-img');
+    img.src = e.target.result; img.style.display = 'block';
   };
   reader.readAsDataURL(file);
 }
 
 // ── GENERATE
-async function generateFiche(){
-  const titre=document.getElementById('titre-input').value;
-  const cours=document.getElementById('cours-text').value;
-  const keywords=document.getElementById('keywords-input').value;
-  const niveau=document.getElementById('niveau-select').value;
-  const typeFiche=document.getElementById('type-select').value;
+async function generateFiche() {
+  const titre = document.getElementById('titre-input').value;
+  const cours = document.getElementById('cours-text').value;
+  const keywords = document.getElementById('keywords-input').value;
+  const niveau = document.getElementById('niveau-select').value;
+  const typeFiche = document.getElementById('type-select').value;
+  if (!titre && !cours && !keywords) { showToast('⚠️ Remplis au moins un champ !'); return; }
+  const btn = document.getElementById('gen-btn');
+  const spinner = document.getElementById('spinner');
+  const btnText = document.getElementById('btn-text');
 
-  if(!titre&&!cours&&!keywords){showToast('⚠️ Remplis au moins un champ !');return;}
+  // ── MODÉRATION AVANT GÉNÉRATION ──
+  btn.disabled = true; spinner.style.display = 'block'; btnText.textContent = '🔍 Vérification...';
+  const texteAVerifier = [titre, cours, keywords].filter(Boolean).join(' ');
+  const contenuOk = await moderationCheck(texteAVerifier);
+  if (!contenuOk) {
+    btn.disabled = false; spinner.style.display = 'none'; btnText.textContent = '✏️ Générer ma fiche façon cahier';
+    showToast('🚫 Contenu inapproprié détecté. Modifie ton texte.');
+    // Afficher l'erreur sous le champ concerné
+    let errEl = document.getElementById('gen-mod-error');
+    if (!errEl) {
+      errEl = document.createElement('p');
+      errEl.id = 'gen-mod-error';
+      errEl.style.cssText = 'color:#c0392b;font-size:13px;margin-top:8px;font-family:Nunito,sans-serif;font-weight:600;';
+      btn.parentNode.insertBefore(errEl, btn.nextSibling);
+    }
+    errEl.textContent = '⚠️ Ce contenu ne respecte pas les règles de StudyForge. Supprime les mots inappropriés.';
+    setTimeout(() => { if (errEl) errEl.textContent = ''; }, 5000);
+    return;
+  }
+  // Effacer l'erreur si tout va bien
+  const prevErr = document.getElementById('gen-mod-error');
+  if (prevErr) prevErr.textContent = '';
 
-  const btn=document.getElementById('gen-btn');
-  const spinner=document.getElementById('spinner');
-  const btnText=document.getElementById('btn-text');
-  btn.disabled=true;spinner.style.display='block';btnText.textContent='L\'IA crée ta fiche...';
-
-  const prompt=`Tu es un expert en pédagogie et création de fiches de révision visuelles.
-
+  btnText.textContent = 'L\'IA crée ta fiche...';
+  const prompt = `Tu es un expert en pédagogie et création de fiches de révision visuelles.
 Génère une fiche de révision de niveau ${niveau} en ${selectedMatiere}, de type "${typeFiche}".
-${titre?`Titre/Chapitre : ${titre}`:''}
-${cours?`Contenu du cours :\n${cours}`:''}
-${keywords?`Mots-clés : ${keywords}`:''}
-
+${titre ? `Titre/Chapitre : ${titre}` : ''}
+${cours ? `Contenu du cours :\n${cours}` : ''}
+${keywords ? `Mots-clés : ${keywords}` : ''}
 Réponds UNIQUEMENT en JSON valide (sans markdown, sans backticks), avec cette structure exacte :
-{
-  "titre": "Titre principal de la fiche",
-  "sections": [
-    {
-      "titre": "NOM DE LA SECTION",
-      "contenu": "Texte de la section avec des retours à la ligne \\n pour séparer les points importants. Utilise des tirets - pour les listes. Pour les schémas, utilise SCHEMA: suivi du schéma ASCII sur une seule ligne."
-    }
-  ],
-  "a_retenir": "Les points essentiels à mémoriser, séparés par \\n"
-}
-
-Génère entre 4 et 7 sections pertinentes selon le sujet (ex: Définition, Exemples, Méthode, Dates clés, Formules, Personnages, À savoir...).
-Sois pédagogique, complet et clair. En français.`;
-
+{"titre":"Titre principal","sections":[{"titre":"NOM","contenu":"Texte avec \\n pour séparer. Tirets - pour listes. SCHEMA: pour schémas ASCII."}],"a_retenir":"Points essentiels séparés par \\n"}
+Génère entre 4 et 7 sections pertinentes. Sois pédagogique, complet et clair. En français.`;
   try {
-    const res=await fetch('https://api.groq.com/openai/v1/chat/completions',{
-      method:'POST',
-      headers:{
-        'Content-Type':'application/json',
-        'Authorization':'Bearer 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',
-        'X-Requested-With':'XMLHttpRequest'
-      },
-      body:JSON.stringify({model:'llama-3.3-70b-versatile',max_tokens:1500,messages:[{role:'system',content:'Tu es un expert pédagogue. Réponds UNIQUEMENT en JSON valide, sans markdown, sans backticks.'},{role:'user',content:prompt}]})
+    const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer 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' },
+      body: JSON.stringify({ model: 'llama-3.3-70b-versatile', max_tokens: 1500, messages: [
+        { role: 'system', content: 'Tu es un expert pédagogue. Réponds UNIQUEMENT en JSON valide, sans markdown, sans backticks.' },
+        { role: 'user', content: prompt }
+      ]})
     });
-    const data=await res.json();
-    if(data.error){throw new Error(data.error.message);}
-    let text=data.choices[0].message.content;
-    // clean JSON
-    text=text.replace(/```json|```/g,'').trim();
-    const parsed=JSON.parse(text);
-
-    currentFiche={
-      id:Date.now(),
-      titre:parsed.titre||titre||selectedMatiere,
-      matiere:selectedMatiere,
-      niveau,
-      type:typeFiche,
-      sections:parsed.sections||[],
-      a_retenir:parsed.a_retenir||'',
-      date:new Date().toLocaleDateString('fr-FR'),
+    const data = await res.json();
+    if (data.error) throw new Error(data.error.message);
+    let text = data.choices[0].message.content.replace(/```json|```/g, '').trim();
+    const parsed = JSON.parse(text);
+    currentFiche = {
+      id: Date.now(), titre: parsed.titre || titre || selectedMatiere,
+      matiere: selectedMatiere, niveau, type: typeFiche,
+      sections: parsed.sections || [], a_retenir: parsed.a_retenir || '',
+      date: new Date().toLocaleDateString('fr-FR')
     };
-
     renderPaperFiche(currentFiche);
-    document.getElementById('fiche-paper').style.display='block';
-    document.getElementById('fiche-paper').scrollIntoView({behavior:'smooth',block:'start'});
-  } catch(e){
-    console.error(e);
-    showToast('❌ Erreur. Réessaie !');
-  }
-  btn.disabled=false;spinner.style.display='none';btnText.textContent='✏️ Générer ma fiche façon cahier';
+    document.getElementById('fiche-paper').style.display = 'block';
+    document.getElementById('fiche-paper').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  } catch(e) { console.error(e); showToast('❌ Erreur. Réessaie !'); }
+  btn.disabled = false; spinner.style.display = 'none'; btnText.textContent = '✏️ Générer ma fiche façon cahier';
 }
 
-function renderPaperFiche(fiche){
-  const container=document.getElementById('paper-content');
-  const colors=SECTION_COLORS_CYCLE;
-
-  // Détermine si on fait 1 ou 2 colonnes
+function renderPaperFiche(fiche) {
+  const container = document.getElementById('paper-content');
+  const colors = SECTION_COLORS_CYCLE;
   const useGrid = fiche.sections.length >= 4;
-
-  let html=`<div class="fiche-main-title">${fiche.titre}</div>`;
-
-  if(useGrid){
-    // 2 colonnes
-    const half=Math.ceil(fiche.sections.length/2);
-    const col1=fiche.sections.slice(0,half);
-    const col2=fiche.sections.slice(half);
-    html+=`<div class="fiche-grid">`;
-    html+=`<div>`+col1.map((s,i)=>renderSection(s,colors[i%colors.length])).join('')+`</div>`;
-    html+=`<div>`+col2.map((s,i)=>renderSection(s,colors[(i+half)%colors.length])).join('')+`</div>`;
-    html+=`</div>`;
+  let html = `<div class="fiche-main-title">${fiche.titre}</div>`;
+  if (useGrid) {
+    const half = Math.ceil(fiche.sections.length / 2);
+    html += `<div class="fiche-grid">`;
+    html += `<div>` + fiche.sections.slice(0, half).map((s,i) => renderSection(s, colors[i % colors.length])).join('') + `</div>`;
+    html += `<div>` + fiche.sections.slice(half).map((s,i) => renderSection(s, colors[(i+half) % colors.length])).join('') + `</div>`;
+    html += `</div>`;
   } else {
-    html+=fiche.sections.map((s,i)=>renderSection(s,colors[i%colors.length])).join('');
+    html += fiche.sections.map((s,i) => renderSection(s, colors[i % colors.length])).join('');
   }
-
-  if(fiche.a_retenir){
-    html+=`<div class="a-retenir">
-      <div class="a-retenir-title">⭐ À retenir</div>
-      ${fiche.a_retenir.split('\\n').map(l=>`<div>${l}</div>`).join('')}
-    </div>`;
+  if (fiche.a_retenir) {
+    html += `<div class="a-retenir"><div class="a-retenir-title">⭐ À retenir</div>${fiche.a_retenir.split('\\n').map(l => `<div>${l}</div>`).join('')}</div>`;
   }
-
-  container.innerHTML=html;
+  container.innerHTML = html;
 }
 
-function renderSection(section, colorClass){
-  let body=section.contenu||'';
-  // lignes
-  const lines=body.split('\\n');
-  let rendered=lines.map(line=>{
-    if(line.startsWith('SCHEMA:')){
-      return `<div class="schema">${line.replace('SCHEMA:','').trim()}</div>`;
-    } else if(line.startsWith('-')){
-      return `<li>${line.slice(1).trim()}</li>`;
-    } else if(line.includes(':')&&line.indexOf(':')<30&&!line.startsWith(' ')){
-      const [k,...v]=line.split(':');
+function renderSection(section, colorClass) {
+  let body = section.contenu || '';
+  const lines = body.split('\\n');
+  let rendered = lines.map(line => {
+    if (line.startsWith('SCHEMA:')) return `<div class="schema">${line.replace('SCHEMA:', '').trim()}</div>`;
+    else if (line.startsWith('-')) return `<li>${line.slice(1).trim()}</li>`;
+    else if (line.includes(':') && line.indexOf(':') < 30 && !line.startsWith(' ')) {
+      const [k, ...v] = line.split(':');
       return `<div><strong>${k} :</strong>${v.join(':')}</div>`;
-    } else {
-      return `<div>${line}</div>`;
-    }
+    } else return `<div>${line}</div>`;
   });
-  // wrap li dans ul
-  let html=rendered.join('').replace(/(<li>.*?<\/li>)+/g, m=>`<ul>${m}</ul>`);
-
-  return `<div class="fiche-section ${colorClass}">
-    <div class="section-header">${section.titre}</div>
-    <div class="section-body">${html}</div>
-  </div>`;
+  let html = rendered.join('').replace(/(<li>.*?<\/li>)+/g, m => `<ul>${m}</ul>`);
+  return `<div class="fiche-section ${colorClass}"><div class="section-header">${section.titre}</div><div class="section-body">${html}</div></div>`;
 }
 
 // ── SAVE
-function saveFiche(){
-  if(!currentFiche){showToast('Génère d\'abord une fiche !');return;}
-  if(library.find(f=>f.id===currentFiche.id)){showToast('⚠️ Déjà sauvegardée !');return;}
+function saveFiche() {
+  if (!currentFiche) { showToast('Génère d\'abord une fiche !'); return; }
+  if (library.find(f => f.id === currentFiche.id)) { showToast('⚠️ Déjà sauvegardée !'); return; }
   library.unshift(currentFiche);
-  localStorage.setItem('sf_library2',JSON.stringify(library));
+  localStorage.setItem('sf_library2', JSON.stringify(library));
   showToast('💾 Fiche sauvegardée !');
 }
 
-function printFiche(){
-  window.print();
-}
+function printFiche() { window.print(); }
 
-async function shareToComm(){
-  if(!currentFiche){showToast('Génère d\'abord une fiche !');return;}
-  if(!currentUser){showToast('Connecte-toi pour partager !');showAuth();return;}
+// ── PARTAGER AVEC MODÉRATION IA
+async function shareToComm() {
+  if (!currentFiche) { showToast('Génère d\'abord une fiche !'); return; }
+  if (!currentUser) { showToast('Connecte-toi pour partager !'); showAuth(); return; }
+  const btn = document.getElementById('share-btn');
+  const errEl = document.getElementById('mod-error');
+  btn.disabled = true;
+  btn.textContent = '🔍 Vérification...';
+  errEl.style.display = 'none';
+  // Texte à analyser = titre + contenu des sections
+  const textToCheck = currentFiche.titre + ' ' + currentFiche.sections.map(s => s.contenu).join(' ');
+  const ok = await moderationCheck(textToCheck);
+  btn.disabled = false;
+  btn.textContent = '🌍 Partager';
+  if (!ok) { showModError(); return; }
   showToast('🌍 Publication en cours...');
-  const initiales=(currentUser.name||'?').substring(0,2).toUpperCase();
-  const f={...currentFiche,auteur:currentUser.name,initiales,avColor:'linear-gradient(135deg,#ff8fab,#b388ff)',date:'à l\'instant',likes:0,preview:(currentFiche.sections[0]?.contenu||'').substring(0,100)+'...'};
+  const initiales = (currentUser.name || '?').substring(0, 2).toUpperCase();
+  const f = { ...currentFiche, auteur: currentUser.name, initiales, avColor: 'linear-gradient(135deg,#ff8fab,#b388ff)', date: 'à l\'instant', likes: 0, preview: (currentFiche.sections[0]?.contenu || '').substring(0, 100) + '...' };
   await saveToCommunity(f);
   await loadCommunity();
   showToast('🌍 Fiche partagée avec tout le monde !');
 }
 
-async function generateQuiz(){
-  if(!currentFiche){showToast('Génère d\'abord une fiche !');return;}
+async function generateQuiz() {
+  if (!currentFiche) { showToast('Génère d\'abord une fiche !'); return; }
   showToast('🎯 Génération du quiz...');
-  const content=currentFiche.sections.map(s=>`${s.titre}: ${s.contenu}`).join('\n');
-  const prompt=`À partir de cette fiche sur "${currentFiche.titre}" (${currentFiche.matiere}), génère 5 questions QCM avec 4 choix (A,B,C,D) et indique la bonne réponse. Contenu:\n${content.substring(0,600)}`;
+  const content = currentFiche.sections.map(s => `${s.titre}: ${s.contenu}`).join('\n');
   try {
-    const res=await fetch('https://api.groq.com/openai/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer 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'},body:JSON.stringify({model:'llama-3.3-70b-versatile',max_tokens:700,messages:[{role:'system',content:'Tu es un expert pédagogue.'},{role:'user',content:prompt}]})});
-    const data=await res.json();
-    const quiz=data.choices[0].message.content;
-    openModal('🎯 Quiz — '+currentFiche.titre,`<div style="white-space:pre-wrap;font-family:'Kalam',cursive;font-size:0.95rem;line-height:1.9">${quiz}</div>`);
-  } catch(e){showToast('❌ Erreur');}
+    const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer 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' },
+      body: JSON.stringify({ model: 'llama-3.3-70b-versatile', max_tokens: 700, messages: [
+        { role: 'system', content: 'Tu es un expert pédagogue.' },
+        { role: 'user', content: `À partir de cette fiche sur "${currentFiche.titre}" (${currentFiche.matiere}), génère 5 questions QCM avec 4 choix (A,B,C,D) et indique la bonne réponse. Contenu:\n${content.substring(0, 600)}` }
+      ]})
+    });
+    const data = await res.json();
+    const quiz = data.choices[0].message.content;
+    openModal('🎯 Quiz — ' + currentFiche.titre, `<div style="white-space:pre-wrap;font-family:'Kalam',cursive;font-size:0.95rem;line-height:1.9">${quiz}</div>`);
+  } catch(e) { showToast('❌ Erreur'); }
 }
 
 // ── LIBRARY
-const BADGE_COLORS={'Français':'badge-purple','Mathématiques':'badge-yellow','Histoire-Géo':'badge-pink','Sciences':'badge-green','Biologie':'badge-green','Anglais':'badge-blue','default':'badge-pink'};
-function getBadge(m){return BADGE_COLORS[m]||BADGE_COLORS.default;}
-const CARD_BARS={'Français':'linear-gradient(90deg,#b388ff,#ff8fab)','Mathématiques':'linear-gradient(90deg,#ffd166,#ff9f1c)','Histoire-Géo':'linear-gradient(90deg,#ef476f,#ffd166)','Sciences':'linear-gradient(90deg,#06d6a0,#4cc9f0)','Biologie':'linear-gradient(90deg,#06d6a0,#34d399)','Anglais':'linear-gradient(90deg,#4cc9f0,#b388ff)','default':'linear-gradient(90deg,#ff8fab,#ffd166)'};
-function getBar(m){return CARD_BARS[m]||CARD_BARS.default;}
+const BADGE_COLORS = {'Français':'badge-purple','Mathématiques':'badge-yellow','Histoire-Géo':'badge-pink','Sciences':'badge-green','Biologie':'badge-green','Anglais':'badge-blue','default':'badge-pink'};
+function getBadge(m) { return BADGE_COLORS[m] || BADGE_COLORS.default; }
+const CARD_BARS = {'Français':'linear-gradient(90deg,#b388ff,#ff8fab)','Mathématiques':'linear-gradient(90deg,#ffd166,#ff9f1c)','Histoire-Géo':'linear-gradient(90deg,#ef476f,#ffd166)','Sciences':'linear-gradient(90deg,#06d6a0,#4cc9f0)','Biologie':'linear-gradient(90deg,#06d6a0,#34d399)','Anglais':'linear-gradient(90deg,#4cc9f0,#b388ff)','default':'linear-gradient(90deg,#ff8fab,#ffd166)'};
+function getBar(m) { return CARD_BARS[m] || CARD_BARS.default; }
 
-function renderLibrary(filter=''){
-  const grid=document.getElementById('library-grid');
-  const f=library.filter(x=>x.titre.toLowerCase().includes(filter.toLowerCase())||x.matiere.toLowerCase().includes(filter.toLowerCase()));
-  if(!f.length){grid.innerHTML='<div class="empty-state" style="grid-column:1/-1"><div class="es-icon">📭</div><p>'+(filter?'Aucune fiche trouvée.':'Génère ta première fiche et sauvegarde-la !')+'</p></div>';return;}
-  grid.innerHTML=f.map(fiche=>`
+function renderLibrary(filter='') {
+  const grid = document.getElementById('library-grid');
+  const f = library.filter(x => x.titre.toLowerCase().includes(filter.toLowerCase()) || x.matiere.toLowerCase().includes(filter.toLowerCase()));
+  if (!f.length) { grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1"><div class="es-icon">📭</div><p>' + (filter ? 'Aucune fiche trouvée.' : 'Génère ta première fiche et sauvegarde-la !') + '</p></div>'; return; }
+  grid.innerHTML = f.map(fiche => `
     <div class="fiche-card" onclick="openFicheModal('${fiche.id}')">
       <div class="fc-color-bar" style="background:${getBar(fiche.matiere)}"></div>
       <div style="display:flex;justify-content:space-between;align-items:flex-start">
@@ -980,46 +846,39 @@ function renderLibrary(filter=''){
   `).join('');
 }
 
-function filterLibrary(){renderLibrary(document.getElementById('lib-search').value);}
-function deleteLib(id){library=library.filter(f=>String(f.id)!==String(id));localStorage.setItem('sf_library2',JSON.stringify(library));renderLibrary(document.getElementById('lib-search').value);showToast('🗑 Supprimée');}
+function filterLibrary() { renderLibrary(document.getElementById('lib-search').value); }
+function deleteLib(id) { library = library.filter(f => String(f.id) !== String(id)); localStorage.setItem('sf_library2', JSON.stringify(library)); renderLibrary(document.getElementById('lib-search').value); showToast('🗑 Supprimée'); }
 
-function openFicheModal(id){
-  const fiche=library.find(f=>String(f.id)===String(id));
-  if(!fiche) return;
-  // re-render la fiche papier dans la modal
-  const tmpDiv=document.createElement('div');
-  const savedCurrent=currentFiche;
-  currentFiche=fiche;
-  const paperHTML=buildPaperHTML(fiche);
-  currentFiche=savedCurrent;
-  openModal(fiche.titre, paperHTML);
+function openFicheModal(id) {
+  const fiche = library.find(f => String(f.id) === String(id)); if (!fiche) return;
+  openModal(fiche.titre, buildPaperHTML(fiche));
 }
 
-function buildPaperHTML(fiche){
-  const colors=SECTION_COLORS_CYCLE;
-  const useGrid=fiche.sections.length>=4;
-  let html=`<div style="font-family:'Kalam',cursive;padding:0.5rem">`;
-  html+=`<div style="font-family:'Caveat',cursive;font-size:1.5rem;font-weight:700;text-align:center;margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:3px solid var(--pink)">${fiche.titre}</div>`;
-  if(useGrid){
-    const half=Math.ceil(fiche.sections.length/2);
-    html+=`<div class="fiche-grid">`;
-    html+=`<div>`+fiche.sections.slice(0,half).map((s,i)=>renderSection(s,colors[i%colors.length])).join('')+`</div>`;
-    html+=`<div>`+fiche.sections.slice(half).map((s,i)=>renderSection(s,colors[(i+half)%colors.length])).join('')+`</div>`;
-    html+=`</div>`;
+function buildPaperHTML(fiche) {
+  const colors = SECTION_COLORS_CYCLE;
+  const useGrid = fiche.sections.length >= 4;
+  let html = `<div style="font-family:'Kalam',cursive;padding:0.5rem">`;
+  html += `<div style="font-family:'Caveat',cursive;font-size:1.5rem;font-weight:700;text-align:center;margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:3px solid var(--pink)">${fiche.titre}</div>`;
+  if (useGrid) {
+    const half = Math.ceil(fiche.sections.length / 2);
+    html += `<div class="fiche-grid">`;
+    html += `<div>` + fiche.sections.slice(0, half).map((s,i) => renderSection(s, colors[i % colors.length])).join('') + `</div>`;
+    html += `<div>` + fiche.sections.slice(half).map((s,i) => renderSection(s, colors[(i+half) % colors.length])).join('') + `</div>`;
+    html += `</div>`;
   } else {
-    html+=fiche.sections.map((s,i)=>renderSection(s,colors[i%colors.length])).join('');
+    html += fiche.sections.map((s,i) => renderSection(s, colors[i % colors.length])).join('');
   }
-  if(fiche.a_retenir) html+=`<div class="a-retenir"><div class="a-retenir-title">⭐ À retenir</div>${fiche.a_retenir.split('\\n').map(l=>`<div>${l}</div>`).join('')}</div>`;
-  html+=`</div>`;
+  if (fiche.a_retenir) html += `<div class="a-retenir"><div class="a-retenir-title">⭐ À retenir</div>${fiche.a_retenir.split('\\n').map(l => `<div>${l}</div>`).join('')}</div>`;
+  html += `</div>`;
   return html;
 }
 
 // ── COMMUNITY
-function renderCommunity(filter=''){
-  const grid=document.getElementById('community-grid');
-  const f=communityFiches.filter(x=>x.titre.toLowerCase().includes(filter.toLowerCase())||x.matiere.toLowerCase().includes(filter.toLowerCase()));
-  if(!f.length){grid.innerHTML='<div class="empty-state" style="grid-column:1/-1"><div class="es-icon">🌍</div><p>Aucune fiche publiée.</p></div>';return;}
-  grid.innerHTML=f.map(fiche=>`
+function renderCommunity(filter='') {
+  const grid = document.getElementById('community-grid');
+  const f = communityFiches.filter(x => x.titre.toLowerCase().includes(filter.toLowerCase()) || x.matiere.toLowerCase().includes(filter.toLowerCase()));
+  if (!f.length) { grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1"><div class="es-icon">🌍</div><p>Aucune fiche publiée.</p></div>'; return; }
+  grid.innerHTML = f.map(fiche => `
     <div class="pub-card">
       <div class="pub-author">
         <div class="pub-avatar" style="background:${fiche.avColor||'linear-gradient(135deg,#ff8fab,#b388ff)'}">${fiche.initiales}</div>
@@ -1038,197 +897,135 @@ function renderCommunity(filter=''){
   `).join('');
 }
 
-function filterCommunity(){renderCommunity(document.getElementById('comm-search').value);}
-function toggleLike(id,btn){
-  const f=communityFiches.find(x=>String(x.id)===String(id));if(!f) return;
+function filterCommunity() { renderCommunity(document.getElementById('comm-search').value); }
+function toggleLike(id, btn) {
+  const f = communityFiches.find(x => String(x.id) === String(id)); if (!f) return;
   btn.classList.toggle('liked');
-  f.likes=btn.classList.contains('liked')?f.likes+1:f.likes-1;
-  btn.textContent=`❤️ ${f.likes}`;
-  localStorage.setItem('sf_community2',JSON.stringify(communityFiches));
+  f.likes = btn.classList.contains('liked') ? f.likes + 1 : f.likes - 1;
+  btn.textContent = `❤️ ${f.likes}`;
+  localStorage.setItem('sf_community2', JSON.stringify(communityFiches));
 }
-function saveFromComm(id){
-  const f=communityFiches.find(x=>String(x.id)===String(id));if(!f) return;
-  library.unshift({...f,id:Date.now(),date:new Date().toLocaleDateString('fr-FR')});
-  localStorage.setItem('sf_library2',JSON.stringify(library));
+function saveFromComm(id) {
+  const f = communityFiches.find(x => String(x.id) === String(id)); if (!f) return;
+  library.unshift({ ...f, id: Date.now(), date: new Date().toLocaleDateString('fr-FR') });
+  localStorage.setItem('sf_library2', JSON.stringify(library));
   showToast('💾 Sauvegardée !');
 }
 
-// ── CHAT
-function renderChat(){
-  document.getElementById('conversations').innerHTML=conversations.map((c,i)=>`
-    <div class="conv-item ${i===activeConv?'active':''}" onclick="selectConv(${i})">
-      <div class="conv-avatar-chat" style="background:${c.color}">${c.initials}</div>
-      <div class="conv-info">
-        <div class="conv-name">${c.name}</div>
-        <div class="conv-last">${c.messages[c.messages.length-1]?.text||''}</div>
-      </div>
-    </div>
-  `).join('');
-  selectConv(activeConv);
-}
-function selectConv(i){
-  activeConv=i;const c=conversations[i];
-  document.querySelectorAll('.conv-item').forEach((el,j)=>el.classList.toggle('active',j===i));
-  document.getElementById('chat-name').textContent=c.name;
-  document.getElementById('chat-av').textContent=c.initials;
-  document.getElementById('chat-av').style.background=c.color;
-  const el=document.getElementById('messages');
-  el.innerHTML=c.messages.map(m=>`
-    <div class="msg ${m.me?'me':''}">
-      ${!m.me?`<div class="msg-av" style="background:${c.color}">${m.from[0]}</div>`:''}
-      <div>
-        ${!m.me?`<div style="font-size:0.72rem;color:var(--muted);margin-bottom:2px">${m.from}</div>`:''}
-        <div class="msg-bubble">${m.text}</div>
-        <div class="msg-time">${m.time}</div>
-      </div>
-    </div>
-  `).join('');
-  el.scrollTop=el.scrollHeight;
-}
-function sendMessage(){
-  const input=document.getElementById('chat-input');
-  const text=input.value.trim();if(!text) return;
-  const now=new Date();
-  const time=now.getHours()+':'+String(now.getMinutes()).padStart(2,'0');
-  conversations[activeConv].messages.push({from:'Me',text,time,me:true});
-  selectConv(activeConv);input.value='';
-}
-function chatKeyDown(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();}}
-function sendFicheToChat(){
-  if(!currentFiche){showToast('Génère d\'abord une fiche !');return;}
-  const now=new Date();
-  const time=now.getHours()+':'+String(now.getMinutes()).padStart(2,'0');
-  conversations[activeConv].messages.push({from:'Me',text:`📎 Fiche partagée : "${currentFiche.titre}" (${currentFiche.matiere}) ✏️`,time,me:true});
-  selectConv(activeConv);showToast('📎 Fiche envoyée !');
-}
-function newChat(){
-  const name=prompt('Nom de la personne ou du groupe :');if(!name) return;
-  conversations.push({id:conversations.length,name,initials:name.substring(0,2).toUpperCase(),color:'linear-gradient(135deg,var(--pink),var(--yellow))',messages:[]});
-  renderChat();selectConv(conversations.length-1);
-}
-
 // ── MODAL
-function openModal(title,body){
-  document.getElementById('modal-title').textContent=title;
-  document.getElementById('modal-body').innerHTML=body;
+function openModal(title, body) {
+  document.getElementById('modal-title').textContent = title;
+  document.getElementById('modal-body').innerHTML = body;
   document.getElementById('modal-overlay').classList.add('open');
 }
-function closeModal(e){
-  if(!e||e.target===document.getElementById('modal-overlay'))
+function closeModal(e) {
+  if (!e || e.target === document.getElementById('modal-overlay'))
     document.getElementById('modal-overlay').classList.remove('open');
 }
 
 // ── TOAST
-function showToast(msg){
-  const t=document.getElementById('toast');
-  t.textContent=msg;t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),2500);
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
 }
-
 
 // ── AUTH
 const SUPABASE_AUTH_URL = 'https://xesefsrpxinehodfgbri.supabase.co/auth/v1';
 let currentUser = null;
 let selectedAvatarEmoji = '😊';
 
-function showAuth(){ document.getElementById('auth-overlay').style.display='flex'; }
-function hideAuth(){ document.getElementById('auth-overlay').style.display='none'; }
+function showAuth() { document.getElementById('auth-overlay').style.display = 'flex'; }
+function hideAuth() { document.getElementById('auth-overlay').style.display = 'none'; }
 
-function switchTab(tab){
-  document.getElementById('form-login').style.display = tab==='login'?'block':'none';
-  document.getElementById('form-signup').style.display = tab==='signup'?'block':'none';
-  document.getElementById('tab-login').classList.toggle('active', tab==='login');
-  document.getElementById('tab-signup').classList.toggle('active', tab==='signup');
-  document.getElementById('auth-error').style.display='none';
-  document.getElementById('auth-success').style.display='none';
+function switchTab(tab) {
+  document.getElementById('form-login').style.display = tab === 'login' ? 'block' : 'none';
+  document.getElementById('form-signup').style.display = tab === 'signup' ? 'block' : 'none';
+  document.getElementById('tab-login').classList.toggle('active', tab === 'login');
+  document.getElementById('tab-signup').classList.toggle('active', tab === 'signup');
+  document.getElementById('auth-error').style.display = 'none';
+  document.getElementById('auth-success').style.display = 'none';
 }
 
-function selectAvatar(el){
-  document.querySelectorAll('.avatar-opt').forEach(a=>a.classList.remove('selected'));
+function selectAvatar(el) {
+  document.querySelectorAll('.avatar-opt').forEach(a => a.classList.remove('selected'));
   el.classList.add('selected');
   selectedAvatarEmoji = el.dataset.emoji;
 }
 
-function showAuthError(msg){
-  const el=document.getElementById('auth-error');
-  el.textContent=msg; el.style.display='block';
-  document.getElementById('auth-success').style.display='none';
+function showAuthError(msg) {
+  const el = document.getElementById('auth-error');
+  el.textContent = msg; el.style.display = 'block';
+  document.getElementById('auth-success').style.display = 'none';
 }
 
-function showAuthSuccess(msg){
-  const el=document.getElementById('auth-success');
-  el.textContent=msg; el.style.display='block';
-  document.getElementById('auth-error').style.display='none';
+function showAuthSuccess(msg) {
+  const el = document.getElementById('auth-success');
+  el.textContent = msg; el.style.display = 'block';
+  document.getElementById('auth-error').style.display = 'none';
 }
 
-async function signup(){
-  const name=document.getElementById('signup-name').value.trim();
-  const email=document.getElementById('signup-email').value.trim();
-  const password=document.getElementById('signup-password').value;
-  if(!name||!email||!password){showAuthError('Remplis tous les champs !');return;}
-  if(password.length<6){showAuthError('Mot de passe minimum 6 caractères !');return;}
-  
-  const btn=document.getElementById('signup-btn');
-  btn.disabled=true; btn.textContent='Création...';
-  
+async function signup() {
+  const name = document.getElementById('signup-name').value.trim();
+  const email = document.getElementById('signup-email').value.trim();
+  const password = document.getElementById('signup-password').value;
+  if (!name || !email || !password) { showAuthError('Remplis tous les champs !'); return; }
+  if (password.length < 6) { showAuthError('Mot de passe minimum 6 caractères !'); return; }
+  const btn = document.getElementById('signup-btn');
+  btn.disabled = true; btn.textContent = 'Création...';
   try {
-    const res = await fetch(SUPABASE_AUTH_URL+'/signup', {
-      method:'POST',
-      headers:{'Content-Type':'application/json','apikey':SUPABASE_KEY},
-      body:JSON.stringify({email, password, data:{name, avatar:selectedAvatarEmoji}})
+    const res = await fetch(SUPABASE_AUTH_URL + '/signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_KEY },
+      body: JSON.stringify({ email, password, data: { name, avatar: selectedAvatarEmoji } })
     });
     const data = await res.json();
-    if(data.error){showAuthError(data.error.message||'Erreur !');return;}
+    if (data.error) { showAuthError(data.error.message || 'Erreur !'); return; }
     showAuthSuccess('✅ Compte créé ! Vérifie ton email pour confirmer.');
-    setTimeout(()=>switchTab('login'),2000);
-  } catch(e){ showAuthError('Erreur de connexion.'); }
-  btn.disabled=false; btn.textContent='🎉 Créer mon compte';
+    setTimeout(() => switchTab('login'), 2000);
+  } catch(e) { showAuthError('Erreur de connexion.'); }
+  btn.disabled = false; btn.textContent = '🎉 Créer mon compte';
 }
 
-async function login(){
-  const email=document.getElementById('login-email').value.trim();
-  const password=document.getElementById('login-password').value;
-  if(!email||!password){showAuthError('Remplis tous les champs !');return;}
-  
-  const btn=document.getElementById('login-btn');
-  btn.disabled=true; btn.textContent='Connexion...';
-  
+async function login() {
+  const email = document.getElementById('login-email').value.trim();
+  const password = document.getElementById('login-password').value;
+  if (!email || !password) { showAuthError('Remplis tous les champs !'); return; }
+  const btn = document.getElementById('login-btn');
+  btn.disabled = true; btn.textContent = 'Connexion...';
   try {
-    const res = await fetch(SUPABASE_AUTH_URL+'/token?grant_type=password', {
-      method:'POST',
-      headers:{'Content-Type':'application/json','apikey':SUPABASE_KEY},
-      body:JSON.stringify({email, password})
+    const res = await fetch(SUPABASE_AUTH_URL + '/token?grant_type=password', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_KEY },
+      body: JSON.stringify({ email, password })
     });
     const data = await res.json();
-    if(data.error){showAuthError('Email ou mot de passe incorrect !');return;}
-    
+    if (data.error) { showAuthError('Email ou mot de passe incorrect !'); return; }
     currentUser = {
-      id: data.user.id,
-      email: data.user.email,
+      id: data.user.id, email: data.user.email,
       name: data.user.user_metadata?.name || email.split('@')[0],
       avatar: data.user.user_metadata?.avatar || '😊',
       token: data.access_token
     };
     localStorage.setItem('sf_user', JSON.stringify(currentUser));
-    updateUserUI();
-    hideAuth();
+    updateUserUI(); hideAuth();
     showToast('👋 Bienvenue ' + currentUser.name + ' !');
-  } catch(e){ showAuthError('Erreur de connexion.'); }
-  btn.disabled=false; btn.textContent='🔑 Se connecter';
+  } catch(e) { showAuthError('Erreur de connexion.'); }
+  btn.disabled = false; btn.textContent = '🔑 Se connecter';
 }
 
-function logout(){
-  currentUser=null;
+function logout() {
+  currentUser = null;
   localStorage.removeItem('sf_user');
   updateUserUI();
   showToast('👋 À bientôt !');
 }
 
-function updateUserUI(){
+function updateUserUI() {
   const loggedIn = !!currentUser;
-  document.getElementById('user-info-top').style.display = loggedIn?'flex':'none';
-  document.getElementById('login-btn-top').style.display = loggedIn?'none':'block';
-  if(loggedIn){
+  document.getElementById('user-info-top').style.display = loggedIn ? 'flex' : 'none';
+  document.getElementById('login-btn-top').style.display = loggedIn ? 'none' : 'block';
+  if (loggedIn) {
     document.getElementById('user-avatar-top').textContent = currentUser.avatar;
     document.getElementById('user-name-top').textContent = currentUser.name;
   }
@@ -1236,13 +1033,14 @@ function updateUserUI(){
 
 // Check saved session
 const savedUser = localStorage.getItem('sf_user');
-if(savedUser){
+if (savedUser) {
   currentUser = JSON.parse(savedUser);
   updateUserUI();
-  document.getElementById('auth-overlay').style.display='none';
-} 
+  document.getElementById('auth-overlay').style.display = 'none';
+}
 
-// init
+// Init CommunoTe
+cnRenderMatieres();
 loadCommunity();
 </script>
 </body>
