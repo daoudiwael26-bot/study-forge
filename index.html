@@ -380,6 +380,33 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 /* scrollbar */
 ::-webkit-scrollbar{width:5px}
 ::-webkit-scrollbar-thumb{background:#ddd;border-radius:4px}
+/* ── AUTH ── */
+.auth-overlay{position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;align-items:center;justify-content:center;padding:1rem}
+.auth-box{background:white;border:2px solid var(--line);border-radius:24px;padding:2.5rem 2rem;width:100%;max-width:420px;box-shadow:0 8px 40px rgba(0,0,0,0.08)}
+.auth-logo{font-family:'Caveat',cursive;font-size:2.2rem;font-weight:700;text-align:center;margin-bottom:0.3rem}
+.auth-logo span{color:var(--pink)}
+.auth-tagline{text-align:center;color:var(--muted);font-size:0.85rem;margin-bottom:2rem}
+.auth-tabs{display:flex;background:#f5f5f5;border-radius:10px;padding:4px;margin-bottom:1.5rem;gap:4px}
+.auth-tab{flex:1;padding:8px;border:none;background:transparent;border-radius:8px;font-family:'Nunito',sans-serif;font-size:0.88rem;font-weight:700;cursor:pointer;color:var(--muted);transition:all 0.2s}
+.auth-tab.active{background:white;color:var(--pink);box-shadow:0 2px 8px rgba(0,0,0,0.08)}
+.auth-field{margin-bottom:1rem}
+.auth-field label{font-size:0.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;display:block;margin-bottom:5px}
+.auth-field input{width:100%;padding:10px 14px;background:#fafafa;border:2px solid var(--line);border-radius:10px;color:var(--ink);font-family:'Nunito',sans-serif;font-size:0.9rem;transition:border-color 0.2s}
+.auth-field input:focus{outline:none;border-color:var(--pink);background:white}
+.avatar-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.avatar-opt{width:42px;height:42px;border-radius:50%;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:1.3rem;cursor:pointer;transition:all 0.15s;background:white}
+.avatar-opt:hover{border-color:var(--pink);transform:scale(1.1)}
+.avatar-opt.selected{border-color:var(--pink);background:var(--pink-bg);transform:scale(1.1)}
+.auth-btn{width:100%;padding:12px;background:var(--pink);border:none;border-radius:12px;color:white;font-family:'Caveat',cursive;font-size:1.2rem;font-weight:700;cursor:pointer;transition:all 0.2s;margin-top:0.5rem}
+.auth-btn:hover{background:#ff7096;transform:translateY(-1px)}
+.auth-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none}
+.auth-error{background:#fff5f5;border:1.5px solid #ffccd8;border-radius:8px;padding:8px 12px;font-size:0.82rem;color:var(--red);margin-bottom:1rem;display:none}
+.auth-success{background:#f0fff9;border:1.5px solid #a3f0dc;border-radius:8px;padding:8px 12px;font-size:0.82rem;color:#009966;margin-bottom:1rem;display:none}
+.user-info{display:flex;align-items:center;gap:8px}
+.user-avatar-top{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--purple));display:flex;align-items:center;justify-content:center;font-size:1.1rem;cursor:pointer}
+.logout-btn{font-size:0.75rem;color:var(--muted);background:none;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:600}
+.logout-btn:hover{color:var(--red)}
+
 </style>
 </head>
 <body>
@@ -387,8 +414,12 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 <div class="topbar">
   <div class="logo">Study<span>Forge</span></div>
   <div style="display:flex;align-items:center;gap:12px">
-    <div class="founder">par <strong>DAOUDI WAEL</strong></div>
-    <div class="avatar">DW</div>
+    <div class="user-info" id="user-info-top" style="display:none">
+      <div class="user-avatar-top" id="user-avatar-top">😊</div>
+      <div style="font-size:0.82rem;font-weight:700" id="user-name-top">Utilisateur</div>
+      <button class="logout-btn" onclick="logout()">Déconnexion</button>
+    </div>
+    <div id="login-btn-top" style="cursor:pointer;font-size:0.85rem;font-weight:700;color:var(--pink)" onclick="showAuth()">Se connecter</div>
   </div>
 </div>
 
@@ -563,6 +594,74 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
       </div>
     </div>
 
+  </div>
+</div>
+
+
+<!-- AUTH OVERLAY -->
+<div class="auth-overlay" id="auth-overlay">
+  <div class="auth-box">
+    <div class="auth-logo">Study<span>Forge</span> ✏️</div>
+    <div class="auth-tagline">Génère des fiches de révision avec l'IA 🎓</div>
+    
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="tab-login" onclick="switchTab('login')">Se connecter</button>
+      <button class="auth-tab" id="tab-signup" onclick="switchTab('signup')">S'inscrire</button>
+    </div>
+
+    <div id="auth-error" class="auth-error"></div>
+    <div id="auth-success" class="auth-success"></div>
+
+    <!-- LOGIN -->
+    <div id="form-login">
+      <div class="auth-field">
+        <label>Email</label>
+        <input type="email" id="login-email" placeholder="ton@email.com">
+      </div>
+      <div class="auth-field">
+        <label>Mot de passe</label>
+        <input type="password" id="login-password" placeholder="••••••••">
+      </div>
+      <button class="auth-btn" onclick="login()" id="login-btn">🔑 Se connecter</button>
+    </div>
+
+    <!-- SIGNUP -->
+    <div id="form-signup" style="display:none">
+      <div class="auth-field">
+        <label>Ton prénom / pseudo</label>
+        <input type="text" id="signup-name" placeholder="Ex : Wael, Sarah...">
+      </div>
+      <div class="auth-field">
+        <label>Email</label>
+        <input type="email" id="signup-email" placeholder="ton@email.com">
+      </div>
+      <div class="auth-field">
+        <label>Mot de passe</label>
+        <input type="password" id="signup-password" placeholder="Minimum 6 caractères">
+      </div>
+      <div class="auth-field">
+        <label>Choisis ton avatar</label>
+        <div class="avatar-grid" id="avatar-grid">
+          <div class="avatar-opt selected" data-emoji="😊" onclick="selectAvatar(this)">😊</div>
+          <div class="avatar-opt" data-emoji="🦊" onclick="selectAvatar(this)">🦊</div>
+          <div class="avatar-opt" data-emoji="🐼" onclick="selectAvatar(this)">🐼</div>
+          <div class="avatar-opt" data-emoji="🦁" onclick="selectAvatar(this)">🦁</div>
+          <div class="avatar-opt" data-emoji="🐸" onclick="selectAvatar(this)">🐸</div>
+          <div class="avatar-opt" data-emoji="🦋" onclick="selectAvatar(this)">🦋</div>
+          <div class="avatar-opt" data-emoji="🌟" onclick="selectAvatar(this)">🌟</div>
+          <div class="avatar-opt" data-emoji="🎨" onclick="selectAvatar(this)">🎨</div>
+          <div class="avatar-opt" data-emoji="🚀" onclick="selectAvatar(this)">🚀</div>
+          <div class="avatar-opt" data-emoji="🎮" onclick="selectAvatar(this)">🎮</div>
+          <div class="avatar-opt" data-emoji="📚" onclick="selectAvatar(this)">📚</div>
+          <div class="avatar-opt" data-emoji="🎵" onclick="selectAvatar(this)">🎵</div>
+        </div>
+      </div>
+      <button class="auth-btn" onclick="signup()" id="signup-btn">🎉 Créer mon compte</button>
+    </div>
+
+    <div style="text-align:center;margin-top:1rem;font-size:0.78rem;color:var(--muted)">
+      Fondé par <strong>DAOUDI WAEL</strong> · 100% gratuit 🎓
+    </div>
   </div>
 </div>
 
@@ -834,8 +933,10 @@ function printFiche(){
 
 async function shareToComm(){
   if(!currentFiche){showToast('Génère d\'abord une fiche !');return;}
+  if(!currentUser){showToast('Connecte-toi pour partager !');showAuth();return;}
   showToast('🌍 Publication en cours...');
-  const f={...currentFiche,auteur:'DAOUDI WAEL',initiales:'DW',avColor:'linear-gradient(135deg,#ff8fab,#b388ff)',date:'à l\'instant',likes:0,preview:(currentFiche.sections[0]?.contenu||'').substring(0,100)+'...'};
+  const initiales=(currentUser.name||'?').substring(0,2).toUpperCase();
+  const f={...currentFiche,auteur:currentUser.name,initiales,avColor:'linear-gradient(135deg,#ff8fab,#b388ff)',date:'à l\'instant',likes:0,preview:(currentFiche.sections[0]?.contenu||'').substring(0,100)+'...'};
   await saveToCommunity(f);
   await loadCommunity();
   showToast('🌍 Fiche partagée avec tout le monde !');
@@ -1022,6 +1123,123 @@ function showToast(msg){
   t.textContent=msg;t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),2500);
 }
+
+
+// ── AUTH
+const SUPABASE_AUTH_URL = 'https://xesefsrpxinehodfgbri.supabase.co/auth/v1';
+let currentUser = null;
+let selectedAvatarEmoji = '😊';
+
+function showAuth(){ document.getElementById('auth-overlay').style.display='flex'; }
+function hideAuth(){ document.getElementById('auth-overlay').style.display='none'; }
+
+function switchTab(tab){
+  document.getElementById('form-login').style.display = tab==='login'?'block':'none';
+  document.getElementById('form-signup').style.display = tab==='signup'?'block':'none';
+  document.getElementById('tab-login').classList.toggle('active', tab==='login');
+  document.getElementById('tab-signup').classList.toggle('active', tab==='signup');
+  document.getElementById('auth-error').style.display='none';
+  document.getElementById('auth-success').style.display='none';
+}
+
+function selectAvatar(el){
+  document.querySelectorAll('.avatar-opt').forEach(a=>a.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedAvatarEmoji = el.dataset.emoji;
+}
+
+function showAuthError(msg){
+  const el=document.getElementById('auth-error');
+  el.textContent=msg; el.style.display='block';
+  document.getElementById('auth-success').style.display='none';
+}
+
+function showAuthSuccess(msg){
+  const el=document.getElementById('auth-success');
+  el.textContent=msg; el.style.display='block';
+  document.getElementById('auth-error').style.display='none';
+}
+
+async function signup(){
+  const name=document.getElementById('signup-name').value.trim();
+  const email=document.getElementById('signup-email').value.trim();
+  const password=document.getElementById('signup-password').value;
+  if(!name||!email||!password){showAuthError('Remplis tous les champs !');return;}
+  if(password.length<6){showAuthError('Mot de passe minimum 6 caractères !');return;}
+  
+  const btn=document.getElementById('signup-btn');
+  btn.disabled=true; btn.textContent='Création...';
+  
+  try {
+    const res = await fetch(SUPABASE_AUTH_URL+'/signup', {
+      method:'POST',
+      headers:{'Content-Type':'application/json','apikey':SUPABASE_KEY},
+      body:JSON.stringify({email, password, data:{name, avatar:selectedAvatarEmoji}})
+    });
+    const data = await res.json();
+    if(data.error){showAuthError(data.error.message||'Erreur !');return;}
+    showAuthSuccess('✅ Compte créé ! Vérifie ton email pour confirmer.');
+    setTimeout(()=>switchTab('login'),2000);
+  } catch(e){ showAuthError('Erreur de connexion.'); }
+  btn.disabled=false; btn.textContent='🎉 Créer mon compte';
+}
+
+async function login(){
+  const email=document.getElementById('login-email').value.trim();
+  const password=document.getElementById('login-password').value;
+  if(!email||!password){showAuthError('Remplis tous les champs !');return;}
+  
+  const btn=document.getElementById('login-btn');
+  btn.disabled=true; btn.textContent='Connexion...';
+  
+  try {
+    const res = await fetch(SUPABASE_AUTH_URL+'/token?grant_type=password', {
+      method:'POST',
+      headers:{'Content-Type':'application/json','apikey':SUPABASE_KEY},
+      body:JSON.stringify({email, password})
+    });
+    const data = await res.json();
+    if(data.error){showAuthError('Email ou mot de passe incorrect !');return;}
+    
+    currentUser = {
+      id: data.user.id,
+      email: data.user.email,
+      name: data.user.user_metadata?.name || email.split('@')[0],
+      avatar: data.user.user_metadata?.avatar || '😊',
+      token: data.access_token
+    };
+    localStorage.setItem('sf_user', JSON.stringify(currentUser));
+    updateUserUI();
+    hideAuth();
+    showToast('👋 Bienvenue ' + currentUser.name + ' !');
+  } catch(e){ showAuthError('Erreur de connexion.'); }
+  btn.disabled=false; btn.textContent='🔑 Se connecter';
+}
+
+function logout(){
+  currentUser=null;
+  localStorage.removeItem('sf_user');
+  updateUserUI();
+  showToast('👋 À bientôt !');
+}
+
+function updateUserUI(){
+  const loggedIn = !!currentUser;
+  document.getElementById('user-info-top').style.display = loggedIn?'flex':'none';
+  document.getElementById('login-btn-top').style.display = loggedIn?'none':'block';
+  if(loggedIn){
+    document.getElementById('user-avatar-top').textContent = currentUser.avatar;
+    document.getElementById('user-name-top').textContent = currentUser.name;
+  }
+}
+
+// Check saved session
+const savedUser = localStorage.getItem('sf_user');
+if(savedUser){
+  currentUser = JSON.parse(savedUser);
+  updateUserUI();
+  document.getElementById('auth-overlay').style.display='none';
+} 
 
 // init
 loadCommunity();
