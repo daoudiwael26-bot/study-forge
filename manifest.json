@@ -1,12 +1,16 @@
 {
-  "name": "StudyForge — Fiches de révision IA",
-  "short_name": "StudyForge",
-  "description": "Génère des fiches de révision style cahier avec l'IA. Fondé par DAOUDI WAEL.",
-  "start_url": "/study-forge/",
-  "display": "standalone",
   "background_color": "#f8f6f0",
-  "theme_color": "#ff8fab",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "StudyForge",
+  "short_name": "StudyForge",
+  "description": "Génère des fiches de révision avec l'IA",
   "orientation": "portrait",
+  "scope": "/study-forge/",
+  "start_url": "/study-forge/",
+  "theme_color": "#ff8fab",
+  "id": "studyforge",
+  "lang": "fr",
   "icons": [
     {
       "src": "icon-192.png",
@@ -17,3 +21,8 @@
     {
       "src": "icon-512.png",
       "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
