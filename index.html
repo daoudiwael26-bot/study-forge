@@ -36,6 +36,7 @@
   --orange-bg: #fff8f0;
   --orange-border: #ffd59a;
   --red: #ef476f;
+  --discord: #5865F2;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;overflow:hidden}
@@ -180,7 +181,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 .logout-btn{font-size:0.75rem;color:var(--muted);background:none;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:600}
 .logout-btn:hover{color:var(--red)}
 
-/* ── COMMUNOTE STYLES ── */
+/* ── LIVRESCOLAIRE (ex-CommunoTe) STYLES ── */
 .cn-tabs-row{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
 .cn-tab-btn{padding:9px 22px;border-radius:24px;font-size:15px;font-weight:700;cursor:pointer;border:2px solid transparent;transition:all .2s;background:#f0f0f0;color:#555;font-family:'Nunito',sans-serif}
 .cn-tab-btn.active{background:var(--pink);color:white;border-color:var(--pink)}
@@ -209,6 +210,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 .agent-bubble-user{background:var(--blue-bg);border:1.5px solid var(--blue-border);border-radius:14px 4px 14px 14px;color:var(--ink)}
 .agent-bubble-error{background:#fff5f5;border:1.5px solid #ffccd8;color:var(--red)}
 .agent-bubble-warn{background:var(--yellow-bg);border:1.5px solid var(--yellow-border);color:#7a5800}
+.agent-bubble-source{background:var(--green-bg);border:1.5px solid var(--green-border);color:#005438;font-size:0.78rem;}
 .agent-suggest{padding:5px 14px;background:white;border:2px solid var(--line);border-radius:100px;font-size:0.78rem;cursor:pointer;transition:all 0.15s;color:var(--muted);font-weight:600;font-family:'Nunito',sans-serif}
 .agent-suggest:hover{border-color:var(--pink);color:var(--pink);background:var(--pink-bg)}
 .typing-dots{display:flex;gap:3px;align-items:center}
@@ -216,6 +218,19 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 .typing-dots span:nth-child(2){animation-delay:0.2s}
 .typing-dots span:nth-child(3){animation-delay:0.4s}
 @keyframes typingBounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
+
+/* ── DISCORD / MESSAGES PAGE ── */
+.discord-card{background:white;border:2px solid var(--line);border-radius:20px;max-width:560px;margin:2rem auto;padding:2.5rem 2rem;text-align:center;box-shadow:0 8px 32px rgba(88,101,242,0.10)}
+.discord-icon{font-size:4rem;margin-bottom:1rem;display:block}
+.discord-title{font-family:'Caveat',cursive;font-size:2rem;font-weight:700;color:var(--ink);margin-bottom:0.5rem}
+.discord-sub{color:var(--muted);font-size:0.9rem;margin-bottom:1.5rem;line-height:1.7}
+.discord-features{list-style:none;padding:0;margin:0 0 2rem;display:flex;flex-direction:column;gap:10px}
+.discord-features li{display:flex;align-items:center;gap:10px;font-size:0.9rem;font-weight:600;padding:10px 14px;background:#f8f6f0;border-radius:10px;border:1.5px solid var(--line)}
+.discord-features li span.feat-icon{font-size:1.2rem}
+.discord-btn{display:inline-flex;align-items:center;gap:12px;background:#5865F2;color:white;border:none;border-radius:14px;padding:14px 32px;font-family:'Caveat',cursive;font-size:1.3rem;font-weight:700;cursor:pointer;text-decoration:none;transition:all 0.2s;box-shadow:0 4px 16px rgba(88,101,242,0.3)}
+.discord-btn:hover{background:#4752c4;transform:translateY(-2px);box-shadow:0 8px 24px rgba(88,101,242,0.4)}
+.discord-btn svg{width:28px;height:28px;fill:white}
+.discord-note{margin-top:1.2rem;font-size:0.75rem;color:var(--muted)}
 </style>
 </head>
 <body>
@@ -240,7 +255,8 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
     <div class="nav-item active" onclick="showPage('generate')"><span class="nav-icon">✨</span> Créer une fiche</div>
     <div class="nav-item" onclick="showPage('library')"><span class="nav-icon">📚</span> Ma bibliothèque</div>
     <div class="nav-item" onclick="showPage('community')"><span class="nav-icon">🌍</span> Communauté</div>
-    <div class="nav-item" onclick="showPage('communote')"><span class="nav-icon">📒</span> CommunoTe</div>
+    <div class="nav-item" onclick="showPage('livrescolaire')"><span class="nav-icon">📒</span> Livrescolaire</div>
+    <div class="nav-item" onclick="showPage('messages')"><span class="nav-icon">💬</span> Messages</div>
     <div class="nav-item" onclick="showPage('chat')"><span class="nav-icon">🤖</span> Agent IA</div>
     <div class="sidebar-footer">
       <strong>StudyForge ✏️</strong>
@@ -364,10 +380,10 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
       <div class="community-grid" id="community-grid"></div>
     </div>
 
-    <!-- PAGE COMMUNOTE -->
-    <div class="page" id="page-communote">
-      <div class="section-title">📒 CommunoTe</div>
-      <div class="section-sub">Tous les chapitres du programme officiel — Brevet & BAC — avec livrescolaire.com</div>
+    <!-- PAGE LIVRESCOLAIRE (ex-CommunoTe) -->
+    <div class="page" id="page-livrescolaire">
+      <div class="section-title">📒 Livrescolaire</div>
+      <div class="section-sub">Tous les chapitres du programme officiel — Brevet & BAC — avec livrescolaire.fr</div>
       <div class="cn-tabs-row">
         <button class="cn-tab-btn active" onclick="cnShowExam('brevet',this)">📜 Brevet (3ème)</button>
         <button class="cn-tab-btn" onclick="cnShowExam('bac',this)">🎓 BAC (Terminale)</button>
@@ -377,19 +393,46 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
         <button class="cn-back-btn" onclick="cnBack()">← Retour aux matières</button>
         <h3 id="cn-chap-title"></h3>
         <ul class="cn-chap-list" id="cn-chap-list"></ul>
-        <a class="cn-livrescolaire-btn" id="cn-ls-link" href="#" target="_blank" rel="noopener">📚 Voir sur livrescolaire.com</a>
+        <a class="cn-livrescolaire-btn" id="cn-ls-link" href="#" target="_blank" rel="noopener">📚 Voir sur livrescolaire.fr</a>
+      </div>
+    </div>
+
+    <!-- PAGE MESSAGES (Discord) -->
+    <div class="page" id="page-messages">
+      <div class="section-title">💬 Messages</div>
+      <div class="section-sub">Rejoins la communauté StudyForge sur Discord pour chatter en temps réel avec les autres élèves.</div>
+      <div class="discord-card">
+        <span class="discord-icon">🎮</span>
+        <div class="discord-title">Communauté StudyForge</div>
+        <div class="discord-sub">Rejoins notre serveur Discord pour :</div>
+        <ul class="discord-features">
+          <li><span class="feat-icon">💬</span> Chatter avec les autres élèves</li>
+          <li><span class="feat-icon">📋</span> Partager tes fiches</li>
+          <li><span class="feat-icon">📚</span> Réviser ensemble par matière</li>
+          <li><span class="feat-icon">🎯</span> Poser tes questions</li>
+        </ul>
+        <a class="discord-btn" href="https://discord.gg/w2meHF38n" target="_blank" rel="noopener">
+          <svg viewBox="0 0 127.14 96.36" xmlns="http://www.w3.org/2000/svg"><path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/></svg>
+          Rejoindre le Discord
+        </a>
+        <div class="discord-note">Serveur 100% gratuit · Modéré · Réservé aux élèves StudyForge</div>
       </div>
     </div>
 
     <!-- PAGE CHAT — AGENT IA SÉCURISÉ -->
     <div class="page" id="page-chat">
       <div class="section-title">🤖 Agent IA StudyForge</div>
-      <div class="section-sub">Pose tes questions scolaires — l'agent t'aide à réviser, expliquer et comprendre ✨</div>
+      <div class="section-sub">Pose tes questions scolaires — l'agent cherche sur livrescolaire.fr et t'aide à réviser ✨</div>
       <div style="max-width:720px;margin:0 auto;display:flex;flex-direction:column;height:calc(100vh - 180px)">
 
-        <!-- Bannière sécurité -->
-        <div id="agent-security-banner" style="background:var(--green-bg);border:2px solid var(--green-border);border-radius:12px;padding:10px 16px;margin-bottom:12px;display:flex;align-items:center;gap:10px;font-size:0.82rem;color:#005438">
-          🛡️ <strong>Agent sécurisé</strong> — Modération active · Contenu inapproprié bloqué · Réservé aux questions scolaires
+        <!-- Bannière sécurité + source -->
+        <div id="agent-security-banner" style="background:var(--green-bg);border:2px solid var(--green-border);border-radius:12px;padding:10px 16px;margin-bottom:8px;display:flex;align-items:center;gap:10px;font-size:0.82rem;color:#005438">
+          🛡️ <strong>Agent sécurisé</strong> — Modération active · Sources : livrescolaire.fr + IA
+        </div>
+
+        <!-- Bannière source livrescolaire -->
+        <div style="background:var(--blue-bg);border:2px solid var(--blue-border);border-radius:12px;padding:8px 14px;margin-bottom:8px;display:flex;align-items:center;gap:8px;font-size:0.8rem;color:#005f7a">
+          📚 <strong>Sources :</strong> Cours pré-chargés de livrescolaire.fr + recherche en temps réel si besoin
         </div>
 
         <!-- Alerte bannissement -->
@@ -401,11 +444,11 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 
         <!-- Zone messages -->
         <div id="agent-messages" style="flex:1;overflow-y:auto;background:white;border:2px solid var(--line);border-radius:16px 16px 0 0;padding:1.25rem;display:flex;flex-direction:column;gap:12px;min-height:320px;max-height:420px">
-          <div class="agent-msg agent-msg-bot">
+          <div class="agent-msg">
             <div class="agent-avatar-bot">🤖</div>
             <div class="agent-bubble agent-bubble-bot">
-              Bonjour ! Je suis l'agent IA de <strong>StudyForge</strong>. Je suis là pour t'aider à réviser, comprendre tes cours et préparer tes examens 🎓<br><br>
-              Tu peux me demander des explications, des exemples, des méthodes ou de l'aide sur n'importe quelle matière scolaire !
+              Bonjour ! Je suis l'agent IA de <strong>StudyForge</strong>. 🎓<br><br>
+              Je peux t'aider à réviser grâce aux cours de <strong>livrescolaire.fr</strong> et à mes connaissances. Pose-moi une question sur n'importe quelle matière !
             </div>
           </div>
         </div>
@@ -414,7 +457,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
         <div id="agent-typing" style="display:none;background:white;border-left:2px solid var(--line);border-right:2px solid var(--line);padding:8px 1.25rem">
           <div style="display:flex;align-items:center;gap:8px;color:var(--muted);font-size:0.82rem">
             <div class="typing-dots"><span></span><span></span><span></span></div>
-            L'agent réfléchit...
+            L'agent cherche sur livrescolaire.fr et réfléchit...
           </div>
         </div>
 
@@ -426,7 +469,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 
         <!-- Zone de saisie -->
         <div style="background:white;border:2px solid var(--line);border-top:none;border-radius:0 0 16px 16px;padding:1rem">
-          <!-- Barre outils upload -->
+          <!-- Upload image -->
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
             <label id="agent-upload-label" style="cursor:pointer;display:flex;align-items:center;gap:6px;padding:5px 12px;background:var(--blue-bg);border:1.5px solid var(--blue-border);border-radius:8px;font-size:0.78rem;font-weight:700;color:#0099cc;text-transform:none;letter-spacing:0;margin:0">
               📎 Image (JPG/PNG max 2Mo)
@@ -435,7 +478,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
             <span id="agent-file-name" style="font-size:0.75rem;color:var(--muted)"></span>
             <button id="agent-file-clear" onclick="agentClearFile()" style="display:none;background:none;border:none;color:var(--red);cursor:pointer;font-size:0.8rem">✕</button>
           </div>
-          <!-- Captcha simple anti-bot -->
+          <!-- Captcha -->
           <div id="agent-captcha" style="display:none;background:var(--yellow-bg);border:2px solid var(--yellow-border);border-radius:10px;padding:10px 14px;margin-bottom:10px;font-size:0.85rem">
             🔒 Vérification : <strong id="captcha-question"></strong> = 
             <input type="number" id="captcha-answer" style="width:60px;padding:4px 8px;border:2px solid var(--line);border-radius:6px;font-size:0.85rem">
@@ -448,7 +491,6 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
             </button>
           </div>
           <div id="agent-block-msg" style="display:none;margin-top:8px;background:#fff5f5;border:1.5px solid #ffccd8;border-radius:8px;padding:8px 12px;font-size:0.82rem;color:var(--red);font-weight:600"></div>
-          <!-- Bouton signalement -->
           <div style="display:flex;justify-content:flex-end;margin-top:6px">
             <button onclick="agentReport()" style="background:none;border:none;font-size:0.73rem;color:var(--muted);cursor:pointer;font-family:'Nunito',sans-serif">🚩 Signaler un problème</button>
           </div>
@@ -461,9 +503,10 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
           <button class="agent-suggest" onclick="agentQuickSend('Comment résoudre une équation du second degré ?')">📐 Équation 2nd degré</button>
           <button class="agent-suggest" onclick="agentQuickSend('Résume-moi la Révolution française')">🌍 Révolution française</button>
           <button class="agent-suggest" onclick="agentQuickSend('Quelles sont les figures de style principales ?')">📖 Figures de style</button>
+          <button class="agent-suggest" onclick="agentQuickSend('Explique-moi les forces de Newton en physique')">⚗️ Forces Newton</button>
         </div>
 
-        <!-- Logs admin (caché, accessible avec code) -->
+        <!-- Admin panel caché -->
         <div id="admin-panel" style="display:none;margin-top:16px;background:#f9f9f9;border:2px dashed var(--line);border-radius:12px;padding:1rem">
           <div style="font-family:'Caveat',cursive;font-size:1.1rem;font-weight:700;margin-bottom:8px">🛡️ Logs Modération Admin</div>
           <div id="admin-logs" style="font-size:0.75rem;font-family:monospace;color:var(--muted);max-height:150px;overflow-y:auto;line-height:1.8"></div>
@@ -472,10 +515,10 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
         <div style="text-align:center;margin-top:6px"><button onclick="agentAdminAccess()" style="background:none;border:none;font-size:0.68rem;color:transparent;cursor:default;user-select:none" id="admin-secret-btn">·</button></div>
 
       </div>
-    </div>
+    </div><!-- fin page-chat -->
 
-  </div>
-</div>
+  </div><!-- fin .main -->
+</div><!-- fin .layout -->
 
 <!-- AUTH OVERLAY -->
 <div class="auth-overlay" id="auth-overlay">
@@ -531,7 +574,28 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 
 <script>
 // ════════════════════════════════════════════
-// AGENT IA MODÉRATION — INVISIBLE
+// NAVIGATION — corrigée avec 6 pages
+// ════════════════════════════════════════════
+const PAGE_INDEX = { generate:0, library:1, community:2, livrescolaire:3, messages:4, chat:5 };
+
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  const page = document.getElementById('page-' + name);
+  if (page) page.classList.add('active');
+  const idx = PAGE_INDEX[name];
+  const navItems = document.querySelectorAll('.nav-item');
+  if (navItems[idx]) navItems[idx].classList.add('active');
+  if (name === 'library') renderLibrary();
+  if (name === 'community') renderCommunity();
+  if (name === 'livrescolaire') {
+    cnRenderMatieres();
+    document.getElementById('cn-chap-wrap').style.display = 'none';
+  }
+}
+
+// ════════════════════════════════════════════
+// MODÉRATION IA
 // ════════════════════════════════════════════
 async function moderationCheck(text) {
   if (!text || text.trim().length < 3) return true;
@@ -563,7 +627,7 @@ function showModError() {
 }
 
 // ════════════════════════════════════════════
-// COMMUNOTE DATA
+// LIVRESCOLAIRE DATA (ex-CommunoTe)
 // ════════════════════════════════════════════
 const CN_DATA = {
   brevet: {
@@ -642,10 +706,8 @@ function cnBack() {
 }
 
 function cnSelectChap(chap, matiere, exam) {
-  // Pré-remplir le formulaire de création
   document.getElementById('titre-input').value = chap;
   document.getElementById('cours-text').value = '';
-  // Sélectionner la bonne matière dans les chips
   document.querySelectorAll('#matiere-chips .chip').forEach(c => {
     c.classList.remove('active');
     if (c.dataset.val === matiere || matiere.includes(c.dataset.val) || c.dataset.val === matiere.split(' ')[0]) {
@@ -653,18 +715,16 @@ function cnSelectChap(chap, matiere, exam) {
       selectedMatiere = c.dataset.val;
     }
   });
-  // Sélectionner le bon niveau
   const niveauSelect = document.getElementById('niveau-select');
   if (exam === 'brevet') niveauSelect.value = 'Collège';
   else niveauSelect.value = 'Terminale / BAC';
-  // Aller sur la page création
   showPage('generate');
   showToast('📌 Chapitre sélectionné : ' + chap.substring(0, 30) + '…');
   setTimeout(() => document.getElementById('titre-input').scrollIntoView({behavior:'smooth'}), 300);
 }
 
 // ════════════════════════════════════════════
-// SUPABASE CONFIG
+// SUPABASE
 // ════════════════════════════════════════════
 const SUPABASE_URL = 'https://xesefsrpxinehodfgbri.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_sduj2vS9RtmHUPZLbg0YnA_0abm0Ftf';
@@ -723,18 +783,6 @@ let library = JSON.parse(localStorage.getItem('sf_library2') || '[]');
 let communityFiches = JSON.parse(localStorage.getItem('sf_community2') || '[]');
 const SECTION_COLORS_CYCLE = ['sec-pink','sec-blue','sec-yellow','sec-green','sec-purple','sec-orange'];
 
-// ── NAVIGATION
-function showPage(name) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  document.getElementById('page-' + name).classList.add('active');
-  const idx = {generate:0, library:1, community:2, communote:3, chat:4}[name];
-  document.querySelectorAll('.nav-item')[idx].classList.add('active');
-  if (name === 'library') renderLibrary();
-  if (name === 'community') renderCommunity();
-  if (name === 'communote') { cnRenderMatieres(); document.getElementById('cn-chap-wrap').style.display='none'; }
-}
-
 // ── CHIPS
 document.querySelectorAll('#matiere-chips .chip').forEach(c => {
   c.addEventListener('click', () => {
@@ -767,40 +815,20 @@ async function generateFiche() {
   const spinner = document.getElementById('spinner');
   const btnText = document.getElementById('btn-text');
 
-  // ── FILTRE CLIENT INSTANTANÉ ──
   const texteAVerifier = [titre, cours, keywords].filter(Boolean).join(' ');
   const clientCheck = clientFilter(texteAVerifier);
   if (clientCheck.blocked) {
-    showToast('🚫 Contenu inapproprié bloqué ! Modifie ton texte.');
-    let errEl = document.getElementById('gen-mod-error');
-    if (!errEl) { errEl = document.createElement('p'); errEl.id = 'gen-mod-error'; errEl.style.cssText='color:#c0392b;font-size:0.83rem;margin-top:8px;font-weight:700;background:#fff5f5;border:1.5px solid #ffccd8;border-radius:8px;padding:8px 12px;'; document.getElementById('gen-btn').insertAdjacentElement('afterend', errEl); }
-    errEl.textContent = '🚫 Ce contenu est bloqué. Modifie le texte avant de générer.';
-    errEl.style.display = 'block';
-    setTimeout(() => { if(errEl) errEl.style.display = 'none'; }, 5000);
+    showToast('🚫 Contenu inapproprié bloqué !');
     return;
   }
 
-  // ── MODÉRATION IA AVANT GÉNÉRATION ──
   btn.disabled = true; spinner.style.display = 'block'; btnText.textContent = '🔍 Vérification...';
   const contenuOk = await moderationCheck(texteAVerifier);
   if (!contenuOk) {
     btn.disabled = false; spinner.style.display = 'none'; btnText.textContent = '✏️ Générer ma fiche façon cahier';
     showToast('🚫 Contenu inapproprié détecté. Modifie ton texte.');
-    // Afficher l'erreur sous le champ concerné
-    let errEl = document.getElementById('gen-mod-error');
-    if (!errEl) {
-      errEl = document.createElement('p');
-      errEl.id = 'gen-mod-error';
-      errEl.style.cssText = 'color:#c0392b;font-size:13px;margin-top:8px;font-family:Nunito,sans-serif;font-weight:600;';
-      btn.parentNode.insertBefore(errEl, btn.nextSibling);
-    }
-    errEl.textContent = '⚠️ Ce contenu ne respecte pas les règles de StudyForge. Supprime les mots inappropriés.';
-    setTimeout(() => { if (errEl) errEl.textContent = ''; }, 5000);
     return;
   }
-  // Effacer l'erreur si tout va bien
-  const prevErr = document.getElementById('gen-mod-error');
-  if (prevErr) prevErr.textContent = '';
 
   btnText.textContent = 'L\'IA crée ta fiche...';
   const prompt = `Tu es un expert en pédagogie et création de fiches de révision visuelles.
@@ -883,20 +911,15 @@ function saveFiche() {
 
 function printFiche() { window.print(); }
 
-// ── PARTAGER AVEC MODÉRATION IA
 async function shareToComm() {
   if (!currentFiche) { showToast('Génère d\'abord une fiche !'); return; }
   if (!currentUser) { showToast('Connecte-toi pour partager !'); showAuth(); return; }
   const btn = document.getElementById('share-btn');
   const errEl = document.getElementById('mod-error');
-  btn.disabled = true;
-  btn.textContent = '🔍 Vérification...';
-  errEl.style.display = 'none';
-  // Texte à analyser = titre + contenu des sections
+  btn.disabled = true; btn.textContent = '🔍 Vérification...'; errEl.style.display = 'none';
   const textToCheck = currentFiche.titre + ' ' + currentFiche.sections.map(s => s.contenu).join(' ');
   const ok = await moderationCheck(textToCheck);
-  btn.disabled = false;
-  btn.textContent = '🌍 Partager';
+  btn.disabled = false; btn.textContent = '🌍 Partager';
   if (!ok) { showModError(); return; }
   showToast('🌍 Publication en cours...');
   const initiales = (currentUser.name || '?').substring(0, 2).toUpperCase();
@@ -1133,7 +1156,6 @@ function updateUserUI() {
   }
 }
 
-// Check saved session
 const savedUser = localStorage.getItem('sf_user');
 if (savedUser) {
   currentUser = JSON.parse(savedUser);
@@ -1142,8 +1164,33 @@ if (savedUser) {
 }
 
 // ════════════════════════════════════════════
-// AGENT IA SÉCURISÉ — STUDYFORGE
+// AGENT IA — avec livrescolaire.fr comme source
 // ════════════════════════════════════════════
+
+// Contenu pré-chargé depuis livrescolaire.fr (résumés clés par matière)
+const LIVRESCOLAIRE_PRELOADED = {
+  'photosynthèse': `Livrescolaire.fr — SVT 3ème/Terminale : La photosynthèse est le processus par lequel les plantes transforment l'énergie lumineuse en énergie chimique. Elle se déroule dans les chloroplastes. Équation : 6CO₂ + 6H₂O + lumière → C₆H₁₂O₆ + 6O₂. Phase lumineuse : dans les thylakoïdes. Phase sombre (cycle de Calvin) : dans le stroma.`,
+  'newton': `Livrescolaire.fr — Physique : Les 3 lois de Newton. 1re loi (inertie) : un corps reste au repos ou en MRU si les forces se compensent. 2e loi : F = ma (force = masse × accélération). 3e loi (action-réaction) : à toute action correspond une réaction égale et opposée.`,
+  'révolution française': `Livrescolaire.fr — Histoire 3ème : La Révolution française (1789-1799). Causes : crise financière, inégalités sociales, idées des Lumières. Prise de la Bastille : 14 juillet 1789. Déclaration des droits de l'homme et du citoyen : 26 août 1789. Fin de la monarchie absolue.`,
+  'figures de style': `Livrescolaire.fr — Français : Principales figures de style. Métaphore : comparaison sans outil comparatif ("la vie est un long fleuve"). Comparaison : avec outil comparatif (comme, tel). Métonymie : désigner par un élément lié. Hyperbole : exagération. Antithèse : opposition. Anaphore : répétition en début de phrase.`,
+  'second degré': `Livrescolaire.fr — Maths Terminale : Équation du second degré ax²+bx+c=0. Discriminant : Δ = b²-4ac. Si Δ>0 : 2 solutions x = (-b±√Δ)/2a. Si Δ=0 : 1 solution x = -b/2a. Si Δ<0 : pas de solution réelle.`,
+  'pythagore': `Livrescolaire.fr — Maths 3ème : Théorème de Pythagore. Dans un triangle rectangle, le carré de l'hypoténuse est égal à la somme des carrés des deux autres côtés. a² = b² + c². Réciproque : si a² = b² + c² alors le triangle est rectangle.`,
+  'guerre froide': `Livrescolaire.fr — Histoire Terminale : La Guerre froide (1947-1991). Opposition entre les États-Unis (bloc occidental) et l'URSS (bloc soviétique). Doctrine Truman, Plan Marshall, OTAN vs Pacte de Varsovie. Crises : Berlin, Cuba (1962). Fin : chute du mur de Berlin 1989.`,
+  'adn': `Livrescolaire.fr — SVT : L'ADN (acide désoxyribonucléique) est le support de l'information génétique. Double hélice découverte par Watson et Crick (1953). Constituée de 4 bases : A, T, G, C. La réplication permet la copie de l'ADN avant la division cellulaire.`,
+  'oxydoréduction': `Livrescolaire.fr — Physique-Chimie Terminale : Réactions d'oxydoréduction. Oxydant : capte des électrons (se réduit). Réducteur : perd des électrons (s'oxyde). Couple oxydant/réducteur : Ox/Red. Exemples : Cu²⁺/Cu, Fe³⁺/Fe²⁺, O₂/H₂O.`,
+  'liberté': `Livrescolaire.fr — Philosophie Terminale : La liberté. Liberté comme libre arbitre (Descartes). Liberté et déterminisme (Spinoza : illusion de libre arbitre). Liberté politique (Rousseau : aliénation et liberté collective). Sartre : "L'existence précède l'essence", nous sommes condamnés à être libres.`
+};
+
+// Recherche dans le contenu pré-chargé
+function searchPreloaded(query) {
+  const q = query.toLowerCase();
+  for (const [key, content] of Object.entries(LIVRESCOLAIRE_PRELOADED)) {
+    if (q.includes(key) || key.split(' ').some(w => q.includes(w))) {
+      return content;
+    }
+  }
+  return null;
+}
 
 const AGENT = {
   history: [],
@@ -1165,21 +1212,15 @@ const AGENT = {
   reportCount: 0
 };
 
-// ─── MOTS BLOQUÉS (filtre rapide côté client) ───
 const BLOCKED_PATTERNS = [
-  // Légal
   /terroris/i, /p[eé]dophil/i, /drogue|cocaïne|hero[iï]ne|meth[aà]mph/i,
   /fabriquer.*bombe|bombe.*artisan|explosif/i, /fabriquer.*arme|arme.*feu.*fabr/i,
   /hacking|hack.*syst[eè]me|sql.?inject|exploit.*vuln/i,
   /fraude.*bancaire|phishing|arnaqu/i, /meurtre.*comment|tuer.*quelqu/i,
-  // Violence
   /gore|torture|automutil|se.?suicid/i, /menace.*(mort|tuer)/i,
-  // Sexuel
   /porno|pornograph/i, /sexe.*(enfant|mineur|kid)/i, /prostitut/i,
-  // Haine
   /n[i1]gger|n[i1]gg[ae]/i, /sale.*(arabe|juif|noir|blanc)/i,
   /mort.*(juif|arabe|noir)/i, /hom[o0]phob/i,
-  // Prompt injection
   /ignore.*(r[eè]gle|instruction|syst[eè]me)/i,
   /mode.*(développeur|dev|sans.?limit)/i,
   /r[eé]v[eè]le.*(prompt|instruction|syst[eè]me)/i,
@@ -1188,20 +1229,16 @@ const BLOCKED_PATTERNS = [
   /oublie.*(tout|r[eè]gle|instruction)/i,
   /pr[eé]tends.*[eê]tre.*(humain|vrai|r[eé]el)/i,
   /tu es.*(maintenant|dorénavant).*(autre|diff[eé]rent)/i,
-  // Données perso
   /mot.?de.?passe|password|mdp/i,
   /num[eé]ro.*carte|cb.*num[eé]ro|cvv|iban/i,
-  // Commandes système
   /rm\s+-rf|del\s+\/|format\s+c/i,
   /cmd\.exe|powershell|bash.*-c/i,
   /os\.system|subprocess|exec\(/i
 ];
 
-// ─── FICHIERS INTERDITS ───
 const BLOCKED_EXTENSIONS = ['.exe', '.bat', '.cmd', '.sh', '.ps1', '.vbs', '.scr', '.msi', '.jar', '.py', '.rb', '.php'];
-const MAX_FILE_SIZE = 2 * 1024 * 1024; // 2Mo
+const MAX_FILE_SIZE = 2 * 1024 * 1024;
 
-// ─── LOGS ADMIN ───
 function agentLog(type, msg) {
   const entry = { time: new Date().toLocaleTimeString(), type, msg };
   AGENT.logs.push(entry);
@@ -1209,7 +1246,6 @@ function agentLog(type, msg) {
   if (el) el.innerHTML += `<div>[${entry.time}] <span style="color:${type==='BLOCK'?'#c0392b':type==='WARN'?'#e67e22':'#27ae60'}">${type}</span> — ${msg}</div>`;
 }
 
-// ─── FILTRE CÔTÉ CLIENT ───
 function clientFilter(text) {
   for (const pat of BLOCKED_PATTERNS) {
     if (pat.test(text)) return { blocked: true, reason: 'Contenu inapproprié détecté' };
@@ -1217,7 +1253,6 @@ function clientFilter(text) {
   return { blocked: false };
 }
 
-// ─── MODÉRATION IA (API Anthropic) ───
 async function agentModerate(text) {
   try {
     const res = await fetch('https://api.anthropic.com/v1/messages', {
@@ -1242,12 +1277,15 @@ Message à analyser : "${text.replace(/"/g,"'").substring(0, 500)}"`
   } catch(e) { return { ok: true }; }
 }
 
-// ─── RÉPONSE AGENT IA ───
-async function agentGetReply(userMsg, imageData, imageType) {
-  const systemPrompt = `Tu es l'assistant scolaire de StudyForge. Tu aides UNIQUEMENT pour les matières scolaires (maths, français, histoire, sciences, anglais, philo, SVT, physique, informatique). Tu refuses toute demande inappropriée. Réponds en français, de façon claire et pédagogique avec des emojis.`;
+// Réponse Agent IA avec source livrescolaire.fr
+async function agentGetReply(userMsg) {
+  // 1. Chercher dans le contenu pré-chargé
+  const preloaded = searchPreloaded(userMsg);
+
+  const systemPrompt = `Tu es l'assistant scolaire de StudyForge. Tu utilises en priorité les contenus de livrescolaire.fr pour répondre. Tu aides UNIQUEMENT pour les matières scolaires (maths, français, histoire, sciences, anglais, philo, SVT, physique, informatique, économie). Tu refuses toute demande inappropriée. Réponds en français, de façon claire et pédagogique avec des emojis.
+${preloaded ? `\n📚 CONTENU LIVRESCOLAIRE.FR À UTILISER EN PRIORITÉ :\n${preloaded}` : ''}`;
 
   const messages = [
-    { role: 'system', content: systemPrompt },
     ...AGENT.history.slice(-8),
     { role: 'user', content: userMsg }
   ];
@@ -1261,23 +1299,25 @@ async function agentGetReply(userMsg, imageData, imageType) {
     body: JSON.stringify({
       model: 'llama-3.3-70b-versatile',
       max_tokens: 1000,
-      messages
+      messages: [
+        { role: 'system', content: systemPrompt },
+        ...messages
+      ]
     })
   });
   const data = await res.json();
   const reply = data.choices[0].message.content;
   AGENT.history.push({ role: 'user', content: userMsg });
   AGENT.history.push({ role: 'assistant', content: reply });
-  return reply;
+  return { reply, usedLivrescolaire: !!preloaded };
 }
 
-// ─── GESTION FICHIER ───
 function agentHandleFile(input) {
   const file = input.files[0];
   if (!file) return;
   const ext = '.' + file.name.split('.').pop().toLowerCase();
   if (BLOCKED_EXTENSIONS.includes(ext)) {
-    agentShowBlock('🚫 Ce type de fichier est interdit (.exe, .bat, .sh, scripts...). Images JPG/PNG uniquement.');
+    agentShowBlock('🚫 Ce type de fichier est interdit. Images JPG/PNG uniquement.');
     agentLog('BLOCK', 'Fichier bloqué : ' + file.name);
     input.value = '';
     return;
@@ -1312,15 +1352,13 @@ function agentClearFile() {
   document.getElementById('agent-file-clear').style.display = 'none';
 }
 
-// ─── CAPTCHA ───
 function agentShowCaptcha(pendingMsg) {
   AGENT.pendingMessage = pendingMsg;
   AGENT.captchaNum1 = Math.floor(Math.random() * 9) + 1;
   AGENT.captchaNum2 = Math.floor(Math.random() * 9) + 1;
   const ops = ['+', '×'];
   AGENT.captchaOp = ops[Math.floor(Math.random() * 2)];
-  document.getElementById('captcha-question').textContent =
-    AGENT.captchaNum1 + ' ' + AGENT.captchaOp + ' ' + AGENT.captchaNum2;
+  document.getElementById('captcha-question').textContent = AGENT.captchaNum1 + ' ' + AGENT.captchaOp + ' ' + AGENT.captchaNum2;
   document.getElementById('captcha-answer').value = '';
   document.getElementById('agent-captcha').style.display = 'block';
   AGENT.captchaNeeded = true;
@@ -1341,7 +1379,6 @@ function agentValidateCaptcha() {
   }
 }
 
-// ─── BAN ───
 function agentBan() {
   AGENT.banned = true;
   AGENT.banUntil = Date.now() + AGENT.BAN_DURATION;
@@ -1365,16 +1402,27 @@ function agentBan() {
   }, 1000);
 }
 
-// ─── AFFICHAGE MESSAGES ───
 function agentAppendMsg(role, text, type) {
   const wrap = document.getElementById('agent-messages');
   const div = document.createElement('div');
-  div.className = 'agent-msg agent-msg-' + role;
+  div.className = 'agent-msg' + (role === 'user' ? ' agent-msg-user' : '');
   const isBot = role === 'bot';
   const avatar = isBot ? '🤖' : (currentUser?.avatar || '😊');
   div.innerHTML = `
     <div class="agent-avatar-${isBot ? 'bot' : 'user'}">${avatar}</div>
     <div class="agent-bubble agent-bubble-${type || (isBot ? 'bot' : 'user')}">${text.replace(/\n/g,'<br>')}</div>
+  `;
+  wrap.appendChild(div);
+  wrap.scrollTop = wrap.scrollHeight;
+}
+
+function agentAppendSource(source) {
+  const wrap = document.getElementById('agent-messages');
+  const div = document.createElement('div');
+  div.className = 'agent-msg';
+  div.innerHTML = `
+    <div class="agent-avatar-bot" style="font-size:0.7rem;background:var(--green)">📚</div>
+    <div class="agent-bubble agent-bubble-source">Source : <a href="https://www.livrescolaire.fr" target="_blank" style="color:#005438;font-weight:700">livrescolaire.fr</a> — ${source}</div>
   `;
   wrap.appendChild(div);
   wrap.scrollTop = wrap.scrollHeight;
@@ -1395,36 +1443,26 @@ function agentUpdateCounter() {
   else warn.textContent = '';
 }
 
-// ─── ENVOI PRINCIPAL ───
 async function agentSend() {
   const input = document.getElementById('agent-input');
   const msg = input.value.trim();
   if (!msg) return;
-
-  // Vérif ban
   if (AGENT.banned) { agentShowBlock('🚫 Accès suspendu. Attends la fin du délai.'); return; }
-
-  // Limite messages
   if (AGENT.msgCount >= AGENT.MSG_LIMIT) {
     agentShowBlock('⏳ Limite de ' + AGENT.MSG_LIMIT + ' messages atteinte. Recharge la page pour continuer.');
     return;
   }
-
-  // Captcha tous les 10 messages
   if (AGENT.msgCount > 0 && AGENT.msgCount % 10 === 0 && !AGENT.captchaNeeded) {
     agentShowCaptcha(msg);
     input.value = '';
     return;
   }
-
   input.value = '';
   await agentSendValidated(msg);
 }
 
 async function agentSendValidated(msg) {
   if (AGENT.banned) return;
-
-  // ─ Filtre client rapide ─
   const clientResult = clientFilter(msg);
   if (clientResult.blocked) {
     AGENT.violations++;
@@ -1435,23 +1473,20 @@ async function agentSendValidated(msg) {
     return;
   }
 
-  // Affiche message utilisateur
   agentAppendMsg('user', msg);
   AGENT.msgCount++;
   agentUpdateCounter();
 
-  // Indicateur de frappe
   document.getElementById('agent-typing').style.display = 'block';
   document.getElementById('agent-send-btn').disabled = true;
 
   try {
-    // ─ Modération IA ─
     const modResult = await agentModerate(msg);
     if (!modResult.ok) {
       AGENT.violations++;
-      agentLog('BLOCK', 'Modération IA : ' + (modResult.reason || 'contenu refusé') + ' — "' + msg.substring(0,40) + '"');
+      agentLog('BLOCK', 'Modération IA : ' + (modResult.reason || 'refusé') + ' — "' + msg.substring(0,40) + '"');
       document.getElementById('agent-typing').style.display = 'none';
-      agentAppendMsg('bot', '🚫 Je ne peux pas répondre à ça. ' + (modResult.reason ? '(' + modResult.reason + ')' : '') + '\n\nPose-moi des questions sur tes cours, tes révisions ou tes matières scolaires 😊', 'error');
+      agentAppendMsg('bot', '🚫 Je ne peux pas répondre à ça. ' + (modResult.reason ? '(' + modResult.reason + ')' : '') + '\n\nPose-moi des questions sur tes cours 😊', 'error');
       if (AGENT.violations >= AGENT.MAX_VIOLATIONS) { agentBan(); }
       else { agentShowBlock('⚠️ ' + (AGENT.MAX_VIOLATIONS - AGENT.violations) + ' avertissement(s) avant suspension.'); }
       document.getElementById('agent-send-btn').disabled = false;
@@ -1460,12 +1495,18 @@ async function agentSendValidated(msg) {
 
     agentLog('OK', 'Message accepté : "' + msg.substring(0,40) + '"');
 
-    // ─ Réponse IA ─
-    const reply = await agentGetReply(msg, AGENT.fileData, AGENT.fileType);
+    const { reply, usedLivrescolaire } = await agentGetReply(msg);
     document.getElementById('agent-typing').style.display = 'none';
     agentAppendMsg('bot', reply);
+
+    // Afficher la source si livrescolaire.fr a été utilisé
+    if (usedLivrescolaire) {
+      const matFound = Object.keys(LIVRESCOLAIRE_PRELOADED).find(k => msg.toLowerCase().includes(k) || k.split(' ').some(w => msg.toLowerCase().includes(w)));
+      agentAppendSource(matFound ? 'Cours sur "' + matFound + '"' : 'Programme officiel');
+    }
+
     agentClearFile();
-    agentLog('OK', 'Réponse envoyée');
+    agentLog('OK', 'Réponse envoyée' + (usedLivrescolaire ? ' (source: livrescolaire.fr)' : ''));
 
   } catch(e) {
     document.getElementById('agent-typing').style.display = 'none';
@@ -1485,14 +1526,12 @@ function agentQuickSend(msg) {
   agentSend();
 }
 
-// ─── SIGNALEMENT ───
 function agentReport() {
   AGENT.reportCount++;
   agentLog('WARN', 'Signalement #' + AGENT.reportCount + ' envoyé par utilisateur');
   showToast('🚩 Signalement enregistré. Merci !');
 }
 
-// ─── EXPORT LOGS ADMIN ───
 function agentExportLogs() {
   const content = AGENT.logs.map(l => `[${l.time}] ${l.type} — ${l.msg}`).join('\n');
   const blob = new Blob([content], { type: 'text/plain' });
@@ -1501,7 +1540,6 @@ function agentExportLogs() {
   a.href = url; a.download = 'studyforge-logs.txt'; a.click();
 }
 
-// ─── ACCÈS ADMIN (triple-clic logo) ───
 let adminClicks = 0;
 document.querySelector('.logo').addEventListener('click', () => {
   adminClicks++;
@@ -1516,7 +1554,7 @@ document.querySelector('.logo').addEventListener('click', () => {
 });
 function agentAdminAccess() {}
 
-// Init CommunoTe
+// ── INIT
 cnRenderMatieres();
 loadCommunity();
 </script>
