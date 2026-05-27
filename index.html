@@ -1,3 +1,6 @@
+bash
+
+cat > /home/claude/index_fixed.html << 'HTMLEOF'
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -197,128 +200,40 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 .discord-btn:hover{background:#4752c4;transform:translateY(-2px)}
 .discord-btn svg{width:28px;height:28px;fill:white}
 .discord-note{margin-top:1.2rem;font-size:.75rem;color:var(--muted)}
-
-/* ═══ CHATBOT VOCAL FLOTTANT ═══ */
-#vocal-fab{
-  position:fixed;bottom:28px;right:28px;z-index:8000;
-  width:64px;height:64px;border-radius:50%;
-  background:linear-gradient(135deg,var(--pink),var(--purple));
-  border:none;cursor:pointer;
-  box-shadow:0 6px 24px rgba(255,139,171,.5);
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.7rem;transition:transform .2s,box-shadow .2s;
-  animation:fabPulse 2.5s infinite;
-}
+#vocal-fab{position:fixed;bottom:28px;right:28px;z-index:8000;width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--purple));border:none;cursor:pointer;box-shadow:0 6px 24px rgba(255,139,171,.5);display:flex;align-items:center;justify-content:center;font-size:1.7rem;transition:transform .2s,box-shadow .2s;animation:fabPulse 2.5s infinite}
 #vocal-fab:hover{transform:scale(1.1)}
-@keyframes fabPulse{
-  0%,100%{box-shadow:0 6px 24px rgba(255,139,171,.45)}
-  50%{box-shadow:0 6px 32px rgba(255,139,171,.75),0 0 0 10px rgba(255,139,171,.12)}
-}
-.fab-badge{
-  position:absolute;top:-4px;right:-4px;
-  width:20px;height:20px;background:var(--green);
-  border-radius:50%;border:2px solid white;
-  font-size:.55rem;display:flex;align-items:center;justify-content:center;
-  color:white;font-weight:800;font-family:'Nunito',sans-serif;
-}
-#vocal-panel{
-  position:fixed;bottom:108px;right:28px;z-index:7999;
-  width:400px;max-height:85vh;
-  background:white;border:2px solid var(--line);border-radius:24px;
-  box-shadow:0 20px 60px rgba(0,0,0,.18);
-  display:flex;flex-direction:column;overflow:hidden;
-  transform:scale(.85) translateY(20px);opacity:0;pointer-events:none;
-  transition:transform .25s cubic-bezier(.34,1.56,.64,1),opacity .2s;
-  transform-origin:bottom right;
-}
+@keyframes fabPulse{0%,100%{box-shadow:0 6px 24px rgba(255,139,171,.45)}50%{box-shadow:0 6px 32px rgba(255,139,171,.75),0 0 0 10px rgba(255,139,171,.12)}}
+.fab-badge{position:absolute;top:-4px;right:-4px;width:20px;height:20px;background:var(--green);border-radius:50%;border:2px solid white;font-size:.55rem;display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-family:'Nunito',sans-serif}
+#vocal-panel{position:fixed;bottom:108px;right:28px;z-index:7999;width:400px;max-height:85vh;background:white;border:2px solid var(--line);border-radius:24px;box-shadow:0 20px 60px rgba(0,0,0,.18);display:flex;flex-direction:column;overflow:hidden;transform:scale(.85) translateY(20px);opacity:0;pointer-events:none;transition:transform .25s cubic-bezier(.34,1.56,.64,1),opacity .2s;transform-origin:bottom right}
 #vocal-panel.open{transform:scale(1) translateY(0);opacity:1;pointer-events:all}
-@media(max-width:480px){
-  #vocal-panel{width:calc(100vw - 20px);right:10px;bottom:100px}
-  #vocal-fab{bottom:16px;right:16px}
-}
-.vpc-header{
-  display:flex;align-items:center;gap:10px;padding:14px 16px;
-  background:linear-gradient(135deg,var(--pink-bg),var(--purple-bg));
-  border-bottom:2px solid var(--line);flex-shrink:0;
-}
-.vpc-avatar{
-  width:42px;height:42px;border-radius:50%;
-  background:linear-gradient(135deg,var(--pink),var(--purple));
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.3rem;flex-shrink:0;position:relative;
-}
-.vpc-status-dot{
-  position:absolute;bottom:1px;right:1px;
-  width:11px;height:11px;background:var(--green);
-  border-radius:50%;border:2px solid white;
-}
+@media(max-width:480px){#vocal-panel{width:calc(100vw - 20px);right:10px;bottom:100px}#vocal-fab{bottom:16px;right:16px}}
+.vpc-header{display:flex;align-items:center;gap:10px;padding:14px 16px;background:linear-gradient(135deg,var(--pink-bg),var(--purple-bg));border-bottom:2px solid var(--line);flex-shrink:0}
+.vpc-avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--purple));display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;position:relative}
+.vpc-status-dot{position:absolute;bottom:1px;right:1px;width:11px;height:11px;background:var(--green);border-radius:50%;border:2px solid white}
 .vpc-info{flex:1}
 .vpc-name{font-family:'Caveat',cursive;font-size:1.2rem;font-weight:700;color:var(--ink)}
 .vpc-sub{font-size:.72rem;color:var(--muted)}
-.vpc-hbtn{
-  width:32px;height:32px;border-radius:50%;
-  border:1.5px solid var(--line);background:white;
-  cursor:pointer;display:flex;align-items:center;justify-content:center;
-  font-size:.85rem;transition:all .15s;color:var(--muted);
-}
+.vpc-hbtn{width:32px;height:32px;border-radius:50%;border:1.5px solid var(--line);background:white;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.85rem;transition:all .15s;color:var(--muted)}
 .vpc-hbtn:hover{border-color:var(--pink);color:var(--pink);background:var(--pink-bg)}
-.vpc-quick{
-  display:flex;gap:6px;padding:10px 14px;
-  overflow-x:auto;border-bottom:1px solid var(--line);
-  flex-shrink:0;scrollbar-width:none;background:#fafafa;
-}
+.vpc-quick{display:flex;gap:6px;padding:10px 14px;overflow-x:auto;border-bottom:1px solid var(--line);flex-shrink:0;scrollbar-width:none;background:#fafafa}
 .vpc-quick::-webkit-scrollbar{display:none}
-.vpc-qchip{
-  white-space:nowrap;padding:5px 12px;
-  border:1.5px solid var(--line);border-radius:20px;
-  font-size:.73rem;font-weight:700;cursor:pointer;
-  background:white;color:var(--muted);font-family:'Nunito',sans-serif;
-  transition:all .15s;flex-shrink:0;
-}
+.vpc-qchip{white-space:nowrap;padding:5px 12px;border:1.5px solid var(--line);border-radius:20px;font-size:.73rem;font-weight:700;cursor:pointer;background:white;color:var(--muted);font-family:'Nunito',sans-serif;transition:all .15s;flex-shrink:0}
 .vpc-qchip:hover{border-color:var(--pink);color:var(--pink);background:var(--pink-bg)}
-#vpc-messages{
-  flex:1;overflow-y:auto;padding:14px;
-  display:flex;flex-direction:column;gap:12px;
-  min-height:200px;scrollbar-width:thin;scrollbar-color:var(--line) transparent;
-}
+#vpc-messages{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:12px;min-height:200px;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
 .vpc-msg{display:flex;gap:8px;align-items:flex-end;animation:fadeUp .3s ease}
 .vpc-msg.user{flex-direction:row-reverse}
-.vpc-mavatar{
-  width:28px;height:28px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  font-size:.9rem;flex-shrink:0;
-}
+.vpc-mavatar{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
 .vpc-mavatar.bot{background:linear-gradient(135deg,var(--pink),var(--purple))}
 .vpc-mavatar.user{background:linear-gradient(135deg,var(--blue),var(--green))}
-.vpc-bubble{
-  max-width:82%;padding:9px 13px;border-radius:16px;
-  font-size:.85rem;line-height:1.55;font-family:'Nunito',sans-serif;
-}
-.vpc-bubble.bot{
-  background:var(--pink-bg);border:1.5px solid var(--pink-border);
-  border-bottom-left-radius:4px;color:var(--ink);
-}
-.vpc-bubble.user{
-  background:linear-gradient(135deg,#e8f4ff,#f0e8ff);
-  border:1.5px solid var(--blue-border);
-  border-bottom-right-radius:4px;color:var(--ink);
-}
+.vpc-bubble{max-width:82%;padding:9px 13px;border-radius:16px;font-size:.85rem;line-height:1.55;font-family:'Nunito',sans-serif}
+.vpc-bubble.bot{background:var(--pink-bg);border:1.5px solid var(--pink-border);border-bottom-left-radius:4px;color:var(--ink)}
+.vpc-bubble.user{background:linear-gradient(135deg,#e8f4ff,#f0e8ff);border:1.5px solid var(--blue-border);border-bottom-right-radius:4px;color:var(--ink)}
 .vpc-bubble.error{background:#fff5f5;border-color:#ffccd8;color:var(--red)}
 .vpc-bubble strong{color:var(--pink)}
-.vpc-speak-btn{
-  display:inline-flex;align-items:center;gap:4px;
-  margin-top:6px;padding:3px 10px;background:white;
-  border:1.5px solid var(--pink-border);border-radius:20px;
-  font-size:.72rem;cursor:pointer;color:var(--pink);
-  font-weight:700;font-family:'Nunito',sans-serif;transition:all .15s;
-}
+.vpc-speak-btn{display:inline-flex;align-items:center;gap:4px;margin-top:6px;padding:3px 10px;background:white;border:1.5px solid var(--pink-border);border-radius:20px;font-size:.72rem;cursor:pointer;color:var(--pink);font-weight:700;font-family:'Nunito',sans-serif;transition:all .15s}
 .vpc-speak-btn:hover{background:var(--pink);color:white}
 #vpc-typing{display:none;padding:0 14px 8px;flex-shrink:0}
-.vpc-typing-inner{
-  display:inline-flex;align-items:center;gap:8px;
-  background:var(--pink-bg);border:1.5px solid var(--pink-border);
-  padding:7px 14px;border-radius:16px;font-size:.78rem;color:var(--muted);
-}
+.vpc-typing-inner{display:inline-flex;align-items:center;gap:8px;background:var(--pink-bg);border:1.5px solid var(--pink-border);padding:7px 14px;border-radius:16px;font-size:.78rem;color:var(--muted)}
 .vpc-input-area{border-top:2px solid var(--line);padding:12px 14px;background:white;flex-shrink:0}
 .vpc-status-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;font-size:.7rem;color:var(--muted)}
 #vpc-mic-status{display:flex;align-items:center;gap:5px;font-size:.72rem;font-weight:700}
@@ -334,49 +249,18 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 .mic-wave span:nth-child(5){height:6px;animation-delay:.4s}
 @keyframes waveBar{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.8)}}
 .vpc-input-row{display:flex;gap:8px;align-items:flex-end}
-#vpc-text-input{
-  flex:1;padding:9px 13px;background:#fafafa;
-  border:2px solid var(--line);border-radius:12px;
-  font-family:'Nunito',sans-serif;font-size:.85rem;color:var(--ink);
-  resize:none;max-height:90px;min-height:38px;
-  transition:border-color .2s;outline:none;
-}
+#vpc-text-input{flex:1;padding:9px 13px;background:#fafafa;border:2px solid var(--line);border-radius:12px;font-family:'Nunito',sans-serif;font-size:.85rem;color:var(--ink);resize:none;max-height:90px;min-height:38px;transition:border-color .2s;outline:none}
 #vpc-text-input:focus{border-color:var(--pink);background:white}
 #vpc-text-input::placeholder{color:var(--muted)}
-#vpc-mic-btn{
-  width:46px;height:46px;border-radius:50%;border:none;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.3rem;flex-shrink:0;transition:all .2s;
-  background:linear-gradient(135deg,var(--pink),var(--purple));
-  color:white;box-shadow:0 3px 12px rgba(255,139,171,.4);
-}
+#vpc-mic-btn{width:46px;height:46px;border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;transition:all .2s;background:linear-gradient(135deg,var(--pink),var(--purple));color:white;box-shadow:0 3px 12px rgba(255,139,171,.4)}
 #vpc-mic-btn:hover{transform:scale(1.08)}
-#vpc-mic-btn.listening{
-  background:linear-gradient(135deg,var(--red),#c2185b);
-  animation:micPulse 1s infinite;
-}
-#vpc-mic-btn.speaking{
-  background:linear-gradient(135deg,var(--green),#00a57a);
-  animation:micPulse .8s infinite;
-}
-@keyframes micPulse{
-  0%,100%{box-shadow:0 3px 12px rgba(255,71,111,.5);transform:scale(1)}
-  50%{box-shadow:0 3px 24px rgba(255,71,111,.8),0 0 0 8px rgba(255,71,111,.15);transform:scale(1.06)}
-}
-#vpc-send-btn{
-  width:46px;height:46px;border-radius:50%;border:none;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.1rem;flex-shrink:0;background:var(--pink);color:white;
-  transition:all .15s;
-}
+#vpc-mic-btn.listening{background:linear-gradient(135deg,var(--red),#c2185b);animation:micPulse 1s infinite}
+#vpc-mic-btn.speaking{background:linear-gradient(135deg,var(--green),#00a57a);animation:micPulse .8s infinite}
+@keyframes micPulse{0%,100%{box-shadow:0 3px 12px rgba(255,71,111,.5);transform:scale(1)}50%{box-shadow:0 3px 24px rgba(255,71,111,.8),0 0 0 8px rgba(255,71,111,.15);transform:scale(1.06)}}
+#vpc-send-btn{width:46px;height:46px;border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;background:var(--pink);color:white;transition:all .15s}
 #vpc-send-btn:hover{background:#ff7096;transform:scale(1.05)}
 #vpc-send-btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
-#vpc-tts-btn{
-  padding:3px 10px;background:none;
-  border:1.5px solid var(--green);border-radius:20px;
-  font-size:.7rem;cursor:pointer;color:var(--green);
-  font-family:'Nunito',sans-serif;font-weight:700;transition:all .15s;
-}
+#vpc-tts-btn{padding:3px 10px;background:none;border:1.5px solid var(--green);border-radius:20px;font-size:.7rem;cursor:pointer;color:var(--green);font-family:'Nunito',sans-serif;font-weight:700;transition:all .15s}
 #vpc-tts-btn.off{border-color:var(--muted);color:var(--muted)}
 #vpc-tts-btn:hover{border-color:var(--pink);color:var(--pink)}
 </style>
@@ -414,7 +298,6 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 
   <div class="main">
 
-    <!-- PAGE GÉNÉRER -->
     <div class="page active" id="page-generate">
       <div class="section-title">✨ Créer une fiche</div>
       <div class="section-sub">L'IA génère une fiche style cahier manuscrit coloré ✍️</div>
@@ -486,7 +369,6 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
       </div>
     </div>
 
-    <!-- PAGE BIBLIOTHÈQUE -->
     <div class="page" id="page-library">
       <div class="section-title">📚 Ma bibliothèque</div>
       <div class="section-sub">Toutes tes fiches sauvegardées.</div>
@@ -494,7 +376,6 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
       <div class="fiches-grid" id="library-grid"></div>
     </div>
 
-    <!-- PAGE COMMUNAUTÉ -->
     <div class="page" id="page-community">
       <div class="section-title">🌍 Communauté</div>
       <div class="section-sub">Explore les fiches partagées par les autres élèves.</div>
@@ -502,7 +383,6 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
       <div class="community-grid" id="community-grid"></div>
     </div>
 
-    <!-- PAGE LIVRESCOLAIRE -->
     <div class="page" id="page-livrescolaire">
       <div class="section-title">📒 Livrescolaire</div>
       <div class="section-sub">Programme officiel — Brevet &amp; BAC — avec livrescolaire.fr</div>
@@ -519,7 +399,6 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
       </div>
     </div>
 
-    <!-- PAGE MESSAGES -->
     <div class="page" id="page-messages">
       <div class="section-title">💬 Messages</div>
       <div class="section-sub">Rejoins la communauté StudyForge sur Discord.</div>
@@ -541,7 +420,6 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
       </div>
     </div>
 
-    <!-- PAGE AGENT IA -->
     <div class="page" id="page-chat">
       <div class="section-title">🤖 Agent IA StudyForge</div>
       <div class="section-sub">Pose tes questions scolaires — sources : livrescolaire.fr ✨</div>
@@ -579,7 +457,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
         </div>
         <div style="background:white;border:2px solid var(--line);border-top:none;border-radius:0 0 16px 16px;padding:1rem">
           <div id="agent-captcha" style="display:none;background:var(--yellow-bg);border:2px solid var(--yellow-border);border-radius:10px;padding:10px 14px;margin-bottom:10px;font-size:.85rem">
-            🔒 <strong id="captcha-question"></strong> = 
+            🔒 <strong id="captcha-question"></strong> =
             <input type="number" id="captcha-answer" style="width:60px;padding:4px 8px;border:2px solid var(--line);border-radius:6px;font-size:.85rem">
             <button onclick="agentValidateCaptcha()" style="margin-left:8px;padding:5px 14px;background:var(--pink);color:white;border:none;border-radius:6px;font-size:.82rem;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:700">Valider</button>
           </div>
@@ -611,7 +489,6 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
   </div>
 </div>
 
-<!-- AUTH OVERLAY -->
 <div class="auth-overlay" id="auth-overlay">
   <div class="auth-box">
     <div class="auth-logo">Study<span>Forge</span> ✏️</div>
@@ -663,7 +540,6 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 
 <div class="toast" id="toast"></div>
 
-<!-- ═══ CHATBOT VOCAL FLOTTANT ═══ -->
 <button id="vocal-fab" onclick="toggleVocalPanel()" title="Chatbot vocal IA">
   🎙️<div class="fab-badge">IA</div>
 </button>
@@ -727,9 +603,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 </div>
 
 <script>
-// ══════════════════════════════════════════
-// NAVIGATION
-// ══════════════════════════════════════════
+// ═══ NAVIGATION ═══
 const PAGE_INDEX={generate:0,library:1,community:2,livrescolaire:3,messages:4,chat:5};
 function showPage(name){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
@@ -744,14 +618,12 @@ function showPage(name){
   if(name==='livrescolaire'){cnRenderMatieres();document.getElementById('cn-chap-wrap').style.display='none';}
 }
 
-// ══════════════════════════════════════════
-// MODÉRATION
-// ══════════════════════════════════════════
+// ═══ MODÉRATION 100% LOCALE (CORRIGÉ — plus d'appel Anthropic) ═══
 const BLOCKED_PATTERNS=[
-  /terroris/i,/p[eé]dophil/i,/drogue|cocaïne|hero[iï]ne/i,/fabriquer.*bombe|explosif/i,
+  /terroris/i,/p[eé]dophil/i,/drogue|coca[iï]ne|hero[iï]ne/i,/fabriquer.*bombe|explosif/i,
   /hacking|sql.?inject/i,/fraude.*bancaire|phishing/i,/meurtre.*comment|tuer.*quelqu/i,
   /porno|pornograph/i,/sexe.*(enfant|mineur)/i,
-  /ignore.*(r[eè]gle|instruction|syst[eè]me)/i,/mode.*(développeur|dev|sans.?limit)/i,
+  /ignore.*(r[eè]gle|instruction|syst[eè]me)/i,/mode.*(d[eé]veloppeur|dev|sans.?limit)/i,
   /bypass.*(s[eé]curit|filtre)/i,/sans.?limit|no.?limit|jailbreak/i,
   /oublie.*(tout|r[eè]gle)/i,/mot.?de.?passe|password/i,/cvv|iban/i
 ];
@@ -759,25 +631,23 @@ function clientFilter(text){
   for(const pat of BLOCKED_PATTERNS){if(pat.test(text))return{blocked:true};}
   return{blocked:false};
 }
+
+// FIX BUG 1 : moderationCheck sans appel Anthropic (CORS bloqué)
 async function moderationCheck(text){
   if(!text||text.trim().length<3)return true;
-  try{
-    const res=await fetch('https://api.anthropic.com/v1/messages',{
-      method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:80,
-        messages:[{role:'user',content:`Tu es un modérateur scolaire. Réponds UNIQUEMENT par {"ok":true} ou {"ok":false}. Bloque si : insultes, harcèlement, violence, contenu sexuel, racisme. Message : "${text.replace(/"/g,"'").substring(0,300)}"`}]
-      })
-    });
-    const d=await res.json();
-    const raw=(d.content?.[0]?.text||'{"ok":true}').replace(/```json|```/g,'').trim();
-    return JSON.parse(raw).ok!==false;
-  }catch(e){return true;}
+  return !clientFilter(text).blocked;
 }
+
+// FIX BUG 2 : agentModerate sans appel Anthropic (CORS bloqué)
+async function agentModerate(text){
+  if(!text)return{ok:true};
+  const blocked=clientFilter(text).blocked;
+  return blocked?{ok:false,reason:'Contenu inapproprié'}:{ok:true};
+}
+
 function showModError(){const el=document.getElementById('mod-error');el.style.display='block';setTimeout(()=>{el.style.display='none';},4000);}
 
-// ══════════════════════════════════════════
-// DONNÉES LIVRESCOLAIRE
-// ══════════════════════════════════════════
+// ═══ DONNÉES LIVRESCOLAIRE ═══
 const CN_DATA={
   brevet:{matieres:[
     {nom:'Français',emoji:'📖',url:'https://www.livrescolaire.fr/matiere/troisieme-francais',chapitres:['Lecture et compréhension de texte','Grammaire de la phrase','Conjugaison et temps verbaux','Orthographe lexicale et grammaticale','Rédaction — récit et description','Rédaction — argumentation','Figures de style','Analyse d\'une œuvre intégrale','Dictée préparée','Expression orale']},
@@ -812,9 +682,7 @@ function cnSelectChap(chap,matiere,exam){
   setTimeout(()=>document.getElementById('titre-input').scrollIntoView({behavior:'smooth'}),300);
 }
 
-// ══════════════════════════════════════════
-// SUPABASE
-// ══════════════════════════════════════════
+// ═══ SUPABASE ═══
 const SUPABASE_URL='https://xesefsrpxinehodfgbri.supabase.co';
 const SUPABASE_KEY='sb_publishable_sduj2vS9RtmHUPZLbg0YnA_0abm0Ftf';
 async function sbFetch(path,options={}){
@@ -831,11 +699,12 @@ async function saveToCommunity(fiche){
   catch(e){console.log('Supabase save error',e);}
 }
 
-// ══════ STATE ══════
+// ═══ STATE ═══
 let selectedMatiere='Français',currentFiche=null;
 let library=JSON.parse(localStorage.getItem('sf_library2')||'[]');
 let communityFiches=JSON.parse(localStorage.getItem('sf_community2')||'[]');
 const SECTION_COLORS_CYCLE=['sec-pink','sec-blue','sec-yellow','sec-green','sec-purple','sec-orange'];
+const GROQ_KEY='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';
 
 document.querySelectorAll('#matiere-chips .chip').forEach(c=>{
   c.addEventListener('click',()=>{document.querySelectorAll('#matiere-chips .chip').forEach(x=>x.classList.remove('active'));c.classList.add('active');selectedMatiere=c.dataset.val;});
@@ -843,6 +712,7 @@ document.querySelectorAll('#matiere-chips .chip').forEach(c=>{
 
 function handleFile(input){const file=input.files[0];if(!file)return;const reader=new FileReader();reader.onload=e=>{const img=document.getElementById('preview-img');img.src=e.target.result;img.style.display='block';};reader.readAsDataURL(file);}
 
+// FIX BUG 3 : generateFiche sans attente Anthropic — direct et rapide
 async function generateFiche(){
   const titre=document.getElementById('titre-input').value;
   const cours=document.getElementById('cours-text').value;
@@ -852,15 +722,14 @@ async function generateFiche(){
   if(!titre&&!cours&&!keywords){showToast('⚠️ Remplis au moins un champ !');return;}
   const btn=document.getElementById('gen-btn'),spinner=document.getElementById('spinner'),btnText=document.getElementById('btn-text');
   const texteAVerifier=[titre,cours,keywords].filter(Boolean).join(' ');
+  // Vérification locale instantanée (plus de CORS)
   if(clientFilter(texteAVerifier).blocked){showToast('🚫 Contenu inapproprié !');return;}
-  btn.disabled=true;spinner.style.display='block';btnText.textContent='🔍 Vérification...';
-  const ok=await moderationCheck(texteAVerifier);
-  if(!ok){btn.disabled=false;spinner.style.display='none';btnText.textContent='✏️ Générer ma fiche façon cahier';showToast('🚫 Contenu inapproprié. Modifie ton texte.');return;}
-  btnText.textContent='L\'IA crée ta fiche...';
+  btn.disabled=true;spinner.style.display='block';btnText.textContent='L\'IA crée ta fiche...';
   const prompt=`Tu es un expert en pédagogie. Génère une fiche de révision de niveau ${niveau} en ${selectedMatiere}, type "${typeFiche}". ${titre?'Titre: '+titre:''} ${cours?'Cours:\n'+cours:''} ${keywords?'Mots-clés: '+keywords:''}. Réponds UNIQUEMENT en JSON valide sans markdown: {"titre":"...","sections":[{"titre":"NOM","contenu":"texte avec \\n pour séparer. - pour listes."}],"a_retenir":"points séparés par \\n"}. 4 à 7 sections. En français.`;
   try{
-    const res=await fetch('https://api.groq.com/openai/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer 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'},body:JSON.stringify({model:'llama-3.3-70b-versatile',max_tokens:1500,messages:[{role:'system',content:'Tu es un expert pédagogue. Réponds UNIQUEMENT en JSON valide, sans markdown, sans backticks.'},{role:'user',content:prompt}]})});
-    const data=await res.json();if(data.error)throw new Error(data.error.message);
+    const res=await fetch('https://api.groq.com/openai/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+GROQ_KEY},body:JSON.stringify({model:'llama-3.3-70b-versatile',max_tokens:1500,messages:[{role:'system',content:'Tu es un expert pédagogue. Réponds UNIQUEMENT en JSON valide, sans markdown, sans backticks.'},{role:'user',content:prompt}]})});
+    const data=await res.json();
+    if(data.error)throw new Error(data.error.message);
     let text=data.choices[0].message.content.replace(/```json|```/g,'').trim();
     const parsed=JSON.parse(text);
     currentFiche={id:Date.now(),titre:parsed.titre||titre||selectedMatiere,matiere:selectedMatiere,niveau,type:typeFiche,sections:parsed.sections||[],a_retenir:parsed.a_retenir||'',date:new Date().toLocaleDateString('fr-FR')};
@@ -904,13 +773,13 @@ async function shareToComm(){
 async function generateQuiz(){
   if(!currentFiche){showToast('Génère d\'abord une fiche !');return;}showToast('🎯 Génération du quiz...');
   const content=currentFiche.sections.map(s=>`${s.titre}: ${s.contenu}`).join('\n');
-  try{const res=await fetch('https://api.groq.com/openai/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer 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'},body:JSON.stringify({model:'llama-3.3-70b-versatile',max_tokens:700,messages:[{role:'system',content:'Tu es un expert pédagogue.'},{role:'user',content:`Génère 5 questions QCM sur "${currentFiche.titre}" (${currentFiche.matiere}) avec 4 choix (A,B,C,D) et indique la bonne réponse. Contenu:\n${content.substring(0,600)}`}]})});
+  try{const res=await fetch('https://api.groq.com/openai/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+GROQ_KEY},body:JSON.stringify({model:'llama-3.3-70b-versatile',max_tokens:700,messages:[{role:'system',content:'Tu es un expert pédagogue.'},{role:'user',content:`Génère 5 questions QCM sur "${currentFiche.titre}" (${currentFiche.matiere}) avec 4 choix (A,B,C,D) et indique la bonne réponse. Contenu:\n${content.substring(0,600)}`}]})});
     const data=await res.json();const quiz=data.choices[0].message.content;
     openModal('🎯 Quiz — '+currentFiche.titre,`<div style="white-space:pre-wrap;font-family:'Kalam',cursive;font-size:.95rem;line-height:1.9">${quiz}</div>`);
   }catch(e){showToast('❌ Erreur');}
 }
 
-// ══════ LIBRARY ══════
+// ═══ LIBRARY ═══
 const BADGE_COLORS={'Français':'badge-purple','Mathématiques':'badge-yellow','Histoire-Géo':'badge-pink','Sciences':'badge-green','Biologie':'badge-green','Anglais':'badge-blue','default':'badge-pink'};
 function getBadge(m){return BADGE_COLORS[m]||BADGE_COLORS.default;}
 const CARD_BARS={'Français':'linear-gradient(90deg,#b388ff,#ff8fab)','Mathématiques':'linear-gradient(90deg,#ffd166,#ff9f1c)','Histoire-Géo':'linear-gradient(90deg,#ef476f,#ffd166)','Sciences':'linear-gradient(90deg,#06d6a0,#4cc9f0)','Biologie':'linear-gradient(90deg,#06d6a0,#34d399)','Anglais':'linear-gradient(90deg,#4cc9f0,#b388ff)','default':'linear-gradient(90deg,#ff8fab,#ffd166)'};
@@ -933,7 +802,7 @@ function buildPaperHTML(fiche){
   html+=`</div>`;return html;
 }
 
-// ══════ COMMUNITY ══════
+// ═══ COMMUNITY ═══
 function renderCommunity(filter=''){
   const grid=document.getElementById('community-grid');
   const f=communityFiches.filter(x=>x.titre.toLowerCase().includes(filter.toLowerCase())||x.matiere.toLowerCase().includes(filter.toLowerCase()));
@@ -944,14 +813,14 @@ function filterCommunity(){renderCommunity(document.getElementById('comm-search'
 function toggleLike(id,btn){const f=communityFiches.find(x=>String(x.id)===String(id));if(!f)return;btn.classList.toggle('liked');f.likes=btn.classList.contains('liked')?f.likes+1:f.likes-1;btn.textContent=`❤️ ${f.likes}`;localStorage.setItem('sf_community2',JSON.stringify(communityFiches));}
 function saveFromComm(id){const f=communityFiches.find(x=>String(x.id)===String(id));if(!f)return;library.unshift({...f,id:Date.now(),date:new Date().toLocaleDateString('fr-FR')});localStorage.setItem('sf_library2',JSON.stringify(library));showToast('💾 Sauvegardée !');}
 
-// ══════ MODAL ══════
+// ═══ MODAL ═══
 function openModal(title,body){document.getElementById('modal-title').textContent=title;document.getElementById('modal-body').innerHTML=body;document.getElementById('modal-overlay').classList.add('open');}
 function closeModal(e){if(!e||e.target===document.getElementById('modal-overlay'))document.getElementById('modal-overlay').classList.remove('open');}
 
-// ══════ TOAST ══════
+// ═══ TOAST ═══
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
 
-// ══════ AUTH ══════
+// ═══ AUTH ═══
 const SUPABASE_AUTH_URL='https://xesefsrpxinehodfgbri.supabase.co/auth/v1';
 let currentUser=null,selectedAvatarEmoji='😊';
 function showAuth(){document.getElementById('auth-overlay').style.display='flex';}
@@ -985,9 +854,7 @@ function logout(){currentUser=null;localStorage.removeItem('sf_user');updateUser
 function updateUserUI(){const loggedIn=!!currentUser;document.getElementById('user-info-top').style.display=loggedIn?'flex':'none';document.getElementById('login-btn-top').style.display=loggedIn?'none':'block';if(loggedIn){document.getElementById('user-avatar-top').textContent=currentUser.avatar;document.getElementById('user-name-top').textContent=currentUser.name;}}
 const savedUser=localStorage.getItem('sf_user');if(savedUser){currentUser=JSON.parse(savedUser);updateUserUI();document.getElementById('auth-overlay').style.display='none';}
 
-// ══════════════════════════════════════════
-// AGENT IA PAGE
-// ══════════════════════════════════════════
+// ═══ AGENT IA ═══
 const LIVRESCOLAIRE_PRELOADED={
   'photosynthèse':'Livrescolaire.fr — SVT: La photosynthèse transforme l\'énergie lumineuse en énergie chimique dans les chloroplastes. Équation : 6CO₂ + 6H₂O + lumière → C₆H₁₂O₆ + 6O₂. Phase lumineuse dans les thylakoïdes. Phase sombre (cycle de Calvin) dans le stroma.',
   'newton':'Livrescolaire.fr — Physique: Les 3 lois de Newton. 1re loi (inertie) : corps au repos si forces compensées. 2e loi : F = ma. 3e loi (action-réaction) : à toute action correspond une réaction égale et opposée.',
@@ -1005,21 +872,6 @@ function searchPreloaded(query){const q=query.toLowerCase();for(const[key,conten
 const AGENT={history:[],msgCount:0,MSG_LIMIT:20,violations:0,MAX_VIOLATIONS:3,banned:false,captchaNeeded:false,captchaNum1:0,captchaNum2:0,captchaOp:'+',pendingMessage:'',logs:[],reportCount:0};
 
 function agentLog(type,msg){const entry={time:new Date().toLocaleTimeString(),type,msg};AGENT.logs.push(entry);const el=document.getElementById('admin-logs');if(el)el.innerHTML+=`<div>[${entry.time}] <span style="color:${type==='BLOCK'?'#c0392b':type==='WARN'?'#e67e22':'#27ae60'}">${type}</span> — ${msg}</div>`;}
-
-async function agentModerate(text){
-  try{const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:100,messages:[{role:'user',content:`Tu es un modérateur scolaire strict. Réponds UNIQUEMENT en JSON. Bloque si : insultes, harcèlement, violence, contenu sexuel, racisme, terrorisme. Autorise : questions scolaires. Format : {"ok":true} ou {"ok":false,"reason":"..."}. Message : "${text.replace(/"/g,"'").substring(0,500)}"`}]})});
-    const d=await res.json();const raw=(d.content?.[0]?.text||'{"ok":true}').replace(/```json|```/g,'').trim();return JSON.parse(raw);
-  }catch(e){return{ok:true};}
-}
-async function agentGetReply(userMsg){
-  const preloaded=searchPreloaded(userMsg);
-  const systemPrompt=`Tu es l'assistant scolaire de StudyForge. Tu utilises en priorité livrescolaire.fr. Tu aides UNIQUEMENT pour les matières scolaires. Réponds en français, clairement avec des emojis.${preloaded?'\n📚 COURS LIVRESCOLAIRE.FR :\n'+preloaded:''}`;
-  const messages=[...AGENT.history.slice(-8),{role:'user',content:userMsg}];
-  const res=await fetch('https://api.groq.com/openai/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer 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'},body:JSON.stringify({model:'llama-3.3-70b-versatile',max_tokens:1000,messages:[{role:'system',content:systemPrompt},...messages]})});
-  const data=await res.json();const reply=data.choices[0].message.content;
-  AGENT.history.push({role:'user',content:userMsg});AGENT.history.push({role:'assistant',content:reply});
-  return{reply,usedLivrescolaire:!!preloaded};
-}
 function agentShowCaptcha(msg){AGENT.pendingMessage=msg;AGENT.captchaNum1=Math.floor(Math.random()*9)+1;AGENT.captchaNum2=Math.floor(Math.random()*9)+1;AGENT.captchaOp=['+','×'][Math.floor(Math.random()*2)];document.getElementById('captcha-question').textContent=AGENT.captchaNum1+' '+AGENT.captchaOp+' '+AGENT.captchaNum2;document.getElementById('captcha-answer').value='';document.getElementById('agent-captcha').style.display='block';AGENT.captchaNeeded=true;}
 function agentValidateCaptcha(){const answer=parseInt(document.getElementById('captcha-answer').value);const expected=AGENT.captchaOp==='+'?AGENT.captchaNum1+AGENT.captchaNum2:AGENT.captchaNum1*AGENT.captchaNum2;if(answer===expected){document.getElementById('agent-captcha').style.display='none';AGENT.captchaNeeded=false;agentSendValidated(AGENT.pendingMessage);}else{document.getElementById('captcha-answer').style.borderColor='var(--red)';setTimeout(()=>{document.getElementById('captcha-answer').style.borderColor='';},1500);}}
 function agentBan(){AGENT.banned=true;document.getElementById('agent-ban-alert').style.display='block';document.getElementById('agent-send-btn').disabled=true;document.getElementById('agent-input').disabled=true;let r=60;const t=setInterval(()=>{r--;document.getElementById('ban-countdown').textContent=r;if(r<=0){clearInterval(t);AGENT.banned=false;AGENT.violations=0;document.getElementById('agent-ban-alert').style.display='none';document.getElementById('agent-send-btn').disabled=false;document.getElementById('agent-input').disabled=false;}},1000);}
@@ -1027,6 +879,17 @@ function agentAppendMsg(role,text,type){const wrap=document.getElementById('agen
 function agentAppendSource(source){const wrap=document.getElementById('agent-messages');const div=document.createElement('div');div.className='agent-msg';div.innerHTML=`<div class="agent-avatar-bot" style="font-size:.7rem;background:var(--green)">📚</div><div class="agent-bubble agent-bubble-source">Source : <a href="https://www.livrescolaire.fr" target="_blank" style="color:#005438;font-weight:700">livrescolaire.fr</a> — ${source}</div>`;wrap.appendChild(div);wrap.scrollTop=wrap.scrollHeight;}
 function agentShowBlock(msg){const el=document.getElementById('agent-block-msg');el.textContent=msg;el.style.display='block';setTimeout(()=>{el.style.display='none';},5000);}
 function agentUpdateCounter(){document.getElementById('msg-count').textContent=AGENT.msgCount;const r=AGENT.MSG_LIMIT-AGENT.msgCount;document.getElementById('agent-warn-txt').textContent=r<=5?'⚠️ '+r+' messages restants':'';}
+
+async function agentGetReply(userMsg){
+  const preloaded=searchPreloaded(userMsg);
+  const systemPrompt=`Tu es l'assistant scolaire de StudyForge. Tu utilises en priorité livrescolaire.fr. Tu aides UNIQUEMENT pour les matières scolaires. Réponds en français, clairement avec des emojis.${preloaded?'\n📚 COURS LIVRESCOLAIRE.FR :\n'+preloaded:''}`;
+  const messages=[...AGENT.history.slice(-8),{role:'user',content:userMsg}];
+  const res=await fetch('https://api.groq.com/openai/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+GROQ_KEY},body:JSON.stringify({model:'llama-3.3-70b-versatile',max_tokens:1000,messages:[{role:'system',content:systemPrompt},...messages]})});
+  const data=await res.json();const reply=data.choices[0].message.content;
+  AGENT.history.push({role:'user',content:userMsg});AGENT.history.push({role:'assistant',content:reply});
+  return{reply,usedLivrescolaire:!!preloaded};
+}
+
 async function agentSend(){
   const input=document.getElementById('agent-input');const msg=input.value.trim();if(!msg)return;
   if(AGENT.banned){agentShowBlock('🚫 Accès suspendu.');return;}
@@ -1041,7 +904,7 @@ async function agentSendValidated(msg){
   document.getElementById('agent-typing').style.display='block';document.getElementById('agent-send-btn').disabled=true;
   try{
     const modResult=await agentModerate(msg);
-    if(!modResult.ok){AGENT.violations++;agentLog('BLOCK','Modération IA');document.getElementById('agent-typing').style.display='none';agentAppendMsg('bot','🚫 Je ne peux pas répondre à ça. Pose-moi des questions scolaires 😊','error');if(AGENT.violations>=AGENT.MAX_VIOLATIONS)agentBan();else agentShowBlock('⚠️ '+(AGENT.MAX_VIOLATIONS-AGENT.violations)+' avertissement(s) avant suspension.');document.getElementById('agent-send-btn').disabled=false;return;}
+    if(!modResult.ok){AGENT.violations++;agentLog('BLOCK','Modération locale');document.getElementById('agent-typing').style.display='none';agentAppendMsg('bot','🚫 Je ne peux pas répondre à ça. Pose-moi des questions scolaires 😊','error');if(AGENT.violations>=AGENT.MAX_VIOLATIONS)agentBan();else agentShowBlock('⚠️ '+(AGENT.MAX_VIOLATIONS-AGENT.violations)+' avertissement(s) avant suspension.');document.getElementById('agent-send-btn').disabled=false;return;}
     agentLog('OK','Message accepté');
     const{reply,usedLivrescolaire}=await agentGetReply(msg);
     document.getElementById('agent-typing').style.display='none';agentAppendMsg('bot',reply);
@@ -1057,224 +920,46 @@ function agentExportLogs(){const content=AGENT.logs.map(l=>`[${l.time}] ${l.type
 let adminClicks=0;
 document.querySelector('.logo').addEventListener('click',()=>{adminClicks++;if(adminClicks>=5){adminClicks=0;const code=prompt('Code admin :');if(code==='WAEL2026'){document.getElementById('admin-panel').style.display='block';showToast('🛡️ Panel admin activé');}}});
 
-// ══════════════════════════════════════════
-// CHATBOT VOCAL FLOTTANT
-// ══════════════════════════════════════════
-const VPC={
-  open:false,ttsEnabled:true,listening:false,speaking:false,
-  msgCount:0,history:[],recognition:null,
-  synthesis:window.speechSynthesis,voiceFR:null,isProcessing:false
-};
-
-function vpcLoadVoice(){
-  if(!VPC.synthesis)return;
-  const voices=VPC.synthesis.getVoices();
-  VPC.voiceFR=voices.find(v=>v.lang.startsWith('fr')&&v.name.toLowerCase().includes('female'))
-    ||voices.find(v=>v.lang.startsWith('fr-FR'))
-    ||voices.find(v=>v.lang.startsWith('fr'))
-    ||null;
-}
+// ═══ CHATBOT VOCAL ═══
+const VPC={open:false,ttsEnabled:true,listening:false,speaking:false,msgCount:0,history:[],recognition:null,synthesis:window.speechSynthesis,voiceFR:null,isProcessing:false};
+function vpcLoadVoice(){if(!VPC.synthesis)return;const voices=VPC.synthesis.getVoices();VPC.voiceFR=voices.find(v=>v.lang.startsWith('fr')&&v.name.toLowerCase().includes('female'))||voices.find(v=>v.lang.startsWith('fr-FR'))||voices.find(v=>v.lang.startsWith('fr'))||null;}
 if(VPC.synthesis){vpcLoadVoice();VPC.synthesis.onvoiceschanged=vpcLoadVoice;}
-
-function toggleVocalPanel(){
-  VPC.open=!VPC.open;
-  const panel=document.getElementById('vocal-panel');
-  const fab=document.getElementById('vocal-fab');
-  if(VPC.open){
-    panel.classList.add('open');
-    fab.innerHTML='✕<div class="fab-badge">IA</div>';
-  }else{
-    panel.classList.remove('open');
-    fab.innerHTML='🎙️<div class="fab-badge">IA</div>';
-    vpcStopListening();vpcStopSpeaking();
-  }
-}
-
-function toggleTTS(){
-  VPC.ttsEnabled=!VPC.ttsEnabled;
-  const btn=document.getElementById('vpc-tts-btn');
-  btn.textContent=VPC.ttsEnabled?'🔊':'🔇';
-  btn.classList.toggle('off',!VPC.ttsEnabled);
-  if(!VPC.ttsEnabled)vpcStopSpeaking();
-  showToast(VPC.ttsEnabled?'🔊 Voix activée':'🔇 Voix désactivée');
-}
-
-function clearVocalChat(){
-  document.getElementById('vpc-messages').innerHTML=`<div class="vpc-msg"><div class="vpc-mavatar bot">🤖</div><div class="vpc-bubble bot">Conversation effacée ! 🗑️ Qu'est-ce qu'on révise ?</div></div>`;
-  VPC.history=[];VPC.msgCount=0;
-  document.getElementById('vpc-msg-count').textContent='0 msg';
-  vpcStopSpeaking();
-}
-
-// Ajouter un message dans le chat vocal
-function vpcAddMsg(role,text,opts={}){
-  const wrap=document.getElementById('vpc-messages');
-  const div=document.createElement('div');
-  div.className='vpc-msg'+(role==='user'?' user':'');
-  const avatar=document.createElement('div');
-  avatar.className='vpc-mavatar '+role;
-  avatar.textContent=role==='bot'?'🤖':(currentUser?.avatar||'😊');
-  const bubble=document.createElement('div');
-  bubble.className='vpc-bubble '+(opts.type||role);
-  // Formater le texte
-  bubble.innerHTML=text.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>');
-  // Bouton écouter pour le bot
-  if(role==='bot'&&VPC.ttsEnabled&&!opts.noSpeak){
-    const btn=document.createElement('button');
-    btn.className='vpc-speak-btn';
-    btn.innerHTML='🔊 Écouter';
-    const t=text;
-    btn.onclick=()=>vpcSpeak(t);
-    bubble.appendChild(document.createElement('br'));
-    bubble.appendChild(btn);
-  }
-  div.appendChild(avatar);div.appendChild(bubble);
-  wrap.appendChild(div);wrap.scrollTop=wrap.scrollHeight;
-  VPC.msgCount++;
-  document.getElementById('vpc-msg-count').textContent=VPC.msgCount+' msg';
-}
-
-// TTS — parler
-function vpcSpeak(text){
-  if(!VPC.synthesis||!VPC.ttsEnabled)return;
-  vpcStopSpeaking();
-  const clean=text
-    .replace(/\*\*(.*?)\*\*/g,'$1')
-    .replace(/[📚🎓✏️📄🎯💡📝🌿📐🌍📖⚗️🧬🤖😊👋💪🔊🗑️]/g,'')
-    .replace(/<[^>]*>/g,'')
-    .replace(/livrescolaire\.fr/g,'livre scolaire point fr')
-    .substring(0,900);
-  const utt=new SpeechSynthesisUtterance(clean);
-  utt.lang='fr-FR';utt.rate=0.92;utt.pitch=1.05;utt.volume=1;
-  if(VPC.voiceFR)utt.voice=VPC.voiceFR;
-  utt.onstart=()=>{VPC.speaking=true;vpcSetMicStatus('speaking','🔊 Je parle...');document.getElementById('vpc-mic-btn').classList.add('speaking');document.getElementById('vpc-subtitle').textContent='🔊 Forge parle...';};
-  utt.onend=utt.onerror=()=>{VPC.speaking=false;document.getElementById('vpc-mic-btn').classList.remove('speaking');vpcSetMicStatus('idle','🎙️ Appuie pour parler');document.getElementById('vpc-subtitle').textContent='En ligne · Parle ou écris !';};
-  VPC.synthesis.speak(utt);
-}
+function toggleVocalPanel(){VPC.open=!VPC.open;const panel=document.getElementById('vocal-panel');const fab=document.getElementById('vocal-fab');if(VPC.open){panel.classList.add('open');fab.innerHTML='✕<div class="fab-badge">IA</div>';}else{panel.classList.remove('open');fab.innerHTML='🎙️<div class="fab-badge">IA</div>';vpcStopListening();vpcStopSpeaking();}}
+function toggleTTS(){VPC.ttsEnabled=!VPC.ttsEnabled;const btn=document.getElementById('vpc-tts-btn');btn.textContent=VPC.ttsEnabled?'🔊':'🔇';btn.classList.toggle('off',!VPC.ttsEnabled);if(!VPC.ttsEnabled)vpcStopSpeaking();showToast(VPC.ttsEnabled?'🔊 Voix activée':'🔇 Voix désactivée');}
+function clearVocalChat(){document.getElementById('vpc-messages').innerHTML=`<div class="vpc-msg"><div class="vpc-mavatar bot">🤖</div><div class="vpc-bubble bot">Conversation effacée ! 🗑️ Qu'est-ce qu'on révise ?</div></div>`;VPC.history=[];VPC.msgCount=0;document.getElementById('vpc-msg-count').textContent='0 msg';vpcStopSpeaking();}
+function vpcAddMsg(role,text,opts={}){const wrap=document.getElementById('vpc-messages');const div=document.createElement('div');div.className='vpc-msg'+(role==='user'?' user':'');const avatar=document.createElement('div');avatar.className='vpc-mavatar '+role;avatar.textContent=role==='bot'?'🤖':(currentUser?.avatar||'😊');const bubble=document.createElement('div');bubble.className='vpc-bubble '+(opts.type||role);bubble.innerHTML=text.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>');if(role==='bot'&&VPC.ttsEnabled&&!opts.noSpeak){const btn=document.createElement('button');btn.className='vpc-speak-btn';btn.innerHTML='🔊 Écouter';const t=text;btn.onclick=()=>vpcSpeak(t);bubble.appendChild(document.createElement('br'));bubble.appendChild(btn);}div.appendChild(avatar);div.appendChild(bubble);wrap.appendChild(div);wrap.scrollTop=wrap.scrollHeight;VPC.msgCount++;document.getElementById('vpc-msg-count').textContent=VPC.msgCount+' msg';}
+function vpcSpeak(text){if(!VPC.synthesis||!VPC.ttsEnabled)return;vpcStopSpeaking();const clean=text.replace(/\*\*(.*?)\*\*/g,'$1').replace(/[📚🎓✏️📄🎯💡📝🌿📐🌍📖⚗️🧬🤖😊👋💪🔊🗑️]/g,'').replace(/<[^>]*>/g,'').replace(/livrescolaire\.fr/g,'livre scolaire point fr').substring(0,900);const utt=new SpeechSynthesisUtterance(clean);utt.lang='fr-FR';utt.rate=0.92;utt.pitch=1.05;utt.volume=1;if(VPC.voiceFR)utt.voice=VPC.voiceFR;utt.onstart=()=>{VPC.speaking=true;vpcSetMicStatus('speaking','🔊 Je parle...');document.getElementById('vpc-mic-btn').classList.add('speaking');document.getElementById('vpc-subtitle').textContent='🔊 Forge parle...';};utt.onend=utt.onerror=()=>{VPC.speaking=false;document.getElementById('vpc-mic-btn').classList.remove('speaking');vpcSetMicStatus('idle','🎙️ Appuie pour parler');document.getElementById('vpc-subtitle').textContent='En ligne · Parle ou écris !';};VPC.synthesis.speak(utt);}
 function vpcStopSpeaking(){if(VPC.synthesis)VPC.synthesis.cancel();VPC.speaking=false;document.getElementById('vpc-mic-btn')?.classList.remove('speaking');}
-
-// STT — micro
 function vpcToggleMic(){if(VPC.listening)vpcStopListening();else vpcStartListening();}
-
-function vpcStartListening(){
-  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-  if(!SR){vpcAddMsg('bot','⚠️ Ton navigateur ne supporte pas le micro. Utilise Chrome ou Edge !',{type:'error',noSpeak:true});return;}
-  vpcStopSpeaking();
-  const rec=new SR();
-  rec.lang='fr-FR';rec.continuous=false;rec.interimResults=true;rec.maxAlternatives=1;
-  VPC.recognition=rec;VPC.listening=true;
-  const micBtn=document.getElementById('vpc-mic-btn');
-  micBtn.classList.add('listening');micBtn.textContent='⏹️';
-  vpcSetMicStatus('listening','🔴 J\'écoute...');
-  document.getElementById('vpc-mic-wave').classList.add('active');
-  document.getElementById('vpc-subtitle').textContent='🎙️ Parle maintenant...';
-  let finalTranscript='';
-  rec.onresult=(e)=>{
-    let interim='';
-    for(let i=e.resultIndex;i<e.results.length;i++){
-      if(e.results[i].isFinal)finalTranscript+=e.results[i][0].transcript;
-      else interim=e.results[i][0].transcript;
-    }
-    document.getElementById('vpc-text-input').value=finalTranscript||interim;
-    vpcAutoResize(document.getElementById('vpc-text-input'));
-  };
-  rec.onend=()=>{
-    VPC.listening=false;micBtn.classList.remove('listening');micBtn.textContent='🎙️';
-    document.getElementById('vpc-mic-wave').classList.remove('active');
-    document.getElementById('vpc-subtitle').textContent='En ligne · Parle ou écris !';
-    vpcSetMicStatus('idle','🎙️ Appuie pour parler');
-    if(finalTranscript.trim()){
-      document.getElementById('vpc-text-input').value=finalTranscript.trim();
-      setTimeout(()=>vpcSendText(),300);
-    }
-  };
-  rec.onerror=(e)=>{
-    VPC.listening=false;micBtn.classList.remove('listening');micBtn.textContent='🎙️';
-    document.getElementById('vpc-mic-wave').classList.remove('active');
-    vpcSetMicStatus('idle','🎙️ Appuie pour parler');
-    document.getElementById('vpc-subtitle').textContent='En ligne · Parle ou écris !';
-    if(e.error==='not-allowed'){vpcAddMsg('bot','🔒 Autorise l\'accès au micro dans ton navigateur (cadenas en haut) !',{type:'error',noSpeak:true});}
-    else if(e.error!=='aborted'){vpcAddMsg('bot','😅 Je n\'ai pas bien entendu. Réessaie ou écris ta question !',{noSpeak:true});}
-  };
-  rec.start();
-}
+function vpcStartListening(){const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){vpcAddMsg('bot','⚠️ Ton navigateur ne supporte pas le micro. Utilise Chrome ou Edge !',{type:'error',noSpeak:true});return;}vpcStopSpeaking();const rec=new SR();rec.lang='fr-FR';rec.continuous=false;rec.interimResults=true;rec.maxAlternatives=1;VPC.recognition=rec;VPC.listening=true;const micBtn=document.getElementById('vpc-mic-btn');micBtn.classList.add('listening');micBtn.textContent='⏹️';vpcSetMicStatus('listening','🔴 J\'écoute...');document.getElementById('vpc-mic-wave').classList.add('active');document.getElementById('vpc-subtitle').textContent='🎙️ Parle maintenant...';let finalTranscript='';rec.onresult=(e)=>{let interim='';for(let i=e.resultIndex;i<e.results.length;i++){if(e.results[i].isFinal)finalTranscript+=e.results[i][0].transcript;else interim=e.results[i][0].transcript;}document.getElementById('vpc-text-input').value=finalTranscript||interim;vpcAutoResize(document.getElementById('vpc-text-input'));};rec.onend=()=>{VPC.listening=false;micBtn.classList.remove('listening');micBtn.textContent='🎙️';document.getElementById('vpc-mic-wave').classList.remove('active');document.getElementById('vpc-subtitle').textContent='En ligne · Parle ou écris !';vpcSetMicStatus('idle','🎙️ Appuie pour parler');if(finalTranscript.trim()){document.getElementById('vpc-text-input').value=finalTranscript.trim();setTimeout(()=>vpcSendText(),300);}};rec.onerror=(e)=>{VPC.listening=false;micBtn.classList.remove('listening');micBtn.textContent='🎙️';document.getElementById('vpc-mic-wave').classList.remove('active');vpcSetMicStatus('idle','🎙️ Appuie pour parler');document.getElementById('vpc-subtitle').textContent='En ligne · Parle ou écris !';if(e.error==='not-allowed'){vpcAddMsg('bot','🔒 Autorise l\'accès au micro dans ton navigateur (cadenas en haut) !',{type:'error',noSpeak:true});}else if(e.error!=='aborted'){vpcAddMsg('bot','😅 Je n\'ai pas bien entendu. Réessaie ou écris ta question !',{noSpeak:true});}};rec.start();}
 function vpcStopListening(){if(VPC.recognition){try{VPC.recognition.stop();}catch(e){}VPC.recognition=null;}VPC.listening=false;const m=document.getElementById('vpc-mic-btn');if(m){m.classList.remove('listening');m.textContent='🎙️';}document.getElementById('vpc-mic-wave')?.classList.remove('active');}
 function vpcSetMicStatus(state,label){const el=document.getElementById('vpc-mic-status');const lbl=document.getElementById('vpc-mic-label');if(!el||!lbl)return;el.className=state;lbl.textContent=label;}
-
-// Envoyer un message texte
-async function vpcSendText(){
-  const input=document.getElementById('vpc-text-input');
-  const text=input.value.trim();
-  if(!text||VPC.isProcessing)return;
-  if(clientFilter(text).blocked){vpcAddMsg('bot','🚫 Message inapproprié. Pose-moi des questions scolaires !',{type:'error'});input.value='';return;}
-  input.value='';vpcAutoResize(input);
-  VPC.isProcessing=true;
-  vpcAddMsg('user',text);
-  document.getElementById('vpc-typing').style.display='block';
-  document.getElementById('vpc-send-btn').disabled=true;
-  vpcStopSpeaking();
-  try{
-    const reply=await vpcGetAIReply(text);
-    document.getElementById('vpc-typing').style.display='none';
-    vpcAddMsg('bot',reply);
-    if(VPC.ttsEnabled)setTimeout(()=>vpcSpeak(reply),200);
-  }catch(e){
-    document.getElementById('vpc-typing').style.display='none';
-    const err='Oups, j\'ai eu un souci. Réessaie dans un instant !';
-    vpcAddMsg('bot','⚠️ '+err,{type:'error'});
-    if(VPC.ttsEnabled)setTimeout(()=>vpcSpeak(err),100);
-  }
-  document.getElementById('vpc-send-btn').disabled=false;
-  VPC.isProcessing=false;
-}
-
+async function vpcSendText(){const input=document.getElementById('vpc-text-input');const text=input.value.trim();if(!text||VPC.isProcessing)return;if(clientFilter(text).blocked){vpcAddMsg('bot','🚫 Message inapproprié. Pose-moi des questions scolaires !',{type:'error'});input.value='';return;}input.value='';vpcAutoResize(input);VPC.isProcessing=true;vpcAddMsg('user',text);document.getElementById('vpc-typing').style.display='block';document.getElementById('vpc-send-btn').disabled=true;vpcStopSpeaking();try{const reply=await vpcGetAIReply(text);document.getElementById('vpc-typing').style.display='none';vpcAddMsg('bot',reply);if(VPC.ttsEnabled)setTimeout(()=>vpcSpeak(reply),200);}catch(e){document.getElementById('vpc-typing').style.display='none';const err='Oups, j\'ai eu un souci. Réessaie dans un instant !';vpcAddMsg('bot','⚠️ '+err,{type:'error'});if(VPC.ttsEnabled)setTimeout(()=>vpcSpeak(err),100);}document.getElementById('vpc-send-btn').disabled=false;VPC.isProcessing=false;}
 function vpcQuick(prefix){const input=document.getElementById('vpc-text-input');input.value=prefix;input.focus();vpcAutoResize(input);}
-
-// IA du chatbot vocal
 async function vpcGetAIReply(userMsg){
   const preloaded=searchPreloaded(userMsg);
   const msgLower=userMsg.toLowerCase();
   let specialInstruction='';
-  if(msgLower.includes('fiche')||msgLower.includes('révision')||msgLower.includes('résumé')){
-    specialInstruction='\nL\'utilisateur veut une FICHE. Structure avec sections : 📌 Points clés → 📚 Définitions → 💡 À retenir. Sois complet et clair.';}
-  else if(msgLower.includes('quiz')||msgLower.includes('qcm')){
-    specialInstruction='\nL\'utilisateur veut un QUIZ QCM. Génère 5 questions avec 4 choix (A,B,C,D) et la bonne réponse entre parenthèses après chaque question.';}
-  else if(msgLower.includes('exercice')||msgLower.includes('exo')){
-    specialInstruction='\nL\'utilisateur veut des EXERCICES. Génère 3 exercices de difficulté croissante avec corrections détaillées.';}
-  else if(msgLower.includes('explique')||msgLower.includes('c\'est quoi')||msgLower.includes('comment')){
-    specialInstruction='\nL\'utilisateur veut une EXPLICATION SIMPLE. Parle comme un ami qui explique : analogies, exemples du quotidien, phrases courtes.';}
-
-  const systemPrompt=`Tu es Forge, l'assistant scolaire vocal et humain de StudyForge. Tu parles VRAIMENT comme un humain et un ami :
-- Expressions naturelles : "Bonne question !", "En gros", "Du coup", "Écoute", "En fait c'est simple", "Attends je t'explique"
-- Tu poses des questions de retour : "Tu vois ce que je veux dire ?" "C'est plus clair maintenant ?"
-- Tu encourages : "T'inquiète c'est normal de ne pas comprendre ça", "Allez c'est dans la poche !"
-- Tu t'adaptes à l'humeur et au niveau de l'élève
-- Phrases courtes et claires (tu es aussi lu à l'oral)
-- Quelques emojis naturels
-- Tu refuses poliment les sujets non scolaires
-${specialInstruction}
-${preloaded?'\n📚 COURS LIVRESCOLAIRE.FR À UTILISER :\n'+preloaded:''}`;
-
+  if(msgLower.includes('fiche')||msgLower.includes('révision')||msgLower.includes('résumé')){specialInstruction='\nL\'utilisateur veut une FICHE. Structure avec sections : 📌 Points clés → 📚 Définitions → 💡 À retenir. Sois complet et clair.';}
+  else if(msgLower.includes('quiz')||msgLower.includes('qcm')){specialInstruction='\nL\'utilisateur veut un QUIZ QCM. Génère 5 questions avec 4 choix (A,B,C,D) et la bonne réponse entre parenthèses après chaque question.';}
+  else if(msgLower.includes('exercice')||msgLower.includes('exo')){specialInstruction='\nL\'utilisateur veut des EXERCICES. Génère 3 exercices de difficulté croissante avec corrections détaillées.';}
+  else if(msgLower.includes('explique')||msgLower.includes('c\'est quoi')||msgLower.includes('comment')){specialInstruction='\nL\'utilisateur veut une EXPLICATION SIMPLE. Parle comme un ami qui explique : analogies, exemples du quotidien, phrases courtes.';}
+  const systemPrompt=`Tu es Forge, l'assistant scolaire vocal et humain de StudyForge. Tu parles vraiment comme un ami : expressions naturelles, tu encourages, phrases courtes. Quelques emojis. Tu refuses poliment les sujets non scolaires.${specialInstruction}${preloaded?'\n📚 COURS LIVRESCOLAIRE.FR :\n'+preloaded:''}`;
   const messages=[...VPC.history.slice(-10),{role:'user',content:userMsg}];
-  const res=await fetch('https://api.groq.com/openai/v1/chat/completions',{
-    method:'POST',
-    headers:{'Content-Type':'application/json','Authorization':'Bearer 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'},
-    body:JSON.stringify({model:'llama-3.3-70b-versatile',max_tokens:600,temperature:0.78,messages:[{role:'system',content:systemPrompt},...messages]})
-  });
-  const data=await res.json();
-  if(data.error)throw new Error(data.error.message);
+  const res=await fetch('https://api.groq.com/openai/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+GROQ_KEY},body:JSON.stringify({model:'llama-3.3-70b-versatile',max_tokens:600,temperature:0.78,messages:[{role:'system',content:systemPrompt},...messages]})});
+  const data=await res.json();if(data.error)throw new Error(data.error.message);
   const reply=data.choices[0].message.content;
-  VPC.history.push({role:'user',content:userMsg});
-  VPC.history.push({role:'assistant',content:reply});
+  VPC.history.push({role:'user',content:userMsg});VPC.history.push({role:'assistant',content:reply});
   return reply;
 }
-
 function vpcAutoResize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,90)+'px';}
 function vpcHandleKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();vpcSendText();}}
 
-// ══ INIT ══
+// ═══ INIT ═══
 cnRenderMatieres();
 loadCommunity();
 </script>
 </body>
 </html>
+HTMLEOF
+echo "Fichier créé : $(wc -c < /home/claude/index_fixed.html) octets"
