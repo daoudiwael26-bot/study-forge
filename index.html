@@ -1258,7 +1258,7 @@ ${preloaded?'\n📚 COURS LIVRESCOLAIRE.FR À UTILISER :\n'+preloaded:''}`;
   const messages=[...VPC.history.slice(-10),{role:'user',content:userMsg}];
   const res=await fetch('https://api.groq.com/openai/v1/chat/completions',{
     method:'POST',
-    headers:{'Content-Type':'application/json','Authorization':'Bearergsk_PtM5Tgnv22d0bBmOtuFgWGdyb3FYejOesqsL0rxzQix51ddSvezd'},
+    headers:{'Content-Type':'application/json','Authorization':'Bearer gsk_-proj-HDttZs9qRIkrlhBVlmU3syHzmtBVZCR0trGT5fBDolu0K4ja19fJPEe54W5A4HwZ3S3zGO3pMkT3BlbkFJa8XXyqDcZBWcrTBPEYd0IlCRzdzl8smXYE2GQ8miQZqN2R5lnoOwvIxYNEmEdy_Dcm7xyHgK0A'},
     body:JSON.stringify({model:'llama-3.3-70b-versatile',max_tokens:600,temperature:0.78,messages:[{role:'system',content:systemPrompt},...messages]})
   });
   const data=await res.json();
