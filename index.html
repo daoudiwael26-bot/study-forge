@@ -859,9 +859,20 @@ async function generateFiche(){
   btnText.textContent='L\'IA crée ta fiche...';
   const prompt=`Tu es un expert en pédagogie. Génère une fiche de révision de niveau ${niveau} en ${selectedMatiere}, type "${typeFiche}". ${titre?'Titre: '+titre:''} ${cours?'Cours:\n'+cours:''} ${keywords?'Mots-clés: '+keywords:''}. Réponds UNIQUEMENT en JSON valide sans markdown: {"titre":"...","sections":[{"titre":"NOM","contenu":"texte avec \\n pour séparer. - pour listes."}],"a_retenir":"points séparés par \\n"}. 4 à 7 sections. En français.`;
   try{
-    const res=await fetch('https://api.groq.com/openai/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer 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'},body:JSON.stringify({model:'llama-3.3-70b-versatile',max_tokens:1500,messages:[{role:'system',content:'Tu es un expert pédagogue. Réponds UNIQUEMENT en JSON valide, sans markdown, sans backticks.'},{role:'user',content:prompt}]})});
-    const data=await res.json();if(data.error)throw new Error(data.error.message);
-    let text=data.choices[0].message.content.replace(/```json|```/g,'').trim();
+    // ✅ CORRIGÉ : Anthropic API au lieu de Groq
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:1500,
+        system:'Tu es un expert pédagogue. Réponds UNIQUEMENT en JSON valide, sans markdown, sans backticks.',
+        messages:[{role:'user',content:prompt}]
+      })
+    });
+    const data=await res.json();
+    if(data.error)throw new Error(data.error.message||JSON.stringify(data.error));
+    let text=(data.content?.[0]?.text||'').replace(/```json|```/g,'').trim();
     const parsed=JSON.parse(text);
     currentFiche={id:Date.now(),titre:parsed.titre||titre||selectedMatiere,matiere:selectedMatiere,niveau,type:typeFiche,sections:parsed.sections||[],a_retenir:parsed.a_retenir||'',date:new Date().toLocaleDateString('fr-FR')};
     renderPaperFiche(currentFiche);
@@ -904,8 +915,20 @@ async function shareToComm(){
 async function generateQuiz(){
   if(!currentFiche){showToast('Génère d\'abord une fiche !');return;}showToast('🎯 Génération du quiz...');
   const content=currentFiche.sections.map(s=>`${s.titre}: ${s.contenu}`).join('\n');
-  try{const res=await fetch('https://api.groq.com/openai/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer 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'},body:JSON.stringify({model:'llama-3.3-70b-versatile',max_tokens:700,messages:[{role:'system',content:'Tu es un expert pédagogue.'},{role:'user',content:`Génère 5 questions QCM sur "${currentFiche.titre}" (${currentFiche.matiere}) avec 4 choix (A,B,C,D) et indique la bonne réponse. Contenu:\n${content.substring(0,600)}`}]})});
-    const data=await res.json();const quiz=data.choices[0].message.content;
+  try{
+    // ✅ CORRIGÉ : Anthropic API au lieu de Groq
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:700,
+        messages:[{role:'user',content:`Tu es un expert pédagogue. Génère 5 questions QCM sur "${currentFiche.titre}" (${currentFiche.matiere}) avec 4 choix (A,B,C,D) et indique la bonne réponse. Contenu:\n${content.substring(0,600)}`}]
+      })
+    });
+    const data=await res.json();
+    if(data.error)throw new Error(data.error.message||JSON.stringify(data.error));
+    const quiz=data.content?.[0]?.text||'Erreur génération quiz';
     openModal('🎯 Quiz — '+currentFiche.titre,`<div style="white-space:pre-wrap;font-family:'Kalam',cursive;font-size:.95rem;line-height:1.9">${quiz}</div>`);
   }catch(e){showToast('❌ Erreur');}
 }
@@ -1015,8 +1038,20 @@ async function agentGetReply(userMsg){
   const preloaded=searchPreloaded(userMsg);
   const systemPrompt=`Tu es l'assistant scolaire de StudyForge. Tu utilises en priorité livrescolaire.fr. Tu aides UNIQUEMENT pour les matières scolaires. Réponds en français, clairement avec des emojis.${preloaded?'\n📚 COURS LIVRESCOLAIRE.FR :\n'+preloaded:''}`;
   const messages=[...AGENT.history.slice(-8),{role:'user',content:userMsg}];
-  const res=await fetch('https://api.groq.com/openai/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer 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'},body:JSON.stringify({model:'llama-3.3-70b-versatile',max_tokens:1000,messages:[{role:'system',content:systemPrompt},...messages]})});
-  const data=await res.json();const reply=data.choices[0].message.content;
+  // ✅ CORRIGÉ : Anthropic API au lieu de Groq
+  const res=await fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+      model:'claude-sonnet-4-20250514',
+      max_tokens:1000,
+      system:systemPrompt,
+      messages:messages
+    })
+  });
+  const data=await res.json();
+  if(data.error)throw new Error(data.error.message||JSON.stringify(data.error));
+  const reply=data.content?.[0]?.text||'';
   AGENT.history.push({role:'user',content:userMsg});AGENT.history.push({role:'assistant',content:reply});
   return{reply,usedLivrescolaire:!!preloaded};
 }
@@ -1106,7 +1141,6 @@ function clearVocalChat(){
   vpcStopSpeaking();
 }
 
-// Ajouter un message dans le chat vocal
 function vpcAddMsg(role,text,opts={}){
   const wrap=document.getElementById('vpc-messages');
   const div=document.createElement('div');
@@ -1116,9 +1150,7 @@ function vpcAddMsg(role,text,opts={}){
   avatar.textContent=role==='bot'?'🤖':(currentUser?.avatar||'😊');
   const bubble=document.createElement('div');
   bubble.className='vpc-bubble '+(opts.type||role);
-  // Formater le texte
   bubble.innerHTML=text.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>');
-  // Bouton écouter pour le bot
   if(role==='bot'&&VPC.ttsEnabled&&!opts.noSpeak){
     const btn=document.createElement('button');
     btn.className='vpc-speak-btn';
@@ -1134,7 +1166,6 @@ function vpcAddMsg(role,text,opts={}){
   document.getElementById('vpc-msg-count').textContent=VPC.msgCount+' msg';
 }
 
-// TTS — parler
 function vpcSpeak(text){
   if(!VPC.synthesis||!VPC.ttsEnabled)return;
   vpcStopSpeaking();
@@ -1153,7 +1184,6 @@ function vpcSpeak(text){
 }
 function vpcStopSpeaking(){if(VPC.synthesis)VPC.synthesis.cancel();VPC.speaking=false;document.getElementById('vpc-mic-btn')?.classList.remove('speaking');}
 
-// STT — micro
 function vpcToggleMic(){if(VPC.listening)vpcStopListening();else vpcStartListening();}
 
 function vpcStartListening(){
@@ -1201,7 +1231,6 @@ function vpcStartListening(){
 function vpcStopListening(){if(VPC.recognition){try{VPC.recognition.stop();}catch(e){}VPC.recognition=null;}VPC.listening=false;const m=document.getElementById('vpc-mic-btn');if(m){m.classList.remove('listening');m.textContent='🎙️';}document.getElementById('vpc-mic-wave')?.classList.remove('active');}
 function vpcSetMicStatus(state,label){const el=document.getElementById('vpc-mic-status');const lbl=document.getElementById('vpc-mic-label');if(!el||!lbl)return;el.className=state;lbl.textContent=label;}
 
-// Envoyer un message texte
 async function vpcSendText(){
   const input=document.getElementById('vpc-text-input');
   const text=input.value.trim();
@@ -1230,7 +1259,6 @@ async function vpcSendText(){
 
 function vpcQuick(prefix){const input=document.getElementById('vpc-text-input');input.value=prefix;input.focus();vpcAutoResize(input);}
 
-// IA du chatbot vocal
 async function vpcGetAIReply(userMsg){
   const preloaded=searchPreloaded(userMsg);
   const msgLower=userMsg.toLowerCase();
@@ -1256,14 +1284,20 @@ ${specialInstruction}
 ${preloaded?'\n📚 COURS LIVRESCOLAIRE.FR À UTILISER :\n'+preloaded:''}`;
 
   const messages=[...VPC.history.slice(-10),{role:'user',content:userMsg}];
-  const res=await fetch('https://api.groq.com/openai/v1/chat/completions',{
+  // ✅ CORRIGÉ : Anthropic API au lieu de Groq
+  const res=await fetch('https://api.anthropic.com/v1/messages',{
     method:'POST',
-    headers:{'Content-Type':'application/json','Authorization':'Bearer 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'},
-    body:JSON.stringify({model:'llama-3.3-70b-versatile',max_tokens:600,temperature:0.78,messages:[{role:'system',content:systemPrompt},...messages]})
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+      model:'claude-sonnet-4-20250514',
+      max_tokens:600,
+      system:systemPrompt,
+      messages:messages
+    })
   });
   const data=await res.json();
-  if(data.error)throw new Error(data.error.message);
-  const reply=data.choices[0].message.content;
+  if(data.error)throw new Error(data.error.message||JSON.stringify(data.error));
+  const reply=data.content?.[0]?.text||'';
   VPC.history.push({role:'user',content:userMsg});
   VPC.history.push({role:'assistant',content:reply});
   return reply;
