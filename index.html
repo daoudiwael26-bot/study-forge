@@ -9,7 +9,7 @@
 <link rel="apple-touch-icon" href="icon-192.svg">
 <link rel="icon" type="image/svg+xml" href="icon-192.svg">
 <link rel="manifest" href="/study-forge/manifest.json">
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Kalam:wght@300;400;700&family=Patrick+Hand&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Kalam:wght@300;400;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#f8f6f0;--white:#fff;--line:#e8e0d5;--ink:#2d2d2d;--muted:#888;--pink:#ff8fab;--pink-bg:#fff0f4;--pink-border:#ffccd8;--yellow:#ffd166;--yellow-bg:#fffbee;--yellow-border:#ffe59a;--blue:#4cc9f0;--blue-bg:#f0fbff;--blue-border:#b3e8f8;--green:#06d6a0;--green-bg:#f0fff9;--green-border:#a3f0dc;--purple:#b388ff;--purple-bg:#f7f0ff;--purple-border:#d8bfff;--orange:#ff9f1c;--orange-bg:#fff8f0;--orange-border:#ffd59a;--red:#ef476f}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -20,7 +20,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Nunito',sans-serif;displ
 .logo span{color:var(--pink)}
 .layout{display:flex;flex:1;overflow:hidden}
 .sidebar{width:210px;flex-shrink:0;background:white;border-right:2px solid var(--line);display:flex;flex-direction:column;padding:1rem 0}
-.nav-item{display:flex;align-items:center;gap:10px;padding:11px 1.25rem;font-size:.9rem;font-weight:700;cursor:pointer;color:var(--muted);transition:all .15s;border-left:4px solid transparent;font-family:'Nunito',sans-serif}
+.nav-item{display:flex;align-items:center;gap:10px;padding:11px 1.25rem;font-size:.9rem;font-weight:700;cursor:pointer;color:var(--muted);transition:all .15s;border-left:4px solid transparent}
 .nav-item:hover{color:var(--ink);background:#fafafa}
 .nav-item.active{color:var(--pink);border-left-color:var(--pink);background:var(--pink-bg)}
 .nav-icon{font-size:1.1rem;width:22px;text-align:center}
@@ -28,10 +28,10 @@ body{background:var(--bg);color:var(--ink);font-family:'Nunito',sans-serif;displ
 .sidebar-footer strong{color:var(--ink);display:block;font-size:1rem}
 .main{flex:1;overflow-y:auto;padding:1.5rem 2rem}
 .page{display:none}.page.active{display:block}
-.section-title{font-family:'Caveat',cursive;font-size:2rem;font-weight:700;margin-bottom:.2rem;color:var(--ink)}
+.section-title{font-family:'Caveat',cursive;font-size:2rem;font-weight:700;margin-bottom:.2rem}
 .section-sub{color:var(--muted);font-size:.88rem;margin-bottom:1.5rem}
 .form-card{background:white;border:2px solid var(--line);border-radius:16px;padding:1.5rem;margin-bottom:1rem}
-.form-card h3{font-family:'Caveat',cursive;font-size:1.3rem;font-weight:700;margin-bottom:1rem;color:var(--ink)}
+.form-card h3{font-family:'Caveat',cursive;font-size:1.3rem;font-weight:700;margin-bottom:1rem}
 label{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:5px}
 input[type=text],textarea,select{width:100%;padding:9px 13px;background:#fafafa;border:2px solid var(--line);border-radius:10px;color:var(--ink);font-family:'Nunito',sans-serif;font-size:.9rem;transition:border-color .2s;resize:vertical}
 input[type=text]:focus,textarea:focus,select:focus{outline:none;border-color:var(--pink);background:white}
@@ -39,7 +39,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 .input-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
 @media(max-width:600px){.input-row{grid-template-columns:1fr}}
 .chips{display:flex;flex-wrap:wrap;gap:7px}
-.chip{padding:5px 14px;border:2px solid var(--line);border-radius:100px;font-size:.82rem;cursor:pointer;transition:all .15s;color:var(--muted);background:white;font-weight:600;font-family:'Nunito',sans-serif}
+.chip{padding:5px 14px;border:2px solid var(--line);border-radius:100px;font-size:.82rem;cursor:pointer;transition:all .15s;color:var(--muted);background:white;font-weight:600}
 .chip:hover{border-color:var(--pink);color:var(--pink)}
 .chip.active{background:var(--pink);color:white;border-color:var(--pink)}
 .upload-zone{border:2px dashed var(--line);border-radius:12px;padding:1.5rem;text-align:center;cursor:pointer;transition:all .2s;color:var(--muted)}
@@ -49,20 +49,20 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 .btn-primary{width:100%;padding:13px;background:var(--pink);border:none;border-radius:12px;color:white;font-family:'Caveat',cursive;font-size:1.2rem;font-weight:700;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:10px}
 .btn-primary:hover{background:#ff7096;transform:translateY(-1px)}
 .btn-primary:disabled{opacity:.5;cursor:not-allowed;transform:none}
-.btn-secondary{padding:7px 14px;background:white;border:2px solid var(--line);border-radius:8px;color:var(--ink);font-size:.82rem;cursor:pointer;transition:all .15s;font-family:'Nunito',sans-serif;font-weight:600}
+.btn-secondary{padding:7px 14px;background:white;border:2px solid var(--line);border-radius:8px;color:var(--ink);font-size:.82rem;cursor:pointer;transition:all .15s;font-weight:600}
 .btn-secondary:hover{border-color:var(--pink);color:var(--pink)}
 .spinner{width:18px;height:18px;border:2px solid rgba(255,255,255,.4);border-top-color:white;border-radius:50%;animation:spin .7s linear infinite;display:none}
 @keyframes spin{to{transform:rotate(360deg)}}
 .fiche-paper{display:none;margin-top:1.5rem;animation:fadeUp .4s ease}
 @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-.paper-sheet{background:white;border:2px solid #ddd;border-radius:4px;position:relative;box-shadow:3px 4px 18px rgba(0,0,0,.10),1px 1px 0 #e0e0e0;overflow:hidden;max-width:680px;margin:0 auto}
+.paper-sheet{background:white;border:2px solid #ddd;border-radius:4px;position:relative;box-shadow:3px 4px 18px rgba(0,0,0,.10);overflow:hidden;max-width:680px;margin:0 auto}
 .paper-sheet::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(transparent,transparent 31px,#e8f0fe 31px,#e8f0fe 32px);pointer-events:none;z-index:0}
 .paper-sheet::after{content:'';position:absolute;top:0;bottom:0;left:56px;width:2px;background:#ffb3ba;pointer-events:none;z-index:1}
 .holes{position:absolute;top:0;left:0;bottom:0;width:56px;display:flex;flex-direction:column;justify-content:space-evenly;align-items:center;z-index:2;pointer-events:none}
 .hole{width:14px;height:14px;border-radius:50%;background:#f8f6f0;border:1.5px solid #ccc}
 .paper-content{position:relative;z-index:2;padding:1.5rem 1.75rem 2rem 80px;min-height:400px}
-.fiche-main-title{font-family:'Caveat',cursive;font-size:2rem;font-weight:700;text-align:center;color:var(--ink);margin-bottom:1.5rem;padding-bottom:.5rem;border-bottom:3px solid var(--pink);line-height:32px}
-.fiche-section{margin-bottom:1.2rem;break-inside:avoid}
+.fiche-main-title{font-family:'Caveat',cursive;font-size:2rem;font-weight:700;text-align:center;margin-bottom:1.5rem;padding-bottom:.5rem;border-bottom:3px solid var(--pink);line-height:32px}
+.fiche-section{margin-bottom:1.2rem}
 .section-header{font-family:'Caveat',cursive;font-size:1.1rem;font-weight:700;padding:3px 12px;border-radius:6px 6px 0 0;display:inline-block;line-height:32px}
 .section-body{border:2px solid;border-radius:0 8px 8px 8px;padding:.6rem .9rem;font-family:'Kalam',cursive;font-size:.92rem;line-height:2rem}
 .sec-pink .section-header{background:var(--pink);color:white}
@@ -80,7 +80,6 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 .section-body strong{font-weight:700}
 .section-body ul{margin:0;padding-left:1.2rem}
 .section-body li{line-height:2rem}
-.section-body .schema{font-family:'Courier New',monospace;font-size:.8rem;background:rgba(0,0,0,.04);border-radius:6px;padding:.5rem .75rem;margin:4px 0;line-height:1.6;white-space:pre;overflow-x:auto}
 .fiche-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 1.2rem}
 @media(max-width:560px){.fiche-grid{grid-template-columns:1fr}}
 .a-retenir{margin-top:1.2rem;background:var(--yellow-bg);border:2px solid var(--yellow-border);border-radius:10px;padding:.75rem 1rem;font-family:'Caveat',cursive;font-size:1.05rem;line-height:1.8}
@@ -90,7 +89,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 .search-bar input{background:transparent;border:none;color:var(--ink);font-size:.9rem;flex:1;font-family:'Nunito',sans-serif}
 .search-bar input:focus{outline:none}
 .fiches-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem}
-.fiche-card{background:white;border:2px solid var(--line);border-radius:12px;padding:1rem;cursor:pointer;transition:all .2s;overflow:hidden}
+.fiche-card{background:white;border:2px solid var(--line);border-radius:12px;padding:1rem;cursor:pointer;transition:all .2s}
 .fiche-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.08)}
 .fiche-card .fc-color-bar{height:5px;border-radius:3px;margin-bottom:10px}
 .fiche-card h4{font-family:'Caveat',cursive;font-size:1.1rem;font-weight:700;margin-bottom:4px}
@@ -108,13 +107,13 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 .pub-card{background:white;border:2px solid var(--line);border-radius:12px;padding:1.1rem;transition:border-color .2s}
 .pub-card:hover{border-color:var(--pink)}
 .pub-card .pub-author{display:flex;align-items:center;gap:8px;margin-bottom:10px}
-.pub-card .pub-avatar{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:700;color:white;font-family:'Caveat',cursive}
+.pub-card .pub-avatar{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:700;color:white}
 .pub-card .pub-name{font-size:.85rem;font-weight:700}
 .pub-card .pub-date{font-size:.73rem;color:var(--muted)}
 .pub-card h4{font-family:'Caveat',cursive;font-size:1.1rem;font-weight:700;margin-bottom:5px}
 .pub-card p{font-size:.8rem;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .pub-card .pub-footer{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
-.like-btn{background:transparent;border:2px solid var(--line);border-radius:6px;color:var(--muted);padding:3px 10px;font-size:.8rem;cursor:pointer;transition:all .15s;font-family:'Nunito',sans-serif;font-weight:600}
+.like-btn{background:transparent;border:2px solid var(--line);border-radius:6px;color:var(--muted);padding:3px 10px;font-size:.8rem;cursor:pointer;transition:all .15s;font-weight:600}
 .like-btn:hover,.like-btn.liked{border-color:var(--red);color:var(--red);background:#fff5f7}
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:999;display:none;align-items:center;justify-content:center;padding:1rem}
 .modal-overlay.open{display:flex}
@@ -149,21 +148,19 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 .auth-error{background:#fff5f5;border:1.5px solid #ffccd8;border-radius:8px;padding:8px 12px;font-size:.82rem;color:var(--red);margin-bottom:1rem;display:none}
 .auth-success{background:#f0fff9;border:1.5px solid #a3f0dc;border-radius:8px;padding:8px 12px;font-size:.82rem;color:#009966;margin-bottom:1rem;display:none}
 .user-info{display:flex;align-items:center;gap:8px}
-.user-avatar-top{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--purple));display:flex;align-items:center;justify-content:center;font-size:1.1rem;cursor:pointer}
-.logout-btn{font-size:.75rem;color:var(--muted);background:none;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:600}
+.user-avatar-top{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--purple));display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+.logout-btn{font-size:.75rem;color:var(--muted);background:none;border:none;cursor:pointer;font-weight:600}
 .logout-btn:hover{color:var(--red)}
-.mod-error{color:#c0392b;font-size:12px;margin-top:4px;display:none}
 .agent-msg{display:flex;align-items:flex-start;gap:10px;animation:fadeUp .3s ease}
 .agent-msg-user{flex-direction:row-reverse}
 .agent-avatar-bot{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--purple));display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
 .agent-avatar-user{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--green));display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
-.agent-bubble{max-width:78%;padding:10px 14px;border-radius:14px;font-size:.87rem;line-height:1.6;font-family:'Nunito',sans-serif}
-.agent-bubble-bot{background:var(--pink-bg);border:1.5px solid var(--pink-border);border-radius:4px 14px 14px 14px;color:var(--ink)}
-.agent-bubble-user{background:var(--blue-bg);border:1.5px solid var(--blue-border);border-radius:14px 4px 14px 14px;color:var(--ink)}
+.agent-bubble{max-width:78%;padding:10px 14px;border-radius:14px;font-size:.87rem;line-height:1.6}
+.agent-bubble-bot{background:var(--pink-bg);border:1.5px solid var(--pink-border);border-radius:4px 14px 14px 14px}
+.agent-bubble-user{background:var(--blue-bg);border:1.5px solid var(--blue-border);border-radius:14px 4px 14px 14px}
 .agent-bubble-error{background:#fff5f5;border:1.5px solid #ffccd8;color:var(--red)}
 .agent-bubble-warn{background:var(--yellow-bg);border:1.5px solid var(--yellow-border);color:#7a5800}
-.agent-bubble-source{background:var(--green-bg);border:1.5px solid var(--green-border);color:#005438;font-size:.78rem}
-.agent-suggest{padding:5px 14px;background:white;border:2px solid var(--line);border-radius:100px;font-size:.78rem;cursor:pointer;transition:all .15s;color:var(--muted);font-weight:600;font-family:'Nunito',sans-serif}
+.agent-suggest{padding:5px 14px;background:white;border:2px solid var(--line);border-radius:100px;font-size:.78rem;cursor:pointer;transition:all .15s;color:var(--muted);font-weight:600}
 .agent-suggest:hover{border-color:var(--pink);color:var(--pink);background:var(--pink-bg)}
 .typing-dots{display:flex;gap:3px;align-items:center}
 .typing-dots span{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:typingBounce 1.2s infinite}
@@ -171,49 +168,48 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 .typing-dots span:nth-child(3){animation-delay:.4s}
 @keyframes typingBounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
 .cn-tabs-row{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
-.cn-tab-btn{padding:9px 22px;border-radius:24px;font-size:15px;font-weight:700;cursor:pointer;border:2px solid transparent;transition:all .2s;background:#f0f0f0;color:#555;font-family:'Nunito',sans-serif}
+.cn-tab-btn{padding:9px 22px;border-radius:24px;font-size:15px;font-weight:700;cursor:pointer;border:2px solid transparent;transition:all .2s;background:#f0f0f0;color:#555}
 .cn-tab-btn.active{background:var(--pink);color:white;border-color:var(--pink)}
 .cn-matieres-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-bottom:24px}
-.cn-mat-card{background:white;border:2px solid var(--line);border-radius:14px;padding:16px 10px;text-align:center;cursor:pointer;transition:all .18s;font-size:13px;font-weight:700;color:var(--ink);font-family:'Nunito',sans-serif}
+.cn-mat-card{background:white;border:2px solid var(--line);border-radius:14px;padding:16px 10px;text-align:center;cursor:pointer;transition:all .18s;font-size:13px;font-weight:700}
 .cn-mat-card:hover{border-color:var(--pink);background:var(--pink-bg);transform:translateY(-2px)}
 .cn-mat-emoji{font-size:26px;display:block;margin-bottom:6px}
 .cn-chapitres-wrap{background:var(--pink-bg);border-radius:16px;border:2px solid var(--pink-border);padding:20px 24px;display:none}
 .cn-chapitres-wrap h3{font-family:'Caveat',cursive;font-size:1.4rem;font-weight:700;margin-bottom:14px;color:var(--pink)}
 .cn-chap-list{list-style:none;padding:0;margin:0}
-.cn-chap-list li{padding:10px 14px;border-radius:10px;margin-bottom:6px;background:white;border:1.5px solid var(--pink-border);font-size:14px;display:flex;align-items:center;gap:10px;cursor:pointer;transition:background .15s;font-family:'Nunito',sans-serif;font-weight:600}
+.cn-chap-list li{padding:10px 14px;border-radius:10px;margin-bottom:6px;background:white;border:1.5px solid var(--pink-border);font-size:14px;display:flex;align-items:center;gap:10px;cursor:pointer;transition:background .15s;font-weight:600}
 .cn-chap-list li:hover{background:var(--yellow-bg);border-color:var(--yellow-border)}
 .cn-chap-list li::before{content:"📌";font-size:13px;flex-shrink:0}
-.cn-livrescolaire-btn{display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:10px 20px;border-radius:12px;background:var(--pink);color:white;font-weight:700;font-size:14px;text-decoration:none;border:none;cursor:pointer;transition:background .2s;font-family:'Nunito',sans-serif}
+.cn-livrescolaire-btn{display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:10px 20px;border-radius:12px;background:var(--pink);color:white;font-weight:700;font-size:14px;text-decoration:none;border:none;cursor:pointer;transition:background .2s}
 .cn-livrescolaire-btn:hover{background:#ff7096}
-.cn-back-btn{background:none;border:none;color:var(--pink);font-size:14px;cursor:pointer;margin-bottom:14px;font-weight:700;padding:0;font-family:'Nunito',sans-serif}
+.cn-back-btn{background:none;border:none;color:var(--pink);font-size:14px;cursor:pointer;margin-bottom:14px;font-weight:700;padding:0}
 .discord-card{background:white;border:2px solid var(--line);border-radius:20px;max-width:560px;margin:2rem auto;padding:2.5rem 2rem;text-align:center;box-shadow:0 8px 32px rgba(88,101,242,.10)}
 .discord-icon{font-size:4rem;margin-bottom:1rem;display:block}
-.discord-title{font-family:'Caveat',cursive;font-size:2rem;font-weight:700;color:var(--ink);margin-bottom:.5rem}
+.discord-title{font-family:'Caveat',cursive;font-size:2rem;font-weight:700;margin-bottom:.5rem}
 .discord-sub{color:var(--muted);font-size:.9rem;margin-bottom:1.5rem;line-height:1.7}
 .discord-features{list-style:none;padding:0;margin:0 0 2rem;display:flex;flex-direction:column;gap:10px}
 .discord-features li{display:flex;align-items:center;gap:10px;font-size:.9rem;font-weight:600;padding:10px 14px;background:#f8f6f0;border-radius:10px;border:1.5px solid var(--line)}
-.discord-features li span.feat-icon{font-size:1.2rem}
 .discord-btn{display:inline-flex;align-items:center;gap:12px;background:#5865F2;color:white;border:none;border-radius:14px;padding:14px 32px;font-family:'Caveat',cursive;font-size:1.3rem;font-weight:700;cursor:pointer;text-decoration:none;transition:all .2s;box-shadow:0 4px 16px rgba(88,101,242,.3)}
 .discord-btn:hover{background:#4752c4;transform:translateY(-2px)}
 .discord-btn svg{width:28px;height:28px;fill:white}
 .discord-note{margin-top:1.2rem;font-size:.75rem;color:var(--muted)}
-/* Bannière statut IA */
-.ai-status-bar{display:flex;align-items:center;gap:8px;background:var(--green-bg);border:1.5px solid var(--green-border);border-radius:10px;padding:8px 14px;margin-bottom:12px;font-size:.82rem;color:#005438;font-weight:700}
-.ai-status-dot{width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.status-ok{display:inline-flex;align-items:center;gap:6px;background:var(--green-bg);border:1.5px solid var(--green-border);border-radius:20px;padding:4px 12px;font-size:.75rem;font-weight:700;color:#005438}
+.status-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.error-box{background:#fff5f5;border:2px solid #ffccd8;border-radius:12px;padding:14px 18px;margin-bottom:12px;font-size:.85rem;color:var(--red);display:none}
 </style>
 </head>
 <body>
 
 <div class="topbar">
   <div class="logo">
-    <img src="icon-192.svg" alt="StudyForge" width="38" height="38" style="border-radius:10px;flex-shrink:0" onerror="this.style.display='none'">
+    <img src="icon-192.svg" alt="" width="38" height="38" style="border-radius:10px;flex-shrink:0" onerror="this.style.display='none'">
     Study<span>Forge</span>
   </div>
   <div style="display:flex;align-items:center;gap:12px">
     <div class="user-info" id="user-info-top" style="display:none">
       <div class="user-avatar-top" id="user-avatar-top">😊</div>
-      <div style="font-size:.82rem;font-weight:700" id="user-name-top">Utilisateur</div>
+      <div style="font-size:.82rem;font-weight:700" id="user-name-top"></div>
       <button class="logout-btn" onclick="logout()">Déconnexion</button>
     </div>
     <div id="login-btn-top" style="cursor:pointer;font-size:.85rem;font-weight:700;color:var(--pink)" onclick="showAuth()">Se connecter</div>
@@ -236,11 +232,14 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 
   <div class="main">
 
-    <!-- PAGE GÉNÉRER -->
+    <!-- CRÉER UNE FICHE -->
     <div class="page active" id="page-generate">
       <div class="section-title">✨ Créer une fiche</div>
       <div class="section-sub">L'IA génère une fiche style cahier manuscrit coloré ✍️</div>
-      <div class="ai-status-bar"><div class="ai-status-dot"></div> IA en ligne — Génération instantanée</div>
+      <div style="margin-bottom:1rem">
+        <span class="status-ok"><span class="status-dot"></span> IA en ligne</span>
+      </div>
+      <div class="error-box" id="gen-error"></div>
       <div class="form-card">
         <h3>📌 Matière</h3>
         <div class="chips" id="matiere-chips">
@@ -295,21 +294,20 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
         <span id="btn-text">✏️ Générer ma fiche façon cahier</span>
       </button>
       <div class="fiche-paper" id="fiche-paper">
-        <div class="paper-sheet" id="paper-sheet">
+        <div class="paper-sheet">
           <div class="holes"><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div></div>
           <div class="paper-content" id="paper-content"></div>
         </div>
         <div class="fiche-actions-bar">
           <button class="btn-secondary" onclick="saveFiche()">💾 Sauvegarder</button>
-          <button class="btn-secondary" onclick="printFiche()">🖨️ Imprimer</button>
+          <button class="btn-secondary" onclick="window.print()">🖨️ Imprimer</button>
           <button class="btn-secondary" onclick="generateQuiz()">🎯 Générer un quiz</button>
-          <button class="btn-secondary" id="share-btn" onclick="shareToComm()">🌍 Partager</button>
-          <div class="mod-error" id="mod-error">⚠️ Ce message ne respecte pas les règles.</div>
+          <button class="btn-secondary" onclick="shareToComm()">🌍 Partager</button>
         </div>
       </div>
     </div>
 
-    <!-- PAGE BIBLIOTHÈQUE -->
+    <!-- BIBLIOTHÈQUE -->
     <div class="page" id="page-library">
       <div class="section-title">📚 Ma bibliothèque</div>
       <div class="section-sub">Toutes tes fiches sauvegardées.</div>
@@ -317,7 +315,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
       <div class="fiches-grid" id="library-grid"></div>
     </div>
 
-    <!-- PAGE COMMUNAUTÉ -->
+    <!-- COMMUNAUTÉ -->
     <div class="page" id="page-community">
       <div class="section-title">🌍 Communauté</div>
       <div class="section-sub">Explore les fiches partagées par les autres élèves.</div>
@@ -325,7 +323,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
       <div class="community-grid" id="community-grid"></div>
     </div>
 
-    <!-- PAGE LIVRESCOLAIRE -->
+    <!-- LIVRESCOLAIRE -->
     <div class="page" id="page-livrescolaire">
       <div class="section-title">📒 Livrescolaire</div>
       <div class="section-sub">Programme officiel — Brevet &amp; BAC — avec livrescolaire.fr</div>
@@ -342,7 +340,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
       </div>
     </div>
 
-    <!-- PAGE MESSAGES -->
+    <!-- MESSAGES -->
     <div class="page" id="page-messages">
       <div class="section-title">💬 Messages</div>
       <div class="section-sub">Rejoins la communauté StudyForge sur Discord.</div>
@@ -351,10 +349,10 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
         <div class="discord-title">Communauté StudyForge</div>
         <div class="discord-sub">Rejoins notre serveur Discord pour :</div>
         <ul class="discord-features">
-          <li><span class="feat-icon">💬</span> Chatter avec les autres élèves</li>
-          <li><span class="feat-icon">📋</span> Partager tes fiches</li>
-          <li><span class="feat-icon">📚</span> Réviser ensemble par matière</li>
-          <li><span class="feat-icon">🎯</span> Poser tes questions</li>
+          <li><span>💬</span> Chatter avec les autres élèves</li>
+          <li><span>📋</span> Partager tes fiches</li>
+          <li><span>📚</span> Réviser ensemble par matière</li>
+          <li><span>🎯</span> Poser tes questions</li>
         </ul>
         <a class="discord-btn" href="https://discord.gg/w2meHF38n" target="_blank" rel="noopener">
           <svg viewBox="0 0 127.14 96.36" xmlns="http://www.w3.org/2000/svg"><path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/></svg>
@@ -364,18 +362,18 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
       </div>
     </div>
 
-    <!-- PAGE AGENT IA -->
+    <!-- AGENT IA -->
     <div class="page" id="page-chat">
       <div class="section-title">🤖 Agent IA StudyForge</div>
       <div class="section-sub">Pose tes questions scolaires — répond instantanément ✨</div>
-      <div style="max-width:720px;margin:0 auto;display:flex;flex-direction:column;height:calc(100vh - 180px)">
-        <div class="ai-status-bar"><div class="ai-status-dot"></div> Agent sécurisé · Modération active · IA en ligne</div>
+      <div style="max-width:720px;margin:0 auto;display:flex;flex-direction:column;height:calc(100vh - 200px)">
+        <div style="margin-bottom:8px"><span class="status-ok"><span class="status-dot"></span> Agent sécurisé · IA en ligne</span></div>
         <div id="agent-ban-alert" style="display:none;background:#fff5f5;border:2px solid #ffccd8;border-radius:12px;padding:16px;margin-bottom:12px;text-align:center">
           <div style="font-size:2rem">🚫</div>
           <div style="font-family:'Caveat',cursive;font-size:1.3rem;font-weight:700;color:var(--red)">Accès suspendu</div>
           <div style="font-size:.85rem;color:var(--muted)">Attends <span id="ban-countdown">60</span>s.</div>
         </div>
-        <div id="agent-messages" style="flex:1;overflow-y:auto;background:white;border:2px solid var(--line);border-radius:16px 16px 0 0;padding:1.25rem;display:flex;flex-direction:column;gap:12px;min-height:320px;max-height:420px">
+        <div id="agent-messages" style="flex:1;overflow-y:auto;background:white;border:2px solid var(--line);border-radius:16px 16px 0 0;padding:1.25rem;display:flex;flex-direction:column;gap:12px;min-height:300px;max-height:400px">
           <div class="agent-msg">
             <div class="agent-avatar-bot">🤖</div>
             <div class="agent-bubble agent-bubble-bot">
@@ -386,28 +384,27 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
         </div>
         <div id="agent-typing" style="display:none;background:white;border-left:2px solid var(--line);border-right:2px solid var(--line);padding:8px 1.25rem">
           <div style="display:flex;align-items:center;gap:8px;color:var(--muted);font-size:.82rem">
-            <div class="typing-dots"><span></span><span></span><span></span></div>
-            L'agent réfléchit...
+            <div class="typing-dots"><span></span><span></span><span></span></div> L'agent réfléchit...
           </div>
         </div>
         <div style="background:#fafafa;border-left:2px solid var(--line);border-right:2px solid var(--line);padding:6px 1.25rem;display:flex;justify-content:space-between">
-          <span style="font-size:.75rem;color:var(--muted)">Messages : <span id="msg-count">0</span> / <span id="msg-limit">20</span></span>
+          <span style="font-size:.75rem;color:var(--muted)">Messages : <span id="msg-count">0</span>/20</span>
           <span style="font-size:.75rem;color:var(--muted)" id="agent-warn-txt"></span>
         </div>
         <div style="background:white;border:2px solid var(--line);border-top:none;border-radius:0 0 16px 16px;padding:1rem">
           <div style="display:flex;gap:10px;align-items:flex-end">
             <textarea id="agent-input" rows="2" placeholder="Pose ta question scolaire ici..." style="flex:1;resize:none;max-height:100px" onkeydown="agentKeydown(event)"></textarea>
-            <button onclick="agentSend()" id="agent-send-btn" style="padding:10px 18px;background:var(--pink);border:none;border-radius:10px;color:white;font-family:'Caveat',cursive;font-size:1.1rem;font-weight:700;cursor:pointer;white-space:nowrap;align-self:flex-end">Envoyer ✉️</button>
+            <button onclick="agentSend()" id="agent-send-btn" style="padding:10px 18px;background:var(--pink);border:none;border-radius:10px;color:white;font-family:'Caveat',cursive;font-size:1.1rem;font-weight:700;cursor:pointer;align-self:flex-end">Envoyer ✉️</button>
           </div>
           <div id="agent-block-msg" style="display:none;margin-top:8px;background:#fff5f5;border:1.5px solid #ffccd8;border-radius:8px;padding:8px 12px;font-size:.82rem;color:var(--red);font-weight:600"></div>
         </div>
         <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:8px">
           <span style="font-size:.75rem;color:var(--muted);align-self:center">Suggestions :</span>
-          <button class="agent-suggest" onclick="agentQuickSend('Explique-moi la photosynthèse en SVT')">🌿 Photosynthèse</button>
-          <button class="agent-suggest" onclick="agentQuickSend('Comment résoudre une équation du second degré ?')">📐 Équation 2nd degré</button>
-          <button class="agent-suggest" onclick="agentQuickSend('Résume-moi la Révolution française')">🌍 Révolution française</button>
-          <button class="agent-suggest" onclick="agentQuickSend('Quelles sont les figures de style principales ?')">📖 Figures de style</button>
-          <button class="agent-suggest" onclick="agentQuickSend('Explique-moi les forces de Newton')">⚗️ Forces Newton</button>
+          <button class="agent-suggest" onclick="agentQuick('Explique-moi la photosynthèse en SVT')">🌿 Photosynthèse</button>
+          <button class="agent-suggest" onclick="agentQuick('Comment résoudre une équation du second degré ?')">📐 Équation 2nd degré</button>
+          <button class="agent-suggest" onclick="agentQuick('Résume-moi la Révolution française')">🌍 Révolution française</button>
+          <button class="agent-suggest" onclick="agentQuick('Quelles sont les figures de style principales ?')">📖 Figures de style</button>
+          <button class="agent-suggest" onclick="agentQuick('Explique-moi les forces de Newton')">⚗️ Forces Newton</button>
         </div>
       </div>
     </div>
@@ -432,7 +429,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
       <button class="auth-btn" onclick="login()" id="login-btn">🔑 Se connecter</button>
     </div>
     <div id="form-signup" style="display:none">
-      <div class="auth-field"><label>Ton prénom / pseudo</label><input type="text" id="signup-name" placeholder="Ex : Wael, Sarah..."></div>
+      <div class="auth-field"><label>Prénom / pseudo</label><input type="text" id="signup-name" placeholder="Ex : Wael, Sarah..."></div>
       <div class="auth-field"><label>Email</label><input type="email" id="signup-email" placeholder="ton@email.com"></div>
       <div class="auth-field"><label>Mot de passe</label><input type="password" id="signup-password" placeholder="Minimum 6 caractères"></div>
       <div class="auth-field">
@@ -469,22 +466,66 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 
 <script>
 // ══════════════════════════════════════════
-// API ANTHROPIC DIRECTE (Claude Sonnet)
+// CONFIGURATION IA — Proxy Cloudflare corrigé
+// Le proxy retransmet à Gemini, format compatible
 // ══════════════════════════════════════════
-async function callAI(messages, systemPrompt, maxTokens) {
-  const response = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      model: 'claude-sonnet-4-20250514',
-      max_tokens: maxTokens || 1000,
-      system: systemPrompt || 'Tu es un assistant scolaire expert en pédagogie. Réponds en français.',
-      messages: messages
-    })
+const PROXY_URL = 'https://lucky-butterfly-fb46.daoudiwael26.workers.dev';
+
+async function callAI(userPrompt, systemPrompt, maxTokens) {
+  // On essaie d'abord le proxy Cloudflare
+  try {
+    const res = await fetch(PROXY_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'gemini-2.0-flash',
+        max_tokens: maxTokens || 1000,
+        system: systemPrompt || '',
+        messages: [{ role: 'user', content: userPrompt }]
+      })
+    });
+    if (!res.ok) throw new Error('Proxy HTTP ' + res.status);
+    const data = await res.json();
+    if (data.error) throw new Error(JSON.stringify(data.error));
+    // Supporte les deux formats de réponse (Anthropic-style et Gemini-style)
+    const text = data.content?.[0]?.text || data.candidates?.[0]?.content?.parts?.[0]?.text || data.text || '';
+    if (!text) throw new Error('Réponse vide');
+    return text;
+  } catch (e) {
+    console.warn('Proxy error, fallback local:', e.message);
+    // Fallback : génération locale basique si le proxy est down
+    return generateFallback(userPrompt, systemPrompt);
+  }
+}
+
+// Fallback local si le proxy est down — génère une fiche basique
+function generateFallback(prompt, system) {
+  const isQuiz = prompt.toLowerCase().includes('quiz') || prompt.toLowerCase().includes('qcm');
+  const isAgent = system && system.includes('assistant scolaire');
+
+  if (isAgent) {
+    return "Je suis temporairement hors ligne 😔 Le service IA est indisponible pour l'instant. Réessaie dans quelques minutes, ou consulte livrescolaire.fr pour tes cours !";
+  }
+
+  // Extraire le titre du prompt
+  const titreMatch = prompt.match(/Titre:\s*(.+?)(?:\n|Cours:|Mots)/);
+  const titre = titreMatch ? titreMatch[1].trim() : 'Ma fiche de révision';
+
+  if (isQuiz) {
+    return `Quiz sur ${titre}\n\n1. Question 1 sur ${titre} ?\nA) Option A\nB) Option B\nC) Option C\nD) Option D\n(Réponse: A)\n\n2. Question 2 ?\nA) Option A\nB) Option B\nC) Option C\nD) Option D\n(Réponse: B)\n\n⚠️ Mode hors-ligne : connecte-toi pour des quiz complets générés par l'IA.`;
+  }
+
+  // Fiche de révision basique
+  return JSON.stringify({
+    titre: titre,
+    sections: [
+      { titre: "📌 Points clés", contenu: "- Définition principale du chapitre\n- Concepts fondamentaux à retenir\n- Vocabulaire essentiel" },
+      { titre: "📚 Développement", contenu: "- Premier point important\n- Deuxième point important\n- Exemples et illustrations" },
+      { titre: "💡 À comprendre", contenu: "- Mécanisme principal\n- Liens entre les concepts\n- Applications pratiques" },
+      { titre: "⚠️ Mode hors-ligne", contenu: "Le service IA est temporairement indisponible. Cette fiche est générée localement. Réessaie dans quelques minutes pour une fiche complète !" }
+    ],
+    a_retenir: "Réessaie dans quelques minutes pour une fiche générée par l'IA avec tout ton cours !"
   });
-  const data = await response.json();
-  if (data.error) throw new Error(data.error.message || JSON.stringify(data.error));
-  return data.content?.[0]?.text || '';
 }
 
 // ══════════════════════════════════════════
@@ -494,329 +535,293 @@ const PAGE_INDEX = { generate:0, library:1, community:2, livrescolaire:3, messag
 function showPage(name) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  const page = document.getElementById('page-' + name);
-  if (page) page.classList.add('active');
-  const navItems = document.querySelectorAll('.nav-item');
-  const idx = PAGE_INDEX[name];
-  if (navItems[idx]) navItems[idx].classList.add('active');
+  document.getElementById('page-' + name)?.classList.add('active');
+  document.querySelectorAll('.nav-item')[PAGE_INDEX[name]]?.classList.add('active');
   if (name === 'library') renderLibrary();
   if (name === 'community') renderCommunity();
   if (name === 'livrescolaire') { cnRenderMatieres(); document.getElementById('cn-chap-wrap').style.display = 'none'; }
 }
 
 // ══════════════════════════════════════════
-// MODÉRATION SIMPLE (client-side uniquement)
+// FILTRE CONTENU
 // ══════════════════════════════════════════
-const BLOCKED_PATTERNS = [
-  /terroris/i, /p[eé]dophil/i, /drogue|cocaïne|hero[iï]ne/i, /fabriquer.*bombe|explosif/i,
-  /hacking|sql.?inject/i, /fraude.*bancaire|phishing/i, /meurtre.*comment|tuer.*quelqu/i,
-  /porno|pornograph/i, /sexe.*(enfant|mineur)/i
-];
-function clientFilter(text) {
-  for (const pat of BLOCKED_PATTERNS) { if (pat.test(text)) return { blocked: true }; }
-  return { blocked: false };
-}
-function showModError() { const el = document.getElementById('mod-error'); el.style.display = 'block'; setTimeout(() => { el.style.display = 'none'; }, 4000); }
+const BLOCKED = [/terroris/i,/p[eé]dophil/i,/drogue|cocaïne/i,/bombe|explosif/i,/porno/i,/sexe.*(enfant|mineur)/i];
+function isBad(t) { return BLOCKED.some(p => p.test(t)); }
 
 // ══════════════════════════════════════════
-// DONNÉES LIVRESCOLAIRE
+// LIVRESCOLAIRE DATA
 // ══════════════════════════════════════════
 const CN_DATA = {
   brevet: { matieres: [
-    { nom:'Français', emoji:'📖', url:'https://www.livrescolaire.fr/matiere/troisieme-francais', chapitres:['Lecture et compréhension de texte','Grammaire de la phrase','Conjugaison et temps verbaux','Orthographe lexicale et grammaticale','Rédaction — récit et description','Rédaction — argumentation','Figures de style','Analyse d\'une œuvre intégrale','Dictée préparée','Expression orale'] },
-    { nom:'Mathématiques', emoji:'📐', url:'https://www.livrescolaire.fr/matiere/troisieme-maths', chapitres:['Nombres entiers et décimaux','Fractions et calculs','Puissances et notation scientifique','Calcul littéral et équations','Géométrie — triangles et cercles','Théorème de Pythagore','Théorème de Thalès','Trigonométrie','Statistiques et probabilités','Proportionnalité et pourcentages','Aires et volumes'] },
-    { nom:'Histoire-Géo', emoji:'🌍', url:'https://www.livrescolaire.fr/matiere/troisieme-histoire-geographie', chapitres:['La Première Guerre mondiale','Les régimes totalitaires','La Seconde Guerre mondiale','La guerre froide','La décolonisation','La Ve République','La mondialisation','Le développement durable','La France et l\'UE','EMC — citoyenneté'] },
-    { nom:'Sciences (SVT + Physique)', emoji:'🔬', url:'https://www.livrescolaire.fr/matiere/troisieme-svt', chapitres:['Le corps humain et la santé','La reproduction humaine','Génétique et hérédité','L\'évolution des espèces','Les forces et l\'équilibre','L\'électricité — circuits et lois','Optique — lumière et vision','Les transformations chimiques','L\'énergie et ses formes','La Terre et ses enveloppes'] },
-    { nom:'Anglais', emoji:'🇬🇧', url:'https://www.livrescolaire.fr/matiere/troisieme-anglais', chapitres:['Present simple / continuous','Prétérit simple et continu','Present perfect','Futur (will / going to)','Les modaux (can, must, should)','La voix passive','Le discours indirect','Vocabulaire thématique','Compréhension orale et écrite','Expression écrite et orale'] },
-    { nom:'Technologie', emoji:'⚙️', url:'https://www.livrescolaire.fr/matiere/troisieme-technologie', chapitres:['Analyse d\'un objet technique','Matériaux et structures','Énergie et systèmes','Programmation et robotique','Modélisation 3D','Réseaux et internet'] }
+    { nom:'Français', emoji:'📖', url:'https://www.livrescolaire.fr/matiere/troisieme-francais', chapitres:['Lecture et compréhension de texte','Grammaire de la phrase','Conjugaison et temps verbaux','Orthographe','Rédaction — récit et description','Argumentation','Figures de style','Analyse d\'une œuvre','Expression orale'] },
+    { nom:'Mathématiques', emoji:'📐', url:'https://www.livrescolaire.fr/matiere/troisieme-maths', chapitres:['Fractions et calculs','Puissances','Calcul littéral et équations','Théorème de Pythagore','Théorème de Thalès','Trigonométrie','Statistiques et probabilités','Proportionnalité','Aires et volumes'] },
+    { nom:'Histoire-Géo', emoji:'🌍', url:'https://www.livrescolaire.fr/matiere/troisieme-histoire-geographie', chapitres:['La Première Guerre mondiale','Les régimes totalitaires','La Seconde Guerre mondiale','La guerre froide','La décolonisation','La Ve République','La mondialisation','EMC — citoyenneté'] },
+    { nom:'SVT + Physique', emoji:'🔬', url:'https://www.livrescolaire.fr/matiere/troisieme-svt', chapitres:['Corps humain et santé','Génétique et hérédité','Évolution des espèces','Les forces','Électricité','Optique','Transformations chimiques','L\'énergie'] },
+    { nom:'Anglais', emoji:'🇬🇧', url:'https://www.livrescolaire.fr/matiere/troisieme-anglais', chapitres:['Present simple / continuous','Prétérit','Present perfect','Futur','Les modaux','Voix passive','Discours indirect','Compréhension','Expression'] },
+    { nom:'Technologie', emoji:'⚙️', url:'https://www.livrescolaire.fr/matiere/troisieme-technologie', chapitres:['Objet technique','Matériaux','Énergie','Programmation','Modélisation 3D','Réseaux'] }
   ]},
   bac: { matieres: [
-    { nom:'Français (1ère)', emoji:'📖', url:'https://www.livrescolaire.fr/matiere/premiere-francais', chapitres:['Le roman et le récit','La littérature d\'idées','Le théâtre','La poésie','La dissertation littéraire','Le commentaire composé','L\'oral de français — Grand Oral','Figures de style et procédés','Lecture linéaire'] },
-    { nom:'Philosophie', emoji:'🧠', url:'https://www.livrescolaire.fr/matiere/terminale-philosophie', chapitres:['L\'existence humaine et la culture','La morale et la politique','La connaissance','Le sujet conscient','Le langage','La liberté et le destin','Le bonheur et la vertu','La vérité','La religion et la foi','L\'art et la beauté','La technique','La nature et l\'état','La justice et le droit','Dissertation philosophique','Explication de texte'] },
-    { nom:'Mathématiques', emoji:'📐', url:'https://www.livrescolaire.fr/matiere/terminale-maths', chapitres:['Suites numériques','Limites et continuité','Dérivation et convexité','Intégration','Logarithme népérien','Fonctions exponentielles','Probabilités conditionnelles','Variables aléatoires discrètes','Variables aléatoires continues','Géométrie dans l\'espace','Matrices et graphes (spé)','Nombres complexes (spé)'] },
-    { nom:'Physique-Chimie', emoji:'⚗️', url:'https://www.livrescolaire.fr/matiere/terminale-physique-chimie', chapitres:['Ondes mécaniques et lumineuses','Optique géométrique','Mécanique — lois de Newton','Travail et énergie','Oscillateurs mécaniques','Électromagnétisme','Cinétique chimique','Équilibres chimiques','Acide-base et pH','Oxydoréduction','Chimie organique','Transformations nucléaires'] },
-    { nom:'SVT', emoji:'🧬', url:'https://www.livrescolaire.fr/matiere/terminale-svt', chapitres:['Génétique et expression du génome','Immunologie','Neurones et transmission synaptique','Évolution et sélection naturelle','Tectonique des plaques','Atmosphère et changements climatiques','Biodiversité et classification'] },
-    { nom:'Sciences Éco (SES)', emoji:'📊', url:'https://www.livrescolaire.fr/matiere/terminale-ses', chapitres:['Croissance économique','Fluctuations économiques et crises','Mondialisation et commerce','Marché du travail et chômage','État, revenus et redistribution','Stratification sociale et inégalités','Démocratie et citoyenneté'] },
-    { nom:'Histoire-Géo', emoji:'🌍', url:'https://www.livrescolaire.fr/matiere/terminale-histoire-geographie', chapitres:['Le monde depuis 1945','La guerre froide','La décolonisation','La construction européenne','La France de la Ve République','Le monde depuis 1991','Mondialisation et inégalités','Les frontières et la géopolitique'] },
-    { nom:'NSI (Informatique)', emoji:'💻', url:'https://www.livrescolaire.fr/matiere/terminale-nsi', chapitres:['Structures de données','Algorithmique — complexité et tri','Programmation orientée objet','Récursivité','Bases de données et SQL','Architecture des réseaux','Protocoles TCP/IP et HTTP','Sécurité et cryptographie'] }
+    { nom:'Français (1ère)', emoji:'📖', url:'https://www.livrescolaire.fr/matiere/premiere-francais', chapitres:['Roman et récit','Littérature d\'idées','Théâtre','Poésie','Dissertation','Commentaire composé','Grand Oral','Figures de style','Lecture linéaire'] },
+    { nom:'Philosophie', emoji:'🧠', url:'https://www.livrescolaire.fr/matiere/terminale-philosophie', chapitres:['Existence humaine','Morale et politique','La connaissance','Le langage','Liberté','Bonheur','La vérité','Art','Technique','Justice','Dissertation','Explication de texte'] },
+    { nom:'Mathématiques', emoji:'📐', url:'https://www.livrescolaire.fr/matiere/terminale-maths', chapitres:['Suites numériques','Limites','Dérivation','Intégration','Logarithme','Exponentielle','Probabilités','Variables aléatoires','Géométrie 3D','Complexes'] },
+    { nom:'Physique-Chimie', emoji:'⚗️', url:'https://www.livrescolaire.fr/matiere/terminale-physique-chimie', chapitres:['Ondes','Optique','Mécanique Newton','Énergie','Cinétique chimique','Équilibres','Acide-base','Oxydoréduction','Chimie organique','Nucléaire'] },
+    { nom:'SVT', emoji:'🧬', url:'https://www.livrescolaire.fr/matiere/terminale-svt', chapitres:['Génome','Immunologie','Neurones','Évolution','Tectonique des plaques','Changements climatiques','Biodiversité'] },
+    { nom:'SES', emoji:'📊', url:'https://www.livrescolaire.fr/matiere/terminale-ses', chapitres:['Croissance économique','Crises','Mondialisation','Marché du travail','État et redistribution','Inégalités sociales','Démocratie'] },
+    { nom:'Histoire-Géo', emoji:'🌍', url:'https://www.livrescolaire.fr/matiere/terminale-histoire-geographie', chapitres:['Le monde depuis 1945','Guerre froide','Décolonisation','Construction européenne','Ve République','Mondialisation','Géopolitique'] },
+    { nom:'NSI', emoji:'💻', url:'https://www.livrescolaire.fr/matiere/terminale-nsi', chapitres:['Structures de données','Algorithmique','POO','Récursivité','Bases de données SQL','Réseaux','Sécurité'] }
   ]}
 };
 let cnCurrentExam = 'brevet';
 function cnShowExam(exam, btn) { cnCurrentExam = exam; document.querySelectorAll('.cn-tab-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); document.getElementById('cn-chap-wrap').style.display = 'none'; cnRenderMatieres(); }
-function cnRenderMatieres() { const grid = document.getElementById('cn-grid'); grid.style.display = 'grid'; grid.innerHTML = CN_DATA[cnCurrentExam].matieres.map((m,i) => `<div class="cn-mat-card" onclick="cnShowChapitres(${i})"><span class="cn-mat-emoji">${m.emoji}</span>${m.nom}</div>`).join(''); }
-function cnShowChapitres(idx) { const mat = CN_DATA[cnCurrentExam].matieres[idx]; document.getElementById('cn-grid').style.display = 'none'; document.getElementById('cn-chap-wrap').style.display = 'block'; document.getElementById('cn-chap-title').textContent = mat.emoji + ' ' + mat.nom + ' — Programme'; document.getElementById('cn-ls-link').href = mat.url; document.getElementById('cn-chap-list').innerHTML = mat.chapitres.map(c => `<li onclick="cnSelectChap('${c.replace(/'/g,"\\'")}','${mat.nom.replace(/'/g,"\\'")}','${cnCurrentExam}')">${c}</li>`).join(''); }
-function cnBack() { document.getElementById('cn-chap-wrap').style.display = 'none'; document.getElementById('cn-grid').style.display = 'grid'; }
+function cnRenderMatieres() { const g = document.getElementById('cn-grid'); g.style.display='grid'; g.innerHTML = CN_DATA[cnCurrentExam].matieres.map((m,i) => `<div class="cn-mat-card" onclick="cnShowChapitres(${i})"><span class="cn-mat-emoji">${m.emoji}</span>${m.nom}</div>`).join(''); }
+function cnShowChapitres(idx) { const m = CN_DATA[cnCurrentExam].matieres[idx]; document.getElementById('cn-grid').style.display='none'; document.getElementById('cn-chap-wrap').style.display='block'; document.getElementById('cn-chap-title').textContent=m.emoji+' '+m.nom+' — Programme'; document.getElementById('cn-ls-link').href=m.url; document.getElementById('cn-chap-list').innerHTML=m.chapitres.map(c=>`<li onclick="cnSelectChap('${c.replace(/'/g,"\\'")}','${m.nom.replace(/'/g,"\\'")}','${cnCurrentExam}')">${c}</li>`).join(''); }
+function cnBack() { document.getElementById('cn-chap-wrap').style.display='none'; document.getElementById('cn-grid').style.display='grid'; }
 function cnSelectChap(chap, matiere, exam) {
   document.getElementById('titre-input').value = chap;
   document.getElementById('cours-text').value = '';
-  document.querySelectorAll('#matiere-chips .chip').forEach(c => { c.classList.remove('active'); if (c.dataset.val === matiere || matiere.includes(c.dataset.val) || c.dataset.val === matiere.split(' ')[0]) { c.classList.add('active'); selectedMatiere = c.dataset.val; } });
+  let found = false;
+  document.querySelectorAll('#matiere-chips .chip').forEach(c => { c.classList.remove('active'); if (!found && (c.dataset.val === matiere || matiere.includes(c.dataset.val))) { c.classList.add('active'); selectedMatiere = c.dataset.val; found = true; } });
   document.getElementById('niveau-select').value = exam === 'brevet' ? 'Collège' : 'Terminale / BAC';
-  showPage('generate'); showToast('📌 Chapitre : ' + chap.substring(0,30) + '…');
-  setTimeout(() => document.getElementById('titre-input').scrollIntoView({ behavior:'smooth' }), 300);
+  showPage('generate'); showToast('📌 ' + chap.substring(0,35) + '…');
 }
 
 // ══════════════════════════════════════════
 // SUPABASE
 // ══════════════════════════════════════════
-const SUPABASE_URL = 'https://xesefsrpxinehodfgbri.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_sduj2vS9RtmHUPZLbg0YnA_0abm0Ftf';
-async function sbFetch(path, options = {}) {
-  const res = await fetch(SUPABASE_URL + '/rest/v1/' + path, { ...options, headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json', 'Prefer': 'return=representation', ...(options.headers || {}) } });
-  return res.json();
+const SB_URL = 'https://xesefsrpxinehodfgbri.supabase.co';
+const SB_KEY = 'sb_publishable_sduj2vS9RtmHUPZLbg0YnA_0abm0Ftf';
+async function sbFetch(path, opts={}) {
+  try {
+    const r = await fetch(SB_URL+'/rest/v1/'+path, {...opts, headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json','Prefer':'return=representation',...(opts.headers||{})}});
+    return r.json();
+  } catch(e) { console.warn('Supabase error', e); return null; }
 }
 async function loadCommunity() {
-  try {
-    const data = await sbFetch('community?order=created_at.desc&limit=50');
-    if (Array.isArray(data)) { communityFiches = data.map(f => ({ id:f.id, titre:f.titre, matiere:f.matiere, niveau:f.niveau, auteur:f.auteur, initiales:f.initiales, avColor:f.av_color||'linear-gradient(135deg,#ff8fab,#b388ff)', date:new Date(f.created_at).toLocaleDateString('fr-FR'), preview:f.preview, likes:f.likes||0, sections:f.sections||[], a_retenir:f.a_retenir||'' })); renderCommunity(); }
-  } catch(e) { console.log('Supabase load error', e); }
+  const data = await sbFetch('community?order=created_at.desc&limit=50');
+  if (Array.isArray(data)) { communityFiches = data.map(f=>({id:f.id,titre:f.titre,matiere:f.matiere,niveau:f.niveau,auteur:f.auteur,initiales:f.initiales,avColor:f.av_color||'linear-gradient(135deg,#ff8fab,#b388ff)',date:new Date(f.created_at).toLocaleDateString('fr-FR'),preview:f.preview,likes:f.likes||0,sections:f.sections||[],a_retenir:f.a_retenir||''})); renderCommunity(); }
 }
-async function saveToCommunity(fiche) {
-  try { await sbFetch('community', { method:'POST', body:JSON.stringify({ titre:fiche.titre, matiere:fiche.matiere, niveau:fiche.niveau, auteur:fiche.auteur||'DAOUDI WAEL', initiales:fiche.initiales||'DW', av_color:fiche.avColor||'linear-gradient(135deg,#ff8fab,#b388ff)', preview:fiche.preview||'', likes:0, sections:fiche.sections, a_retenir:fiche.a_retenir }) }); }
-  catch(e) { console.log('Supabase save error', e); }
+async function saveToCommunity(f) {
+  await sbFetch('community',{method:'POST',body:JSON.stringify({titre:f.titre,matiere:f.matiere,niveau:f.niveau,auteur:f.auteur||'Anonyme',initiales:f.initiales||'??',av_color:f.avColor,preview:f.preview||'',likes:0,sections:f.sections,a_retenir:f.a_retenir})});
 }
 
 // ══ STATE ══
 let selectedMatiere = 'Français', currentFiche = null;
-let library = JSON.parse(localStorage.getItem('sf_library2') || '[]');
-let communityFiches = JSON.parse(localStorage.getItem('sf_community2') || '[]');
-const SECTION_COLORS_CYCLE = ['sec-pink','sec-blue','sec-yellow','sec-green','sec-purple','sec-orange'];
+let library = (() => { try { return JSON.parse(localStorage.getItem('sf_library2')||'[]'); } catch(e){return[];} })();
+let communityFiches = (() => { try { return JSON.parse(localStorage.getItem('sf_community2')||'[]'); } catch(e){return[];} })();
+const COLORS = ['sec-pink','sec-blue','sec-yellow','sec-green','sec-purple','sec-orange'];
 
 document.querySelectorAll('#matiere-chips .chip').forEach(c => {
-  c.addEventListener('click', () => { document.querySelectorAll('#matiere-chips .chip').forEach(x => x.classList.remove('active')); c.classList.add('active'); selectedMatiere = c.dataset.val; });
+  c.addEventListener('click', () => { document.querySelectorAll('#matiere-chips .chip').forEach(x=>x.classList.remove('active')); c.classList.add('active'); selectedMatiere = c.dataset.val; });
 });
 
-function handleFile(input) { const file = input.files[0]; if (!file) return; const reader = new FileReader(); reader.onload = e => { const img = document.getElementById('preview-img'); img.src = e.target.result; img.style.display = 'block'; }; reader.readAsDataURL(file); }
+function handleFile(input) { const f=input.files[0]; if(!f)return; const r=new FileReader(); r.onload=e=>{const i=document.getElementById('preview-img');i.src=e.target.result;i.style.display='block';}; r.readAsDataURL(f); }
+
+function showGenError(msg) { const el=document.getElementById('gen-error'); el.textContent=msg; el.style.display='block'; setTimeout(()=>el.style.display='none', 6000); }
 
 async function generateFiche() {
-  const titre = document.getElementById('titre-input').value;
-  const cours = document.getElementById('cours-text').value;
-  const keywords = document.getElementById('keywords-input').value;
+  const titre = document.getElementById('titre-input').value.trim();
+  const cours = document.getElementById('cours-text').value.trim();
+  const kw = document.getElementById('keywords-input').value.trim();
   const niveau = document.getElementById('niveau-select').value;
-  const typeFiche = document.getElementById('type-select').value;
-  if (!titre && !cours && !keywords) { showToast('⚠️ Remplis au moins un champ !'); return; }
-  const texteAVerifier = [titre, cours, keywords].filter(Boolean).join(' ');
-  if (clientFilter(texteAVerifier).blocked) { showToast('🚫 Contenu inapproprié !'); return; }
-  const btn = document.getElementById('gen-btn'), spinner = document.getElementById('spinner'), btnText = document.getElementById('btn-text');
-  btn.disabled = true; spinner.style.display = 'block'; btnText.textContent = "L'IA crée ta fiche...";
-  const prompt = `Tu es un expert en pédagogie. Génère une fiche de révision de niveau ${niveau} en ${selectedMatiere}, type "${typeFiche}". ${titre ? 'Titre: ' + titre : ''} ${cours ? 'Cours:\n' + cours.substring(0,1000) : ''} ${keywords ? 'Mots-clés: ' + keywords : ''}. Réponds UNIQUEMENT en JSON valide sans markdown: {"titre":"...","sections":[{"titre":"NOM","contenu":"texte avec \\n pour séparer. - pour listes."}],"a_retenir":"points séparés par \\n"}. 4 à 6 sections. En français.`;
+  const type = document.getElementById('type-select').value;
+  if (!titre && !cours && !kw) { showGenError('⚠️ Remplis au moins le titre ou colle ton cours !'); return; }
+  if (isBad([titre,cours,kw].join(' '))) { showGenError('🚫 Contenu inapproprié détecté.'); return; }
+
+  const btn=document.getElementById('gen-btn'), sp=document.getElementById('spinner'), bt=document.getElementById('btn-text');
+  btn.disabled=true; sp.style.display='block'; bt.textContent="L'IA crée ta fiche...";
+  document.getElementById('gen-error').style.display='none';
+
+  const prompt = `Tu es un expert pédagogue. Génère une fiche de révision niveau ${niveau} en ${selectedMatiere}, type "${type}".
+${titre?'Titre: '+titre:''}
+${cours?'Cours:\n'+cours.substring(0,1200):''}
+${kw?'Mots-clés: '+kw:''}
+
+IMPORTANT: Réponds UNIQUEMENT avec du JSON valide, sans aucun markdown, sans backticks, sans texte avant ou après.
+Format exact: {"titre":"...","sections":[{"titre":"NOM SECTION","contenu":"texte avec \\n entre lignes, - pour listes"}],"a_retenir":"point1\\npoint2"}
+Génère 4 à 6 sections pertinentes. Contenu riche et pédagogique. En français.`;
+
   try {
-    const text = await callAI(
-      [{ role:'user', content: prompt }],
-      'Tu es un expert pédagogue. Réponds UNIQUEMENT en JSON valide, sans markdown, sans backticks.',
-      1500
-    );
-    let clean = text.trim();
-    // Nettoyer les balises markdown si présentes
-    clean = clean.replace(/```json\s*/gi,'').replace(/```\s*/gi,'').trim();
-    // Trouver le JSON dans la réponse
-    const jsonStart = clean.indexOf('{');
-    const jsonEnd = clean.lastIndexOf('}');
-    if (jsonStart !== -1 && jsonEnd !== -1) clean = clean.substring(jsonStart, jsonEnd + 1);
-    const parsed = JSON.parse(clean);
-    currentFiche = { id:Date.now(), titre:parsed.titre||titre||selectedMatiere, matiere:selectedMatiere, niveau, type:typeFiche, sections:parsed.sections||[], a_retenir:parsed.a_retenir||'', date:new Date().toLocaleDateString('fr-FR') };
+    let raw = await callAI(prompt, 'Réponds UNIQUEMENT en JSON valide, sans markdown.', 1500);
+
+    // Nettoyage robuste
+    raw = raw.trim();
+    raw = raw.replace(/^```json\s*/i,'').replace(/^```\s*/,'').replace(/\s*```$/,'').trim();
+    // Trouver les accolades JSON
+    const start = raw.indexOf('{');
+    const end = raw.lastIndexOf('}');
+    if (start === -1 || end === -1) throw new Error('Pas de JSON trouvé dans la réponse');
+    raw = raw.substring(start, end+1);
+
+    const parsed = JSON.parse(raw);
+    if (!parsed.sections || !Array.isArray(parsed.sections) || parsed.sections.length === 0) throw new Error('Sections manquantes');
+
+    currentFiche = { id:Date.now(), titre:parsed.titre||titre||selectedMatiere, matiere:selectedMatiere, niveau, type, sections:parsed.sections, a_retenir:parsed.a_retenir||'', date:new Date().toLocaleDateString('fr-FR') };
     renderPaperFiche(currentFiche);
-    document.getElementById('fiche-paper').style.display = 'block';
-    document.getElementById('fiche-paper').scrollIntoView({ behavior:'smooth', block:'start' });
+    document.getElementById('fiche-paper').style.display='block';
+    document.getElementById('fiche-paper').scrollIntoView({behavior:'smooth',block:'start'});
   } catch(e) {
-    console.error('Erreur génération fiche:', e);
-    showToast('❌ Erreur de génération. Vérifie ta connexion et réessaie !');
+    console.error('Erreur fiche:', e);
+    showGenError('❌ ' + (e.message.includes('JSON') ? 'L\'IA a renvoyé un format inattendu. Réessaie !' : 'Service IA indisponible. Réessaie dans quelques secondes.'));
   }
-  btn.disabled = false; spinner.style.display = 'none'; btnText.textContent = '✏️ Générer ma fiche façon cahier';
+  btn.disabled=false; sp.style.display='none'; bt.textContent='✏️ Générer ma fiche façon cahier';
 }
 
 function renderPaperFiche(fiche) {
-  const container = document.getElementById('paper-content'), colors = SECTION_COLORS_CYCLE, useGrid = fiche.sections.length >= 4;
-  let html = `<div class="fiche-main-title">${fiche.titre}</div>`;
-  if (useGrid) { const half = Math.ceil(fiche.sections.length / 2); html += `<div class="fiche-grid"><div>` + fiche.sections.slice(0,half).map((s,i) => renderSection(s, colors[i%colors.length])).join('') + `</div><div>` + fiche.sections.slice(half).map((s,i) => renderSection(s, colors[(i+half)%colors.length])).join('') + `</div></div>`; }
-  else { html += fiche.sections.map((s,i) => renderSection(s, colors[i%colors.length])).join(''); }
-  if (fiche.a_retenir) html += `<div class="a-retenir"><div class="a-retenir-title">⭐ À retenir</div>${fiche.a_retenir.split('\\n').map(l => `<div>${l}</div>`).join('')}</div>`;
-  container.innerHTML = html;
-}
-function renderSection(section, colorClass) {
-  let body = section.contenu || '';
-  const lines = body.split('\\n');
-  let rendered = lines.map(line => {
-    line = line.trim(); if (!line) return '';
-    if (line.startsWith('SCHEMA:')) return `<div class="schema">${line.replace('SCHEMA:','').trim()}</div>`;
-    else if (line.startsWith('- ') || line.startsWith('* ')) return `<li>${line.slice(2).trim()}</li>`;
-    else if (line.includes(':') && line.indexOf(':') < 35 && !line.startsWith(' ')) { const idx = line.indexOf(':'); const k = line.substring(0,idx); const v = line.substring(idx+1); return `<div><strong>${k} :</strong>${v}</div>`; }
-    else return `<div>${line}</div>`;
-  });
-  let html = rendered.join('').replace(/(<li>.*?<\/li>)+/g, m => `<ul>${m}</ul>`);
-  return `<div class="fiche-section ${colorClass}"><div class="section-header">${section.titre}</div><div class="section-body">${html}</div></div>`;
+  const cont=document.getElementById('paper-content'), use2col=fiche.sections.length>=4;
+  let html=`<div class="fiche-main-title">${escHtml(fiche.titre)}</div>`;
+  if (use2col) {
+    const h=Math.ceil(fiche.sections.length/2);
+    html+=`<div class="fiche-grid"><div>${fiche.sections.slice(0,h).map((s,i)=>renderSection(s,COLORS[i%COLORS.length])).join('')}</div><div>${fiche.sections.slice(h).map((s,i)=>renderSection(s,COLORS[(i+h)%COLORS.length])).join('')}</div></div>`;
+  } else { html+=fiche.sections.map((s,i)=>renderSection(s,COLORS[i%COLORS.length])).join(''); }
+  if (fiche.a_retenir) html+=`<div class="a-retenir"><div class="a-retenir-title">⭐ À retenir</div>${fiche.a_retenir.split('\\n').filter(Boolean).map(l=>`<div>${escHtml(l)}</div>`).join('')}</div>`;
+  cont.innerHTML=html;
 }
 
-function saveFiche() { if (!currentFiche) { showToast('Génère d\'abord une fiche !'); return; } if (library.find(f => f.id === currentFiche.id)) { showToast('⚠️ Déjà sauvegardée !'); return; } library.unshift(currentFiche); localStorage.setItem('sf_library2', JSON.stringify(library)); showToast('💾 Fiche sauvegardée !'); }
-function printFiche() { window.print(); }
-async function shareToComm() {
-  if (!currentFiche) { showToast('Génère d\'abord une fiche !'); return; }
-  if (!currentUser) { showToast('Connecte-toi pour partager !'); showAuth(); return; }
-  if (clientFilter(currentFiche.titre).blocked) { showModError(); return; }
-  const btn = document.getElementById('share-btn'); btn.disabled = true; btn.textContent = '⏳ Partage...';
-  const initiales = (currentUser.name || '?').substring(0,2).toUpperCase();
-  const f = { ...currentFiche, auteur:currentUser.name, initiales, avColor:'linear-gradient(135deg,#ff8fab,#b388ff)', date:"à l'instant", likes:0, preview:(currentFiche.sections[0]?.contenu||'').substring(0,100)+'...' };
-  await saveToCommunity(f); await loadCommunity();
-  btn.disabled = false; btn.textContent = '🌍 Partager';
-  showToast('🌍 Fiche partagée !');
+function renderSection(s, col) {
+  const lines = (s.contenu||'').split('\\n');
+  const parts = lines.map(l => {
+    l = l.trim(); if (!l) return '';
+    if (l.startsWith('- ') || l.startsWith('* ')) return `<li>${escHtml(l.slice(2).trim())}</li>`;
+    const ci = l.indexOf(':');
+    if (ci > 0 && ci < 40 && !l.startsWith(' ')) return `<div><strong>${escHtml(l.slice(0,ci))} :</strong> ${escHtml(l.slice(ci+1).trim())}</div>`;
+    return `<div>${escHtml(l)}</div>`;
+  });
+  let body = parts.join('').replace(/(<li>.*?<\/li>)+/g, m=>`<ul>${m}</ul>`);
+  return `<div class="fiche-section ${col}"><div class="section-header">${escHtml(s.titre)}</div><div class="section-body">${body}</div></div>`;
 }
+
+function escHtml(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function saveFiche() { if(!currentFiche){showToast('Génère d\'abord une fiche !');return;} if(library.find(f=>f.id===currentFiche.id)){showToast('⚠️ Déjà sauvegardée !');return;} library.unshift(currentFiche); localStorage.setItem('sf_library2',JSON.stringify(library)); showToast('💾 Fiche sauvegardée !'); }
+
 async function generateQuiz() {
-  if (!currentFiche) { showToast('Génère d\'abord une fiche !'); return; }
+  if(!currentFiche){showToast('Génère d\'abord une fiche !');return;}
   showToast('🎯 Génération du quiz...');
-  const content = currentFiche.sections.map(s => `${s.titre}: ${s.contenu}`).join('\n');
+  const content = currentFiche.sections.map(s=>`${s.titre}: ${s.contenu}`).join('\n');
   try {
     const quiz = await callAI(
-      [{ role:'user', content:`Génère 5 questions QCM sur "${currentFiche.titre}" (${currentFiche.matiere}) avec 4 choix (A,B,C,D) et indique la bonne réponse entre parenthèses après chaque question. Contenu:\n${content.substring(0,600)}` }],
-      'Tu es un expert pédagogue. Génère des questions QCM claires et pédagogiques.',
+      `Génère 5 questions QCM sur "${currentFiche.titre}" (${currentFiche.matiere}). Pour chaque question : énoncé, 4 choix A/B/C/D, et la bonne réponse entre parenthèses. Contenu:\n${content.substring(0,600)}`,
+      'Tu es un expert pédagogue. Génère des QCM clairs.',
       700
     );
-    openModal('🎯 Quiz — ' + currentFiche.titre, `<div style="white-space:pre-wrap;font-family:'Kalam',cursive;font-size:.95rem;line-height:1.9">${quiz}</div>`);
-  } catch(e) { showToast('❌ Erreur'); }
+    openModal('🎯 Quiz — '+currentFiche.titre, `<div style="white-space:pre-wrap;font-family:'Kalam',cursive;font-size:.95rem;line-height:1.9">${escHtml(quiz)}</div>`);
+  } catch(e) { showToast('❌ Erreur quiz'); }
 }
 
-// ══════ LIBRARY ══════
-const BADGE_COLORS = { 'Français':'badge-purple','Mathématiques':'badge-yellow','Histoire-Géo':'badge-pink','Sciences':'badge-green','Biologie':'badge-green','Anglais':'badge-blue','default':'badge-pink' };
-function getBadge(m) { return BADGE_COLORS[m] || BADGE_COLORS.default; }
-const CARD_BARS = { 'Français':'linear-gradient(90deg,#b388ff,#ff8fab)','Mathématiques':'linear-gradient(90deg,#ffd166,#ff9f1c)','Histoire-Géo':'linear-gradient(90deg,#ef476f,#ffd166)','Sciences':'linear-gradient(90deg,#06d6a0,#4cc9f0)','Biologie':'linear-gradient(90deg,#06d6a0,#34d399)','Anglais':'linear-gradient(90deg,#4cc9f0,#b388ff)','default':'linear-gradient(90deg,#ff8fab,#ffd166)' };
-function getBar(m) { return CARD_BARS[m] || CARD_BARS.default; }
-function renderLibrary(filter = '') {
-  const grid = document.getElementById('library-grid');
-  const f = library.filter(x => x.titre.toLowerCase().includes(filter.toLowerCase()) || x.matiere.toLowerCase().includes(filter.toLowerCase()));
-  if (!f.length) { grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1"><div class="es-icon">📭</div><p>' + (filter ? 'Aucune fiche trouvée.' : 'Génère ta première fiche et sauvegarde-la !') + '</p></div>'; return; }
-  grid.innerHTML = f.map(fiche => `<div class="fiche-card" onclick="openFicheModal('${fiche.id}')"><div class="fc-color-bar" style="background:${getBar(fiche.matiere)}"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><h4>${fiche.titre}</h4><button onclick="event.stopPropagation();deleteLib('${fiche.id}')" style="background:none;border:none;cursor:pointer;color:#ccc;font-size:.85rem">🗑</button></div><div class="fc-meta">${fiche.date} · ${fiche.niveau}</div><div class="fc-preview">${fiche.sections[0]?.contenu?.substring(0,100)||''}...</div><div style="margin-top:10px"><span class="badge ${getBadge(fiche.matiere)}">${fiche.matiere}</span></div></div>`).join('');
-}
-function filterLibrary() { renderLibrary(document.getElementById('lib-search').value); }
-function deleteLib(id) { library = library.filter(f => String(f.id) !== String(id)); localStorage.setItem('sf_library2', JSON.stringify(library)); renderLibrary(document.getElementById('lib-search').value); showToast('🗑 Supprimée'); }
-function openFicheModal(id) { const fiche = library.find(f => String(f.id) === String(id)); if (!fiche) return; openModal(fiche.titre, buildPaperHTML(fiche)); }
-function buildPaperHTML(fiche) {
-  const colors = SECTION_COLORS_CYCLE, useGrid = fiche.sections.length >= 4;
-  let html = `<div style="font-family:'Kalam',cursive;padding:.5rem"><div style="font-family:'Caveat',cursive;font-size:1.5rem;font-weight:700;text-align:center;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:3px solid var(--pink)">${fiche.titre}</div>`;
-  if (useGrid) { const half = Math.ceil(fiche.sections.length / 2); html += `<div class="fiche-grid"><div>` + fiche.sections.slice(0,half).map((s,i) => renderSection(s, colors[i%colors.length])).join('') + `</div><div>` + fiche.sections.slice(half).map((s,i) => renderSection(s, colors[(i+half)%colors.length])).join('') + `</div></div>`; }
-  else { html += fiche.sections.map((s,i) => renderSection(s, colors[i%colors.length])).join(''); }
-  if (fiche.a_retenir) html += `<div class="a-retenir"><div class="a-retenir-title">⭐ À retenir</div>${fiche.a_retenir.split('\\n').map(l => `<div>${l}</div>`).join('')}</div>`;
-  html += `</div>`; return html;
+async function shareToComm() {
+  if(!currentFiche){showToast('Génère d\'abord une fiche !');return;}
+  if(!currentUser){showToast('Connecte-toi pour partager !');showAuth();return;}
+  showToast('🌍 Partage en cours...');
+  const initiales=(currentUser.name||'?').substring(0,2).toUpperCase();
+  await saveToCommunity({...currentFiche,auteur:currentUser.name,initiales,avColor:'linear-gradient(135deg,#ff8fab,#b388ff)',preview:(currentFiche.sections[0]?.contenu||'').substring(0,100)+'...'});
+  await loadCommunity();
+  showToast('🌍 Fiche partagée !');
 }
 
-// ══════ COMMUNITY ══════
-function renderCommunity(filter = '') {
-  const grid = document.getElementById('community-grid');
-  const f = communityFiches.filter(x => x.titre.toLowerCase().includes(filter.toLowerCase()) || x.matiere.toLowerCase().includes(filter.toLowerCase()));
-  if (!f.length) { grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1"><div class="es-icon">🌍</div><p>Aucune fiche publiée.</p></div>'; return; }
-  grid.innerHTML = f.map(fiche => `<div class="pub-card"><div class="pub-author"><div class="pub-avatar" style="background:${fiche.avColor||'linear-gradient(135deg,#ff8fab,#b388ff)'}">${fiche.initiales}</div><div><div class="pub-name">${fiche.auteur}</div><div class="pub-date">${fiche.date}</div></div></div><h4>${fiche.titre}</h4><p>${fiche.preview}</p><div class="pub-footer"><span class="badge ${getBadge(fiche.matiere)}">${fiche.matiere}</span><div style="display:flex;gap:6px;align-items:center"><button class="btn-secondary" style="font-size:.75rem;padding:3px 9px" onclick="saveFromComm('${fiche.id}')">💾</button><button class="like-btn" id="like-${fiche.id}" onclick="toggleLike('${fiche.id}',this)">❤️ ${fiche.likes}</button></div></div></div>`).join('');
+// ══ LIBRARY ══
+const BADGE_MAP={'Français':'badge-purple','Mathématiques':'badge-yellow','Histoire-Géo':'badge-pink','Sciences':'badge-green','Biologie':'badge-green','Anglais':'badge-blue'};
+const BAR_MAP={'Français':'linear-gradient(90deg,#b388ff,#ff8fab)','Mathématiques':'linear-gradient(90deg,#ffd166,#ff9f1c)','Histoire-Géo':'linear-gradient(90deg,#ef476f,#ffd166)','Sciences':'linear-gradient(90deg,#06d6a0,#4cc9f0)','Biologie':'linear-gradient(90deg,#06d6a0,#34d399)','Anglais':'linear-gradient(90deg,#4cc9f0,#b388ff)'};
+function getBadge(m){return BADGE_MAP[m]||'badge-pink';}
+function getBar(m){return BAR_MAP[m]||'linear-gradient(90deg,#ff8fab,#ffd166)';}
+function renderLibrary(q='') {
+  const grid=document.getElementById('library-grid');
+  const f=library.filter(x=>x.titre.toLowerCase().includes(q.toLowerCase())||x.matiere.toLowerCase().includes(q.toLowerCase()));
+  if(!f.length){grid.innerHTML=`<div class="empty-state" style="grid-column:1/-1"><div class="es-icon">📭</div><p>${q?'Aucune fiche trouvée.':'Génère ta première fiche et sauvegarde-la !'}</p></div>`;return;}
+  grid.innerHTML=f.map(fiche=>`<div class="fiche-card" onclick="openFicheModal('${fiche.id}')"><div class="fc-color-bar" style="background:${getBar(fiche.matiere)}"></div><div style="display:flex;justify-content:space-between"><h4>${escHtml(fiche.titre)}</h4><button onclick="event.stopPropagation();deleteLib('${fiche.id}')" style="background:none;border:none;cursor:pointer;color:#ccc">🗑</button></div><div class="fc-meta">${fiche.date} · ${fiche.niveau}</div><div class="fc-preview">${escHtml((fiche.sections[0]?.contenu||'').substring(0,100))}...</div><div style="margin-top:10px"><span class="badge ${getBadge(fiche.matiere)}">${fiche.matiere}</span></div></div>`).join('');
 }
-function filterCommunity() { renderCommunity(document.getElementById('comm-search').value); }
-function toggleLike(id, btn) { const f = communityFiches.find(x => String(x.id) === String(id)); if (!f) return; btn.classList.toggle('liked'); f.likes = btn.classList.contains('liked') ? f.likes + 1 : f.likes - 1; btn.textContent = `❤️ ${f.likes}`; localStorage.setItem('sf_community2', JSON.stringify(communityFiches)); }
-function saveFromComm(id) { const f = communityFiches.find(x => String(x.id) === String(id)); if (!f) return; library.unshift({ ...f, id:Date.now(), date:new Date().toLocaleDateString('fr-FR') }); localStorage.setItem('sf_library2', JSON.stringify(library)); showToast('💾 Sauvegardée !'); }
+function filterLibrary(){renderLibrary(document.getElementById('lib-search').value);}
+function deleteLib(id){library=library.filter(f=>String(f.id)!==String(id));localStorage.setItem('sf_library2',JSON.stringify(library));renderLibrary(document.getElementById('lib-search').value);showToast('🗑 Supprimée');}
+function openFicheModal(id){const f=library.find(f=>String(f.id)===String(id));if(!f)return;const html=buildPaperHTML(f);openModal(f.titre,html);}
+function buildPaperHTML(fiche){const c=COLORS,h2=fiche.sections.length>=4,half=Math.ceil(fiche.sections.length/2);let html=`<div style="font-family:'Kalam',cursive"><div style="font-family:'Caveat',cursive;font-size:1.5rem;font-weight:700;text-align:center;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:3px solid var(--pink)">${escHtml(fiche.titre)}</div>`;if(h2){html+=`<div class="fiche-grid"><div>${fiche.sections.slice(0,half).map((s,i)=>renderSection(s,c[i%c.length])).join('')}</div><div>${fiche.sections.slice(half).map((s,i)=>renderSection(s,c[(i+half)%c.length])).join('')}</div></div>`;}else{html+=fiche.sections.map((s,i)=>renderSection(s,c[i%c.length])).join('');}if(fiche.a_retenir)html+=`<div class="a-retenir"><div class="a-retenir-title">⭐ À retenir</div>${fiche.a_retenir.split('\\n').map(l=>`<div>${escHtml(l)}</div>`).join('')}</div>`;return html+'</div>';}
 
-// ══════ MODAL ══════
-function openModal(title, body) { document.getElementById('modal-title').textContent = title; document.getElementById('modal-body').innerHTML = body; document.getElementById('modal-overlay').classList.add('open'); }
-function closeModal(e) { if (!e || e.target === document.getElementById('modal-overlay')) document.getElementById('modal-overlay').classList.remove('open'); }
-
-// ══════ TOAST ══════
-function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2500); }
-
-// ══════ AUTH ══════
-const SUPABASE_AUTH_URL = 'https://xesefsrpxinehodfgbri.supabase.co/auth/v1';
-let currentUser = null, selectedAvatarEmoji = '😊';
-function showAuth() { document.getElementById('auth-overlay').style.display = 'flex'; }
-function hideAuth() { document.getElementById('auth-overlay').style.display = 'none'; }
-function switchTab(tab) { document.getElementById('form-login').style.display = tab === 'login' ? 'block' : 'none'; document.getElementById('form-signup').style.display = tab === 'signup' ? 'block' : 'none'; document.getElementById('tab-login').classList.toggle('active', tab === 'login'); document.getElementById('tab-signup').classList.toggle('active', tab === 'signup'); document.getElementById('auth-error').style.display = 'none'; document.getElementById('auth-success').style.display = 'none'; }
-function selectAvatar(el) { document.querySelectorAll('.avatar-opt').forEach(a => a.classList.remove('selected')); el.classList.add('selected'); selectedAvatarEmoji = el.dataset.emoji; }
-function showAuthError(msg) { const el = document.getElementById('auth-error'); el.textContent = msg; el.style.display = 'block'; document.getElementById('auth-success').style.display = 'none'; }
-function showAuthSuccess(msg) { const el = document.getElementById('auth-success'); el.textContent = msg; el.style.display = 'block'; document.getElementById('auth-error').style.display = 'none'; }
-async function signup() {
-  const name = document.getElementById('signup-name').value.trim(), email = document.getElementById('signup-email').value.trim(), password = document.getElementById('signup-password').value;
-  if (!name || !email || !password) { showAuthError('Remplis tous les champs !'); return; } if (password.length < 6) { showAuthError('Mot de passe minimum 6 caractères !'); return; }
-  const btn = document.getElementById('signup-btn'); btn.disabled = true; btn.textContent = 'Création...';
-  try {
-    const res = await fetch(SUPABASE_AUTH_URL + '/signup', { method:'POST', headers:{ 'Content-Type':'application/json', 'apikey':SUPABASE_KEY }, body:JSON.stringify({ email, password, data:{ name, avatar:selectedAvatarEmoji } }) });
-    const data = await res.json(); if (data.error) { showAuthError(data.error.message || 'Erreur !'); return; }
-    showAuthSuccess('✅ Compte créé ! Vérifie ton email.'); setTimeout(() => switchTab('login'), 2000);
-  } catch(e) { showAuthError('Erreur de connexion.'); }
-  btn.disabled = false; btn.textContent = '🎉 Créer mon compte';
+// ══ COMMUNITY ══
+function renderCommunity(q='') {
+  const grid=document.getElementById('community-grid');
+  const f=communityFiches.filter(x=>x.titre.toLowerCase().includes(q.toLowerCase())||x.matiere.toLowerCase().includes(q.toLowerCase()));
+  if(!f.length){grid.innerHTML='<div class="empty-state" style="grid-column:1/-1"><div class="es-icon">🌍</div><p>Aucune fiche publiée.</p></div>';return;}
+  grid.innerHTML=f.map(fiche=>`<div class="pub-card"><div class="pub-author"><div class="pub-avatar" style="background:${fiche.avColor}">${fiche.initiales}</div><div><div class="pub-name">${escHtml(fiche.auteur)}</div><div class="pub-date">${fiche.date}</div></div></div><h4>${escHtml(fiche.titre)}</h4><p>${escHtml(fiche.preview||'')}</p><div class="pub-footer"><span class="badge ${getBadge(fiche.matiere)}">${fiche.matiere}</span><div style="display:flex;gap:6px;align-items:center"><button class="btn-secondary" style="font-size:.75rem;padding:3px 9px" onclick="saveFromComm('${fiche.id}')">💾</button><button class="like-btn" id="like-${fiche.id}" onclick="toggleLike('${fiche.id}',this)">❤️ ${fiche.likes}</button></div></div></div>`).join('');
 }
-async function login() {
-  const email = document.getElementById('login-email').value.trim(), password = document.getElementById('login-password').value;
-  if (!email || !password) { showAuthError('Remplis tous les champs !'); return; }
-  const btn = document.getElementById('login-btn'); btn.disabled = true; btn.textContent = 'Connexion...';
-  try {
-    const res = await fetch(SUPABASE_AUTH_URL + '/token?grant_type=password', { method:'POST', headers:{ 'Content-Type':'application/json', 'apikey':SUPABASE_KEY }, body:JSON.stringify({ email, password }) });
-    const data = await res.json(); if (data.error) { showAuthError('Email ou mot de passe incorrect !'); return; }
-    currentUser = { id:data.user.id, email:data.user.email, name:data.user.user_metadata?.name||email.split('@')[0], avatar:data.user.user_metadata?.avatar||'😊', token:data.access_token };
-    localStorage.setItem('sf_user', JSON.stringify(currentUser)); updateUserUI(); hideAuth(); showToast('👋 Bienvenue ' + currentUser.name + ' !');
-  } catch(e) { showAuthError('Erreur de connexion.'); }
-  btn.disabled = false; btn.textContent = '🔑 Se connecter';
+function filterCommunity(){renderCommunity(document.getElementById('comm-search').value);}
+function toggleLike(id,btn){const f=communityFiches.find(x=>String(x.id)===String(id));if(!f)return;btn.classList.toggle('liked');f.likes=btn.classList.contains('liked')?f.likes+1:f.likes-1;btn.textContent=`❤️ ${f.likes}`;localStorage.setItem('sf_community2',JSON.stringify(communityFiches));}
+function saveFromComm(id){const f=communityFiches.find(x=>String(x.id)===String(id));if(!f)return;library.unshift({...f,id:Date.now(),date:new Date().toLocaleDateString('fr-FR')});localStorage.setItem('sf_library2',JSON.stringify(library));showToast('💾 Sauvegardée !');}
+
+// ══ MODAL ══
+function openModal(title,body){document.getElementById('modal-title').textContent=title;document.getElementById('modal-body').innerHTML=body;document.getElementById('modal-overlay').classList.add('open');}
+function closeModal(e){if(!e||e.target===document.getElementById('modal-overlay'))document.getElementById('modal-overlay').classList.remove('open');}
+
+// ══ TOAST ══
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
+
+// ══ AUTH ══
+const SB_AUTH = SB_URL+'/auth/v1';
+let currentUser=null, selAvatar='😊';
+function showAuth(){document.getElementById('auth-overlay').style.display='flex';}
+function hideAuth(){document.getElementById('auth-overlay').style.display='none';}
+function switchTab(tab){['login','signup'].forEach(t=>{document.getElementById('form-'+t).style.display=t===tab?'block':'none';document.getElementById('tab-'+t).classList.toggle('active',t===tab);});document.getElementById('auth-error').style.display='none';document.getElementById('auth-success').style.display='none';}
+function selectAvatar(el){document.querySelectorAll('.avatar-opt').forEach(a=>a.classList.remove('selected'));el.classList.add('selected');selAvatar=el.dataset.emoji;}
+function showAuthErr(m){const e=document.getElementById('auth-error');e.textContent=m;e.style.display='block';document.getElementById('auth-success').style.display='none';}
+function showAuthOk(m){const e=document.getElementById('auth-success');e.textContent=m;e.style.display='block';document.getElementById('auth-error').style.display='none';}
+async function signup(){
+  const name=document.getElementById('signup-name').value.trim(),email=document.getElementById('signup-email').value.trim(),pw=document.getElementById('signup-password').value;
+  if(!name||!email||!pw){showAuthErr('Remplis tous les champs !');return;}if(pw.length<6){showAuthErr('Mot de passe minimum 6 caractères !');return;}
+  const btn=document.getElementById('signup-btn');btn.disabled=true;btn.textContent='Création...';
+  try{const r=await fetch(SB_AUTH+'/signup',{method:'POST',headers:{'Content-Type':'application/json','apikey':SB_KEY},body:JSON.stringify({email,password:pw,data:{name,avatar:selAvatar}})});const d=await r.json();if(d.error){showAuthErr(d.error.message||'Erreur !');return;}showAuthOk('✅ Compte créé ! Vérifie ton email.');setTimeout(()=>switchTab('login'),2000);}
+  catch(e){showAuthErr('Erreur de connexion.');}
+  btn.disabled=false;btn.textContent='🎉 Créer mon compte';
 }
-function logout() { currentUser = null; localStorage.removeItem('sf_user'); updateUserUI(); showToast('👋 À bientôt !'); }
-function updateUserUI() { const loggedIn = !!currentUser; document.getElementById('user-info-top').style.display = loggedIn ? 'flex' : 'none'; document.getElementById('login-btn-top').style.display = loggedIn ? 'block' : 'block'; if (loggedIn) { document.getElementById('user-avatar-top').textContent = currentUser.avatar; document.getElementById('user-name-top').textContent = currentUser.name; document.getElementById('login-btn-top').style.display = 'none'; } }
-const savedUser = localStorage.getItem('sf_user'); if (savedUser) { try { currentUser = JSON.parse(savedUser); updateUserUI(); document.getElementById('auth-overlay').style.display = 'none'; } catch(e) { localStorage.removeItem('sf_user'); } }
+async function login(){
+  const email=document.getElementById('login-email').value.trim(),pw=document.getElementById('login-password').value;
+  if(!email||!pw){showAuthErr('Remplis tous les champs !');return;}
+  const btn=document.getElementById('login-btn');btn.disabled=true;btn.textContent='Connexion...';
+  try{const r=await fetch(SB_AUTH+'/token?grant_type=password',{method:'POST',headers:{'Content-Type':'application/json','apikey':SB_KEY},body:JSON.stringify({email,password:pw})});const d=await r.json();if(d.error){showAuthErr('Email ou mot de passe incorrect !');return;}currentUser={id:d.user.id,email:d.user.email,name:d.user.user_metadata?.name||email.split('@')[0],avatar:d.user.user_metadata?.avatar||'😊',token:d.access_token};localStorage.setItem('sf_user',JSON.stringify(currentUser));updateUserUI();hideAuth();showToast('👋 Bienvenue '+currentUser.name+' !');}
+  catch(e){showAuthErr('Erreur de connexion.');}
+  btn.disabled=false;btn.textContent='🔑 Se connecter';
+}
+function logout(){currentUser=null;localStorage.removeItem('sf_user');updateUserUI();showToast('👋 À bientôt !');}
+function updateUserUI(){const ok=!!currentUser;document.getElementById('user-info-top').style.display=ok?'flex':'none';document.getElementById('login-btn-top').style.display=ok?'none':'block';if(ok){document.getElementById('user-avatar-top').textContent=currentUser.avatar;document.getElementById('user-name-top').textContent=currentUser.name;}}
+try{const u=localStorage.getItem('sf_user');if(u){currentUser=JSON.parse(u);updateUserUI();document.getElementById('auth-overlay').style.display='none';}}catch(e){localStorage.removeItem('sf_user');}
 
 // ══════════════════════════════════════════
-// AGENT IA PAGE (sans vocal)
+// AGENT IA
 // ══════════════════════════════════════════
-const AGENT = { history:[], msgCount:0, MSG_LIMIT:20, violations:0, MAX_VIOLATIONS:3, banned:false };
+const AG={history:[],count:0,limit:20,violations:0,banned:false};
 
-function agentBan() {
-  AGENT.banned = true;
-  document.getElementById('agent-ban-alert').style.display = 'block';
-  document.getElementById('agent-send-btn').disabled = true;
-  document.getElementById('agent-input').disabled = true;
-  let r = 60;
-  const t = setInterval(() => {
-    r--; document.getElementById('ban-countdown').textContent = r;
-    if (r <= 0) { clearInterval(t); AGENT.banned = false; AGENT.violations = 0; document.getElementById('agent-ban-alert').style.display = 'none'; document.getElementById('agent-send-btn').disabled = false; document.getElementById('agent-input').disabled = false; }
-  }, 1000);
+function agentBan(){AG.banned=true;document.getElementById('agent-ban-alert').style.display='block';document.getElementById('agent-send-btn').disabled=true;document.getElementById('agent-input').disabled=true;let r=60;const t=setInterval(()=>{r--;document.getElementById('ban-countdown').textContent=r;if(r<=0){clearInterval(t);AG.banned=false;AG.violations=0;document.getElementById('agent-ban-alert').style.display='none';document.getElementById('agent-send-btn').disabled=false;document.getElementById('agent-input').disabled=false;}},1000);}
+
+function agentMsg(role,text,type){
+  const wrap=document.getElementById('agent-messages');
+  const div=document.createElement('div');div.className='agent-msg'+(role==='user'?' agent-msg-user':'');
+  const bot=role==='bot';
+  div.innerHTML=`<div class="agent-avatar-${bot?'bot':'user'}">${bot?'🤖':(currentUser?.avatar||'😊')}</div><div class="agent-bubble agent-bubble-${type||(bot?'bot':'user')}">${escHtml(text).replace(/\n/g,'<br>')}</div>`;
+  wrap.appendChild(div);wrap.scrollTop=wrap.scrollHeight;
 }
 
-function agentAppendMsg(role, text, type) {
-  const wrap = document.getElementById('agent-messages');
-  const div = document.createElement('div');
-  div.className = 'agent-msg' + (role === 'user' ? ' agent-msg-user' : '');
-  const isBot = role === 'bot';
-  div.innerHTML = `<div class="agent-avatar-${isBot?'bot':'user'}">${isBot?'🤖':(currentUser?.avatar||'😊')}</div><div class="agent-bubble agent-bubble-${type||(isBot?'bot':'user')}">${text.replace(/\n/g,'<br>')}</div>`;
-  wrap.appendChild(div); wrap.scrollTop = wrap.scrollHeight;
-}
-
-function agentShowBlock(msg) { const el = document.getElementById('agent-block-msg'); el.textContent = msg; el.style.display = 'block'; setTimeout(() => { el.style.display = 'none'; }, 5000); }
-function agentUpdateCounter() { document.getElementById('msg-count').textContent = AGENT.msgCount; const r = AGENT.MSG_LIMIT - AGENT.msgCount; document.getElementById('agent-warn-txt').textContent = r <= 5 ? '⚠️ ' + r + ' messages restants' : ''; }
-
-async function agentSend() {
-  const input = document.getElementById('agent-input');
-  const msg = input.value.trim();
-  if (!msg) return;
-  if (AGENT.banned) { agentShowBlock('🚫 Accès suspendu.'); return; }
-  if (AGENT.msgCount >= AGENT.MSG_LIMIT) { agentShowBlock('⏳ Limite atteinte. Recharge la page.'); return; }
-  if (clientFilter(msg).blocked) {
-    AGENT.violations++;
-    agentAppendMsg('bot','🚫 Message bloqué. Pose des questions scolaires !','error');
-    if (AGENT.violations >= AGENT.MAX_VIOLATIONS) agentBan();
-    else agentShowBlock('⚠️ ' + (AGENT.MAX_VIOLATIONS - AGENT.violations) + ' avertissement(s) avant suspension.');
-    input.value = ''; return;
-  }
-  input.value = '';
-  agentAppendMsg('user', msg);
-  AGENT.msgCount++; agentUpdateCounter();
-  document.getElementById('agent-typing').style.display = 'block';
-  document.getElementById('agent-send-btn').disabled = true;
-  try {
-    const messages = [...AGENT.history.slice(-8), { role:'user', content: msg }];
-    const reply = await callAI(
-      messages,
-      'Tu es un assistant scolaire expert. Tu aides uniquement pour les matières scolaires (maths, français, histoire, sciences, philo, langues...). Réponds en français avec des emojis pédagogiques. Si la question n\'est pas scolaire, redirige poliment.',
+async function agentSend(){
+  const inp=document.getElementById('agent-input');
+  const msg=inp.value.trim();if(!msg)return;
+  if(AG.banned){return;}
+  if(AG.count>=AG.limit){document.getElementById('agent-block-msg').textContent='⏳ Limite atteinte. Recharge la page.';document.getElementById('agent-block-msg').style.display='block';return;}
+  if(isBad(msg)){AG.violations++;agentMsg('bot','🚫 Message bloqué. Pose des questions scolaires !','error');if(AG.violations>=3)agentBan();inp.value='';return;}
+  inp.value='';agentMsg('user',msg);
+  AG.count++;document.getElementById('msg-count').textContent=AG.count;
+  const left=AG.limit-AG.count;document.getElementById('agent-warn-txt').textContent=left<=5?'⚠️ '+left+' restants':'';
+  document.getElementById('agent-typing').style.display='block';
+  document.getElementById('agent-send-btn').disabled=true;
+  try{
+    const msgs=[...AG.history.slice(-8),{role:'user',content:msg}];
+    const reply=await callAI(
+      msg,
+      'Tu es un assistant scolaire expert. Tu aides UNIQUEMENT pour les matières scolaires (maths, français, histoire, sciences, philo, langues...). Réponds en français avec des emojis pédagogiques. Si la question n\'est pas scolaire, redirige poliment.',
       1000
     );
-    document.getElementById('agent-typing').style.display = 'none';
-    agentAppendMsg('bot', reply);
-    AGENT.history.push({ role:'user', content: msg });
-    AGENT.history.push({ role:'assistant', content: reply });
-  } catch(e) {
-    document.getElementById('agent-typing').style.display = 'none';
-    agentAppendMsg('bot','⚠️ Erreur de connexion. Réessaie dans quelques secondes.','warn');
-    console.error('Agent error:', e);
-  }
-  document.getElementById('agent-send-btn').disabled = false;
+    document.getElementById('agent-typing').style.display='none';
+    agentMsg('bot',reply);
+    AG.history.push({role:'user',content:msg},{role:'assistant',content:reply});
+  }catch(e){document.getElementById('agent-typing').style.display='none';agentMsg('bot','⚠️ Service IA indisponible. Réessaie dans quelques secondes.','warn');}
+  document.getElementById('agent-send-btn').disabled=false;
 }
-function agentKeydown(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); agentSend(); } }
-function agentQuickSend(msg) { document.getElementById('agent-input').value = msg; agentSend(); }
+function agentKeydown(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();agentSend();}}
+function agentQuick(msg){document.getElementById('agent-input').value=msg;agentSend();}
 
 // ══ INIT ══
 cnRenderMatieres();
