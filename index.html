@@ -197,195 +197,17 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 .discord-btn:hover{background:#4752c4;transform:translateY(-2px)}
 .discord-btn svg{width:28px;height:28px;fill:white}
 .discord-note{margin-top:1.2rem;font-size:.75rem;color:var(--muted)}
-
-/* ═══ CHATBOT VOCAL FLOTTANT ═══ */
-#vocal-fab{
-  position:fixed;bottom:28px;right:28px;z-index:8000;
-  width:64px;height:64px;border-radius:50%;
-  background:linear-gradient(135deg,var(--pink),var(--purple));
-  border:none;cursor:pointer;
-  box-shadow:0 6px 24px rgba(255,139,171,.5);
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.7rem;transition:transform .2s,box-shadow .2s;
-  animation:fabPulse 2.5s infinite;
-}
-#vocal-fab:hover{transform:scale(1.1)}
-@keyframes fabPulse{
-  0%,100%{box-shadow:0 6px 24px rgba(255,139,171,.45)}
-  50%{box-shadow:0 6px 32px rgba(255,139,171,.75),0 0 0 10px rgba(255,139,171,.12)}
-}
-.fab-badge{
-  position:absolute;top:-4px;right:-4px;
-  width:20px;height:20px;background:var(--green);
-  border-radius:50%;border:2px solid white;
-  font-size:.55rem;display:flex;align-items:center;justify-content:center;
-  color:white;font-weight:800;font-family:'Nunito',sans-serif;
-}
-#vocal-panel{
-  position:fixed;bottom:108px;right:28px;z-index:7999;
-  width:400px;max-height:85vh;
-  background:white;border:2px solid var(--line);border-radius:24px;
-  box-shadow:0 20px 60px rgba(0,0,0,.18);
-  display:flex;flex-direction:column;overflow:hidden;
-  transform:scale(.85) translateY(20px);opacity:0;pointer-events:none;
-  transition:transform .25s cubic-bezier(.34,1.56,.64,1),opacity .2s;
-  transform-origin:bottom right;
-}
-#vocal-panel.open{transform:scale(1) translateY(0);opacity:1;pointer-events:all}
-@media(max-width:480px){
-  #vocal-panel{width:calc(100vw - 20px);right:10px;bottom:100px}
-  #vocal-fab{bottom:16px;right:16px}
-}
-.vpc-header{
-  display:flex;align-items:center;gap:10px;padding:14px 16px;
-  background:linear-gradient(135deg,var(--pink-bg),var(--purple-bg));
-  border-bottom:2px solid var(--line);flex-shrink:0;
-}
-.vpc-avatar{
-  width:42px;height:42px;border-radius:50%;
-  background:linear-gradient(135deg,var(--pink),var(--purple));
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.3rem;flex-shrink:0;position:relative;
-}
-.vpc-status-dot{
-  position:absolute;bottom:1px;right:1px;
-  width:11px;height:11px;background:var(--green);
-  border-radius:50%;border:2px solid white;
-}
-.vpc-info{flex:1}
-.vpc-name{font-family:'Caveat',cursive;font-size:1.2rem;font-weight:700;color:var(--ink)}
-.vpc-sub{font-size:.72rem;color:var(--muted)}
-.vpc-hbtn{
-  width:32px;height:32px;border-radius:50%;
-  border:1.5px solid var(--line);background:white;
-  cursor:pointer;display:flex;align-items:center;justify-content:center;
-  font-size:.85rem;transition:all .15s;color:var(--muted);
-}
-.vpc-hbtn:hover{border-color:var(--pink);color:var(--pink);background:var(--pink-bg)}
-.vpc-quick{
-  display:flex;gap:6px;padding:10px 14px;
-  overflow-x:auto;border-bottom:1px solid var(--line);
-  flex-shrink:0;scrollbar-width:none;background:#fafafa;
-}
-.vpc-quick::-webkit-scrollbar{display:none}
-.vpc-qchip{
-  white-space:nowrap;padding:5px 12px;
-  border:1.5px solid var(--line);border-radius:20px;
-  font-size:.73rem;font-weight:700;cursor:pointer;
-  background:white;color:var(--muted);font-family:'Nunito',sans-serif;
-  transition:all .15s;flex-shrink:0;
-}
-.vpc-qchip:hover{border-color:var(--pink);color:var(--pink);background:var(--pink-bg)}
-#vpc-messages{
-  flex:1;overflow-y:auto;padding:14px;
-  display:flex;flex-direction:column;gap:12px;
-  min-height:200px;scrollbar-width:thin;scrollbar-color:var(--line) transparent;
-}
-.vpc-msg{display:flex;gap:8px;align-items:flex-end;animation:fadeUp .3s ease}
-.vpc-msg.user{flex-direction:row-reverse}
-.vpc-mavatar{
-  width:28px;height:28px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  font-size:.9rem;flex-shrink:0;
-}
-.vpc-mavatar.bot{background:linear-gradient(135deg,var(--pink),var(--purple))}
-.vpc-mavatar.user{background:linear-gradient(135deg,var(--blue),var(--green))}
-.vpc-bubble{
-  max-width:82%;padding:9px 13px;border-radius:16px;
-  font-size:.85rem;line-height:1.55;font-family:'Nunito',sans-serif;
-}
-.vpc-bubble.bot{
-  background:var(--pink-bg);border:1.5px solid var(--pink-border);
-  border-bottom-left-radius:4px;color:var(--ink);
-}
-.vpc-bubble.user{
-  background:linear-gradient(135deg,#e8f4ff,#f0e8ff);
-  border:1.5px solid var(--blue-border);
-  border-bottom-right-radius:4px;color:var(--ink);
-}
-.vpc-bubble.error{background:#fff5f5;border-color:#ffccd8;color:var(--red)}
-.vpc-bubble strong{color:var(--pink)}
-.vpc-speak-btn{
-  display:inline-flex;align-items:center;gap:4px;
-  margin-top:6px;padding:3px 10px;background:white;
-  border:1.5px solid var(--pink-border);border-radius:20px;
-  font-size:.72rem;cursor:pointer;color:var(--pink);
-  font-weight:700;font-family:'Nunito',sans-serif;transition:all .15s;
-}
-.vpc-speak-btn:hover{background:var(--pink);color:white}
-#vpc-typing{display:none;padding:0 14px 8px;flex-shrink:0}
-.vpc-typing-inner{
-  display:inline-flex;align-items:center;gap:8px;
-  background:var(--pink-bg);border:1.5px solid var(--pink-border);
-  padding:7px 14px;border-radius:16px;font-size:.78rem;color:var(--muted);
-}
-.vpc-input-area{border-top:2px solid var(--line);padding:12px 14px;background:white;flex-shrink:0}
-.vpc-status-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;font-size:.7rem;color:var(--muted)}
-#vpc-mic-status{display:flex;align-items:center;gap:5px;font-size:.72rem;font-weight:700}
-#vpc-mic-status.listening{color:var(--red)}
-#vpc-mic-status.speaking{color:var(--green)}
-.mic-wave{display:none;align-items:center;gap:2px;margin-left:4px}
-.mic-wave.active{display:flex}
-.mic-wave span{width:3px;background:var(--red);border-radius:3px;animation:waveBar .8s ease infinite}
-.mic-wave span:nth-child(1){height:6px;animation-delay:0s}
-.mic-wave span:nth-child(2){height:12px;animation-delay:.1s}
-.mic-wave span:nth-child(3){height:8px;animation-delay:.2s}
-.mic-wave span:nth-child(4){height:14px;animation-delay:.3s}
-.mic-wave span:nth-child(5){height:6px;animation-delay:.4s}
-@keyframes waveBar{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.8)}}
-.vpc-input-row{display:flex;gap:8px;align-items:flex-end}
-#vpc-text-input{
-  flex:1;padding:9px 13px;background:#fafafa;
-  border:2px solid var(--line);border-radius:12px;
-  font-family:'Nunito',sans-serif;font-size:.85rem;color:var(--ink);
-  resize:none;max-height:90px;min-height:38px;
-  transition:border-color .2s;outline:none;
-}
-#vpc-text-input:focus{border-color:var(--pink);background:white}
-#vpc-text-input::placeholder{color:var(--muted)}
-#vpc-mic-btn{
-  width:46px;height:46px;border-radius:50%;border:none;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.3rem;flex-shrink:0;transition:all .2s;
-  background:linear-gradient(135deg,var(--pink),var(--purple));
-  color:white;box-shadow:0 3px 12px rgba(255,139,171,.4);
-}
-#vpc-mic-btn:hover{transform:scale(1.08)}
-#vpc-mic-btn.listening{
-  background:linear-gradient(135deg,var(--red),#c2185b);
-  animation:micPulse 1s infinite;
-}
-#vpc-mic-btn.speaking{
-  background:linear-gradient(135deg,var(--green),#00a57a);
-  animation:micPulse .8s infinite;
-}
-@keyframes micPulse{
-  0%,100%{box-shadow:0 3px 12px rgba(255,71,111,.5);transform:scale(1)}
-  50%{box-shadow:0 3px 24px rgba(255,71,111,.8),0 0 0 8px rgba(255,71,111,.15);transform:scale(1.06)}
-}
-#vpc-send-btn{
-  width:46px;height:46px;border-radius:50%;border:none;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.1rem;flex-shrink:0;background:var(--pink);color:white;
-  transition:all .15s;
-}
-#vpc-send-btn:hover{background:#ff7096;transform:scale(1.05)}
-#vpc-send-btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
-#vpc-tts-btn{
-  padding:3px 10px;background:none;
-  border:1.5px solid var(--green);border-radius:20px;
-  font-size:.7rem;cursor:pointer;color:var(--green);
-  font-family:'Nunito',sans-serif;font-weight:700;transition:all .15s;
-}
-#vpc-tts-btn.off{border-color:var(--muted);color:var(--muted)}
-#vpc-tts-btn:hover{border-color:var(--pink);color:var(--pink)}
+/* Bannière statut IA */
+.ai-status-bar{display:flex;align-items:center;gap:8px;background:var(--green-bg);border:1.5px solid var(--green-border);border-radius:10px;padding:8px 14px;margin-bottom:12px;font-size:.82rem;color:#005438;font-weight:700}
+.ai-status-dot{width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 </style>
 </head>
 <body>
 
 <div class="topbar">
   <div class="logo">
-    <img src="icon-192.svg" alt="StudyForge" width="38" height="38" style="border-radius:10px;flex-shrink:0">
+    <img src="icon-192.svg" alt="StudyForge" width="38" height="38" style="border-radius:10px;flex-shrink:0" onerror="this.style.display='none'">
     Study<span>Forge</span>
   </div>
   <div style="display:flex;align-items:center;gap:12px">
@@ -418,6 +240,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
     <div class="page active" id="page-generate">
       <div class="section-title">✨ Créer une fiche</div>
       <div class="section-sub">L'IA génère une fiche style cahier manuscrit coloré ✍️</div>
+      <div class="ai-status-bar"><div class="ai-status-dot"></div> IA en ligne — Génération instantanée</div>
       <div class="form-card">
         <h3>📌 Matière</h3>
         <div class="chips" id="matiere-chips">
@@ -544,15 +367,9 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
     <!-- PAGE AGENT IA -->
     <div class="page" id="page-chat">
       <div class="section-title">🤖 Agent IA StudyForge</div>
-      <div class="section-sub">Pose tes questions scolaires — sources : livrescolaire.fr ✨</div>
+      <div class="section-sub">Pose tes questions scolaires — répond instantanément ✨</div>
       <div style="max-width:720px;margin:0 auto;display:flex;flex-direction:column;height:calc(100vh - 180px)">
-        <div style="background:var(--green-bg);border:2px solid var(--green-border);border-radius:12px;padding:10px 16px;margin-bottom:8px;font-size:.82rem;color:#005438">
-          🛡️ <strong>Agent sécurisé</strong> — Modération active · Sources : livrescolaire.fr + IA
-        </div>
-        <div style="background:var(--blue-bg);border:2px solid var(--blue-border);border-radius:12px;padding:8px 14px;margin-bottom:8px;font-size:.8rem;color:#005f7a">
-          📚 <strong>Sources :</strong> Cours pré-chargés de livrescolaire.fr + recherche en temps réel<br>
-          💡 Tu peux aussi utiliser le <strong>chatbot vocal</strong> en bas à droite 🎙️
-        </div>
+        <div class="ai-status-bar"><div class="ai-status-dot"></div> Agent sécurisé · Modération active · IA en ligne</div>
         <div id="agent-ban-alert" style="display:none;background:#fff5f5;border:2px solid #ffccd8;border-radius:12px;padding:16px;margin-bottom:12px;text-align:center">
           <div style="font-size:2rem">🚫</div>
           <div style="font-family:'Caveat',cursive;font-size:1.3rem;font-weight:700;color:var(--red)">Accès suspendu</div>
@@ -563,7 +380,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
             <div class="agent-avatar-bot">🤖</div>
             <div class="agent-bubble agent-bubble-bot">
               Bonjour ! Je suis l'agent IA de <strong>StudyForge</strong>. 🎓<br><br>
-              Je peux t'aider à réviser grâce aux cours de <strong>livrescolaire.fr</strong>. Pose-moi une question !
+              Pose-moi une question sur n'importe quelle matière scolaire !
             </div>
           </div>
         </div>
@@ -578,19 +395,11 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
           <span style="font-size:.75rem;color:var(--muted)" id="agent-warn-txt"></span>
         </div>
         <div style="background:white;border:2px solid var(--line);border-top:none;border-radius:0 0 16px 16px;padding:1rem">
-          <div id="agent-captcha" style="display:none;background:var(--yellow-bg);border:2px solid var(--yellow-border);border-radius:10px;padding:10px 14px;margin-bottom:10px;font-size:.85rem">
-            🔒 <strong id="captcha-question"></strong> = 
-            <input type="number" id="captcha-answer" style="width:60px;padding:4px 8px;border:2px solid var(--line);border-radius:6px;font-size:.85rem">
-            <button onclick="agentValidateCaptcha()" style="margin-left:8px;padding:5px 14px;background:var(--pink);color:white;border:none;border-radius:6px;font-size:.82rem;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:700">Valider</button>
-          </div>
           <div style="display:flex;gap:10px;align-items:flex-end">
             <textarea id="agent-input" rows="2" placeholder="Pose ta question scolaire ici..." style="flex:1;resize:none;max-height:100px" onkeydown="agentKeydown(event)"></textarea>
             <button onclick="agentSend()" id="agent-send-btn" style="padding:10px 18px;background:var(--pink);border:none;border-radius:10px;color:white;font-family:'Caveat',cursive;font-size:1.1rem;font-weight:700;cursor:pointer;white-space:nowrap;align-self:flex-end">Envoyer ✉️</button>
           </div>
           <div id="agent-block-msg" style="display:none;margin-top:8px;background:#fff5f5;border:1.5px solid #ffccd8;border-radius:8px;padding:8px 12px;font-size:.82rem;color:var(--red);font-weight:600"></div>
-          <div style="display:flex;justify-content:flex-end;margin-top:6px">
-            <button onclick="agentReport()" style="background:none;border:none;font-size:.73rem;color:var(--muted);cursor:pointer;font-family:'Nunito',sans-serif">🚩 Signaler un problème</button>
-          </div>
         </div>
         <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:8px">
           <span style="font-size:.75rem;color:var(--muted);align-self:center">Suggestions :</span>
@@ -600,18 +409,13 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
           <button class="agent-suggest" onclick="agentQuickSend('Quelles sont les figures de style principales ?')">📖 Figures de style</button>
           <button class="agent-suggest" onclick="agentQuickSend('Explique-moi les forces de Newton')">⚗️ Forces Newton</button>
         </div>
-        <div id="admin-panel" style="display:none;margin-top:16px;background:#f9f9f9;border:2px dashed var(--line);border-radius:12px;padding:1rem">
-          <div style="font-family:'Caveat',cursive;font-size:1.1rem;font-weight:700;margin-bottom:8px">🛡️ Logs Admin</div>
-          <div id="admin-logs" style="font-size:.75rem;font-family:monospace;color:var(--muted);max-height:150px;overflow-y:auto;line-height:1.8"></div>
-          <button onclick="agentExportLogs()" style="margin-top:8px;padding:5px 14px;background:var(--ink);color:white;border:none;border-radius:6px;font-size:.78rem;cursor:pointer;font-family:'Nunito',sans-serif">📥 Exporter logs</button>
-        </div>
       </div>
     </div>
 
   </div>
 </div>
 
-<!-- AUTH OVERLAY -->
+<!-- AUTH -->
 <div class="auth-overlay" id="auth-overlay">
   <div class="auth-box">
     <div class="auth-logo">Study<span>Forge</span> ✏️</div>
@@ -663,614 +467,356 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 
 <div class="toast" id="toast"></div>
 
-<!-- ═══ CHATBOT VOCAL FLOTTANT ═══ -->
-<button id="vocal-fab" onclick="toggleVocalPanel()" title="Chatbot vocal IA">
-  🎙️<div class="fab-badge">IA</div>
-</button>
-
-<div id="vocal-panel">
-  <div class="vpc-header">
-    <div class="vpc-avatar">🤖<div class="vpc-status-dot"></div></div>
-    <div class="vpc-info">
-      <div class="vpc-name">Forge IA 🎓</div>
-      <div class="vpc-sub" id="vpc-subtitle">En ligne · Parle ou écris !</div>
-    </div>
-    <div style="display:flex;gap:6px">
-      <button class="vpc-hbtn" id="vpc-tts-btn" onclick="toggleTTS()" title="Voix on/off">🔊</button>
-      <button class="vpc-hbtn" onclick="clearVocalChat()" title="Effacer">🗑️</button>
-      <button class="vpc-hbtn" onclick="toggleVocalPanel()" title="Fermer">✕</button>
-    </div>
-  </div>
-  <div class="vpc-quick">
-    <button class="vpc-qchip" onclick="vpcQuick('Génère-moi une fiche de révision sur ')">📄 Fiche</button>
-    <button class="vpc-qchip" onclick="vpcQuick('Fais-moi un quiz QCM sur ')">🎯 Quiz</button>
-    <button class="vpc-qchip" onclick="vpcQuick('Donne-moi des exercices sur ')">✏️ Exercices</button>
-    <button class="vpc-qchip" onclick="vpcQuick('Explique-moi simplement ')">💡 Expliquer</button>
-    <button class="vpc-qchip" onclick="vpcQuick('Résume-moi le chapitre sur ')">📝 Résumé</button>
-    <button class="vpc-qchip" onclick="vpcQuick('Quels sont les points BAC sur ')">🎓 Points BAC</button>
-  </div>
-  <div id="vpc-messages">
-    <div class="vpc-msg">
-      <div class="vpc-mavatar bot">🤖</div>
-      <div class="vpc-bubble bot">
-        Salut ! 👋 Moi c'est <strong>Forge</strong>, ton assistant scolaire.<br><br>
-        Clique sur 🎙️ pour me <strong>parler à voix haute</strong>, ou écris ta question ici. Je peux te faire des fiches, des quiz, des exercices — et je te réponds aussi à l'oral ! 🔊<br><br>
-        Alors, on révise quoi aujourd'hui ? 😊
-      </div>
-    </div>
-  </div>
-  <div id="vpc-typing">
-    <div class="vpc-typing-inner">
-      <div class="typing-dots"><span></span><span></span><span></span></div>
-      Forge réfléchit...
-    </div>
-  </div>
-  <div class="vpc-input-area">
-    <div class="vpc-status-bar">
-      <div id="vpc-mic-status">
-        <span id="vpc-mic-label">🎙️ Appuie pour parler</span>
-        <div class="mic-wave" id="vpc-mic-wave">
-          <span></span><span></span><span></span><span></span><span></span>
-        </div>
-      </div>
-      <div style="display:flex;align-items:center;gap:6px">
-        <span style="font-size:.68rem;color:var(--muted)" id="vpc-msg-count">0 msg</span>
-      </div>
-    </div>
-    <div class="vpc-input-row">
-      <textarea id="vpc-text-input" placeholder="Écris ou clique sur 🎙️ pour parler..." rows="1"
-        onkeydown="vpcHandleKey(event)" oninput="vpcAutoResize(this)"></textarea>
-      <button id="vpc-mic-btn" onclick="vpcToggleMic()" title="Parler avec le micro">🎙️</button>
-      <button id="vpc-send-btn" onclick="vpcSendText()" title="Envoyer">➤</button>
-    </div>
-  </div>
-</div>
-
 <script>
+// ══════════════════════════════════════════
+// API ANTHROPIC DIRECTE (Claude Sonnet)
+// ══════════════════════════════════════════
+async function callAI(messages, systemPrompt, maxTokens) {
+  const response = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: maxTokens || 1000,
+      system: systemPrompt || 'Tu es un assistant scolaire expert en pédagogie. Réponds en français.',
+      messages: messages
+    })
+  });
+  const data = await response.json();
+  if (data.error) throw new Error(data.error.message || JSON.stringify(data.error));
+  return data.content?.[0]?.text || '';
+}
+
 // ══════════════════════════════════════════
 // NAVIGATION
 // ══════════════════════════════════════════
-const PAGE_INDEX={generate:0,library:1,community:2,livrescolaire:3,messages:4,chat:5};
-function showPage(name){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
-  const page=document.getElementById('page-'+name);
-  if(page)page.classList.add('active');
-  const navItems=document.querySelectorAll('.nav-item');
-  const idx=PAGE_INDEX[name];
-  if(navItems[idx])navItems[idx].classList.add('active');
-  if(name==='library')renderLibrary();
-  if(name==='community')renderCommunity();
-  if(name==='livrescolaire'){cnRenderMatieres();document.getElementById('cn-chap-wrap').style.display='none';}
+const PAGE_INDEX = { generate:0, library:1, community:2, livrescolaire:3, messages:4, chat:5 };
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  const page = document.getElementById('page-' + name);
+  if (page) page.classList.add('active');
+  const navItems = document.querySelectorAll('.nav-item');
+  const idx = PAGE_INDEX[name];
+  if (navItems[idx]) navItems[idx].classList.add('active');
+  if (name === 'library') renderLibrary();
+  if (name === 'community') renderCommunity();
+  if (name === 'livrescolaire') { cnRenderMatieres(); document.getElementById('cn-chap-wrap').style.display = 'none'; }
 }
 
 // ══════════════════════════════════════════
-// MODÉRATION
+// MODÉRATION SIMPLE (client-side uniquement)
 // ══════════════════════════════════════════
-const BLOCKED_PATTERNS=[
-  /terroris/i,/p[eé]dophil/i,/drogue|cocaïne|hero[iï]ne/i,/fabriquer.*bombe|explosif/i,
-  /hacking|sql.?inject/i,/fraude.*bancaire|phishing/i,/meurtre.*comment|tuer.*quelqu/i,
-  /porno|pornograph/i,/sexe.*(enfant|mineur)/i,
-  /ignore.*(r[eè]gle|instruction|syst[eè]me)/i,/mode.*(développeur|dev|sans.?limit)/i,
-  /bypass.*(s[eé]curit|filtre)/i,/sans.?limit|no.?limit|jailbreak/i,
-  /oublie.*(tout|r[eè]gle)/i,/mot.?de.?passe|password/i,/cvv|iban/i
+const BLOCKED_PATTERNS = [
+  /terroris/i, /p[eé]dophil/i, /drogue|cocaïne|hero[iï]ne/i, /fabriquer.*bombe|explosif/i,
+  /hacking|sql.?inject/i, /fraude.*bancaire|phishing/i, /meurtre.*comment|tuer.*quelqu/i,
+  /porno|pornograph/i, /sexe.*(enfant|mineur)/i
 ];
-function clientFilter(text){
-  for(const pat of BLOCKED_PATTERNS){if(pat.test(text))return{blocked:true};}
-  return{blocked:false};
+function clientFilter(text) {
+  for (const pat of BLOCKED_PATTERNS) { if (pat.test(text)) return { blocked: true }; }
+  return { blocked: false };
 }
-async function moderationCheck(text){
-  if(!text||text.trim().length<3)return true;
-  try{
-    const res=await fetch('https://api.anthropic.com/v1/messages',{
-      method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:80,
-        messages:[{role:'user',content:`Tu es un modérateur scolaire. Réponds UNIQUEMENT par {"ok":true} ou {"ok":false}. Bloque si : insultes, harcèlement, violence, contenu sexuel, racisme. Message : "${text.replace(/"/g,"'").substring(0,300)}"`}]
-      })
-    });
-    const d=await res.json();
-    const raw=(d.content?.[0]?.text||'{"ok":true}').replace(/```json|```/g,'').trim();
-    return JSON.parse(raw).ok!==false;
-  }catch(e){return true;}
-}
-function showModError(){const el=document.getElementById('mod-error');el.style.display='block';setTimeout(()=>{el.style.display='none';},4000);}
+function showModError() { const el = document.getElementById('mod-error'); el.style.display = 'block'; setTimeout(() => { el.style.display = 'none'; }, 4000); }
 
 // ══════════════════════════════════════════
 // DONNÉES LIVRESCOLAIRE
 // ══════════════════════════════════════════
-const CN_DATA={
-  brevet:{matieres:[
-    {nom:'Français',emoji:'📖',url:'https://www.livrescolaire.fr/matiere/troisieme-francais',chapitres:['Lecture et compréhension de texte','Grammaire de la phrase','Conjugaison et temps verbaux','Orthographe lexicale et grammaticale','Rédaction — récit et description','Rédaction — argumentation','Figures de style','Analyse d\'une œuvre intégrale','Dictée préparée','Expression orale']},
-    {nom:'Mathématiques',emoji:'📐',url:'https://www.livrescolaire.fr/matiere/troisieme-maths',chapitres:['Nombres entiers et décimaux','Fractions et calculs','Puissances et notation scientifique','Calcul littéral et équations','Géométrie — triangles et cercles','Théorème de Pythagore','Théorème de Thalès','Trigonométrie','Statistiques et probabilités','Proportionnalité et pourcentages','Aires et volumes']},
-    {nom:'Histoire-Géo',emoji:'🌍',url:'https://www.livrescolaire.fr/matiere/troisieme-histoire-geographie',chapitres:['La Première Guerre mondiale','Les régimes totalitaires','La Seconde Guerre mondiale','La guerre froide','La décolonisation','La Ve République','La mondialisation','Le développement durable','La France et l\'UE','EMC — citoyenneté']},
-    {nom:'Sciences (SVT + Physique)',emoji:'🔬',url:'https://www.livrescolaire.fr/matiere/troisieme-svt',chapitres:['Le corps humain et la santé','La reproduction humaine','Génétique et hérédité','L\'évolution des espèces','Les forces et l\'équilibre','L\'électricité — circuits et lois','Optique — lumière et vision','Les transformations chimiques','L\'énergie et ses formes','La Terre et ses enveloppes']},
-    {nom:'Anglais',emoji:'🇬🇧',url:'https://www.livrescolaire.fr/matiere/troisieme-anglais',chapitres:['Present simple / continuous','Prétérit simple et continu','Present perfect','Futur (will / going to)','Les modaux (can, must, should)','La voix passive','Le discours indirect','Vocabulaire thématique','Compréhension orale et écrite','Expression écrite et orale']},
-    {nom:'Technologie',emoji:'⚙️',url:'https://www.livrescolaire.fr/matiere/troisieme-technologie',chapitres:['Analyse d\'un objet technique','Matériaux et structures','Énergie et systèmes','Programmation et robotique','Modélisation 3D','Réseaux et internet']}
+const CN_DATA = {
+  brevet: { matieres: [
+    { nom:'Français', emoji:'📖', url:'https://www.livrescolaire.fr/matiere/troisieme-francais', chapitres:['Lecture et compréhension de texte','Grammaire de la phrase','Conjugaison et temps verbaux','Orthographe lexicale et grammaticale','Rédaction — récit et description','Rédaction — argumentation','Figures de style','Analyse d\'une œuvre intégrale','Dictée préparée','Expression orale'] },
+    { nom:'Mathématiques', emoji:'📐', url:'https://www.livrescolaire.fr/matiere/troisieme-maths', chapitres:['Nombres entiers et décimaux','Fractions et calculs','Puissances et notation scientifique','Calcul littéral et équations','Géométrie — triangles et cercles','Théorème de Pythagore','Théorème de Thalès','Trigonométrie','Statistiques et probabilités','Proportionnalité et pourcentages','Aires et volumes'] },
+    { nom:'Histoire-Géo', emoji:'🌍', url:'https://www.livrescolaire.fr/matiere/troisieme-histoire-geographie', chapitres:['La Première Guerre mondiale','Les régimes totalitaires','La Seconde Guerre mondiale','La guerre froide','La décolonisation','La Ve République','La mondialisation','Le développement durable','La France et l\'UE','EMC — citoyenneté'] },
+    { nom:'Sciences (SVT + Physique)', emoji:'🔬', url:'https://www.livrescolaire.fr/matiere/troisieme-svt', chapitres:['Le corps humain et la santé','La reproduction humaine','Génétique et hérédité','L\'évolution des espèces','Les forces et l\'équilibre','L\'électricité — circuits et lois','Optique — lumière et vision','Les transformations chimiques','L\'énergie et ses formes','La Terre et ses enveloppes'] },
+    { nom:'Anglais', emoji:'🇬🇧', url:'https://www.livrescolaire.fr/matiere/troisieme-anglais', chapitres:['Present simple / continuous','Prétérit simple et continu','Present perfect','Futur (will / going to)','Les modaux (can, must, should)','La voix passive','Le discours indirect','Vocabulaire thématique','Compréhension orale et écrite','Expression écrite et orale'] },
+    { nom:'Technologie', emoji:'⚙️', url:'https://www.livrescolaire.fr/matiere/troisieme-technologie', chapitres:['Analyse d\'un objet technique','Matériaux et structures','Énergie et systèmes','Programmation et robotique','Modélisation 3D','Réseaux et internet'] }
   ]},
-  bac:{matieres:[
-    {nom:'Français (1ère)',emoji:'📖',url:'https://www.livrescolaire.fr/matiere/premiere-francais',chapitres:['Le roman et le récit','La littérature d\'idées','Le théâtre','La poésie','La dissertation littéraire','Le commentaire composé','L\'oral de français — Grand Oral','Figures de style et procédés','Lecture linéaire']},
-    {nom:'Philosophie',emoji:'🧠',url:'https://www.livrescolaire.fr/matiere/terminale-philosophie',chapitres:['L\'existence humaine et la culture','La morale et la politique','La connaissance','Le sujet conscient','Le langage','La liberté et le destin','Le bonheur et la vertu','La vérité','La religion et la foi','L\'art et la beauté','La technique','La nature et l\'état','La justice et le droit','Dissertation philosophique','Explication de texte']},
-    {nom:'Mathématiques',emoji:'📐',url:'https://www.livrescolaire.fr/matiere/terminale-maths',chapitres:['Suites numériques','Limites et continuité','Dérivation et convexité','Intégration','Logarithme népérien','Fonctions exponentielles','Probabilités conditionnelles','Variables aléatoires discrètes','Variables aléatoires continues','Géométrie dans l\'espace','Matrices et graphes (spé)','Nombres complexes (spé)']},
-    {nom:'Physique-Chimie',emoji:'⚗️',url:'https://www.livrescolaire.fr/matiere/terminale-physique-chimie',chapitres:['Ondes mécaniques et lumineuses','Optique géométrique','Mécanique — lois de Newton','Travail et énergie','Oscillateurs mécaniques','Électromagnétisme','Cinétique chimique','Équilibres chimiques','Acide-base et pH','Oxydoréduction','Chimie organique','Transformations nucléaires']},
-    {nom:'SVT',emoji:'🧬',url:'https://www.livrescolaire.fr/matiere/terminale-svt',chapitres:['Génétique et expression du génome','Immunologie','Neurones et transmission synaptique','Évolution et sélection naturelle','Tectonique des plaques','Atmosphère et changements climatiques','Biodiversité et classification']},
-    {nom:'Sciences Éco (SES)',emoji:'📊',url:'https://www.livrescolaire.fr/matiere/terminale-ses',chapitres:['Croissance économique','Fluctuations économiques et crises','Mondialisation et commerce','Marché du travail et chômage','État, revenus et redistribution','Stratification sociale et inégalités','Démocratie et citoyenneté']},
-    {nom:'Histoire-Géo',emoji:'🌍',url:'https://www.livrescolaire.fr/matiere/terminale-histoire-geographie',chapitres:['Le monde depuis 1945','La guerre froide','La décolonisation','La construction européenne','La France de la Ve République','Le monde depuis 1991','Mondialisation et inégalités','Les frontières et la géopolitique']},
-    {nom:'NSI (Informatique)',emoji:'💻',url:'https://www.livrescolaire.fr/matiere/terminale-nsi',chapitres:['Structures de données','Algorithmique — complexité et tri','Programmation orientée objet','Récursivité','Bases de données et SQL','Architecture des réseaux','Protocoles TCP/IP et HTTP','Sécurité et cryptographie']}
+  bac: { matieres: [
+    { nom:'Français (1ère)', emoji:'📖', url:'https://www.livrescolaire.fr/matiere/premiere-francais', chapitres:['Le roman et le récit','La littérature d\'idées','Le théâtre','La poésie','La dissertation littéraire','Le commentaire composé','L\'oral de français — Grand Oral','Figures de style et procédés','Lecture linéaire'] },
+    { nom:'Philosophie', emoji:'🧠', url:'https://www.livrescolaire.fr/matiere/terminale-philosophie', chapitres:['L\'existence humaine et la culture','La morale et la politique','La connaissance','Le sujet conscient','Le langage','La liberté et le destin','Le bonheur et la vertu','La vérité','La religion et la foi','L\'art et la beauté','La technique','La nature et l\'état','La justice et le droit','Dissertation philosophique','Explication de texte'] },
+    { nom:'Mathématiques', emoji:'📐', url:'https://www.livrescolaire.fr/matiere/terminale-maths', chapitres:['Suites numériques','Limites et continuité','Dérivation et convexité','Intégration','Logarithme népérien','Fonctions exponentielles','Probabilités conditionnelles','Variables aléatoires discrètes','Variables aléatoires continues','Géométrie dans l\'espace','Matrices et graphes (spé)','Nombres complexes (spé)'] },
+    { nom:'Physique-Chimie', emoji:'⚗️', url:'https://www.livrescolaire.fr/matiere/terminale-physique-chimie', chapitres:['Ondes mécaniques et lumineuses','Optique géométrique','Mécanique — lois de Newton','Travail et énergie','Oscillateurs mécaniques','Électromagnétisme','Cinétique chimique','Équilibres chimiques','Acide-base et pH','Oxydoréduction','Chimie organique','Transformations nucléaires'] },
+    { nom:'SVT', emoji:'🧬', url:'https://www.livrescolaire.fr/matiere/terminale-svt', chapitres:['Génétique et expression du génome','Immunologie','Neurones et transmission synaptique','Évolution et sélection naturelle','Tectonique des plaques','Atmosphère et changements climatiques','Biodiversité et classification'] },
+    { nom:'Sciences Éco (SES)', emoji:'📊', url:'https://www.livrescolaire.fr/matiere/terminale-ses', chapitres:['Croissance économique','Fluctuations économiques et crises','Mondialisation et commerce','Marché du travail et chômage','État, revenus et redistribution','Stratification sociale et inégalités','Démocratie et citoyenneté'] },
+    { nom:'Histoire-Géo', emoji:'🌍', url:'https://www.livrescolaire.fr/matiere/terminale-histoire-geographie', chapitres:['Le monde depuis 1945','La guerre froide','La décolonisation','La construction européenne','La France de la Ve République','Le monde depuis 1991','Mondialisation et inégalités','Les frontières et la géopolitique'] },
+    { nom:'NSI (Informatique)', emoji:'💻', url:'https://www.livrescolaire.fr/matiere/terminale-nsi', chapitres:['Structures de données','Algorithmique — complexité et tri','Programmation orientée objet','Récursivité','Bases de données et SQL','Architecture des réseaux','Protocoles TCP/IP et HTTP','Sécurité et cryptographie'] }
   ]}
 };
-let cnCurrentExam='brevet';
-function cnShowExam(exam,btn){cnCurrentExam=exam;document.querySelectorAll('.cn-tab-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.getElementById('cn-chap-wrap').style.display='none';cnRenderMatieres();}
-function cnRenderMatieres(){const grid=document.getElementById('cn-grid');grid.style.display='grid';grid.innerHTML=CN_DATA[cnCurrentExam].matieres.map((m,i)=>`<div class="cn-mat-card" onclick="cnShowChapitres(${i})"><span class="cn-mat-emoji">${m.emoji}</span>${m.nom}</div>`).join('');}
-function cnShowChapitres(idx){const mat=CN_DATA[cnCurrentExam].matieres[idx];document.getElementById('cn-grid').style.display='none';document.getElementById('cn-chap-wrap').style.display='block';document.getElementById('cn-chap-title').textContent=mat.emoji+' '+mat.nom+' — Programme';document.getElementById('cn-ls-link').href=mat.url;document.getElementById('cn-chap-list').innerHTML=mat.chapitres.map(c=>`<li onclick="cnSelectChap('${c.replace(/'/g,"\\'")}','${mat.nom.replace(/'/g,"\\'")}','${cnCurrentExam}')">${c}</li>`).join('');}
-function cnBack(){document.getElementById('cn-chap-wrap').style.display='none';document.getElementById('cn-grid').style.display='grid';}
-function cnSelectChap(chap,matiere,exam){
-  document.getElementById('titre-input').value=chap;
-  document.getElementById('cours-text').value='';
-  document.querySelectorAll('#matiere-chips .chip').forEach(c=>{c.classList.remove('active');if(c.dataset.val===matiere||matiere.includes(c.dataset.val)||c.dataset.val===matiere.split(' ')[0]){c.classList.add('active');selectedMatiere=c.dataset.val;}});
-  document.getElementById('niveau-select').value=exam==='brevet'?'Collège':'Terminale / BAC';
-  showPage('generate');showToast('📌 Chapitre : '+chap.substring(0,30)+'…');
-  setTimeout(()=>document.getElementById('titre-input').scrollIntoView({behavior:'smooth'}),300);
+let cnCurrentExam = 'brevet';
+function cnShowExam(exam, btn) { cnCurrentExam = exam; document.querySelectorAll('.cn-tab-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); document.getElementById('cn-chap-wrap').style.display = 'none'; cnRenderMatieres(); }
+function cnRenderMatieres() { const grid = document.getElementById('cn-grid'); grid.style.display = 'grid'; grid.innerHTML = CN_DATA[cnCurrentExam].matieres.map((m,i) => `<div class="cn-mat-card" onclick="cnShowChapitres(${i})"><span class="cn-mat-emoji">${m.emoji}</span>${m.nom}</div>`).join(''); }
+function cnShowChapitres(idx) { const mat = CN_DATA[cnCurrentExam].matieres[idx]; document.getElementById('cn-grid').style.display = 'none'; document.getElementById('cn-chap-wrap').style.display = 'block'; document.getElementById('cn-chap-title').textContent = mat.emoji + ' ' + mat.nom + ' — Programme'; document.getElementById('cn-ls-link').href = mat.url; document.getElementById('cn-chap-list').innerHTML = mat.chapitres.map(c => `<li onclick="cnSelectChap('${c.replace(/'/g,"\\'")}','${mat.nom.replace(/'/g,"\\'")}','${cnCurrentExam}')">${c}</li>`).join(''); }
+function cnBack() { document.getElementById('cn-chap-wrap').style.display = 'none'; document.getElementById('cn-grid').style.display = 'grid'; }
+function cnSelectChap(chap, matiere, exam) {
+  document.getElementById('titre-input').value = chap;
+  document.getElementById('cours-text').value = '';
+  document.querySelectorAll('#matiere-chips .chip').forEach(c => { c.classList.remove('active'); if (c.dataset.val === matiere || matiere.includes(c.dataset.val) || c.dataset.val === matiere.split(' ')[0]) { c.classList.add('active'); selectedMatiere = c.dataset.val; } });
+  document.getElementById('niveau-select').value = exam === 'brevet' ? 'Collège' : 'Terminale / BAC';
+  showPage('generate'); showToast('📌 Chapitre : ' + chap.substring(0,30) + '…');
+  setTimeout(() => document.getElementById('titre-input').scrollIntoView({ behavior:'smooth' }), 300);
 }
 
 // ══════════════════════════════════════════
 // SUPABASE
 // ══════════════════════════════════════════
-const SUPABASE_URL='https://xesefsrpxinehodfgbri.supabase.co';
-const SUPABASE_KEY='sb_publishable_sduj2vS9RtmHUPZLbg0YnA_0abm0Ftf';
-async function sbFetch(path,options={}){
-  const res=await fetch(SUPABASE_URL+'/rest/v1/'+path,{...options,headers:{'apikey':SUPABASE_KEY,'Authorization':'Bearer '+SUPABASE_KEY,'Content-Type':'application/json','Prefer':'return=representation',...(options.headers||{})}});
+const SUPABASE_URL = 'https://xesefsrpxinehodfgbri.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_sduj2vS9RtmHUPZLbg0YnA_0abm0Ftf';
+async function sbFetch(path, options = {}) {
+  const res = await fetch(SUPABASE_URL + '/rest/v1/' + path, { ...options, headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json', 'Prefer': 'return=representation', ...(options.headers || {}) } });
   return res.json();
 }
-async function loadCommunity(){
-  try{const data=await sbFetch('community?order=created_at.desc&limit=50');
-    if(Array.isArray(data)){communityFiches=data.map(f=>({id:f.id,titre:f.titre,matiere:f.matiere,niveau:f.niveau,auteur:f.auteur,initiales:f.initiales,avColor:f.av_color||'linear-gradient(135deg,#ff8fab,#b388ff)',date:new Date(f.created_at).toLocaleDateString('fr-FR'),preview:f.preview,likes:f.likes||0,sections:f.sections||[],a_retenir:f.a_retenir||''}));renderCommunity();}
-  }catch(e){console.log('Supabase load error',e);}
+async function loadCommunity() {
+  try {
+    const data = await sbFetch('community?order=created_at.desc&limit=50');
+    if (Array.isArray(data)) { communityFiches = data.map(f => ({ id:f.id, titre:f.titre, matiere:f.matiere, niveau:f.niveau, auteur:f.auteur, initiales:f.initiales, avColor:f.av_color||'linear-gradient(135deg,#ff8fab,#b388ff)', date:new Date(f.created_at).toLocaleDateString('fr-FR'), preview:f.preview, likes:f.likes||0, sections:f.sections||[], a_retenir:f.a_retenir||'' })); renderCommunity(); }
+  } catch(e) { console.log('Supabase load error', e); }
 }
-async function saveToCommunity(fiche){
-  try{await sbFetch('community',{method:'POST',body:JSON.stringify({titre:fiche.titre,matiere:fiche.matiere,niveau:fiche.niveau,auteur:fiche.auteur||'DAOUDI WAEL',initiales:fiche.initiales||'DW',av_color:fiche.avColor||'linear-gradient(135deg,#ff8fab,#b388ff)',preview:fiche.preview||'',likes:0,sections:fiche.sections,a_retenir:fiche.a_retenir})});}
-  catch(e){console.log('Supabase save error',e);}
+async function saveToCommunity(fiche) {
+  try { await sbFetch('community', { method:'POST', body:JSON.stringify({ titre:fiche.titre, matiere:fiche.matiere, niveau:fiche.niveau, auteur:fiche.auteur||'DAOUDI WAEL', initiales:fiche.initiales||'DW', av_color:fiche.avColor||'linear-gradient(135deg,#ff8fab,#b388ff)', preview:fiche.preview||'', likes:0, sections:fiche.sections, a_retenir:fiche.a_retenir }) }); }
+  catch(e) { console.log('Supabase save error', e); }
 }
 
-// ══════ STATE ══════
-let selectedMatiere='Français',currentFiche=null;
-let library=JSON.parse(localStorage.getItem('sf_library2')||'[]');
-let communityFiches=JSON.parse(localStorage.getItem('sf_community2')||'[]');
-const SECTION_COLORS_CYCLE=['sec-pink','sec-blue','sec-yellow','sec-green','sec-purple','sec-orange'];
+// ══ STATE ══
+let selectedMatiere = 'Français', currentFiche = null;
+let library = JSON.parse(localStorage.getItem('sf_library2') || '[]');
+let communityFiches = JSON.parse(localStorage.getItem('sf_community2') || '[]');
+const SECTION_COLORS_CYCLE = ['sec-pink','sec-blue','sec-yellow','sec-green','sec-purple','sec-orange'];
 
-document.querySelectorAll('#matiere-chips .chip').forEach(c=>{
-  c.addEventListener('click',()=>{document.querySelectorAll('#matiere-chips .chip').forEach(x=>x.classList.remove('active'));c.classList.add('active');selectedMatiere=c.dataset.val;});
+document.querySelectorAll('#matiere-chips .chip').forEach(c => {
+  c.addEventListener('click', () => { document.querySelectorAll('#matiere-chips .chip').forEach(x => x.classList.remove('active')); c.classList.add('active'); selectedMatiere = c.dataset.val; });
 });
 
-function handleFile(input){const file=input.files[0];if(!file)return;const reader=new FileReader();reader.onload=e=>{const img=document.getElementById('preview-img');img.src=e.target.result;img.style.display='block';};reader.readAsDataURL(file);}
+function handleFile(input) { const file = input.files[0]; if (!file) return; const reader = new FileReader(); reader.onload = e => { const img = document.getElementById('preview-img'); img.src = e.target.result; img.style.display = 'block'; }; reader.readAsDataURL(file); }
 
-async function generateFiche(){
-  const titre=document.getElementById('titre-input').value;
-  const cours=document.getElementById('cours-text').value;
-  const keywords=document.getElementById('keywords-input').value;
-  const niveau=document.getElementById('niveau-select').value;
-  const typeFiche=document.getElementById('type-select').value;
-  if(!titre&&!cours&&!keywords){showToast('⚠️ Remplis au moins un champ !');return;}
-  const btn=document.getElementById('gen-btn'),spinner=document.getElementById('spinner'),btnText=document.getElementById('btn-text');
-  const texteAVerifier=[titre,cours,keywords].filter(Boolean).join(' ');
-  if(clientFilter(texteAVerifier).blocked){showToast('🚫 Contenu inapproprié !');return;}
-  btn.disabled=true;spinner.style.display='block';btnText.textContent='🔍 Vérification...';
-  const ok=await moderationCheck(texteAVerifier);
-  if(!ok){btn.disabled=false;spinner.style.display='none';btnText.textContent='✏️ Générer ma fiche façon cahier';showToast('🚫 Contenu inapproprié. Modifie ton texte.');return;}
-  btnText.textContent='L\'IA crée ta fiche...';
-  const prompt=`Tu es un expert en pédagogie. Génère une fiche de révision de niveau ${niveau} en ${selectedMatiere}, type "${typeFiche}". ${titre?'Titre: '+titre:''} ${cours?'Cours:\n'+cours:''} ${keywords?'Mots-clés: '+keywords:''}. Réponds UNIQUEMENT en JSON valide sans markdown: {"titre":"...","sections":[{"titre":"NOM","contenu":"texte avec \\n pour séparer. - pour listes."}],"a_retenir":"points séparés par \\n"}. 4 à 7 sections. En français.`;
-  try{
-    const res=await fetch('https://api.groq.com/openai/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer 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'},body:JSON.stringify({model:'llama-3.3-70b-versatile',max_tokens:1500,messages:[{role:'system',content:'Tu es un expert pédagogue. Réponds UNIQUEMENT en JSON valide, sans markdown, sans backticks.'},{role:'user',content:prompt}]})});
-    const data=await res.json();if(data.error)throw new Error(data.error.message);
-    let text=data.choices[0].message.content.replace(/```json|```/g,'').trim();
-    const parsed=JSON.parse(text);
-    currentFiche={id:Date.now(),titre:parsed.titre||titre||selectedMatiere,matiere:selectedMatiere,niveau,type:typeFiche,sections:parsed.sections||[],a_retenir:parsed.a_retenir||'',date:new Date().toLocaleDateString('fr-FR')};
+async function generateFiche() {
+  const titre = document.getElementById('titre-input').value;
+  const cours = document.getElementById('cours-text').value;
+  const keywords = document.getElementById('keywords-input').value;
+  const niveau = document.getElementById('niveau-select').value;
+  const typeFiche = document.getElementById('type-select').value;
+  if (!titre && !cours && !keywords) { showToast('⚠️ Remplis au moins un champ !'); return; }
+  const texteAVerifier = [titre, cours, keywords].filter(Boolean).join(' ');
+  if (clientFilter(texteAVerifier).blocked) { showToast('🚫 Contenu inapproprié !'); return; }
+  const btn = document.getElementById('gen-btn'), spinner = document.getElementById('spinner'), btnText = document.getElementById('btn-text');
+  btn.disabled = true; spinner.style.display = 'block'; btnText.textContent = "L'IA crée ta fiche...";
+  const prompt = `Tu es un expert en pédagogie. Génère une fiche de révision de niveau ${niveau} en ${selectedMatiere}, type "${typeFiche}". ${titre ? 'Titre: ' + titre : ''} ${cours ? 'Cours:\n' + cours.substring(0,1000) : ''} ${keywords ? 'Mots-clés: ' + keywords : ''}. Réponds UNIQUEMENT en JSON valide sans markdown: {"titre":"...","sections":[{"titre":"NOM","contenu":"texte avec \\n pour séparer. - pour listes."}],"a_retenir":"points séparés par \\n"}. 4 à 6 sections. En français.`;
+  try {
+    const text = await callAI(
+      [{ role:'user', content: prompt }],
+      'Tu es un expert pédagogue. Réponds UNIQUEMENT en JSON valide, sans markdown, sans backticks.',
+      1500
+    );
+    let clean = text.trim();
+    // Nettoyer les balises markdown si présentes
+    clean = clean.replace(/```json\s*/gi,'').replace(/```\s*/gi,'').trim();
+    // Trouver le JSON dans la réponse
+    const jsonStart = clean.indexOf('{');
+    const jsonEnd = clean.lastIndexOf('}');
+    if (jsonStart !== -1 && jsonEnd !== -1) clean = clean.substring(jsonStart, jsonEnd + 1);
+    const parsed = JSON.parse(clean);
+    currentFiche = { id:Date.now(), titre:parsed.titre||titre||selectedMatiere, matiere:selectedMatiere, niveau, type:typeFiche, sections:parsed.sections||[], a_retenir:parsed.a_retenir||'', date:new Date().toLocaleDateString('fr-FR') };
     renderPaperFiche(currentFiche);
-    document.getElementById('fiche-paper').style.display='block';
-    document.getElementById('fiche-paper').scrollIntoView({behavior:'smooth',block:'start'});
-  }catch(e){console.error(e);showToast('❌ Erreur. Réessaie !');}
-  btn.disabled=false;spinner.style.display='none';btnText.textContent='✏️ Générer ma fiche façon cahier';
+    document.getElementById('fiche-paper').style.display = 'block';
+    document.getElementById('fiche-paper').scrollIntoView({ behavior:'smooth', block:'start' });
+  } catch(e) {
+    console.error('Erreur génération fiche:', e);
+    showToast('❌ Erreur de génération. Vérifie ta connexion et réessaie !');
+  }
+  btn.disabled = false; spinner.style.display = 'none'; btnText.textContent = '✏️ Générer ma fiche façon cahier';
 }
 
-function renderPaperFiche(fiche){
-  const container=document.getElementById('paper-content'),colors=SECTION_COLORS_CYCLE,useGrid=fiche.sections.length>=4;
-  let html=`<div class="fiche-main-title">${fiche.titre}</div>`;
-  if(useGrid){const half=Math.ceil(fiche.sections.length/2);html+=`<div class="fiche-grid"><div>`+fiche.sections.slice(0,half).map((s,i)=>renderSection(s,colors[i%colors.length])).join('')+`</div><div>`+fiche.sections.slice(half).map((s,i)=>renderSection(s,colors[(i+half)%colors.length])).join('')+`</div></div>`;}
-  else{html+=fiche.sections.map((s,i)=>renderSection(s,colors[i%colors.length])).join('');}
-  if(fiche.a_retenir)html+=`<div class="a-retenir"><div class="a-retenir-title">⭐ À retenir</div>${fiche.a_retenir.split('\\n').map(l=>`<div>${l}</div>`).join('')}</div>`;
-  container.innerHTML=html;
+function renderPaperFiche(fiche) {
+  const container = document.getElementById('paper-content'), colors = SECTION_COLORS_CYCLE, useGrid = fiche.sections.length >= 4;
+  let html = `<div class="fiche-main-title">${fiche.titre}</div>`;
+  if (useGrid) { const half = Math.ceil(fiche.sections.length / 2); html += `<div class="fiche-grid"><div>` + fiche.sections.slice(0,half).map((s,i) => renderSection(s, colors[i%colors.length])).join('') + `</div><div>` + fiche.sections.slice(half).map((s,i) => renderSection(s, colors[(i+half)%colors.length])).join('') + `</div></div>`; }
+  else { html += fiche.sections.map((s,i) => renderSection(s, colors[i%colors.length])).join(''); }
+  if (fiche.a_retenir) html += `<div class="a-retenir"><div class="a-retenir-title">⭐ À retenir</div>${fiche.a_retenir.split('\\n').map(l => `<div>${l}</div>`).join('')}</div>`;
+  container.innerHTML = html;
 }
-function renderSection(section,colorClass){
-  let body=section.contenu||'';
-  const lines=body.split('\\n');
-  let rendered=lines.map(line=>{if(line.startsWith('SCHEMA:'))return`<div class="schema">${line.replace('SCHEMA:','').trim()}</div>`;else if(line.startsWith('-'))return`<li>${line.slice(1).trim()}</li>`;else if(line.includes(':')&&line.indexOf(':')<30&&!line.startsWith(' ')){const[k,...v]=line.split(':');return`<div><strong>${k} :</strong>${v.join(':')}</div>`;}else return`<div>${line}</div>`;});
-  let html=rendered.join('').replace(/(<li>.*?<\/li>)+/g,m=>`<ul>${m}</ul>`);
-  return`<div class="fiche-section ${colorClass}"><div class="section-header">${section.titre}</div><div class="section-body">${html}</div></div>`;
+function renderSection(section, colorClass) {
+  let body = section.contenu || '';
+  const lines = body.split('\\n');
+  let rendered = lines.map(line => {
+    line = line.trim(); if (!line) return '';
+    if (line.startsWith('SCHEMA:')) return `<div class="schema">${line.replace('SCHEMA:','').trim()}</div>`;
+    else if (line.startsWith('- ') || line.startsWith('* ')) return `<li>${line.slice(2).trim()}</li>`;
+    else if (line.includes(':') && line.indexOf(':') < 35 && !line.startsWith(' ')) { const idx = line.indexOf(':'); const k = line.substring(0,idx); const v = line.substring(idx+1); return `<div><strong>${k} :</strong>${v}</div>`; }
+    else return `<div>${line}</div>`;
+  });
+  let html = rendered.join('').replace(/(<li>.*?<\/li>)+/g, m => `<ul>${m}</ul>`);
+  return `<div class="fiche-section ${colorClass}"><div class="section-header">${section.titre}</div><div class="section-body">${html}</div></div>`;
 }
 
-function saveFiche(){if(!currentFiche){showToast('Génère d\'abord une fiche !');return;}if(library.find(f=>f.id===currentFiche.id)){showToast('⚠️ Déjà sauvegardée !');return;}library.unshift(currentFiche);localStorage.setItem('sf_library2',JSON.stringify(library));showToast('💾 Fiche sauvegardée !');}
-function printFiche(){window.print();}
-async function shareToComm(){
-  if(!currentFiche){showToast('Génère d\'abord une fiche !');return;}
-  if(!currentUser){showToast('Connecte-toi pour partager !');showAuth();return;}
-  const btn=document.getElementById('share-btn');btn.disabled=true;btn.textContent='🔍 Vérification...';document.getElementById('mod-error').style.display='none';
-  const ok=await moderationCheck(currentFiche.titre+' '+currentFiche.sections.map(s=>s.contenu).join(' '));
-  btn.disabled=false;btn.textContent='🌍 Partager';
-  if(!ok){showModError();return;}
-  showToast('🌍 Publication en cours...');
-  const initiales=(currentUser.name||'?').substring(0,2).toUpperCase();
-  const f={...currentFiche,auteur:currentUser.name,initiales,avColor:'linear-gradient(135deg,#ff8fab,#b388ff)',date:'à l\'instant',likes:0,preview:(currentFiche.sections[0]?.contenu||'').substring(0,100)+'...'};
-  await saveToCommunity(f);await loadCommunity();showToast('🌍 Fiche partagée !');
+function saveFiche() { if (!currentFiche) { showToast('Génère d\'abord une fiche !'); return; } if (library.find(f => f.id === currentFiche.id)) { showToast('⚠️ Déjà sauvegardée !'); return; } library.unshift(currentFiche); localStorage.setItem('sf_library2', JSON.stringify(library)); showToast('💾 Fiche sauvegardée !'); }
+function printFiche() { window.print(); }
+async function shareToComm() {
+  if (!currentFiche) { showToast('Génère d\'abord une fiche !'); return; }
+  if (!currentUser) { showToast('Connecte-toi pour partager !'); showAuth(); return; }
+  if (clientFilter(currentFiche.titre).blocked) { showModError(); return; }
+  const btn = document.getElementById('share-btn'); btn.disabled = true; btn.textContent = '⏳ Partage...';
+  const initiales = (currentUser.name || '?').substring(0,2).toUpperCase();
+  const f = { ...currentFiche, auteur:currentUser.name, initiales, avColor:'linear-gradient(135deg,#ff8fab,#b388ff)', date:"à l'instant", likes:0, preview:(currentFiche.sections[0]?.contenu||'').substring(0,100)+'...' };
+  await saveToCommunity(f); await loadCommunity();
+  btn.disabled = false; btn.textContent = '🌍 Partager';
+  showToast('🌍 Fiche partagée !');
 }
-async function generateQuiz(){
-  if(!currentFiche){showToast('Génère d\'abord une fiche !');return;}showToast('🎯 Génération du quiz...');
-  const content=currentFiche.sections.map(s=>`${s.titre}: ${s.contenu}`).join('\n');
-  try{const res=await fetch('https://api.groq.com/openai/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer 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'},body:JSON.stringify({model:'llama-3.3-70b-versatile',max_tokens:700,messages:[{role:'system',content:'Tu es un expert pédagogue.'},{role:'user',content:`Génère 5 questions QCM sur "${currentFiche.titre}" (${currentFiche.matiere}) avec 4 choix (A,B,C,D) et indique la bonne réponse. Contenu:\n${content.substring(0,600)}`}]})});
-    const data=await res.json();const quiz=data.choices[0].message.content;
-    openModal('🎯 Quiz — '+currentFiche.titre,`<div style="white-space:pre-wrap;font-family:'Kalam',cursive;font-size:.95rem;line-height:1.9">${quiz}</div>`);
-  }catch(e){showToast('❌ Erreur');}
+async function generateQuiz() {
+  if (!currentFiche) { showToast('Génère d\'abord une fiche !'); return; }
+  showToast('🎯 Génération du quiz...');
+  const content = currentFiche.sections.map(s => `${s.titre}: ${s.contenu}`).join('\n');
+  try {
+    const quiz = await callAI(
+      [{ role:'user', content:`Génère 5 questions QCM sur "${currentFiche.titre}" (${currentFiche.matiere}) avec 4 choix (A,B,C,D) et indique la bonne réponse entre parenthèses après chaque question. Contenu:\n${content.substring(0,600)}` }],
+      'Tu es un expert pédagogue. Génère des questions QCM claires et pédagogiques.',
+      700
+    );
+    openModal('🎯 Quiz — ' + currentFiche.titre, `<div style="white-space:pre-wrap;font-family:'Kalam',cursive;font-size:.95rem;line-height:1.9">${quiz}</div>`);
+  } catch(e) { showToast('❌ Erreur'); }
 }
 
 // ══════ LIBRARY ══════
-const BADGE_COLORS={'Français':'badge-purple','Mathématiques':'badge-yellow','Histoire-Géo':'badge-pink','Sciences':'badge-green','Biologie':'badge-green','Anglais':'badge-blue','default':'badge-pink'};
-function getBadge(m){return BADGE_COLORS[m]||BADGE_COLORS.default;}
-const CARD_BARS={'Français':'linear-gradient(90deg,#b388ff,#ff8fab)','Mathématiques':'linear-gradient(90deg,#ffd166,#ff9f1c)','Histoire-Géo':'linear-gradient(90deg,#ef476f,#ffd166)','Sciences':'linear-gradient(90deg,#06d6a0,#4cc9f0)','Biologie':'linear-gradient(90deg,#06d6a0,#34d399)','Anglais':'linear-gradient(90deg,#4cc9f0,#b388ff)','default':'linear-gradient(90deg,#ff8fab,#ffd166)'};
-function getBar(m){return CARD_BARS[m]||CARD_BARS.default;}
-function renderLibrary(filter=''){
-  const grid=document.getElementById('library-grid');
-  const f=library.filter(x=>x.titre.toLowerCase().includes(filter.toLowerCase())||x.matiere.toLowerCase().includes(filter.toLowerCase()));
-  if(!f.length){grid.innerHTML='<div class="empty-state" style="grid-column:1/-1"><div class="es-icon">📭</div><p>'+(filter?'Aucune fiche trouvée.':'Génère ta première fiche et sauvegarde-la !')+'</p></div>';return;}
-  grid.innerHTML=f.map(fiche=>`<div class="fiche-card" onclick="openFicheModal('${fiche.id}')"><div class="fc-color-bar" style="background:${getBar(fiche.matiere)}"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><h4>${fiche.titre}</h4><button onclick="event.stopPropagation();deleteLib('${fiche.id}')" style="background:none;border:none;cursor:pointer;color:#ccc;font-size:.85rem">🗑</button></div><div class="fc-meta">${fiche.date} · ${fiche.niveau}</div><div class="fc-preview">${fiche.sections[0]?.contenu?.substring(0,100)||''}...</div><div style="margin-top:10px"><span class="badge ${getBadge(fiche.matiere)}">${fiche.matiere}</span></div></div>`).join('');
+const BADGE_COLORS = { 'Français':'badge-purple','Mathématiques':'badge-yellow','Histoire-Géo':'badge-pink','Sciences':'badge-green','Biologie':'badge-green','Anglais':'badge-blue','default':'badge-pink' };
+function getBadge(m) { return BADGE_COLORS[m] || BADGE_COLORS.default; }
+const CARD_BARS = { 'Français':'linear-gradient(90deg,#b388ff,#ff8fab)','Mathématiques':'linear-gradient(90deg,#ffd166,#ff9f1c)','Histoire-Géo':'linear-gradient(90deg,#ef476f,#ffd166)','Sciences':'linear-gradient(90deg,#06d6a0,#4cc9f0)','Biologie':'linear-gradient(90deg,#06d6a0,#34d399)','Anglais':'linear-gradient(90deg,#4cc9f0,#b388ff)','default':'linear-gradient(90deg,#ff8fab,#ffd166)' };
+function getBar(m) { return CARD_BARS[m] || CARD_BARS.default; }
+function renderLibrary(filter = '') {
+  const grid = document.getElementById('library-grid');
+  const f = library.filter(x => x.titre.toLowerCase().includes(filter.toLowerCase()) || x.matiere.toLowerCase().includes(filter.toLowerCase()));
+  if (!f.length) { grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1"><div class="es-icon">📭</div><p>' + (filter ? 'Aucune fiche trouvée.' : 'Génère ta première fiche et sauvegarde-la !') + '</p></div>'; return; }
+  grid.innerHTML = f.map(fiche => `<div class="fiche-card" onclick="openFicheModal('${fiche.id}')"><div class="fc-color-bar" style="background:${getBar(fiche.matiere)}"></div><div style="display:flex;justify-content:space-between;align-items:flex-start"><h4>${fiche.titre}</h4><button onclick="event.stopPropagation();deleteLib('${fiche.id}')" style="background:none;border:none;cursor:pointer;color:#ccc;font-size:.85rem">🗑</button></div><div class="fc-meta">${fiche.date} · ${fiche.niveau}</div><div class="fc-preview">${fiche.sections[0]?.contenu?.substring(0,100)||''}...</div><div style="margin-top:10px"><span class="badge ${getBadge(fiche.matiere)}">${fiche.matiere}</span></div></div>`).join('');
 }
-function filterLibrary(){renderLibrary(document.getElementById('lib-search').value);}
-function deleteLib(id){library=library.filter(f=>String(f.id)!==String(id));localStorage.setItem('sf_library2',JSON.stringify(library));renderLibrary(document.getElementById('lib-search').value);showToast('🗑 Supprimée');}
-function openFicheModal(id){const fiche=library.find(f=>String(f.id)===String(id));if(!fiche)return;openModal(fiche.titre,buildPaperHTML(fiche));}
-function buildPaperHTML(fiche){
-  const colors=SECTION_COLORS_CYCLE,useGrid=fiche.sections.length>=4;
-  let html=`<div style="font-family:'Kalam',cursive;padding:.5rem"><div style="font-family:'Caveat',cursive;font-size:1.5rem;font-weight:700;text-align:center;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:3px solid var(--pink)">${fiche.titre}</div>`;
-  if(useGrid){const half=Math.ceil(fiche.sections.length/2);html+=`<div class="fiche-grid"><div>`+fiche.sections.slice(0,half).map((s,i)=>renderSection(s,colors[i%colors.length])).join('')+`</div><div>`+fiche.sections.slice(half).map((s,i)=>renderSection(s,colors[(i+half)%colors.length])).join('')+`</div></div>`;}
-  else{html+=fiche.sections.map((s,i)=>renderSection(s,colors[i%colors.length])).join('');}
-  if(fiche.a_retenir)html+=`<div class="a-retenir"><div class="a-retenir-title">⭐ À retenir</div>${fiche.a_retenir.split('\\n').map(l=>`<div>${l}</div>`).join('')}</div>`;
-  html+=`</div>`;return html;
+function filterLibrary() { renderLibrary(document.getElementById('lib-search').value); }
+function deleteLib(id) { library = library.filter(f => String(f.id) !== String(id)); localStorage.setItem('sf_library2', JSON.stringify(library)); renderLibrary(document.getElementById('lib-search').value); showToast('🗑 Supprimée'); }
+function openFicheModal(id) { const fiche = library.find(f => String(f.id) === String(id)); if (!fiche) return; openModal(fiche.titre, buildPaperHTML(fiche)); }
+function buildPaperHTML(fiche) {
+  const colors = SECTION_COLORS_CYCLE, useGrid = fiche.sections.length >= 4;
+  let html = `<div style="font-family:'Kalam',cursive;padding:.5rem"><div style="font-family:'Caveat',cursive;font-size:1.5rem;font-weight:700;text-align:center;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:3px solid var(--pink)">${fiche.titre}</div>`;
+  if (useGrid) { const half = Math.ceil(fiche.sections.length / 2); html += `<div class="fiche-grid"><div>` + fiche.sections.slice(0,half).map((s,i) => renderSection(s, colors[i%colors.length])).join('') + `</div><div>` + fiche.sections.slice(half).map((s,i) => renderSection(s, colors[(i+half)%colors.length])).join('') + `</div></div>`; }
+  else { html += fiche.sections.map((s,i) => renderSection(s, colors[i%colors.length])).join(''); }
+  if (fiche.a_retenir) html += `<div class="a-retenir"><div class="a-retenir-title">⭐ À retenir</div>${fiche.a_retenir.split('\\n').map(l => `<div>${l}</div>`).join('')}</div>`;
+  html += `</div>`; return html;
 }
 
 // ══════ COMMUNITY ══════
-function renderCommunity(filter=''){
-  const grid=document.getElementById('community-grid');
-  const f=communityFiches.filter(x=>x.titre.toLowerCase().includes(filter.toLowerCase())||x.matiere.toLowerCase().includes(filter.toLowerCase()));
-  if(!f.length){grid.innerHTML='<div class="empty-state" style="grid-column:1/-1"><div class="es-icon">🌍</div><p>Aucune fiche publiée.</p></div>';return;}
-  grid.innerHTML=f.map(fiche=>`<div class="pub-card"><div class="pub-author"><div class="pub-avatar" style="background:${fiche.avColor||'linear-gradient(135deg,#ff8fab,#b388ff)'}">${fiche.initiales}</div><div><div class="pub-name">${fiche.auteur}</div><div class="pub-date">${fiche.date}</div></div></div><h4>${fiche.titre}</h4><p>${fiche.preview}</p><div class="pub-footer"><span class="badge ${getBadge(fiche.matiere)}">${fiche.matiere}</span><div style="display:flex;gap:6px;align-items:center"><button class="btn-secondary" style="font-size:.75rem;padding:3px 9px" onclick="saveFromComm('${fiche.id}')">💾</button><button class="like-btn" id="like-${fiche.id}" onclick="toggleLike('${fiche.id}',this)">❤️ ${fiche.likes}</button></div></div></div>`).join('');
+function renderCommunity(filter = '') {
+  const grid = document.getElementById('community-grid');
+  const f = communityFiches.filter(x => x.titre.toLowerCase().includes(filter.toLowerCase()) || x.matiere.toLowerCase().includes(filter.toLowerCase()));
+  if (!f.length) { grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1"><div class="es-icon">🌍</div><p>Aucune fiche publiée.</p></div>'; return; }
+  grid.innerHTML = f.map(fiche => `<div class="pub-card"><div class="pub-author"><div class="pub-avatar" style="background:${fiche.avColor||'linear-gradient(135deg,#ff8fab,#b388ff)'}">${fiche.initiales}</div><div><div class="pub-name">${fiche.auteur}</div><div class="pub-date">${fiche.date}</div></div></div><h4>${fiche.titre}</h4><p>${fiche.preview}</p><div class="pub-footer"><span class="badge ${getBadge(fiche.matiere)}">${fiche.matiere}</span><div style="display:flex;gap:6px;align-items:center"><button class="btn-secondary" style="font-size:.75rem;padding:3px 9px" onclick="saveFromComm('${fiche.id}')">💾</button><button class="like-btn" id="like-${fiche.id}" onclick="toggleLike('${fiche.id}',this)">❤️ ${fiche.likes}</button></div></div></div>`).join('');
 }
-function filterCommunity(){renderCommunity(document.getElementById('comm-search').value);}
-function toggleLike(id,btn){const f=communityFiches.find(x=>String(x.id)===String(id));if(!f)return;btn.classList.toggle('liked');f.likes=btn.classList.contains('liked')?f.likes+1:f.likes-1;btn.textContent=`❤️ ${f.likes}`;localStorage.setItem('sf_community2',JSON.stringify(communityFiches));}
-function saveFromComm(id){const f=communityFiches.find(x=>String(x.id)===String(id));if(!f)return;library.unshift({...f,id:Date.now(),date:new Date().toLocaleDateString('fr-FR')});localStorage.setItem('sf_library2',JSON.stringify(library));showToast('💾 Sauvegardée !');}
+function filterCommunity() { renderCommunity(document.getElementById('comm-search').value); }
+function toggleLike(id, btn) { const f = communityFiches.find(x => String(x.id) === String(id)); if (!f) return; btn.classList.toggle('liked'); f.likes = btn.classList.contains('liked') ? f.likes + 1 : f.likes - 1; btn.textContent = `❤️ ${f.likes}`; localStorage.setItem('sf_community2', JSON.stringify(communityFiches)); }
+function saveFromComm(id) { const f = communityFiches.find(x => String(x.id) === String(id)); if (!f) return; library.unshift({ ...f, id:Date.now(), date:new Date().toLocaleDateString('fr-FR') }); localStorage.setItem('sf_library2', JSON.stringify(library)); showToast('💾 Sauvegardée !'); }
 
 // ══════ MODAL ══════
-function openModal(title,body){document.getElementById('modal-title').textContent=title;document.getElementById('modal-body').innerHTML=body;document.getElementById('modal-overlay').classList.add('open');}
-function closeModal(e){if(!e||e.target===document.getElementById('modal-overlay'))document.getElementById('modal-overlay').classList.remove('open');}
+function openModal(title, body) { document.getElementById('modal-title').textContent = title; document.getElementById('modal-body').innerHTML = body; document.getElementById('modal-overlay').classList.add('open'); }
+function closeModal(e) { if (!e || e.target === document.getElementById('modal-overlay')) document.getElementById('modal-overlay').classList.remove('open'); }
 
 // ══════ TOAST ══════
-function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
+function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2500); }
 
 // ══════ AUTH ══════
-const SUPABASE_AUTH_URL='https://xesefsrpxinehodfgbri.supabase.co/auth/v1';
-let currentUser=null,selectedAvatarEmoji='😊';
-function showAuth(){document.getElementById('auth-overlay').style.display='flex';}
-function hideAuth(){document.getElementById('auth-overlay').style.display='none';}
-function switchTab(tab){document.getElementById('form-login').style.display=tab==='login'?'block':'none';document.getElementById('form-signup').style.display=tab==='signup'?'block':'none';document.getElementById('tab-login').classList.toggle('active',tab==='login');document.getElementById('tab-signup').classList.toggle('active',tab==='signup');document.getElementById('auth-error').style.display='none';document.getElementById('auth-success').style.display='none';}
-function selectAvatar(el){document.querySelectorAll('.avatar-opt').forEach(a=>a.classList.remove('selected'));el.classList.add('selected');selectedAvatarEmoji=el.dataset.emoji;}
-function showAuthError(msg){const el=document.getElementById('auth-error');el.textContent=msg;el.style.display='block';document.getElementById('auth-success').style.display='none';}
-function showAuthSuccess(msg){const el=document.getElementById('auth-success');el.textContent=msg;el.style.display='block';document.getElementById('auth-error').style.display='none';}
-async function signup(){
-  const name=document.getElementById('signup-name').value.trim(),email=document.getElementById('signup-email').value.trim(),password=document.getElementById('signup-password').value;
-  if(!name||!email||!password){showAuthError('Remplis tous les champs !');return;}if(password.length<6){showAuthError('Mot de passe minimum 6 caractères !');return;}
-  const btn=document.getElementById('signup-btn');btn.disabled=true;btn.textContent='Création...';
-  try{const res=await fetch(SUPABASE_AUTH_URL+'/signup',{method:'POST',headers:{'Content-Type':'application/json','apikey':SUPABASE_KEY},body:JSON.stringify({email,password,data:{name,avatar:selectedAvatarEmoji}})});
-    const data=await res.json();if(data.error){showAuthError(data.error.message||'Erreur !');return;}
-    showAuthSuccess('✅ Compte créé ! Vérifie ton email.');setTimeout(()=>switchTab('login'),2000);
-  }catch(e){showAuthError('Erreur de connexion.');}
-  btn.disabled=false;btn.textContent='🎉 Créer mon compte';
+const SUPABASE_AUTH_URL = 'https://xesefsrpxinehodfgbri.supabase.co/auth/v1';
+let currentUser = null, selectedAvatarEmoji = '😊';
+function showAuth() { document.getElementById('auth-overlay').style.display = 'flex'; }
+function hideAuth() { document.getElementById('auth-overlay').style.display = 'none'; }
+function switchTab(tab) { document.getElementById('form-login').style.display = tab === 'login' ? 'block' : 'none'; document.getElementById('form-signup').style.display = tab === 'signup' ? 'block' : 'none'; document.getElementById('tab-login').classList.toggle('active', tab === 'login'); document.getElementById('tab-signup').classList.toggle('active', tab === 'signup'); document.getElementById('auth-error').style.display = 'none'; document.getElementById('auth-success').style.display = 'none'; }
+function selectAvatar(el) { document.querySelectorAll('.avatar-opt').forEach(a => a.classList.remove('selected')); el.classList.add('selected'); selectedAvatarEmoji = el.dataset.emoji; }
+function showAuthError(msg) { const el = document.getElementById('auth-error'); el.textContent = msg; el.style.display = 'block'; document.getElementById('auth-success').style.display = 'none'; }
+function showAuthSuccess(msg) { const el = document.getElementById('auth-success'); el.textContent = msg; el.style.display = 'block'; document.getElementById('auth-error').style.display = 'none'; }
+async function signup() {
+  const name = document.getElementById('signup-name').value.trim(), email = document.getElementById('signup-email').value.trim(), password = document.getElementById('signup-password').value;
+  if (!name || !email || !password) { showAuthError('Remplis tous les champs !'); return; } if (password.length < 6) { showAuthError('Mot de passe minimum 6 caractères !'); return; }
+  const btn = document.getElementById('signup-btn'); btn.disabled = true; btn.textContent = 'Création...';
+  try {
+    const res = await fetch(SUPABASE_AUTH_URL + '/signup', { method:'POST', headers:{ 'Content-Type':'application/json', 'apikey':SUPABASE_KEY }, body:JSON.stringify({ email, password, data:{ name, avatar:selectedAvatarEmoji } }) });
+    const data = await res.json(); if (data.error) { showAuthError(data.error.message || 'Erreur !'); return; }
+    showAuthSuccess('✅ Compte créé ! Vérifie ton email.'); setTimeout(() => switchTab('login'), 2000);
+  } catch(e) { showAuthError('Erreur de connexion.'); }
+  btn.disabled = false; btn.textContent = '🎉 Créer mon compte';
 }
-async function login(){
-  const email=document.getElementById('login-email').value.trim(),password=document.getElementById('login-password').value;
-  if(!email||!password){showAuthError('Remplis tous les champs !');return;}
-  const btn=document.getElementById('login-btn');btn.disabled=true;btn.textContent='Connexion...';
-  try{const res=await fetch(SUPABASE_AUTH_URL+'/token?grant_type=password',{method:'POST',headers:{'Content-Type':'application/json','apikey':SUPABASE_KEY},body:JSON.stringify({email,password})});
-    const data=await res.json();if(data.error){showAuthError('Email ou mot de passe incorrect !');return;}
-    currentUser={id:data.user.id,email:data.user.email,name:data.user.user_metadata?.name||email.split('@')[0],avatar:data.user.user_metadata?.avatar||'😊',token:data.access_token};
-    localStorage.setItem('sf_user',JSON.stringify(currentUser));updateUserUI();hideAuth();showToast('👋 Bienvenue '+currentUser.name+' !');
-  }catch(e){showAuthError('Erreur de connexion.');}
-  btn.disabled=false;btn.textContent='🔑 Se connecter';
+async function login() {
+  const email = document.getElementById('login-email').value.trim(), password = document.getElementById('login-password').value;
+  if (!email || !password) { showAuthError('Remplis tous les champs !'); return; }
+  const btn = document.getElementById('login-btn'); btn.disabled = true; btn.textContent = 'Connexion...';
+  try {
+    const res = await fetch(SUPABASE_AUTH_URL + '/token?grant_type=password', { method:'POST', headers:{ 'Content-Type':'application/json', 'apikey':SUPABASE_KEY }, body:JSON.stringify({ email, password }) });
+    const data = await res.json(); if (data.error) { showAuthError('Email ou mot de passe incorrect !'); return; }
+    currentUser = { id:data.user.id, email:data.user.email, name:data.user.user_metadata?.name||email.split('@')[0], avatar:data.user.user_metadata?.avatar||'😊', token:data.access_token };
+    localStorage.setItem('sf_user', JSON.stringify(currentUser)); updateUserUI(); hideAuth(); showToast('👋 Bienvenue ' + currentUser.name + ' !');
+  } catch(e) { showAuthError('Erreur de connexion.'); }
+  btn.disabled = false; btn.textContent = '🔑 Se connecter';
 }
-function logout(){currentUser=null;localStorage.removeItem('sf_user');updateUserUI();showToast('👋 À bientôt !');}
-function updateUserUI(){const loggedIn=!!currentUser;document.getElementById('user-info-top').style.display=loggedIn?'flex':'none';document.getElementById('login-btn-top').style.display=loggedIn?'none':'block';if(loggedIn){document.getElementById('user-avatar-top').textContent=currentUser.avatar;document.getElementById('user-name-top').textContent=currentUser.name;}}
-const savedUser=localStorage.getItem('sf_user');if(savedUser){currentUser=JSON.parse(savedUser);updateUserUI();document.getElementById('auth-overlay').style.display='none';}
+function logout() { currentUser = null; localStorage.removeItem('sf_user'); updateUserUI(); showToast('👋 À bientôt !'); }
+function updateUserUI() { const loggedIn = !!currentUser; document.getElementById('user-info-top').style.display = loggedIn ? 'flex' : 'none'; document.getElementById('login-btn-top').style.display = loggedIn ? 'block' : 'block'; if (loggedIn) { document.getElementById('user-avatar-top').textContent = currentUser.avatar; document.getElementById('user-name-top').textContent = currentUser.name; document.getElementById('login-btn-top').style.display = 'none'; } }
+const savedUser = localStorage.getItem('sf_user'); if (savedUser) { try { currentUser = JSON.parse(savedUser); updateUserUI(); document.getElementById('auth-overlay').style.display = 'none'; } catch(e) { localStorage.removeItem('sf_user'); } }
 
 // ══════════════════════════════════════════
-// AGENT IA PAGE
+// AGENT IA PAGE (sans vocal)
 // ══════════════════════════════════════════
-const LIVRESCOLAIRE_PRELOADED={
-  'photosynthèse':'Livrescolaire.fr — SVT: La photosynthèse transforme l\'énergie lumineuse en énergie chimique dans les chloroplastes. Équation : 6CO₂ + 6H₂O + lumière → C₆H₁₂O₆ + 6O₂. Phase lumineuse dans les thylakoïdes. Phase sombre (cycle de Calvin) dans le stroma.',
-  'newton':'Livrescolaire.fr — Physique: Les 3 lois de Newton. 1re loi (inertie) : corps au repos si forces compensées. 2e loi : F = ma. 3e loi (action-réaction) : à toute action correspond une réaction égale et opposée.',
-  'révolution française':'Livrescolaire.fr — Histoire 3ème: La Révolution française (1789-1799). Causes : crise financière, inégalités, idées des Lumières. Bastille : 14 juillet 1789. DDHC : 26 août 1789. Fin de la monarchie absolue.',
-  'figures de style':'Livrescolaire.fr — Français: Métaphore : comparaison sans outil. Comparaison : avec outil (comme, tel). Métonymie : désigner par un élément lié. Hyperbole : exagération. Antithèse : opposition. Anaphore : répétition en début de phrase.',
-  'second degré':'Livrescolaire.fr — Maths: ax²+bx+c=0. Δ = b²-4ac. Δ>0 : deux solutions x=(-b±√Δ)/2a. Δ=0 : une solution x=-b/2a. Δ<0 : pas de solution réelle.',
-  'pythagore':'Livrescolaire.fr — Maths 3ème: Dans un triangle rectangle, hypoténuse² = côté1² + côté2². Réciproque : si a²=b²+c² alors triangle rectangle.',
-  'guerre froide':'Livrescolaire.fr — Histoire: Guerre froide (1947-1991). EU vs URSS. Doctrine Truman, Plan Marshall, OTAN vs Pacte de Varsovie. Crises Berlin et Cuba (1962). Fin : chute du mur 1989.',
-  'adn':'Livrescolaire.fr — SVT: L\'ADN = support de l\'information génétique. Double hélice (Watson & Crick, 1953). 4 bases : A, T, G, C. La réplication précède la division cellulaire.',
-  'oxydoréduction':'Livrescolaire.fr — Physique-Chimie: Oxydant capte des électrons (se réduit). Réducteur perd des électrons (s\'oxyde). Couples Ox/Red : Cu²⁺/Cu, Fe³⁺/Fe²⁺, O₂/H₂O.',
-  'liberté':'Livrescolaire.fr — Philosophie: Libre arbitre (Descartes). Déterminisme (Spinoza : illusion du libre arbitre). Liberté politique (Rousseau). Sartre : "L\'existence précède l\'essence", condamnés à être libres.'
-};
-function searchPreloaded(query){const q=query.toLowerCase();for(const[key,content]of Object.entries(LIVRESCOLAIRE_PRELOADED)){if(q.includes(key)||key.split(' ').some(w=>w.length>3&&q.includes(w)))return content;}return null;}
+const AGENT = { history:[], msgCount:0, MSG_LIMIT:20, violations:0, MAX_VIOLATIONS:3, banned:false };
 
-const AGENT={history:[],msgCount:0,MSG_LIMIT:20,violations:0,MAX_VIOLATIONS:3,banned:false,captchaNeeded:false,captchaNum1:0,captchaNum2:0,captchaOp:'+',pendingMessage:'',logs:[],reportCount:0};
-
-function agentLog(type,msg){const entry={time:new Date().toLocaleTimeString(),type,msg};AGENT.logs.push(entry);const el=document.getElementById('admin-logs');if(el)el.innerHTML+=`<div>[${entry.time}] <span style="color:${type==='BLOCK'?'#c0392b':type==='WARN'?'#e67e22':'#27ae60'}">${type}</span> — ${msg}</div>`;}
-
-async function agentModerate(text){
-  try{const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:100,messages:[{role:'user',content:`Tu es un modérateur scolaire strict. Réponds UNIQUEMENT en JSON. Bloque si : insultes, harcèlement, violence, contenu sexuel, racisme, terrorisme. Autorise : questions scolaires. Format : {"ok":true} ou {"ok":false,"reason":"..."}. Message : "${text.replace(/"/g,"'").substring(0,500)}"`}]})});
-    const d=await res.json();const raw=(d.content?.[0]?.text||'{"ok":true}').replace(/```json|```/g,'').trim();return JSON.parse(raw);
-  }catch(e){return{ok:true};}
+function agentBan() {
+  AGENT.banned = true;
+  document.getElementById('agent-ban-alert').style.display = 'block';
+  document.getElementById('agent-send-btn').disabled = true;
+  document.getElementById('agent-input').disabled = true;
+  let r = 60;
+  const t = setInterval(() => {
+    r--; document.getElementById('ban-countdown').textContent = r;
+    if (r <= 0) { clearInterval(t); AGENT.banned = false; AGENT.violations = 0; document.getElementById('agent-ban-alert').style.display = 'none'; document.getElementById('agent-send-btn').disabled = false; document.getElementById('agent-input').disabled = false; }
+  }, 1000);
 }
-async function agentGetReply(userMsg){
-  const preloaded=searchPreloaded(userMsg);
-  const systemPrompt=`Tu es l'assistant scolaire de StudyForge. Tu utilises en priorité livrescolaire.fr. Tu aides UNIQUEMENT pour les matières scolaires. Réponds en français, clairement avec des emojis.${preloaded?'\n📚 COURS LIVRESCOLAIRE.FR :\n'+preloaded:''}`;
-  const messages=[...AGENT.history.slice(-8),{role:'user',content:userMsg}];
-  const res=await fetch('https://api.groq.com/openai/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer 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'},body:JSON.stringify({model:'llama-3.3-70b-versatile',max_tokens:1000,messages:[{role:'system',content:systemPrompt},...messages]})});
-  const data=await res.json();const reply=data.choices[0].message.content;
-  AGENT.history.push({role:'user',content:userMsg});AGENT.history.push({role:'assistant',content:reply});
-  return{reply,usedLivrescolaire:!!preloaded};
-}
-function agentShowCaptcha(msg){AGENT.pendingMessage=msg;AGENT.captchaNum1=Math.floor(Math.random()*9)+1;AGENT.captchaNum2=Math.floor(Math.random()*9)+1;AGENT.captchaOp=['+','×'][Math.floor(Math.random()*2)];document.getElementById('captcha-question').textContent=AGENT.captchaNum1+' '+AGENT.captchaOp+' '+AGENT.captchaNum2;document.getElementById('captcha-answer').value='';document.getElementById('agent-captcha').style.display='block';AGENT.captchaNeeded=true;}
-function agentValidateCaptcha(){const answer=parseInt(document.getElementById('captcha-answer').value);const expected=AGENT.captchaOp==='+'?AGENT.captchaNum1+AGENT.captchaNum2:AGENT.captchaNum1*AGENT.captchaNum2;if(answer===expected){document.getElementById('agent-captcha').style.display='none';AGENT.captchaNeeded=false;agentSendValidated(AGENT.pendingMessage);}else{document.getElementById('captcha-answer').style.borderColor='var(--red)';setTimeout(()=>{document.getElementById('captcha-answer').style.borderColor='';},1500);}}
-function agentBan(){AGENT.banned=true;document.getElementById('agent-ban-alert').style.display='block';document.getElementById('agent-send-btn').disabled=true;document.getElementById('agent-input').disabled=true;let r=60;const t=setInterval(()=>{r--;document.getElementById('ban-countdown').textContent=r;if(r<=0){clearInterval(t);AGENT.banned=false;AGENT.violations=0;document.getElementById('agent-ban-alert').style.display='none';document.getElementById('agent-send-btn').disabled=false;document.getElementById('agent-input').disabled=false;}},1000);}
-function agentAppendMsg(role,text,type){const wrap=document.getElementById('agent-messages');const div=document.createElement('div');div.className='agent-msg'+(role==='user'?' agent-msg-user':'');const isBot=role==='bot';div.innerHTML=`<div class="agent-avatar-${isBot?'bot':'user'}">${isBot?'🤖':(currentUser?.avatar||'😊')}</div><div class="agent-bubble agent-bubble-${type||(isBot?'bot':'user')}">${text.replace(/\n/g,'<br>')}</div>`;wrap.appendChild(div);wrap.scrollTop=wrap.scrollHeight;}
-function agentAppendSource(source){const wrap=document.getElementById('agent-messages');const div=document.createElement('div');div.className='agent-msg';div.innerHTML=`<div class="agent-avatar-bot" style="font-size:.7rem;background:var(--green)">📚</div><div class="agent-bubble agent-bubble-source">Source : <a href="https://www.livrescolaire.fr" target="_blank" style="color:#005438;font-weight:700">livrescolaire.fr</a> — ${source}</div>`;wrap.appendChild(div);wrap.scrollTop=wrap.scrollHeight;}
-function agentShowBlock(msg){const el=document.getElementById('agent-block-msg');el.textContent=msg;el.style.display='block';setTimeout(()=>{el.style.display='none';},5000);}
-function agentUpdateCounter(){document.getElementById('msg-count').textContent=AGENT.msgCount;const r=AGENT.MSG_LIMIT-AGENT.msgCount;document.getElementById('agent-warn-txt').textContent=r<=5?'⚠️ '+r+' messages restants':'';}
-async function agentSend(){
-  const input=document.getElementById('agent-input');const msg=input.value.trim();if(!msg)return;
-  if(AGENT.banned){agentShowBlock('🚫 Accès suspendu.');return;}
-  if(AGENT.msgCount>=AGENT.MSG_LIMIT){agentShowBlock('⏳ Limite atteinte. Recharge la page.');return;}
-  if(AGENT.msgCount>0&&AGENT.msgCount%10===0&&!AGENT.captchaNeeded){agentShowCaptcha(msg);input.value='';return;}
-  input.value='';await agentSendValidated(msg);
-}
-async function agentSendValidated(msg){
-  if(AGENT.banned)return;
-  if(clientFilter(msg).blocked){AGENT.violations++;agentLog('BLOCK','Filtre client');agentAppendMsg('bot','🚫 Message bloqué. Pose des questions scolaires !','error');if(AGENT.violations>=AGENT.MAX_VIOLATIONS)agentBan();else agentShowBlock('⚠️ '+(AGENT.MAX_VIOLATIONS-AGENT.violations)+' avertissement(s) avant suspension.');return;}
-  agentAppendMsg('user',msg);AGENT.msgCount++;agentUpdateCounter();
-  document.getElementById('agent-typing').style.display='block';document.getElementById('agent-send-btn').disabled=true;
-  try{
-    const modResult=await agentModerate(msg);
-    if(!modResult.ok){AGENT.violations++;agentLog('BLOCK','Modération IA');document.getElementById('agent-typing').style.display='none';agentAppendMsg('bot','🚫 Je ne peux pas répondre à ça. Pose-moi des questions scolaires 😊','error');if(AGENT.violations>=AGENT.MAX_VIOLATIONS)agentBan();else agentShowBlock('⚠️ '+(AGENT.MAX_VIOLATIONS-AGENT.violations)+' avertissement(s) avant suspension.');document.getElementById('agent-send-btn').disabled=false;return;}
-    agentLog('OK','Message accepté');
-    const{reply,usedLivrescolaire}=await agentGetReply(msg);
-    document.getElementById('agent-typing').style.display='none';agentAppendMsg('bot',reply);
-    if(usedLivrescolaire){const k=Object.keys(LIVRESCOLAIRE_PRELOADED).find(k=>msg.toLowerCase().includes(k)||k.split(' ').some(w=>msg.toLowerCase().includes(w)));agentAppendSource(k?'Cours sur "'+k+'"':'Programme officiel');}
-    agentLog('OK','Réponse envoyée'+(usedLivrescolaire?' (livrescolaire.fr)':''));
-  }catch(e){document.getElementById('agent-typing').style.display='none';agentAppendMsg('bot','⚠️ Erreur. Réessaie.','warn');agentLog('WARN','Erreur API');}
-  document.getElementById('agent-send-btn').disabled=false;
-}
-function agentKeydown(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();agentSend();}}
-function agentQuickSend(msg){document.getElementById('agent-input').value=msg;agentSend();}
-function agentReport(){AGENT.reportCount++;agentLog('WARN','Signalement #'+AGENT.reportCount);showToast('🚩 Signalement enregistré !');}
-function agentExportLogs(){const content=AGENT.logs.map(l=>`[${l.time}] ${l.type} — ${l.msg}`).join('\n');const blob=new Blob([content],{type:'text/plain'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='studyforge-logs.txt';a.click();}
-let adminClicks=0;
-document.querySelector('.logo').addEventListener('click',()=>{adminClicks++;if(adminClicks>=5){adminClicks=0;const code=prompt('Code admin :');if(code==='WAEL2026'){document.getElementById('admin-panel').style.display='block';showToast('🛡️ Panel admin activé');}}});
 
-// ══════════════════════════════════════════
-// CHATBOT VOCAL FLOTTANT
-// ══════════════════════════════════════════
-const VPC={
-  open:false,ttsEnabled:true,listening:false,speaking:false,
-  msgCount:0,history:[],recognition:null,
-  synthesis:window.speechSynthesis,voiceFR:null,isProcessing:false
-};
-
-function vpcLoadVoice(){
-  if(!VPC.synthesis)return;
-  const voices=VPC.synthesis.getVoices();
-  VPC.voiceFR=voices.find(v=>v.lang.startsWith('fr')&&v.name.toLowerCase().includes('female'))
-    ||voices.find(v=>v.lang.startsWith('fr-FR'))
-    ||voices.find(v=>v.lang.startsWith('fr'))
-    ||null;
+function agentAppendMsg(role, text, type) {
+  const wrap = document.getElementById('agent-messages');
+  const div = document.createElement('div');
+  div.className = 'agent-msg' + (role === 'user' ? ' agent-msg-user' : '');
+  const isBot = role === 'bot';
+  div.innerHTML = `<div class="agent-avatar-${isBot?'bot':'user'}">${isBot?'🤖':(currentUser?.avatar||'😊')}</div><div class="agent-bubble agent-bubble-${type||(isBot?'bot':'user')}">${text.replace(/\n/g,'<br>')}</div>`;
+  wrap.appendChild(div); wrap.scrollTop = wrap.scrollHeight;
 }
-if(VPC.synthesis){vpcLoadVoice();VPC.synthesis.onvoiceschanged=vpcLoadVoice;}
 
-function toggleVocalPanel(){
-  VPC.open=!VPC.open;
-  const panel=document.getElementById('vocal-panel');
-  const fab=document.getElementById('vocal-fab');
-  if(VPC.open){
-    panel.classList.add('open');
-    fab.innerHTML='✕<div class="fab-badge">IA</div>';
-  }else{
-    panel.classList.remove('open');
-    fab.innerHTML='🎙️<div class="fab-badge">IA</div>';
-    vpcStopListening();vpcStopSpeaking();
+function agentShowBlock(msg) { const el = document.getElementById('agent-block-msg'); el.textContent = msg; el.style.display = 'block'; setTimeout(() => { el.style.display = 'none'; }, 5000); }
+function agentUpdateCounter() { document.getElementById('msg-count').textContent = AGENT.msgCount; const r = AGENT.MSG_LIMIT - AGENT.msgCount; document.getElementById('agent-warn-txt').textContent = r <= 5 ? '⚠️ ' + r + ' messages restants' : ''; }
+
+async function agentSend() {
+  const input = document.getElementById('agent-input');
+  const msg = input.value.trim();
+  if (!msg) return;
+  if (AGENT.banned) { agentShowBlock('🚫 Accès suspendu.'); return; }
+  if (AGENT.msgCount >= AGENT.MSG_LIMIT) { agentShowBlock('⏳ Limite atteinte. Recharge la page.'); return; }
+  if (clientFilter(msg).blocked) {
+    AGENT.violations++;
+    agentAppendMsg('bot','🚫 Message bloqué. Pose des questions scolaires !','error');
+    if (AGENT.violations >= AGENT.MAX_VIOLATIONS) agentBan();
+    else agentShowBlock('⚠️ ' + (AGENT.MAX_VIOLATIONS - AGENT.violations) + ' avertissement(s) avant suspension.');
+    input.value = ''; return;
   }
-}
-
-function toggleTTS(){
-  VPC.ttsEnabled=!VPC.ttsEnabled;
-  const btn=document.getElementById('vpc-tts-btn');
-  btn.textContent=VPC.ttsEnabled?'🔊':'🔇';
-  btn.classList.toggle('off',!VPC.ttsEnabled);
-  if(!VPC.ttsEnabled)vpcStopSpeaking();
-  showToast(VPC.ttsEnabled?'🔊 Voix activée':'🔇 Voix désactivée');
-}
-
-function clearVocalChat(){
-  document.getElementById('vpc-messages').innerHTML=`<div class="vpc-msg"><div class="vpc-mavatar bot">🤖</div><div class="vpc-bubble bot">Conversation effacée ! 🗑️ Qu'est-ce qu'on révise ?</div></div>`;
-  VPC.history=[];VPC.msgCount=0;
-  document.getElementById('vpc-msg-count').textContent='0 msg';
-  vpcStopSpeaking();
-}
-
-// Ajouter un message dans le chat vocal
-function vpcAddMsg(role,text,opts={}){
-  const wrap=document.getElementById('vpc-messages');
-  const div=document.createElement('div');
-  div.className='vpc-msg'+(role==='user'?' user':'');
-  const avatar=document.createElement('div');
-  avatar.className='vpc-mavatar '+role;
-  avatar.textContent=role==='bot'?'🤖':(currentUser?.avatar||'😊');
-  const bubble=document.createElement('div');
-  bubble.className='vpc-bubble '+(opts.type||role);
-  // Formater le texte
-  bubble.innerHTML=text.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>');
-  // Bouton écouter pour le bot
-  if(role==='bot'&&VPC.ttsEnabled&&!opts.noSpeak){
-    const btn=document.createElement('button');
-    btn.className='vpc-speak-btn';
-    btn.innerHTML='🔊 Écouter';
-    const t=text;
-    btn.onclick=()=>vpcSpeak(t);
-    bubble.appendChild(document.createElement('br'));
-    bubble.appendChild(btn);
+  input.value = '';
+  agentAppendMsg('user', msg);
+  AGENT.msgCount++; agentUpdateCounter();
+  document.getElementById('agent-typing').style.display = 'block';
+  document.getElementById('agent-send-btn').disabled = true;
+  try {
+    const messages = [...AGENT.history.slice(-8), { role:'user', content: msg }];
+    const reply = await callAI(
+      messages,
+      'Tu es un assistant scolaire expert. Tu aides uniquement pour les matières scolaires (maths, français, histoire, sciences, philo, langues...). Réponds en français avec des emojis pédagogiques. Si la question n\'est pas scolaire, redirige poliment.',
+      1000
+    );
+    document.getElementById('agent-typing').style.display = 'none';
+    agentAppendMsg('bot', reply);
+    AGENT.history.push({ role:'user', content: msg });
+    AGENT.history.push({ role:'assistant', content: reply });
+  } catch(e) {
+    document.getElementById('agent-typing').style.display = 'none';
+    agentAppendMsg('bot','⚠️ Erreur de connexion. Réessaie dans quelques secondes.','warn');
+    console.error('Agent error:', e);
   }
-  div.appendChild(avatar);div.appendChild(bubble);
-  wrap.appendChild(div);wrap.scrollTop=wrap.scrollHeight;
-  VPC.msgCount++;
-  document.getElementById('vpc-msg-count').textContent=VPC.msgCount+' msg';
+  document.getElementById('agent-send-btn').disabled = false;
 }
-
-// TTS — parler
-function vpcSpeak(text){
-  if(!VPC.synthesis||!VPC.ttsEnabled)return;
-  vpcStopSpeaking();
-  const clean=text
-    .replace(/\*\*(.*?)\*\*/g,'$1')
-    .replace(/[📚🎓✏️📄🎯💡📝🌿📐🌍📖⚗️🧬🤖😊👋💪🔊🗑️]/g,'')
-    .replace(/<[^>]*>/g,'')
-    .replace(/livrescolaire\.fr/g,'livre scolaire point fr')
-    .substring(0,900);
-  const utt=new SpeechSynthesisUtterance(clean);
-  utt.lang='fr-FR';utt.rate=0.92;utt.pitch=1.05;utt.volume=1;
-  if(VPC.voiceFR)utt.voice=VPC.voiceFR;
-  utt.onstart=()=>{VPC.speaking=true;vpcSetMicStatus('speaking','🔊 Je parle...');document.getElementById('vpc-mic-btn').classList.add('speaking');document.getElementById('vpc-subtitle').textContent='🔊 Forge parle...';};
-  utt.onend=utt.onerror=()=>{VPC.speaking=false;document.getElementById('vpc-mic-btn').classList.remove('speaking');vpcSetMicStatus('idle','🎙️ Appuie pour parler');document.getElementById('vpc-subtitle').textContent='En ligne · Parle ou écris !';};
-  VPC.synthesis.speak(utt);
-}
-function vpcStopSpeaking(){if(VPC.synthesis)VPC.synthesis.cancel();VPC.speaking=false;document.getElementById('vpc-mic-btn')?.classList.remove('speaking');}
-
-// STT — micro
-function vpcToggleMic(){if(VPC.listening)vpcStopListening();else vpcStartListening();}
-
-function vpcStartListening(){
-  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-  if(!SR){vpcAddMsg('bot','⚠️ Ton navigateur ne supporte pas le micro. Utilise Chrome ou Edge !',{type:'error',noSpeak:true});return;}
-  vpcStopSpeaking();
-  const rec=new SR();
-  rec.lang='fr-FR';rec.continuous=false;rec.interimResults=true;rec.maxAlternatives=1;
-  VPC.recognition=rec;VPC.listening=true;
-  const micBtn=document.getElementById('vpc-mic-btn');
-  micBtn.classList.add('listening');micBtn.textContent='⏹️';
-  vpcSetMicStatus('listening','🔴 J\'écoute...');
-  document.getElementById('vpc-mic-wave').classList.add('active');
-  document.getElementById('vpc-subtitle').textContent='🎙️ Parle maintenant...';
-  let finalTranscript='';
-  rec.onresult=(e)=>{
-    let interim='';
-    for(let i=e.resultIndex;i<e.results.length;i++){
-      if(e.results[i].isFinal)finalTranscript+=e.results[i][0].transcript;
-      else interim=e.results[i][0].transcript;
-    }
-    document.getElementById('vpc-text-input').value=finalTranscript||interim;
-    vpcAutoResize(document.getElementById('vpc-text-input'));
-  };
-  rec.onend=()=>{
-    VPC.listening=false;micBtn.classList.remove('listening');micBtn.textContent='🎙️';
-    document.getElementById('vpc-mic-wave').classList.remove('active');
-    document.getElementById('vpc-subtitle').textContent='En ligne · Parle ou écris !';
-    vpcSetMicStatus('idle','🎙️ Appuie pour parler');
-    if(finalTranscript.trim()){
-      document.getElementById('vpc-text-input').value=finalTranscript.trim();
-      setTimeout(()=>vpcSendText(),300);
-    }
-  };
-  rec.onerror=(e)=>{
-    VPC.listening=false;micBtn.classList.remove('listening');micBtn.textContent='🎙️';
-    document.getElementById('vpc-mic-wave').classList.remove('active');
-    vpcSetMicStatus('idle','🎙️ Appuie pour parler');
-    document.getElementById('vpc-subtitle').textContent='En ligne · Parle ou écris !';
-    if(e.error==='not-allowed'){vpcAddMsg('bot','🔒 Autorise l\'accès au micro dans ton navigateur (cadenas en haut) !',{type:'error',noSpeak:true});}
-    else if(e.error!=='aborted'){vpcAddMsg('bot','😅 Je n\'ai pas bien entendu. Réessaie ou écris ta question !',{noSpeak:true});}
-  };
-  rec.start();
-}
-function vpcStopListening(){if(VPC.recognition){try{VPC.recognition.stop();}catch(e){}VPC.recognition=null;}VPC.listening=false;const m=document.getElementById('vpc-mic-btn');if(m){m.classList.remove('listening');m.textContent='🎙️';}document.getElementById('vpc-mic-wave')?.classList.remove('active');}
-function vpcSetMicStatus(state,label){const el=document.getElementById('vpc-mic-status');const lbl=document.getElementById('vpc-mic-label');if(!el||!lbl)return;el.className=state;lbl.textContent=label;}
-
-// Envoyer un message texte
-async function vpcSendText(){
-  const input=document.getElementById('vpc-text-input');
-  const text=input.value.trim();
-  if(!text||VPC.isProcessing)return;
-  if(clientFilter(text).blocked){vpcAddMsg('bot','🚫 Message inapproprié. Pose-moi des questions scolaires !',{type:'error'});input.value='';return;}
-  input.value='';vpcAutoResize(input);
-  VPC.isProcessing=true;
-  vpcAddMsg('user',text);
-  document.getElementById('vpc-typing').style.display='block';
-  document.getElementById('vpc-send-btn').disabled=true;
-  vpcStopSpeaking();
-  try{
-    const reply=await vpcGetAIReply(text);
-    document.getElementById('vpc-typing').style.display='none';
-    vpcAddMsg('bot',reply);
-    if(VPC.ttsEnabled)setTimeout(()=>vpcSpeak(reply),200);
-  }catch(e){
-    document.getElementById('vpc-typing').style.display='none';
-    const err='Oups, j\'ai eu un souci. Réessaie dans un instant !';
-    vpcAddMsg('bot','⚠️ '+err,{type:'error'});
-    if(VPC.ttsEnabled)setTimeout(()=>vpcSpeak(err),100);
-  }
-  document.getElementById('vpc-send-btn').disabled=false;
-  VPC.isProcessing=false;
-}
-
-function vpcQuick(prefix){const input=document.getElementById('vpc-text-input');input.value=prefix;input.focus();vpcAutoResize(input);}
-
-// IA du chatbot vocal
-async function vpcGetAIReply(userMsg){
-  const preloaded=searchPreloaded(userMsg);
-  const msgLower=userMsg.toLowerCase();
-  let specialInstruction='';
-  if(msgLower.includes('fiche')||msgLower.includes('révision')||msgLower.includes('résumé')){
-    specialInstruction='\nL\'utilisateur veut une FICHE. Structure avec sections : 📌 Points clés → 📚 Définitions → 💡 À retenir. Sois complet et clair.';}
-  else if(msgLower.includes('quiz')||msgLower.includes('qcm')){
-    specialInstruction='\nL\'utilisateur veut un QUIZ QCM. Génère 5 questions avec 4 choix (A,B,C,D) et la bonne réponse entre parenthèses après chaque question.';}
-  else if(msgLower.includes('exercice')||msgLower.includes('exo')){
-    specialInstruction='\nL\'utilisateur veut des EXERCICES. Génère 3 exercices de difficulté croissante avec corrections détaillées.';}
-  else if(msgLower.includes('explique')||msgLower.includes('c\'est quoi')||msgLower.includes('comment')){
-    specialInstruction='\nL\'utilisateur veut une EXPLICATION SIMPLE. Parle comme un ami qui explique : analogies, exemples du quotidien, phrases courtes.';}
-
-  const systemPrompt=`Tu es Forge, l'assistant scolaire vocal et humain de StudyForge. Tu parles VRAIMENT comme un humain et un ami :
-- Expressions naturelles : "Bonne question !", "En gros", "Du coup", "Écoute", "En fait c'est simple", "Attends je t'explique"
-- Tu poses des questions de retour : "Tu vois ce que je veux dire ?" "C'est plus clair maintenant ?"
-- Tu encourages : "T'inquiète c'est normal de ne pas comprendre ça", "Allez c'est dans la poche !"
-- Tu t'adaptes à l'humeur et au niveau de l'élève
-- Phrases courtes et claires (tu es aussi lu à l'oral)
-- Quelques emojis naturels
-- Tu refuses poliment les sujets non scolaires
-${specialInstruction}
-${preloaded?'\n📚 COURS LIVRESCOLAIRE.FR À UTILISER :\n'+preloaded:''}`;
-
-  const messages=[...VPC.history.slice(-10),{role:'user',content:userMsg}];
-  const res=await fetch('https://api.groq.com/openai/v1/chat/completions',{
-    method:'POST',
-    headers:{'Content-Type':'application/json','Authorization':'Bearer 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'},
-    body:JSON.stringify({model:'llama-3.3-70b-versatile',max_tokens:600,temperature:0.78,messages:[{role:'system',content:systemPrompt},...messages]})
-  });
-  const data=await res.json();
-  if(data.error)throw new Error(data.error.message);
-  const reply=data.choices[0].message.content;
-  VPC.history.push({role:'user',content:userMsg});
-  VPC.history.push({role:'assistant',content:reply});
-  return reply;
-}
-
-function vpcAutoResize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,90)+'px';}
-function vpcHandleKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();vpcSendText();}}
+function agentKeydown(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); agentSend(); } }
+function agentQuickSend(msg) { document.getElementById('agent-input').value = msg; agentSend(); }
 
 // ══ INIT ══
 cnRenderMatieres();
