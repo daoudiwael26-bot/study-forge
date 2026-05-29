@@ -1,12 +1,10 @@
-bash
-
-cat > /mnt/user-data/outputs/StudyForge.html << 'ENDOFFILE'
 <!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>StudyForge — Fiches de révision IA</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✏️</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Kalam:wght@400;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#f8f6f0;--line:#e8e0d5;--ink:#2d2d2d;--muted:#9a9189;--white:#ffffff;--pink:#ff6b9d;--pink-light:#ff8fab;--pink-bg:#fff0f5;--pink-border:#ffd0df;--yellow:#ffd166;--yellow-bg:#fffbee;--yellow-border:#ffe59a;--blue:#4cc9f0;--blue-bg:#f0fbff;--blue-border:#b3e8f8;--green:#06d6a0;--green-bg:#f0fff9;--green-border:#a3f0dc;--purple:#b388ff;--purple-bg:#f7f0ff;--purple-border:#d8bfff;--orange:#ff9f1c;--orange-bg:#fff8f0;--orange-border:#ffd59a;--red:#ef476f;--r:14px;--sidebar-w:210px}
@@ -61,6 +59,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 .spinner{width:18px;height:18px;border:2.5px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;display:none;flex-shrink:0}
 @keyframes spin{to{transform:rotate(360deg)}}
 .err-box{background:#fff5f5;border:2px solid var(--pink-border);border-radius:10px;padding:9px 13px;font-size:.83rem;color:var(--red);font-weight:700;margin-bottom:1rem;display:none}
+.info-box{background:var(--blue-bg);border:2px solid var(--blue-border);border-radius:10px;padding:11px 15px;font-size:.84rem;color:#005a7a;font-weight:600;margin-bottom:1rem;display:flex;align-items:flex-start;gap:9px;line-height:1.6}
 .status-pill{display:inline-flex;align-items:center;gap:6px;background:var(--green-bg);border:1.5px solid var(--green-border);border-radius:20px;padding:3px 12px;font-size:.73rem;font-weight:700;color:#005438;margin-bottom:1rem}
 .status-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:blink 2s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
@@ -177,6 +176,25 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 .modal-close{background:transparent;border:none;color:var(--muted);font-size:1.2rem;cursor:pointer;padding:4px 8px;border-radius:6px;transition:all .15s}
 .modal-close:hover{background:#eee}
 .modal-body{padding:1.4rem}
+/* API KEY SETUP */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* AUTH */
 .auth-bg{position:fixed;inset:0;background:rgba(248,246,240,.97);z-index:9999;display:flex;align-items:center;justify-content:center;padding:1rem}
 .auth-box{background:var(--white);border:2px solid var(--line);border-radius:22px;padding:2.25rem 1.75rem;width:100%;max-width:400px;box-shadow:0 8px 40px rgba(0,0,0,.1)}
 .auth-logo{font-family:'Caveat',cursive;font-size:2.1rem;font-weight:700;text-align:center;margin-bottom:.2rem}
@@ -233,7 +251,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
     <div class="page active" id="page-generate">
       <div class="section-title">✨ Créer une fiche</div>
       <div class="section-sub">L'IA génère une fiche style cahier manuscrit coloré ✍️</div>
-      <div class="status-pill"><span class="status-dot"></span> IA en ligne</div>
+      <div class="status-pill" id="status-pill-gen"><span class="status-dot"></span> IA en ligne</div>
       <div class="err-box" id="gen-err"></div>
       <div class="card">
         <div class="card-title">📌 Matière</div>
@@ -371,7 +389,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
           </div>
         </div>
         <div class="count-bar">
-          <span>Messages : <span id="msg-count">0</span>/20</span>
+          <span>Messages : <span id="msg-count">0</span>/50</span>
           <span id="msg-warn" style="color:var(--red);font-weight:700"></span>
         </div>
         <div class="input-area">
@@ -450,32 +468,28 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 'use strict';
 
 /* ══════════════════════════════════
-   IMPORTANT : CLÉ API
-   Ce fichier fonctionne directement dans Claude.ai (claude.ai/artifacts).
-   Pour l'héberger ailleurs, décommente la ligne x-api-key ci-dessous
-   et remplace par ta clé Anthropic.
+   CLÉ API — stockée dans localStorage
+   L'utilisateur la configure dans l'onglet "Clé API"
 ══════════════════════════════════ */
 async function callClaude(userContent, systemPrompt, maxTokens) {
+  // Appel vers le backend Vercel — la clé API est cachée côté serveur
+  const BACKEND = 'https://studyforge-api.vercel.app/api/claude';
+
   const body = {
-    model: 'claude-sonnet-4-20250514',
     max_tokens: maxTokens || 1500,
     messages: [{ role: 'user', content: userContent }]
   };
   if (systemPrompt) body.system = systemPrompt;
 
-  const headers = { 'Content-Type': 'application/json' };
-  // DÉCOMMENTER EN STANDALONE :
-  // headers['x-api-key'] = 'sk-ant-VOTRE_CLÉ_ICI';
-
-  const res = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST', headers, body: JSON.stringify(body)
+  const res = await fetch(BACKEND, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
   });
-  if (!res.ok) {
-    const e = await res.json().catch(() => ({}));
-    throw new Error(e?.error?.message || 'Erreur API ' + res.status);
-  }
+
   const data = await res.json();
-  if (data.error) throw new Error(data.error.message);
+  if (!res.ok) throw new Error(data?.error || 'Erreur serveur ' + res.status);
+  if (data.error) throw new Error(data.error.message || data.error);
   const text = (data.content || []).filter(b => b.type === 'text').map(b => b.text).join('');
   if (!text) throw new Error("Réponse vide de l'IA");
   return text;
@@ -485,7 +499,7 @@ async function callClaude(userContent, systemPrompt, maxTokens) {
    AUTH LOCALE (localStorage)
 ══════════════════════════════════ */
 function getAccounts() { try { return JSON.parse(localStorage.getItem('sf_accounts') || '{}'); } catch(e) { return {}; } }
-function saveAccounts(a) { localStorage.setItem('sf_accounts', JSON.stringify(a)); }
+function saveAccounts(a) { try { localStorage.setItem('sf_accounts', JSON.stringify(a)); } catch(e) {} }
 
 function doSignup() {
   const name = document.getElementById('up-name').value.trim();
@@ -507,17 +521,17 @@ function doLogin() {
   const acc = getAccounts()[pseudo.toLowerCase()];
   if (!acc || acc.pw !== pw) { showAuthErr('Pseudo ou mot de passe incorrect !'); return; }
   curUser = { id: pseudo.toLowerCase(), name: acc.name, avatar: acc.avatar || '😊' };
-  localStorage.setItem('sf_user', JSON.stringify(curUser));
+  try { localStorage.setItem('sf_user', JSON.stringify(curUser)); } catch(e) {}
   updateUserUI(); closeAuth();
   toast('👋 Bienvenue ' + curUser.name + ' !');
 }
 
 /* ══════════════════════════════════
-   COMMUNAUTÉ LOCALE (localStorage)
+   COMMUNAUTÉ LOCALE
 ══════════════════════════════════ */
 function loadCommunity() {
   try { const r = localStorage.getItem('sf_community'); if (r) communityList = JSON.parse(r); } catch(e) { communityList = []; }
-  if (communityList.length === 0) {
+  if (!communityList || communityList.length === 0) {
     communityList = [
       { id:'demo1', titre:'La photosynthèse', matiere:'Biologie', niveau:'Lycée', auteur:'Sophie M.', initiales:'SM', avColor:'linear-gradient(135deg,#06d6a0,#4cc9f0)', date:'27/05/2026', preview:'Processus par lequel les végétaux chlorophylliens fabriquent de la matière organique à partir de CO₂ et de lumière.', likes:12, sections:[], a_retenir:'' },
       { id:'demo2', titre:'Les figures de style', matiere:'Français', niveau:'Lycée', auteur:'Karim B.', initiales:'KB', avColor:'linear-gradient(135deg,#ff8fab,#b388ff)', date:'26/05/2026', preview:'Métaphore, comparaison, hyperbole, personnification, litote, euphémisme, antithèse...', likes:8, sections:[], a_retenir:'' },
@@ -528,8 +542,7 @@ function loadCommunity() {
 }
 function pushCommunity(fiche) {
   communityList.unshift(fiche);
-  localStorage.setItem('sf_community', JSON.stringify(communityList));
-  return true;
+  try { localStorage.setItem('sf_community', JSON.stringify(communityList.slice(0, 50))); } catch(e) {}
 }
 
 /* ══════════════════════════════════
@@ -538,7 +551,7 @@ function pushCommunity(fiche) {
 let selMat = 'Français', curFiche = null, curUser = null, selAvatar = '😊';
 let communityList = [], library = [];
 try { library = JSON.parse(localStorage.getItem('sf_lib') || '[]'); } catch(e) { library = []; }
-const chatState = { count: 0 };
+const chatState = { count: 0, limit: 50 };
 
 /* ══════════════════════════════════
    NAVIGATION
@@ -551,107 +564,176 @@ function goTo(name, el) {
   if (el) el.classList.add('active');
   if (name === 'library') renderLib();
   if (name === 'community') loadCommunity();
-  if (name === 'livrescolaire') { renderMats(); document.getElementById('chaps-box').style.display='none'; document.getElementById('mat-grid').style.display='grid'; }
+  if (name === 'livrescolaire') {
+    renderMats();
+    document.getElementById('chaps-box').style.display = 'none';
+    document.getElementById('mat-grid').style.display  = 'grid';
+  }
 }
 
 document.querySelectorAll('#mat-chips .chip').forEach(c => {
   c.addEventListener('click', function() {
     document.querySelectorAll('#mat-chips .chip').forEach(x => x.classList.remove('active'));
-    this.classList.add('active'); selMat = this.dataset.val;
+    this.classList.add('active');
+    selMat = this.dataset.val;
   });
 });
 
 function handleFile(inp) {
   const file = inp.files[0]; if (!file) return;
   const reader = new FileReader();
-  reader.onload = e => { const img = document.getElementById('preview-img'); img.src = e.target.result; img.style.display = 'block'; };
+  reader.onload = e => {
+    const img = document.getElementById('preview-img');
+    img.src = e.target.result;
+    img.style.display = 'block';
+  };
   reader.readAsDataURL(file);
 }
 
-const BAD = [/terroris/i, /p[eé]dophil/i, /bombe\s+artisan/i, /porno/i, /\bsnuff\b/i];
-function isBad(t) { return BAD.some(p => p.test(t)); }
+const BAD_WORDS = [/terroris/i, /p[eé]dophil/i, /bombe\s+artisan/i, /porno/i, /\bsnuff\b/i];
+function isBad(t) { return BAD_WORDS.some(p => p.test(t)); }
 
-function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-function splitLines(str) { return String(str||'').replace(/\\n/g,'\n').split('\n').map(l=>l.trim()).filter(Boolean); }
+function esc(s) {
+  return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function splitLines(str) {
+  return String(str || '').replace(/\\n/g,'\n').split('\n').map(l => l.trim()).filter(Boolean);
+}
 function extractJSON(raw) {
   raw = raw.trim().replace(/^```(?:json)?\s*/i,'').replace(/\s*```$/i,'').trim();
-  const s = raw.indexOf('{'), e = raw.lastIndexOf('}');
-  if (s===-1||e===-1||e<=s) throw new Error('JSON introuvable');
-  return JSON.parse(raw.slice(s,e+1));
+  const s = raw.indexOf('{');
+  const e = raw.lastIndexOf('}');
+  if (s === -1 || e === -1 || e <= s) throw new Error('JSON introuvable');
+  return JSON.parse(raw.slice(s, e + 1));
 }
 
 function showErr(id, msg) {
   const el = document.getElementById(id);
-  el.textContent = msg; el.style.display = 'block';
-  setTimeout(()=>{ el.style.display='none'; }, 7000);
+  if (!el) return;
+  el.textContent = msg;
+  el.style.display = 'block';
+  setTimeout(() => { el.style.display = 'none'; }, 8000);
 }
 
 /* ══════════════════════════════════
    GÉNÉRER FICHE
 ══════════════════════════════════ */
 async function genFiche() {
+  const key = getApiKey();
+  if (!key) {
+    showErr('gen-err', '🔑 Configure ta clé API dans l\'onglet "Clé API" du menu !');
+    goTo('setup', document.querySelector('[data-page="setup"]'));
+    return;
+  }
+
   const titre = document.getElementById('titre').value.trim();
-  const cours = document.getElementById('cours').value.trim();
-  const kw    = document.getElementById('kw').value.trim();
-  const niveau= document.getElementById('niveau').value;
-  const type  = document.getElementById('type-fiche').value;
-  if (!titre && !cours && !kw) { showErr('gen-err','⚠️ Remplis au moins le titre ou colle ton cours !'); return; }
-  if (isBad(titre+' '+cours+' '+kw)) { showErr('gen-err','🚫 Contenu inapproprié détecté.'); return; }
-  const btn=document.getElementById('gen-btn'), spinner=document.getElementById('gen-spinner'), btnTxt=document.getElementById('gen-btn-txt');
-  btn.disabled=true; spinner.style.display='block'; btnTxt.textContent="L'IA crée ta fiche...";
-  document.getElementById('gen-err').style.display='none';
+  const cours  = document.getElementById('cours').value.trim();
+  const kw     = document.getElementById('kw').value.trim();
+  const niveau = document.getElementById('niveau').value;
+  const type   = document.getElementById('type-fiche').value;
+
+  if (!titre && !cours && !kw) {
+    showErr('gen-err', '⚠️ Remplis au moins le titre ou colle ton cours !');
+    return;
+  }
+  if (isBad(titre + ' ' + cours + ' ' + kw)) {
+    showErr('gen-err', '🚫 Contenu inapproprié détecté.');
+    return;
+  }
+
+  const btn     = document.getElementById('gen-btn');
+  const spinner = document.getElementById('gen-spinner');
+  const btnTxt  = document.getElementById('gen-btn-txt');
+  btn.disabled = true;
+  spinner.style.display = 'block';
+  btnTxt.textContent = "L'IA crée ta fiche...";
+  document.getElementById('gen-err').style.display = 'none';
+  document.getElementById('paper-wrap').style.display = 'none';
+
   const prompt = `Tu es un expert pédagogue français. Génère une fiche de révision pour le niveau "${niveau}" en matière "${selMat}", de type "${type}".
-${titre?'Titre/Chapitre: '+titre:''}
-${cours?'Contenu du cours:\n'+cours.substring(0,1500):''}
-${kw?'Mots-clés: '+kw:''}
-IMPORTANT: Réponds UNIQUEMENT avec du JSON valide. Aucun texte avant ou après. Aucun backtick.
+${titre ? 'Titre/Chapitre: ' + titre : ''}
+${cours ? 'Contenu du cours:\n' + cours.substring(0, 2000) : ''}
+${kw ? 'Mots-clés: ' + kw : ''}
+IMPORTANT: Réponds UNIQUEMENT avec du JSON valide. Aucun texte avant ou après. Aucun backtick markdown.
 Format EXACT:
 {"titre":"Titre de la fiche","sections":[{"titre":"Nom section","contenu":"ligne1\\nligne2\\n- item1\\n- item2"}],"a_retenir":"point1\\npoint2\\npoint3"}
 Génère 4 à 6 sections riches et pertinentes. Tout en français.`;
+
   try {
-    const raw = await callClaude(prompt,'Tu es un expert pédagogue. Réponds UNIQUEMENT en JSON valide, sans markdown.',1800);
+    const raw = await callClaude(prompt, 'Tu es un expert pédagogue. Réponds UNIQUEMENT en JSON valide, sans markdown, sans texte avant ou après.', 2000);
     const parsed = extractJSON(raw);
-    if (!parsed.sections||!Array.isArray(parsed.sections)||!parsed.sections.length) throw new Error('Sections manquantes');
-    curFiche = { id:Date.now(), titre:parsed.titre||titre||selMat, matiere:selMat, niveau, type, sections:parsed.sections, a_retenir:parsed.a_retenir||'', date:new Date().toLocaleDateString('fr-FR') };
+    if (!parsed.sections || !Array.isArray(parsed.sections) || !parsed.sections.length) {
+      throw new Error('Sections manquantes dans la réponse');
+    }
+    curFiche = {
+      id: Date.now(),
+      titre: parsed.titre || titre || selMat,
+      matiere: selMat, niveau, type,
+      sections: parsed.sections,
+      a_retenir: parsed.a_retenir || '',
+      date: new Date().toLocaleDateString('fr-FR')
+    };
     renderPaper(curFiche);
-    const wrap=document.getElementById('paper-wrap'); wrap.style.display='block';
-    setTimeout(()=>wrap.scrollIntoView({behavior:'smooth',block:'start'}),80);
+    const wrap = document.getElementById('paper-wrap');
+    wrap.style.display = 'block';
+    setTimeout(() => wrap.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
   } catch(err) {
-    let msg='❌ ';
-    if (err.message.includes('401')||err.message.includes('403')) msg+='Clé API invalide. Ouvre ce fichier dans Claude.ai.';
-    else if (err.message.includes('JSON')||err.message.includes('introuvable')) msg+='Format inattendu. Réessaie !';
-    else if (err.message.includes('fetch')||err.message.includes('réseau')) msg+='Erreur réseau. Vérifie ta connexion.';
-    else msg+=err.message;
-    showErr('gen-err',msg);
+    let msg = '❌ ';
+    if (err.message === 'NO_KEY') msg += 'Configure ta clé API dans l\'onglet "Clé API" !';
+    else if (err.message.includes('invalide') || err.message.includes('401')) msg += err.message;
+    else if (err.message.includes('JSON') || err.message.includes('introuvable')) msg += 'Format inattendu. Réessaie !';
+    else if (err.message.includes('fetch') || err.message.includes('Failed')) msg += 'Erreur réseau. Vérifie ta connexion.';
+    else msg += err.message;
+    showErr('gen-err', msg);
   }
-  btn.disabled=false; spinner.style.display='none'; btnTxt.textContent='✏️ Générer ma fiche façon cahier';
+
+  btn.disabled = false;
+  spinner.style.display = 'none';
+  btnTxt.textContent = '✏️ Générer ma fiche façon cahier';
 }
 
 /* ══════════════════════════════════
    RENDU FICHE PAPIER
 ══════════════════════════════════ */
-const COLORS=['c0','c1','c2','c3','c4','c5'];
-function buildSection(sec,idx) {
-  const lines=splitLines(sec.contenu);
-  let html='',ul=false;
+const COLORS = ['c0','c1','c2','c3','c4','c5'];
+
+function buildSection(sec, idx) {
+  const lines = splitLines(sec.contenu);
+  let html = '', ul = false;
   for (const line of lines) {
-    const b=line.startsWith('- ')||line.startsWith('• ')||line.startsWith('* ');
-    if (b) { if (!ul){html+='<ul>';ul=true;} html+='<li>'+esc(line.replace(/^[-•*]\s+/,''))+'</li>'; }
-    else { if(ul){html+='</ul>';ul=false;} const ci=line.indexOf(':');
-      if (ci>0&&ci<50&&!line.startsWith('http')) html+='<div><strong>'+esc(line.slice(0,ci))+' :</strong> '+esc(line.slice(ci+1).trim())+'</div>';
-      else html+='<div>'+esc(line)+'</div>'; }
+    const isBullet = line.startsWith('- ') || line.startsWith('• ') || line.startsWith('* ');
+    if (isBullet) {
+      if (!ul) { html += '<ul>'; ul = true; }
+      html += '<li>' + esc(line.replace(/^[-•*]\s+/, '')) + '</li>';
+    } else {
+      if (ul) { html += '</ul>'; ul = false; }
+      const ci = line.indexOf(':');
+      if (ci > 0 && ci < 50 && !line.startsWith('http')) {
+        html += '<div><strong>' + esc(line.slice(0, ci)) + ' :</strong> ' + esc(line.slice(ci + 1).trim()) + '</div>';
+      } else {
+        html += '<div>' + esc(line) + '</div>';
+      }
+    }
   }
-  if(ul) html+='</ul>';
-  return `<div class="f-sec ${COLORS[idx%6]}"><div class="f-sec-head">${esc(sec.titre)}</div><div class="f-sec-body">${html}</div></div>`;
+  if (ul) html += '</ul>';
+  return `<div class="f-sec ${COLORS[idx % 6]}"><div class="f-sec-head">${esc(sec.titre)}</div><div class="f-sec-body">${html}</div></div>`;
 }
+
 function renderPaper(fiche) {
-  const secs=fiche.sections, useGrid=secs.length>=4, half=Math.ceil(secs.length/2);
-  let html=`<div class="fiche-title">${esc(fiche.titre)}</div>`;
+  const secs = fiche.sections;
+  const useGrid = secs.length >= 4;
+  const half = Math.ceil(secs.length / 2);
+  let html = `<div class="fiche-title">${esc(fiche.titre)}</div>`;
   if (useGrid) {
-    html+=`<div class="fiche-grid"><div>${secs.slice(0,half).map((s,i)=>buildSection(s,i)).join('')}</div><div>${secs.slice(half).map((s,i)=>buildSection(s,i+half)).join('')}</div></div>`;
-  } else { html+=secs.map((s,i)=>buildSection(s,i)).join(''); }
-  if (fiche.a_retenir) { const pts=splitLines(fiche.a_retenir); html+=`<div class="a-retenir"><strong>⭐ À retenir</strong>${pts.map(p=>'<div>'+esc(p)+'</div>').join('')}</div>`; }
-  document.getElementById('paper-body').innerHTML=html;
+    html += `<div class="fiche-grid"><div>${secs.slice(0, half).map((s, i) => buildSection(s, i)).join('')}</div><div>${secs.slice(half).map((s, i) => buildSection(s, i + half)).join('')}</div></div>`;
+  } else {
+    html += secs.map((s, i) => buildSection(s, i)).join('');
+  }
+  if (fiche.a_retenir) {
+    const pts = splitLines(fiche.a_retenir);
+    html += `<div class="a-retenir"><strong>⭐ À retenir</strong>${pts.map(p => '<div>' + esc(p) + '</div>').join('')}</div>`;
+  }
+  document.getElementById('paper-body').innerHTML = html;
 }
 
 /* ══════════════════════════════════
@@ -659,66 +741,157 @@ function renderPaper(fiche) {
 ══════════════════════════════════ */
 function saveFiche() {
   if (!curFiche) { toast('⚠️ Génère d\'abord une fiche !'); return; }
-  if (library.find(f=>f.id===curFiche.id)) { toast('⚠️ Déjà sauvegardée !'); return; }
-  library.unshift(curFiche); localStorage.setItem('sf_lib',JSON.stringify(library)); toast('💾 Fiche sauvegardée !');
+  if (library.find(f => f.id === curFiche.id)) { toast('⚠️ Déjà sauvegardée !'); return; }
+  library.unshift(curFiche);
+  try { localStorage.setItem('sf_lib', JSON.stringify(library.slice(0, 100))); } catch(e) {}
+  toast('💾 Fiche sauvegardée !');
 }
+
 async function genQuiz() {
   if (!curFiche) { toast('⚠️ Génère d\'abord une fiche !'); return; }
   toast('🎯 Génération du quiz...');
-  const content=curFiche.sections.map(s=>s.titre+' : '+s.contenu).join('\n');
+  const content = curFiche.sections.map(s => s.titre + ' : ' + s.contenu).join('\n');
   try {
-    const quiz=await callClaude(`Génère 5 questions QCM en français sur le chapitre "${curFiche.titre}" (${curFiche.matiere}).\nPour chaque question : numéro, énoncé, 4 choix (A, B, C, D), puis la bonne réponse entre parenthèses.\nContenu:\n${content.substring(0,800)}`,'Tu es un expert pédagogue français.',900);
-    openModal('🎯 Quiz — '+curFiche.titre,`<div style="white-space:pre-wrap;font-family:'Kalam',cursive;font-size:.9rem;line-height:2">${esc(quiz)}</div>`);
-  } catch(e) { toast('❌ Erreur quiz : '+e.message); }
+    const quiz = await callClaude(
+      `Génère 5 questions QCM en français sur le chapitre "${curFiche.titre}" (${curFiche.matiere}).\nPour chaque question : numéro, énoncé, 4 choix (A, B, C, D), puis la bonne réponse entre parenthèses.\nContenu:\n${content.substring(0, 1000)}`,
+      'Tu es un expert pédagogue français.', 900
+    );
+    openModal('🎯 Quiz — ' + curFiche.titre, `<div style="white-space:pre-wrap;font-family:'Kalam',cursive;font-size:.9rem;line-height:2">${esc(quiz)}</div>`);
+  } catch(e) { toast('❌ Erreur quiz : ' + e.message); }
 }
+
 function shareCommunity() {
   if (!curFiche) { toast('⚠️ Génère d\'abord une fiche !'); return; }
   if (!curUser) { toast('🔒 Connecte-toi pour partager !'); openAuth(); return; }
-  const ini=(curUser.name||'?').substring(0,2).toUpperCase();
-  const payload={...curFiche,id:'c'+Date.now(),auteur:curUser.name,initiales:ini,avColor:'linear-gradient(135deg,#ff8fab,#b388ff)',preview:splitLines(((curFiche.sections[0]||{}).contenu||'')).slice(0,3).join(' ').substring(0,120)+'…'};
-  pushCommunity(payload); renderComm(); toast('🌍 Fiche partagée dans la communauté !');
+  const ini = (curUser.name || '?').substring(0, 2).toUpperCase();
+  const preview = splitLines(((curFiche.sections[0] || {}).contenu || '')).slice(0, 3).join(' ').substring(0, 120);
+  const payload = {
+    ...curFiche,
+    id: 'c' + Date.now(),
+    auteur: curUser.name,
+    initiales: ini,
+    avColor: 'linear-gradient(135deg,#ff8fab,#b388ff)',
+    preview: preview + '…',
+    likes: 0
+  };
+  pushCommunity(payload);
+  renderComm();
+  toast('🌍 Fiche partagée dans la communauté !');
 }
 
 /* ══════════════════════════════════
    BIBLIOTHÈQUE
 ══════════════════════════════════ */
-const MAT_BARS={'Français':'linear-gradient(90deg,#b388ff,#ff8fab)','Mathématiques':'linear-gradient(90deg,#ffd166,#ff9f1c)','Histoire-Géo':'linear-gradient(90deg,#ef476f,#ffd166)','Sciences':'linear-gradient(90deg,#06d6a0,#4cc9f0)','Biologie':'linear-gradient(90deg,#06d6a0,#34d399)','Anglais':'linear-gradient(90deg,#4cc9f0,#b388ff)','Philosophie':'linear-gradient(90deg,#b388ff,#4cc9f0)','Physique-Chimie':'linear-gradient(90deg,#ff9f1c,#4cc9f0)','Informatique':'linear-gradient(90deg,#4cc9f0,#06d6a0)'};
-const MAT_BADGE={'Français':'bpu','Mathématiques':'by','Histoire-Géo':'bp','Sciences':'bg','Biologie':'bg','Anglais':'bb','Philosophie':'bpu','Physique-Chimie':'bb','Informatique':'bg'};
-function matBar(m){return MAT_BARS[m]||'linear-gradient(90deg,#ff8fab,#ffd166)';}
-function matBadge(m){return MAT_BADGE[m]||'bp';}
+const MAT_BARS = {
+  'Français':'linear-gradient(90deg,#b388ff,#ff8fab)',
+  'Mathématiques':'linear-gradient(90deg,#ffd166,#ff9f1c)',
+  'Histoire-Géo':'linear-gradient(90deg,#ef476f,#ffd166)',
+  'Sciences':'linear-gradient(90deg,#06d6a0,#4cc9f0)',
+  'Biologie':'linear-gradient(90deg,#06d6a0,#34d399)',
+  'Anglais':'linear-gradient(90deg,#4cc9f0,#b388ff)',
+  'Philosophie':'linear-gradient(90deg,#b388ff,#4cc9f0)',
+  'Physique-Chimie':'linear-gradient(90deg,#ff9f1c,#4cc9f0)',
+  'Informatique':'linear-gradient(90deg,#4cc9f0,#06d6a0)'
+};
+const MAT_BADGE = {
+  'Français':'bpu','Mathématiques':'by','Histoire-Géo':'bp',
+  'Sciences':'bg','Biologie':'bg','Anglais':'bb',
+  'Philosophie':'bpu','Physique-Chimie':'bb','Informatique':'bg'
+};
+function matBar(m)   { return MAT_BARS[m]  || 'linear-gradient(90deg,#ff8fab,#ffd166)'; }
+function matBadge(m) { return MAT_BADGE[m] || 'bp'; }
+
 function renderLib() {
-  const q=(document.getElementById('lib-search').value||'').toLowerCase();
-  const grid=document.getElementById('lib-grid');
-  const items=library.filter(f=>!q||(f.titre||'').toLowerCase().includes(q)||(f.matiere||'').toLowerCase().includes(q));
-  if (!items.length){grid.innerHTML=`<div class="empty"><div class="empty-icon">📭</div><p>${q?'Aucune fiche trouvée.':'Génère ta première fiche et sauvegarde-la !'}</p></div>`;return;}
-  grid.innerHTML=items.map(f=>`<div class="fiche-card" onclick="openLibModal(${f.id})"><div class="fc-bar" style="background:${matBar(f.matiere)}"></div><div class="fc-title"><span>${esc(f.titre)}</span><button class="fc-del" onclick="event.stopPropagation();delFiche(${f.id})" title="Supprimer">🗑</button></div><div class="fc-meta">${esc(f.date||'')} · ${esc(f.niveau||'')}</div><div class="fc-preview">${esc(splitLines((f.sections[0]||{}).contenu||'').slice(0,3).join(' ').substring(0,100))}…</div><div style="margin-top:8px"><span class="badge ${matBadge(f.matiere)}">${esc(f.matiere)}</span></div></div>`).join('');
+  const q = (document.getElementById('lib-search').value || '').toLowerCase();
+  const grid = document.getElementById('lib-grid');
+  const items = library.filter(f => !q || (f.titre||'').toLowerCase().includes(q) || (f.matiere||'').toLowerCase().includes(q));
+  if (!items.length) {
+    grid.innerHTML = `<div class="empty"><div class="empty-icon">📭</div><p>${q ? 'Aucune fiche trouvée.' : 'Génère ta première fiche et sauvegarde-la !'}</p></div>`;
+    return;
+  }
+  grid.innerHTML = items.map(f => {
+    const preview = splitLines(((f.sections||[])[0]||{}).contenu||'').slice(0,3).join(' ').substring(0,100);
+    return `<div class="fiche-card" onclick="openLibModal(${f.id})">
+      <div class="fc-bar" style="background:${matBar(f.matiere)}"></div>
+      <div class="fc-title"><span>${esc(f.titre)}</span>
+        <button class="fc-del" onclick="event.stopPropagation();delFiche(${f.id})" title="Supprimer">🗑</button>
+      </div>
+      <div class="fc-meta">${esc(f.date||'')} · ${esc(f.niveau||'')}</div>
+      <div class="fc-preview">${esc(preview)}…</div>
+      <div style="margin-top:8px"><span class="badge ${matBadge(f.matiere)}">${esc(f.matiere)}</span></div>
+    </div>`;
+  }).join('');
 }
-function delFiche(id){library=library.filter(f=>f.id!==id);localStorage.setItem('sf_lib',JSON.stringify(library));renderLib();toast('🗑 Supprimée');}
+
+function delFiche(id) {
+  library = library.filter(f => f.id !== id);
+  try { localStorage.setItem('sf_lib', JSON.stringify(library)); } catch(e) {}
+  renderLib();
+  toast('🗑 Supprimée');
+}
+
 function openLibModal(id) {
-  const f=library.find(x=>x.id===id); if (!f) return;
-  let html=`<div><div style="font-family:'Caveat',cursive;font-size:1.5rem;font-weight:700;text-align:center;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:3px solid var(--pink)">${esc(f.titre)}</div>`;
-  html+=f.sections.map((s,i)=>buildSection(s,i)).join('');
-  if (f.a_retenir){const pts=splitLines(f.a_retenir);html+=`<div class="a-retenir"><strong>⭐ À retenir</strong>${pts.map(p=>'<div>'+esc(p)+'</div>').join('')}</div>`;}
-  html+='</div>'; openModal(f.titre,html);
+  const f = library.find(x => x.id === id);
+  if (!f) return;
+  let html = `<div><div style="font-family:'Caveat',cursive;font-size:1.5rem;font-weight:700;text-align:center;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:3px solid var(--pink)">${esc(f.titre)}</div>`;
+  html += (f.sections||[]).map((s, i) => buildSection(s, i)).join('');
+  if (f.a_retenir) {
+    const pts = splitLines(f.a_retenir);
+    html += `<div class="a-retenir"><strong>⭐ À retenir</strong>${pts.map(p => '<div>' + esc(p) + '</div>').join('')}</div>`;
+  }
+  html += '</div>';
+  openModal(f.titre, html);
 }
 
 /* ══════════════════════════════════
    COMMUNAUTÉ
 ══════════════════════════════════ */
 function renderComm() {
-  const q=(document.getElementById('comm-search').value||'').toLowerCase();
-  const grid=document.getElementById('comm-grid');
-  const items=communityList.filter(f=>!q||(f.titre||'').toLowerCase().includes(q)||(f.matiere||'').toLowerCase().includes(q));
-  if (!items.length){grid.innerHTML='<div class="empty" style="grid-column:1/-1"><div class="empty-icon">🌍</div><p>Aucune fiche publiée pour l\'instant.</p></div>';return;}
-  grid.innerHTML=items.map(f=>`<div class="pub-card"><div class="pub-author"><div class="pub-av" style="background:${esc(f.avColor)}">${esc(f.initiales)}</div><div><div class="pub-name">${esc(f.auteur)}</div><div class="pub-date">${esc(f.date)}</div></div></div><h4>${esc(f.titre)}</h4><p>${esc(f.preview)}</p><div class="pub-footer"><span class="badge ${matBadge(f.matiere)}">${esc(f.matiere)}</span><div style="display:flex;gap:6px;align-items:center"><button class="btn-sec" style="font-size:.73rem;padding:3px 9px" onclick="saveFromComm('${f.id}')">💾</button><button class="like-btn" id="lk-${f.id}" onclick="toggleLike('${f.id}',this)">❤️ ${f.likes}</button></div></div></div>`).join('');
+  const q = (document.getElementById('comm-search').value || '').toLowerCase();
+  const grid = document.getElementById('comm-grid');
+  const items = communityList.filter(f => !q || (f.titre||'').toLowerCase().includes(q) || (f.matiere||'').toLowerCase().includes(q));
+  if (!items.length) {
+    grid.innerHTML = '<div class="empty" style="grid-column:1/-1"><div class="empty-icon">🌍</div><p>Aucune fiche publiée pour l\'instant.</p></div>';
+    return;
+  }
+  grid.innerHTML = items.map(f => `<div class="pub-card">
+    <div class="pub-author">
+      <div class="pub-av" style="background:${esc(f.avColor)}">${esc(f.initiales)}</div>
+      <div><div class="pub-name">${esc(f.auteur)}</div><div class="pub-date">${esc(f.date)}</div></div>
+    </div>
+    <h4>${esc(f.titre)}</h4>
+    <p>${esc(f.preview||'')}</p>
+    <div class="pub-footer">
+      <span class="badge ${matBadge(f.matiere)}">${esc(f.matiere)}</span>
+      <div style="display:flex;gap:6px;align-items:center">
+        <button class="btn-sec" style="font-size:.73rem;padding:3px 9px" onclick="saveFromComm('${f.id}')">💾</button>
+        <button class="like-btn" id="lk-${f.id}" onclick="toggleLike('${f.id}',this)">❤️ ${f.likes||0}</button>
+      </div>
+    </div>
+  </div>`).join('');
 }
-function toggleLike(id,btn){const f=communityList.find(x=>x.id===id);if(!f)return;btn.classList.toggle('liked');f.likes+=btn.classList.contains('liked')?1:-1;btn.textContent='❤️ '+f.likes;}
-function saveFromComm(id){const f=communityList.find(x=>x.id===id);if(!f)return;library.unshift({...f,id:Date.now(),date:new Date().toLocaleDateString('fr-FR')});localStorage.setItem('sf_lib',JSON.stringify(library));toast('💾 Sauvegardée dans ta bibliothèque !');}
+
+function toggleLike(id, btn) {
+  const f = communityList.find(x => x.id === id);
+  if (!f) return;
+  btn.classList.toggle('liked');
+  f.likes = (f.likes || 0) + (btn.classList.contains('liked') ? 1 : -1);
+  btn.textContent = '❤️ ' + f.likes;
+}
+
+function saveFromComm(id) {
+  const f = communityList.find(x => x.id === id);
+  if (!f) return;
+  const copy = Object.assign({}, f, { id: Date.now(), date: new Date().toLocaleDateString('fr-FR') });
+  library.unshift(copy);
+  try { localStorage.setItem('sf_lib', JSON.stringify(library.slice(0, 100))); } catch(e) {}
+  toast('💾 Sauvegardée dans ta bibliothèque !');
+}
 
 /* ══════════════════════════════════
    LIVRESCOLAIRE
 ══════════════════════════════════ */
-const LS_DATA={
+const LS_DATA = {
   brevet:[
     {n:'Français',e:'📖',u:'https://www.livrescolaire.fr/matiere/troisieme-francais',c:['Lecture et compréhension','Grammaire','Conjugaison','Orthographe','Rédaction — récit','Argumentation','Figures de style','Analyse d\'œuvre','Expression orale']},
     {n:'Mathématiques',e:'📐',u:'https://www.livrescolaire.fr/matiere/troisieme-maths',c:['Fractions et calculs','Puissances','Équations','Pythagore','Thalès','Trigonométrie','Statistiques','Proportionnalité','Aires et volumes']},
@@ -738,101 +911,234 @@ const LS_DATA={
     {n:'NSI',e:'💻',u:'https://www.livrescolaire.fr/matiere/terminale-nsi',c:['Structures de données','Algorithmique','POO','Récursivité','SQL','Réseaux','Sécurité']}
   ]
 };
-let curExam='brevet';
-function switchExam(exam,btn){curExam=exam;document.querySelectorAll('.exam-tab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.getElementById('chaps-box').style.display='none';document.getElementById('mat-grid').style.display='grid';renderMats();}
-function renderMats(){document.getElementById('mat-grid').innerHTML=LS_DATA[curExam].map((m,i)=>`<div class="mat-card" onclick="showChaps(${i})"><span class="mat-emoji">${m.e}</span>${esc(m.n)}</div>`).join('');}
-function showChaps(idx){
-  const mat=LS_DATA[curExam][idx];
-  document.getElementById('mat-grid').style.display='none';
-  document.getElementById('chaps-box').style.display='block';
-  document.getElementById('chaps-title').textContent=mat.e+' '+mat.n;
-  document.getElementById('ls-link').href=mat.u;
-  document.getElementById('chap-list').innerHTML=mat.c.map(c=>`<li onclick='pickChap(${JSON.stringify(c)},${JSON.stringify(mat.n)})'>📌 ${esc(c)}</li>`).join('');
+
+let curExam = 'brevet';
+
+function switchExam(exam, btn) {
+  curExam = exam;
+  document.querySelectorAll('.exam-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('chaps-box').style.display = 'none';
+  document.getElementById('mat-grid').style.display  = 'grid';
+  renderMats();
 }
-function hideChaps(){document.getElementById('chaps-box').style.display='none';document.getElementById('mat-grid').style.display='grid';}
-function pickChap(chap,matNom){
-  document.getElementById('titre').value=chap;
-  document.getElementById('cours').value='';
-  document.getElementById('niveau').value=curExam==='brevet'?'Collège':'Terminale / BAC';
-  let found=false;
-  document.querySelectorAll('#mat-chips .chip').forEach(c=>{c.classList.remove('active');if(!found){const v=c.dataset.val;if(matNom.includes(v)||v.split(' ')[0]===matNom.split(' ')[0]){c.classList.add('active');selMat=v;found=true;}}});
-  if(!found){const f=document.querySelector('#mat-chips .chip');if(f){f.classList.add('active');selMat=f.dataset.val;}}
-  goTo('generate',document.querySelector('[data-page="generate"]'));
-  toast('📌 '+chap.substring(0,40)+(chap.length>40?'…':''));
+
+function renderMats() {
+  document.getElementById('mat-grid').innerHTML = LS_DATA[curExam].map((m, i) =>
+    `<div class="mat-card" onclick="showChaps(${i})"><span class="mat-emoji">${m.e}</span>${esc(m.n)}</div>`
+  ).join('');
+}
+
+function showChaps(idx) {
+  const mat = LS_DATA[curExam][idx];
+  document.getElementById('mat-grid').style.display  = 'none';
+  document.getElementById('chaps-box').style.display = 'block';
+  document.getElementById('chaps-title').textContent = mat.e + ' ' + mat.n;
+  document.getElementById('ls-link').href = mat.u;
+  document.getElementById('chap-list').innerHTML = mat.c.map(c =>
+    `<li onclick='pickChap(${JSON.stringify(c)},${JSON.stringify(mat.n)})'>📌 ${esc(c)}</li>`
+  ).join('');
+}
+
+function hideChaps() {
+  document.getElementById('chaps-box').style.display = 'none';
+  document.getElementById('mat-grid').style.display  = 'grid';
+}
+
+function pickChap(chap, matNom) {
+  document.getElementById('titre').value  = chap;
+  document.getElementById('cours').value  = '';
+  document.getElementById('niveau').value = curExam === 'brevet' ? 'Collège' : 'Terminale / BAC';
+  let found = false;
+  document.querySelectorAll('#mat-chips .chip').forEach(c => {
+    c.classList.remove('active');
+    if (!found) {
+      const v = c.dataset.val;
+      if (matNom.includes(v) || v.split(' ')[0] === matNom.split(' ')[0]) {
+        c.classList.add('active'); selMat = v; found = true;
+      }
+    }
+  });
+  if (!found) {
+    const f = document.querySelector('#mat-chips .chip');
+    if (f) { f.classList.add('active'); selMat = f.dataset.val; }
+  }
+  goTo('generate', document.querySelector('[data-page="generate"]'));
+  toast('📌 ' + chap.substring(0, 40) + (chap.length > 40 ? '…' : ''));
 }
 
 /* ══════════════════════════════════
    AGENT IA
 ══════════════════════════════════ */
-function appendMsg(role,text,type){
-  const list=document.getElementById('msg-list');
-  const wrap=document.createElement('div'); wrap.className='msg'+(role==='user'?' user':'');
-  const av=document.createElement('div'); av.className='msg-av '+(role==='user'?'user':'bot'); av.textContent=role==='user'?(curUser?curUser.avatar:'😊'):'🤖';
-  const bubble=document.createElement('div'); bubble.className='msg-bubble '+(type||(role==='user'?'user':'bot')); bubble.innerHTML=esc(text).replace(/\n/g,'<br>');
-  wrap.appendChild(av); wrap.appendChild(bubble); list.appendChild(wrap); list.scrollTop=list.scrollHeight;
+function appendMsg(role, text, type) {
+  const list   = document.getElementById('msg-list');
+  const wrap   = document.createElement('div');
+  wrap.className = 'msg' + (role === 'user' ? ' user' : '');
+  const av     = document.createElement('div');
+  av.className = 'msg-av ' + (role === 'user' ? 'user' : 'bot');
+  av.textContent = role === 'user' ? (curUser ? curUser.avatar : '😊') : '🤖';
+  const bubble = document.createElement('div');
+  bubble.className = 'msg-bubble ' + (type || (role === 'user' ? 'user' : 'bot'));
+  bubble.innerHTML = esc(text).replace(/\n/g, '<br>');
+  wrap.appendChild(av);
+  wrap.appendChild(bubble);
+  list.appendChild(wrap);
+  list.scrollTop = list.scrollHeight;
 }
-async function sendMsg(){
-  const input=document.getElementById('chat-input'), msg=input.value.trim(); if(!msg) return;
-  if(chatState.count>=20){input.placeholder='⏳ Limite atteinte. Recharge la page.';return;}
-  if(isBad(msg)){appendMsg('bot','🚫 Message bloqué. Pose uniquement des questions scolaires !','err');input.value='';return;}
-  input.value=''; appendMsg('user',msg); chatState.count++;
-  document.getElementById('msg-count').textContent=chatState.count;
-  const left=20-chatState.count; document.getElementById('msg-warn').textContent=left<=5?'⚠️ '+left+' message(s) restant(s)':'';
-  document.getElementById('typing-bar').style.display='block'; document.getElementById('send-btn').disabled=true;
+
+async function sendMsg() {
+  const input = document.getElementById('chat-input');
+  const msg   = input.value.trim();
+  if (!msg) return;
+
+  const key = getApiKey();
+  if (!key) {
+    appendMsg('bot', '🔑 Configure ta clé API dans l\'onglet "Clé API" pour utiliser l\'agent IA !', 'warn');
+    input.value = '';
+    return;
+  }
+
+  if (chatState.count >= chatState.limit) {
+    input.placeholder = '⏳ Limite atteinte. Recharge la page.';
+    return;
+  }
+  if (isBad(msg)) {
+    appendMsg('bot', '🚫 Message bloqué. Pose uniquement des questions scolaires !', 'err');
+    input.value = '';
+    return;
+  }
+
+  input.value = '';
+  appendMsg('user', msg);
+  chatState.count++;
+  document.getElementById('msg-count').textContent = chatState.count;
+  const left = chatState.limit - chatState.count;
+  document.getElementById('msg-warn').textContent = left <= 10 ? '⚠️ ' + left + ' message(s) restant(s)' : '';
+
+  document.getElementById('typing-bar').style.display = 'block';
+  document.getElementById('send-btn').disabled = true;
+
   try {
-    const reply=await callClaude(msg,'Tu es un assistant scolaire expert en français. Tu aides UNIQUEMENT pour les matières scolaires. Réponds en français, de façon claire et pédagogique.',1000);
-    document.getElementById('typing-bar').style.display='none'; appendMsg('bot',reply);
-  } catch(e){document.getElementById('typing-bar').style.display='none';appendMsg('bot','⚠️ IA indisponible : '+e.message,'warn');}
-  document.getElementById('send-btn').disabled=false;
+    const reply = await callClaude(
+      msg,
+      'Tu es un assistant scolaire expert français. Tu aides UNIQUEMENT pour les matières scolaires. Réponds en français, clairement et de façon pédagogique.',
+      1200
+    );
+    document.getElementById('typing-bar').style.display = 'none';
+    appendMsg('bot', reply);
+  } catch(e) {
+    document.getElementById('typing-bar').style.display = 'none';
+    appendMsg('bot', '⚠️ Erreur : ' + e.message, 'warn');
+  }
+  document.getElementById('send-btn').disabled = false;
 }
-function chatKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();}}
-function quickMsg(text){document.getElementById('chat-input').value=text;sendMsg();}
+
+function chatKey(e) {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMsg(); }
+}
+
+function quickMsg(text) {
+  document.getElementById('chat-input').value = text;
+  sendMsg();
+}
 
 /* ══════════════════════════════════
    MODAL / TOAST
 ══════════════════════════════════ */
-function openModal(title,body){document.getElementById('modal-title').textContent=title;document.getElementById('modal-body').innerHTML=body;document.getElementById('modal-bg').classList.add('open');}
-function closeModal(){document.getElementById('modal-bg').classList.remove('open');}
-function onModalBgClick(e){if(e.target===document.getElementById('modal-bg'))closeModal();}
-let toastT=null;
-function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove('show'),2800);}
+function openModal(title, body) {
+  document.getElementById('modal-title').textContent = title;
+  document.getElementById('modal-body').innerHTML    = body;
+  document.getElementById('modal-bg').classList.add('open');
+}
+function closeModal() { document.getElementById('modal-bg').classList.remove('open'); }
+function onModalBgClick(e) { if (e.target === document.getElementById('modal-bg')) closeModal(); }
+
+let toastTimer = null;
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 2800);
+}
 
 /* ══════════════════════════════════
    AUTH UI
 ══════════════════════════════════ */
-function openAuth(){document.getElementById('auth-bg').style.display='flex';}
-function closeAuth(){document.getElementById('auth-bg').style.display='none';}
-function authTab(tab){
-  document.getElementById('form-login').style.display=tab==='login'?'block':'none';
-  document.getElementById('form-signup').style.display=tab==='signup'?'block':'none';
-  document.getElementById('tab-login').classList.toggle('active',tab==='login');
-  document.getElementById('tab-signup').classList.toggle('active',tab==='signup');
-  document.getElementById('auth-err').style.display='none';
-  document.getElementById('auth-ok').style.display='none';
+function openAuth()  { document.getElementById('auth-bg').style.display = 'flex'; }
+function closeAuth() { document.getElementById('auth-bg').style.display = 'none'; }
+
+function authTab(tab) {
+  document.getElementById('form-login').style.display  = tab === 'login'  ? 'block' : 'none';
+  document.getElementById('form-signup').style.display = tab === 'signup' ? 'block' : 'none';
+  document.getElementById('tab-login').classList.toggle('active',  tab === 'login');
+  document.getElementById('tab-signup').classList.toggle('active', tab === 'signup');
+  document.getElementById('auth-err').style.display = 'none';
+  document.getElementById('auth-ok').style.display  = 'none';
 }
-function pickAv(el){document.querySelectorAll('.av-opt').forEach(a=>a.classList.remove('selected'));el.classList.add('selected');selAvatar=el.dataset.e;}
-function showAuthErr(msg){const el=document.getElementById('auth-err');el.textContent=msg;el.style.display='block';document.getElementById('auth-ok').style.display='none';}
-function showAuthOk(msg){const el=document.getElementById('auth-ok');el.textContent=msg;el.style.display='block';document.getElementById('auth-err').style.display='none';}
-function logout(){curUser=null;localStorage.removeItem('sf_user');updateUserUI();toast('👋 À bientôt !');}
-function updateUserUI(){
-  const li=!!curUser;
-  document.getElementById('top-user').style.display=li?'flex':'none';
-  document.getElementById('top-guest').style.display=li?'none':'block';
-  if(li){document.getElementById('top-av-icon').textContent=curUser.avatar;document.getElementById('top-name-txt').textContent=curUser.name;}
+
+function pickAv(el) {
+  document.querySelectorAll('.av-opt').forEach(a => a.classList.remove('selected'));
+  el.classList.add('selected');
+  selAvatar = el.dataset.e;
+}
+
+function showAuthErr(msg) {
+  const el = document.getElementById('auth-err');
+  el.textContent = msg;
+  el.style.display = 'block';
+  document.getElementById('auth-ok').style.display = 'none';
+}
+function showAuthOk(msg) {
+  const el = document.getElementById('auth-ok');
+  el.textContent = msg;
+  el.style.display = 'block';
+  document.getElementById('auth-err').style.display = 'none';
+}
+
+function logout() {
+  curUser = null;
+  try { localStorage.removeItem('sf_user'); } catch(e) {}
+  updateUserUI();
+  toast('👋 À bientôt !');
+}
+
+function updateUserUI() {
+  const li = !!curUser;
+  document.getElementById('top-user').style.display  = li ? 'flex'  : 'none';
+  document.getElementById('top-guest').style.display = li ? 'none'  : 'block';
+  if (li) {
+    document.getElementById('top-av-icon').textContent = curUser.avatar;
+    document.getElementById('top-name-txt').textContent = curUser.name;
+  }
 }
 
 /* ══════════════════════════════════
    INIT
 ══════════════════════════════════ */
-(function(){
+(function init() {
+  // Restore user session
   try {
-    const saved=localStorage.getItem('sf_user');
-    if(saved){curUser=JSON.parse(saved);if(curUser&&curUser.id){updateUserUI();return;}}
-  } catch(e){localStorage.removeItem('sf_user');}
-  curUser=null; openAuth();
+    const saved = localStorage.getItem('sf_user');
+    if (saved) {
+      curUser = JSON.parse(saved);
+      if (curUser && curUser.id) { updateUserUI(); }
+      else { curUser = null; }
+    }
+  } catch(e) {
+    curUser = null;
+    try { localStorage.removeItem('sf_user'); } catch(_) {}
+  }
+
+  // Update API warnings
+
+  // Init pages
+  renderMats();
+  loadCommunity();
+
+  // Show auth only if not logged in AND no key set (optional)
+  // Don't force auth on load — let users use the app freely
 })();
-renderMats();
-loadCommunity();
 </script>
 </body>
 </html>
