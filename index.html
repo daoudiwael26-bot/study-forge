@@ -476,13 +476,11 @@ function updateApiBanner() {
   if (!banner) return;
   const key = getApiKey();
   if (key) {
-    banner.style.background = '#f0fff9';
-    banner.style.borderColor = '#a3f0dc';
-    banner.innerHTML = '<p style="color:#005438;font-weight:700">Cle API configuree — IA active ! <button onclick="clearApiKey()" style="background:none;border:none;color:#ef476f;cursor:pointer;font-weight:700;text-decoration:underline">Changer</button></p>';
+    banner.style.cssText = 'background:#f0fff9;border:2px solid #a3f0dc;border-radius:12px;padding:1rem 1.25rem;margin-bottom:1rem;display:flex;align-items:center;gap:12px;flex-wrap:wrap';
+    banner.innerHTML = '<p style="color:#005438;font-weight:700;flex:1">✅ Cle API configuree — IA active !</p><button onclick="clearApiKey()" style="background:none;border:2px solid #ef476f;color:#ef476f;cursor:pointer;font-weight:700;font-size:.8rem;padding:5px 12px;border-radius:8px">Changer la cle</button>';
   } else {
-    banner.style.background = '#fffbee';
-    banner.style.borderColor = '#ffe59a';
-    banner.innerHTML = '<p style="color:#7a5800;font-weight:600;flex:1">Entre ta cle API Anthropic (commence par sk-ant-)</p><div style="display:flex;gap:8px;flex:1;min-width:220px"><input type="password" id="apikey-input" placeholder="sk-ant-api03-..." style="flex:1;padding:8px 12px;border:2px solid #ffe59a;border-radius:8px;font-size:.83rem;font-family:Nunito,sans-serif;background:#fff"><button onclick="saveApiKey()" style="padding:8px 16px;background:#ff6b9d;border:none;border-radius:8px;color:#fff;font-weight:700;font-size:.83rem;cursor:pointer;white-space:nowrap">Sauvegarder</button></div>';
+    banner.style.cssText = 'background:#fffbee;border:2px solid #ffe59a;border-radius:12px;padding:1rem 1.25rem;margin-bottom:1rem;display:block';
+    banner.innerHTML = '<p style="color:#7a5800;font-weight:700;margin-bottom:10px">🔑 Entre ta cle API Anthropic pour activer lIA :</p><div style="display:flex;gap:8px;flex-wrap:wrap"><input type="text" id="apikey-input" placeholder="sk-ant-api03-..." style="flex:1;min-width:200px;padding:10px 14px;border:2px solid #ffe59a;border-radius:8px;font-size:.88rem;font-family:Nunito,sans-serif;background:#fff;color:#2d2d2d"><button onclick="saveApiKey()" style="padding:10px 20px;background:#ff6b9d;border:none;border-radius:8px;color:#fff;font-weight:700;font-size:.9rem;cursor:pointer;white-space:nowrap">✅ Sauvegarder</button></div><p style="color:#9a9189;font-size:.75rem;margin-top:7px">Ta cle est stockee uniquement sur ton appareil. Obtiens-la sur console.anthropic.com</p>';
   }
 }
 
