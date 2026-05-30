@@ -59,6 +59,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 .spinner{width:18px;height:18px;border:2.5px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;display:none;flex-shrink:0}
 @keyframes spin{to{transform:rotate(360deg)}}
 .err-box{background:#fff5f5;border:2px solid var(--pink-border);border-radius:10px;padding:9px 13px;font-size:.83rem;color:var(--red);font-weight:700;margin-bottom:1rem;display:none}
+.apikey-banner{background:#fffbee;border:2px solid #ffe59a;border-radius:12px;padding:1rem 1.25rem;margin-bottom:1rem;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .info-box{background:var(--blue-bg);border:2px solid var(--blue-border);border-radius:10px;padding:11px 15px;font-size:.84rem;color:#005a7a;font-weight:600;margin-bottom:1rem;display:flex;align-items:flex-start;gap:9px;line-height:1.6}
 .status-pill{display:inline-flex;align-items:center;gap:6px;background:var(--green-bg);border:1.5px solid var(--green-border);border-radius:20px;padding:3px 12px;font-size:.73rem;font-weight:700;color:#005438;margin-bottom:1rem}
 .status-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:blink 2s infinite}
@@ -176,24 +177,6 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 .modal-close{background:transparent;border:none;color:var(--muted);font-size:1.2rem;cursor:pointer;padding:4px 8px;border-radius:6px;transition:all .15s}
 .modal-close:hover{background:#eee}
 .modal-body{padding:1.4rem}
-/* API KEY SETUP */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* AUTH */
 .auth-bg{position:fixed;inset:0;background:rgba(248,246,240,.97);z-index:9999;display:flex;align-items:center;justify-content:center;padding:1rem}
 .auth-box{background:var(--white);border:2px solid var(--line);border-radius:22px;padding:2.25rem 1.75rem;width:100%;max-width:400px;box-shadow:0 8px 40px rgba(0,0,0,.1)}
@@ -251,7 +234,7 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
     <div class="page active" id="page-generate">
       <div class="section-title">✨ Créer une fiche</div>
       <div class="section-sub">L'IA génère une fiche style cahier manuscrit coloré ✍️</div>
-      <div class="status-pill" id="status-pill-gen"><span class="status-dot"></span> IA en ligne</div>
+      <div class="status-pill"><span class="status-dot"></span> IA en ligne</div>
       <div class="err-box" id="gen-err"></div>
       <div class="card">
         <div class="card-title">📌 Matière</div>
@@ -468,30 +451,68 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 'use strict';
 
 /* ══════════════════════════════════
-   CLÉ API — stockée dans localStorage
-   L'utilisateur la configure dans l'onglet "Clé API"
+   BACKEND URL — pointe vers ton déploiement Vercel
+   Remplace cette URL après avoir déployé sur Vercel
 ══════════════════════════════════ */
+/* ══════ CLÉ API ══════ */
+function getApiKey() {
+  return localStorage.getItem('sf_apikey') || '';
+}
+function saveApiKey() {
+  const inp = document.getElementById('apikey-input');
+  if (!inp) return;
+  const val = inp.value.trim();
+  if (!val || !val.startsWith('sk-ant-')) { toast('Clé invalide ! Elle doit commencer par sk-ant-'); return; }
+  localStorage.setItem('sf_apikey', val);
+  updateApiBanner();
+  toast('Clé API sauvegardée !');
+}
+function clearApiKey() {
+  localStorage.removeItem('sf_apikey');
+  updateApiBanner();
+}
+function updateApiBanner() {
+  const banner = document.getElementById('apikey-banner');
+  if (!banner) return;
+  const key = getApiKey();
+  if (key) {
+    banner.style.background = '#f0fff9';
+    banner.style.borderColor = '#a3f0dc';
+    banner.innerHTML = '<p style="color:#005438;font-weight:700">Cle API configuree — IA active ! <button onclick="clearApiKey()" style="background:none;border:none;color:#ef476f;cursor:pointer;font-weight:700;text-decoration:underline">Changer</button></p>';
+  } else {
+    banner.style.background = '#fffbee';
+    banner.style.borderColor = '#ffe59a';
+    banner.innerHTML = '<p style="color:#7a5800;font-weight:600;flex:1">Entre ta cle API Anthropic (commence par sk-ant-)</p><div style="display:flex;gap:8px;flex:1;min-width:220px"><input type="password" id="apikey-input" placeholder="sk-ant-api03-..." style="flex:1;padding:8px 12px;border:2px solid #ffe59a;border-radius:8px;font-size:.83rem;font-family:Nunito,sans-serif;background:#fff"><button onclick="saveApiKey()" style="padding:8px 16px;background:#ff6b9d;border:none;border-radius:8px;color:#fff;font-weight:700;font-size:.83rem;cursor:pointer;white-space:nowrap">Sauvegarder</button></div>';
+  }
+}
+
+/* ══════ APPEL IA DIRECT ══════ */
 async function callClaude(userContent, systemPrompt, maxTokens) {
-  // Appel vers le backend Vercel — la clé API est cachée côté serveur
-  const BACKEND = 'https://studyforge-api.vercel.app/api/claude';
+  const key = getApiKey();
+  if (!key) throw new Error('Configure ta cle API en haut de la page !');
 
   const body = {
+    model: 'claude-haiku-4-5-20251001',
     max_tokens: maxTokens || 1500,
     messages: [{ role: 'user', content: userContent }]
   };
   if (systemPrompt) body.system = systemPrompt;
 
-  const res = await fetch(BACKEND, {
+  const res = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': key,
+      'anthropic-version': '2023-06-01',
+      'anthropic-dangerous-direct-browser-access': 'true'
+    },
     body: JSON.stringify(body)
   });
 
   const data = await res.json();
-  if (!res.ok) throw new Error(data?.error || 'Erreur serveur ' + res.status);
-  if (data.error) throw new Error(data.error.message || data.error);
+  if (!res.ok) throw new Error(data?.error?.message || 'Erreur API ' + res.status);
   const text = (data.content || []).filter(b => b.type === 'text').map(b => b.text).join('');
-  if (!text) throw new Error("Réponse vide de l'IA");
+  if (!text) throw new Error("Reponse vide de l'IA");
   return text;
 }
 
@@ -619,13 +640,6 @@ function showErr(id, msg) {
    GÉNÉRER FICHE
 ══════════════════════════════════ */
 async function genFiche() {
-  const key = getApiKey();
-  if (!key) {
-    showErr('gen-err', '🔑 Configure ta clé API dans l\'onglet "Clé API" du menu !');
-    goTo('setup', document.querySelector('[data-page="setup"]'));
-    return;
-  }
-
   const titre = document.getElementById('titre').value.trim();
   const cours  = document.getElementById('cours').value.trim();
   const kw     = document.getElementById('kw').value.trim();
@@ -679,9 +693,7 @@ Génère 4 à 6 sections riches et pertinentes. Tout en français.`;
     setTimeout(() => wrap.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
   } catch(err) {
     let msg = '❌ ';
-    if (err.message === 'NO_KEY') msg += 'Configure ta clé API dans l\'onglet "Clé API" !';
-    else if (err.message.includes('invalide') || err.message.includes('401')) msg += err.message;
-    else if (err.message.includes('JSON') || err.message.includes('introuvable')) msg += 'Format inattendu. Réessaie !';
+    if (err.message.includes('JSON') || err.message.includes('introuvable')) msg += 'Format inattendu. Réessaie !';
     else if (err.message.includes('fetch') || err.message.includes('Failed')) msg += 'Erreur réseau. Vérifie ta connexion.';
     else msg += err.message;
     showErr('gen-err', msg);
@@ -991,13 +1003,6 @@ async function sendMsg() {
   const msg   = input.value.trim();
   if (!msg) return;
 
-  const key = getApiKey();
-  if (!key) {
-    appendMsg('bot', '🔑 Configure ta clé API dans l\'onglet "Clé API" pour utiliser l\'agent IA !', 'warn');
-    input.value = '';
-    return;
-  }
-
   if (chatState.count >= chatState.limit) {
     input.placeholder = '⏳ Limite atteinte. Recharge la page.';
     return;
@@ -1117,7 +1122,6 @@ function updateUserUI() {
    INIT
 ══════════════════════════════════ */
 (function init() {
-  // Restore user session
   try {
     const saved = localStorage.getItem('sf_user');
     if (saved) {
@@ -1129,15 +1133,8 @@ function updateUserUI() {
     curUser = null;
     try { localStorage.removeItem('sf_user'); } catch(_) {}
   }
-
-  // Update API warnings
-
-  // Init pages
   renderMats();
   loadCommunity();
-
-  // Show auth only if not logged in AND no key set (optional)
-  // Don't force auth on load — let users use the app freely
 })();
 </script>
 </body>
